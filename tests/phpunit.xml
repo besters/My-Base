@@ -1,0 +1,28 @@
+<phpunit bootstrap="./bootstrap.php" colors="false">
+
+	<testsuite name="phpunit">
+		<directory>./</directory>
+	</testsuite>
+	
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../application</directory>
+			<directory suffix=".php">../library/Unodor</directory>
+			<exclude>
+				<directory suffix=".phtml">../application</directory>
+				<file>../application/Bootstrap.php</file>
+				<file>../application/modules/default/controllers/ErrorController.php</file>
+			</exclude>
+		</whitelist>
+	</filter>
+	
+	<logging>
+		<log type="coverage-html" target="./log/report" charset="UTF-8" yui="true" highlight="true" lowUpperBound="50" highLowerBound="80" />
+		<log type="testdox-html" target="./log/testdox.html" />
+	</logging>
+	
+	<php>
+  		<ini name="date.timezone" value="Europe/Prague"/>
+	</php>
+
+</phpunit>
