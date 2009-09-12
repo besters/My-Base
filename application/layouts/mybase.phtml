@@ -1,4 +1,9 @@
-<?php echo $this->doctype(); ?>
+<?php
+$this->headLink()
+    ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
+    ->appendStylesheet($this->baseUrl('/public/css/layout.css'), 'screen,projection');
+
+echo $this->doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php
@@ -9,10 +14,45 @@
 	?>
 </head>
 <body>	
-		  
-<h1>Layout in Mybase Module</h1>	
+
+<div id="header">
+	<div class="wrap940">
+		<h1>Projekt <span>Company</span></h1>
+	</div>
+</div>
+
+<div id="menu">
+	<div class="wrap940">
+		<ul id="navmenu">
+			<!--
+			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Přehled</span></a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Milníky</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Tickety</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Checklist</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Wiki</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Diskuze</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Soubory</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Čas</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Kalendář</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Team</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Nastavení</a></li>
+			-->
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Nástěnka</span></a></li>
+			<li><a href="<?php echo $this->baseUrl('projekt') ; ?>">Projekty</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Přiřazení</a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Kalendář</a></li>
+			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Lidé</span></a></li>
+			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Účet</a></li>
 			
+		</ul>
+	</div>
+</div>
+
+<div class="wrap940">	  
+
 <?php echo $this->layout()->content ?>
+
+</div>	
 
 </body>
 </html>

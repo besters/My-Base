@@ -1,0 +1,203 @@
+body{
+	background: #f7fbff;
+	color: #272644;
+}
+
+h1{
+	font-size: 25px;
+	font-family: Arial, Verdana, sans-serif;
+	font-weight: bold;
+	padding-top: 8px;
+	color: #e6eaec;
+}
+
+h1 span{
+	font-size: 14px;
+	font-weight: normal;
+	color: #bdc3c5;	
+}
+
+#header{
+	background: #1d4d59;
+	height: 50px;
+}
+
+#menu{
+	background: #395e67;
+	height: 40px;
+	border-top: 1px solid #486e78;
+}
+
+#main, #main-fixed{
+	background-color: #fff;
+	padding: 10px;
+	margin-top: 20px;
+	width: 99%;
+	border: 1px solid #ececec;
+}
+
+#main-fixed{
+	width: 660px;
+	float: left;
+}
+
+#main h2, #main-fixed h2{
+	color: #1d4d59;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 8px;
+}
+
+#title{
+	background-color: #ddf1f6;
+}
+
+#title-links{
+  	float: right;
+  	text-align: right;
+  	font-size: 11px;
+  	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  	margin: 6px 6px 0 0;
+  	color: #0066cc;
+	padding: 4px;
+}
+
+#title-links a{
+	padding: 4px;
+}
+
+#title-links a:visited{
+	color: #0066cc;
+}
+
+#title-links a:hover{
+	color: #fff;
+	background: #0066cc;
+	text-decoration: none;
+}
+
+
+#side{
+	width: 245px;
+	margin-top: 20px;
+	float: right;
+}
+
+#side h3{
+	font-family: Arial, Verdana, sans-serif;
+	color: #1d4d59;
+	font-size: 16px;
+	background-color: #fff;
+	border: 1px solid #ececec;
+	padding: 7px 11px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+#side .block{
+	margin-bottom: 30px;
+}
+
+.bar{
+	width: 220px;
+	border: 1px solid #c9dbe0;
+	background: #fff;	 
+	padding: 2px; 
+}
+
+
+div.bar > div {
+  background-color: #b70000; 
+  height: 14px
+}
+
+#progress-info{
+	color: #272644;
+	font-family: Arial, Verdana, sans-serif;
+	text-align: center;
+	font-size: 12px;
+	margin-top: 10px;
+	
+}
+
+
+.wrap940{
+	width: 940px;
+	margin: 0 auto;
+	min-width: 940px;
+}
+
+.center{
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------
+  Menu
+ ----------------------------------------*/
+
+ul#navmenu {
+	margin: 0;
+	border: 0 none;
+	padding: 0;
+	width: 100%; /*For KHTML*/
+	list-style: none;
+	font-size: 12px;
+	font-family: Arial, Verdana, sans-serif;
+}
+
+ul#navmenu li {
+	margin: 0;
+	border: 0 none;
+	padding: 13px 1px 0 0;
+	float: left; /*For Gecko*/
+	display: inline;
+	list-style: none;
+	position: relative;
+	height: 26px;
+}
+ul#navmenu a {
+	background: #5a848e;
+	border-top: 1px solid #6895a0;
+	color: #f7fbff;
+	padding: 5px 16px;
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	text-decoration: none;
+	height: auto !important;
+	height: 1%; /*For IE*/
+}
+
+/* Root Menu Hover Persistence */
+ul#navmenu a:hover,ul#navmenu li:hover a,ul#navmenu li.iehover a {
+	background: #6895a0;
+}
+
+ul#navmenu li.active{
+	height: 31px;
+	padding-top: 8px;
+
+}
+
+ul#navmenu li.active a{
+	padding: 8px 16px;
+	color: #272644;
+	background: url('../design/menu-active.png');
+}
+
+ul#navmenu li.active a span{
+	background: url('../design/ikona.png') no-repeat;
+	padding: 2px 0 2px 25px;
+}
+
