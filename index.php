@@ -26,8 +26,8 @@ $loader = new Zend_Loader_Autoloader_Resource(array(
     'basePath'  => APP_PATH,
 ));
 
-//$loader->addResourceType('model', 'models/', 'Model');
-//$loader->addResourceType('adminForm', 'modules/backend/forms/', 'Admin_Form');
+$loader->addResourceType('model', 'models/', 'Model');
+$loader->addResourceType('mybaseForm', 'modules/mybase/forms/', 'Mybase_Form');
 //$loader->addResourceType('Form', 'modules/frontend/forms/', 'Form');
 
 
