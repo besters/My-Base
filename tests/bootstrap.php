@@ -21,9 +21,12 @@ require_once 'Zend/Loader/Autoloader.php';
 
 $loader = Zend_Loader_Autoloader::getInstance();
 
+$loader->registerNamespace('Unodor_');
+
 $loader = new Zend_Loader_Autoloader_Resource(array(
     'namespace' => '',
     'basePath'  => APP_PATH,
 ));
+
 
 require_once 'ControllerTestCase.php';
