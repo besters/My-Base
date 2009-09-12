@@ -23,7 +23,8 @@ echo $this->doctype(); ?>
 
 <div id="menu">
 	<div class="wrap940">
-		<ul id="navmenu">
+		<?php echo $this->navigation()->menu()->render() ?>
+		<!--<ul id="navmenu">-->
 			<!--
 			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Přehled</span></a></li>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Milníky</a></li>
@@ -37,14 +38,15 @@ echo $this->doctype(); ?>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Team</a></li>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Nastavení</a></li>
 			-->
+			<!--
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Nástěnka</span></a></li>
 			<li><a href="<?php echo $this->baseUrl('projekt') ; ?>">Projekty</a></li>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Přiřazení</a></li>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Kalendář</a></li>
 			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Lidé</span></a></li>
 			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Účet</a></li>
-			
-		</ul>
+			-->
+		<!--</ul>-->
 	</div>
 </div>
 
