@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Iban.php 16971 2009-07-22 18:05:45Z mikaelkael $
+ * @version    $Id: Iban.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -106,11 +106,21 @@ class Zend_Validate_Iban extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  string|Zend_Locale $locale OPTIONAL
+     * @param  string|Zend_Config|Zend_Locale $locale OPTIONAL
      * @return void
      */
     public function __construct($locale = null)
     {
+        if ($locale instanceof Zend_Config) {
+            $locale = $locale->toArray();
+            if (array_key_exists('locale', $locale)) {
+                $locale = $locale['locale'];
+            } else {
+                require_once 'Zend/Validate/Exception.php';
+                throw new Zend_Validate_Exception("Missing option 'locale'");
+            }
+        }
+
         if ($locale !== null) {
             $this->setLocale($locale);
         }

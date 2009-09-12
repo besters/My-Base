@@ -16,7 +16,7 @@
  * @package   Zend_Validate
  * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: IsCompressed.php 17685 2009-08-20 09:30:24Z thomas $
+ * @version   $Id: IsCompressed.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -53,12 +53,14 @@ class Zend_Validate_File_IsCompressed extends Zend_Validate_File_MimeType
     /**
      * Sets validator options
      *
-     * @param  string|array $compression
+     * @param  string|array|Zend_Config $compression
      * @return void
      */
     public function __construct($mimetype = array())
     {
-        if (empty($mimetype)) {
+        if ($mimetype instanceof Zend_Config) {
+            $mimetype = $mimetype->toArray();
+        } else if (empty($mimetype)) {
             $mimetype = array(
                 'application/x-tar',
                 'application/x-cpio',
@@ -93,22 +95,27 @@ class Zend_Validate_File_IsCompressed extends Zend_Validate_File_MimeType
      */
     public function isValid($value, $file = null)
     {
+        if ($file === null) {
+            $file = array(
+                'type' => null,
+                'name' => $value
+            );
+        }
+
         // Is file readable ?
         require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_READABLE);
         }
 
-        if ($file !== null) {
-            if (class_exists('finfo', false) && defined('MAGIC')) {
-                $mime = new finfo(FILEINFO_MIME);
-                $this->_type = $mime->file($value);
-                unset($mime);
-            } elseif (function_exists('mime_content_type') && ini_get('mime_magic.magicfile')) {
-                $this->_type = mime_content_type($value);
-            } elseif ($this->_headerCheck) {
-                $this->_type = $file['type'];
-            }
+        if (class_exists('finfo', false) && defined('MAGIC')) {
+            $mime = new finfo(FILEINFO_MIME);
+            $this->_type = $mime->file($value);
+            unset($mime);
+        } elseif (function_exists('mime_content_type') && ini_get('mime_magic.magicfile')) {
+            $this->_type = mime_content_type($value);
+        } elseif ($this->_headerCheck) {
+            $this->_type = $file['type'];
         }
 
         if (empty($this->_type)) {

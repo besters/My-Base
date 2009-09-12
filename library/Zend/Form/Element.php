@@ -32,7 +32,7 @@ require_once 'Zend/Validate/Interface.php';
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Element.php 17505 2009-08-10 11:26:58Z yoshida@zend.co.jp $
+ * @version    $Id: Element.php 18058 2009-09-10 11:31:08Z thomas $
  */
 class Zend_Form_Element implements Zend_Validate_Interface
 {
@@ -2009,7 +2009,22 @@ class Zend_Form_Element implements Zend_Validate_Interface
 
             $r = new ReflectionClass($name);
             if ($r->hasMethod('__construct')) {
-                $instance = $r->newInstanceArgs((array) $validator['options']);
+                $numeric = false;
+                if (is_array($validator['options'])) {
+                    $keys    = array_keys($validator['options']);
+                    foreach($keys as $key) {
+                        if (is_numeric($key)) {
+                            $numeric = true;
+                            break;
+                        }
+                    }
+                }
+
+                if ($numeric) {
+                    $instance = $r->newInstanceArgs((array) $validator['options']);
+                } else {
+                    $instance = $r->newInstance($validator['options']);
+                }
             } else {
                 $instance = $r->newInstance();
             }

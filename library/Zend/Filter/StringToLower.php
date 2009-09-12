@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: StringToLower.php 17925 2009-08-31 17:20:16Z thomas $
+ * @version    $Id: StringToLower.php 18081 2009-09-11 21:48:09Z thomas $
  */
 
 /**
@@ -42,15 +42,24 @@ class Zend_Filter_StringToLower implements Zend_Filter_Interface
     /**
      * Constructor
      *
-     * @param string|array $options OPTIONAL
+     * @param string|array|Zend_Config $options OPTIONAL
      */
     public function __construct($options = null)
     {
-        if (is_array($options) && array_key_exists('encoding', $options)) {
-            $options = $options['encoding'];
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
+        } else if (!is_array($options)) {
+            $options = func_get_args();
+            $temp    = array();
+            if (!empty($options)) {
+                $temp['encoding'] = array_shift($options);
+            }
+            $options = $temp;
         }
 
-        $this->setEncoding($options);
+        if (array_key_exists('encoding', $options)) {
+            $this->setEncoding($options);
+        }
     }
 
     /**

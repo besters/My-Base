@@ -16,7 +16,7 @@
  * @package    Zend_Amf
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Introspector.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Introspector.php 18086 2009-09-12 01:39:58Z stas $
  */
 
 /** @see Zend_Amf_Parse_TypeLoader */
@@ -189,6 +189,10 @@ class Zend_Amf_Adobe_Introspector
 
                     $ptype = $this->_registerType($type);
                     $arg->setAttribute('type', $ptype);
+                    
+                    if($param->isDefaultValueAvailable()) {
+                    	$arg->setAttribute('defaultvalue', $param->getDefaultValue());
+                    }
 
                     $op->appendChild($arg);
                 }

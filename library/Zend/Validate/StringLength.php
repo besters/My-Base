@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: StringLength.php 16223 2009-06-21 20:04:53Z thomas $
+ * @version    $Id: StringLength.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -79,15 +79,45 @@ class Zend_Validate_StringLength extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  integer $min
-     * @param  integer $max
+     * @param  integer|array|Zend_Config $options
      * @return void
      */
-    public function __construct($min = 0, $max = null, $encoding = null)
+    public function __construct($options = array())
     {
-        $this->setMin($min);
-        $this->setMax($max);
-        $this->setEncoding($encoding);
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
+        } else if (!is_array($options)) {
+            $count = func_num_args();
+            if ($count > 1) {
+// @todo: Preperation for 2.0... needs to be cleared with the dev-team
+//              trigger_error('Support for multiple arguments is deprecated in favor of a single options array', E_USER_NOTICE);
+            }
+
+            $options = func_get_args();
+            $temp['min'] = array_shift($options);
+            if (!empty($options)) {
+                $temp['max'] = array_shift($options);
+            }
+
+            if (!empty($options)) {
+                $temp['encoding'] = array_shift($options);
+            }
+
+            $options = $temp;
+        }
+
+        if (!array_key_exists('min', $options)) {
+            $options['min'] = 0;
+        }
+
+        $this->setMin($options['min']);
+        if (array_key_exists('max', $options)) {
+            $this->setMax($options['max']);
+        }
+
+        if (array_key_exists('encoding', $options)) {
+            $this->setEncoding($options['encoding']);
+        }
     }
 
     /**

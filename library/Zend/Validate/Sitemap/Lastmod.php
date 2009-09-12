@@ -17,7 +17,7 @@
  * @subpackage Sitemap
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Lastmod.php 16971 2009-07-22 18:05:45Z mikaelkael $
+ * @version    $Id: Lastmod.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -77,5 +77,4 @@ class Zend_Validate_Sitemap_Lastmod extends Zend_Validate_Abstract
 
         return @preg_match(self::LASTMOD_REGEX, $value) == 1;
     }
-
 }

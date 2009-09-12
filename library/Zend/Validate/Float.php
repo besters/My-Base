@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Float.php 17798 2009-08-24 20:07:53Z thomas $
+ * @version    $Id: Float.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -53,10 +53,20 @@ class Zend_Validate_Float extends Zend_Validate_Abstract
     /**
      * Constructor for the float validator
      *
-     * @param string|Zend_Locale $locale
+     * @param string|Zend_Config|Zend_Locale $locale
      */
     public function __construct($locale = null)
     {
+        if ($locale instanceof Zend_Config) {
+            $locale = $locale->toArray();
+            if (array_key_exists('locale', $locale)) {
+                $locale = $locale['locale'];
+            } else {
+                require_once 'Zend/Validate/Exception.php';
+                throw new Zend_Validate_Exception("Missing option 'locale'");
+            }
+        }
+
         if ($locale === null) {
             require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered('Zend_Locale')) {

@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: LocalizedToNormalized.php 17463 2009-08-08 17:01:45Z thomas $
+ * @version    $Id: LocalizedToNormalized.php 18081 2009-09-11 21:48:09Z thomas $
  */
 
 /**
@@ -56,6 +56,10 @@ class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
+        }
+
         if (null !== $options) {
             $this->setOptions($options);
         }

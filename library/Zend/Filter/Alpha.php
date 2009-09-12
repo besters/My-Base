@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Alpha.php 16870 2009-07-20 10:17:59Z mikaelkael $
+ * @version    $Id: Alpha.php 18081 2009-09-11 21:48:09Z thomas $
  */
 
 /**
@@ -73,6 +73,16 @@ class Zend_Filter_Alpha implements Zend_Filter_Interface
      */
     public function __construct($allowWhiteSpace = false)
     {
+        if ($allowWhiteSpace instanceof Zend_Config) {
+            $allowWhiteSpace = $allowWhiteSpace->toArray();
+        } else if (is_array($allowWhiteSpace)) {
+            if (array_key_exists('allowwhitespace', $allowWhiteSpace)) {
+                $allowWhiteSpace = $allowWhiteSpace['allowwhitespace'];
+            } else {
+                $allowWhiteSpace = false;
+            }
+        }
+
         $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
         if (null === self::$_unicodeEnabled) {
             self::$_unicodeEnabled = (@preg_match('/\pL/u', 'a')) ? true : false;

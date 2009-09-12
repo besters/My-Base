@@ -17,7 +17,7 @@
  * @subpackage Statement
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Pdo.php 17859 2009-08-27 22:37:17Z beberlei $
+ * @version    $Id: Pdo.php 18078 2009-09-11 17:35:43Z ralph $
  */
 
 /**
@@ -132,6 +132,9 @@ class Zend_Db_Statement_Pdo extends Zend_Db_Statement implements IteratorAggrega
         if (is_string($parameter) && $parameter[0] != ':') {
             $parameter = ":$parameter";
         }
+        
+        $this->_bindParam[$parameter] = $value;
+        
         try {
             if ($type === null) {
                 return $this->_stmt->bindValue($parameter, $value);

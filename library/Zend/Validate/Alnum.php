@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Alnum.php 17874 2009-08-28 22:03:23Z thomas $
+ * @version    $Id: Alnum.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**
@@ -65,11 +65,21 @@ class Zend_Validate_Alnum extends Zend_Validate_Abstract
     /**
      * Sets default option values for this instance
      *
-     * @param  boolean $allowWhiteSpace
+     * @param  boolean|Zend_Config $allowWhiteSpace
      * @return void
      */
     public function __construct($allowWhiteSpace = false)
     {
+        if ($allowWhiteSpace instanceof Zend_Config) {
+            $allowWhiteSpace = $allowWhiteSpace->toArray();
+            if (array_key_exists('allowWhiteSpace', $allowWhiteSpace)) {
+                $allowWhiteSpace = $allowWhiteSpace['allowWhiteSpace'];
+            } else {
+                require_once 'Zend/Validate/Exception.php';
+                throw new Zend_Validate_Exception("Missing option 'allowWhiteSpace'");
+            }
+        }
+
         $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
     }
 

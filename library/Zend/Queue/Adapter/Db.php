@@ -17,7 +17,7 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Db.php 17778 2009-08-23 17:43:13Z danlo $
+ * @version    $Id: Db.php 18076 2009-09-11 15:20:18Z jplock $
  */
 
 /**
@@ -113,8 +113,11 @@ class Zend_Queue_Adapter_Db extends Zend_Queue_Adapter_AdapterAbstract
             throw new Zend_Queue_Exception("Configuration array must have a key for 'dbname' for the database to use");
         }
 
+        $type = $options['type'];
+        unset($options['type']);
+
         try {
-            $db = Zend_Db::factory($options['type'], $options);
+            $db = Zend_Db::factory($type, $options);
 
             $this->_queueTable = new Zend_Queue_Adapter_Db_Queue(array(
                 'db' => $db,

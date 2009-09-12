@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zend Framework
  *
@@ -17,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: NoRecordExists.php 16971 2009-07-22 18:05:45Z mikaelkael $
+ * @version    $Id: NoRecordExists.php 18028 2009-09-08 20:52:23Z thomas $
  */
 
 /**

@@ -16,7 +16,7 @@
  * @package    Zend_Application
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Application.php 17801 2009-08-24 21:10:29Z matthew $
+ * @version    $Id: Application.php 17982 2009-09-04 21:11:32Z matthew $
  */
 
 /**
@@ -143,6 +143,17 @@ class Zend_Application
 
         if (!empty($options['autoloadernamespaces'])) {
             $this->setAutoloaderNamespaces($options['autoloadernamespaces']);
+        }
+
+        if (!empty($options['autoloaderzfpath'])) {
+            $autoloader = $this->getAutoloader();
+            if (method_exists($autoloader, 'setZfPath')) {
+                $zfPath    = $options['autoloaderzfpath'];
+                $zfVersion = !empty($options['autoloaderzfversion']) 
+                           ? $options['autoloaderzfversion'] 
+                           : 'latest';
+                $autoloader->setZfPath($zfPath, $zfVersion);
+            }
         }
 
         if (!empty($options['bootstrap'])) {

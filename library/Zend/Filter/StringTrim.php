@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: StringTrim.php 16417 2009-07-02 20:17:13Z thomas $
+ * @version    $Id: StringTrim.php 18081 2009-09-11 21:48:09Z thomas $
  */
 
 /**
@@ -45,12 +45,22 @@ class Zend_Filter_StringTrim implements Zend_Filter_Interface
     /**
      * Sets filter options
      *
-     * @param  string $charList
+     * @param  string|array|Zend_Config $charList
      * @return void
      */
     public function __construct($charList = null)
     {
-        $this->_charList = $charList;
+        if ($charList instanceof Zend_Config) {
+            $charList = $charList->toArray();
+        } else if (!is_array($charList)) {
+            $options          = func_get_args();
+            $temp['charlist'] = array_shift($options);
+            $options          = $temp;
+        }
+
+        if (array_key_exists('charlist', $options)) {
+            $this->setCharList($options['charlist']);
+        }
     }
 
     /**

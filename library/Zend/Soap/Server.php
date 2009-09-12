@@ -33,7 +33,7 @@ require_once 'Zend/Server/Interface.php';
  * @uses       Zend_Server_Interface
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Server.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Server.php 18048 2009-09-09 18:21:00Z beberlei $
  */
 class Zend_Soap_Server implements Zend_Server_Interface
 {
@@ -539,16 +539,14 @@ class Zend_Soap_Server implements Zend_Server_Interface
      * Accepts a class name to use when handling requests. Any additional
      * arguments will be passed to that class' constructor when instantiated.
      *
-     * @param mixed $class Class name or object instance to examine and attach
-     * to the server.
-     * @param mixed $arg1 Optional argument to pass to class constructor
-     * @param mixed $arg2 Optional second argument to pass to class constructor
-     * dispatch.
+     * See {@link setObject()} to set preconfigured object instances as request handlers.
+     *
+     * @param string $class Class Name which executes SOAP Requests at endpoint.
      * @return Zend_Soap_Server
      * @throws Zend_Soap_Server_Exception if called more than once, or if class
      * does not exist
      */
-    public function setClass($class, $arg1 = null, $arg2 = null)
+    public function setClass($class, $namespace = '', $argv = null)
     {
         if (isset($this->_class)) {
             require_once 'Zend/Soap/Server/Exception.php';
@@ -675,7 +673,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      * @param DOMDocument|DOMNode|SimpleXMLElement|stdClass|string $request
      * @return Zend_Soap_Server
      */
-    private function _setRequest($request)
+    protected function _setRequest($request)
     {
         if ($request instanceof DOMDocument) {
             $xml = $request->saveXML();
