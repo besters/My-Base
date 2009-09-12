@@ -146,7 +146,7 @@ div.bar > div {
   Menu
  ----------------------------------------*/
 
-ul#navmenu {
+ul.navigation {
 	margin: 0;
 	border: 0 none;
 	padding: 0;
@@ -156,7 +156,7 @@ ul#navmenu {
 	font-family: Arial, Verdana, sans-serif;
 }
 
-ul#navmenu li {
+ul.navigation li {
 	margin: 0;
 	border: 0 none;
 	padding: 13px 1px 0 0;
@@ -166,7 +166,7 @@ ul#navmenu li {
 	position: relative;
 	height: 26px;
 }
-ul#navmenu a {
+ul.navigation a {
 	background: #5a848e;
 	border-top: 1px solid #6895a0;
 	color: #f7fbff;
@@ -180,23 +180,23 @@ ul#navmenu a {
 }
 
 /* Root Menu Hover Persistence */
-ul#navmenu a:hover,ul#navmenu li:hover a,ul#navmenu li.iehover a {
+ul.navigation a:hover,ul.navigation li:hover a,ul.navigation li.iehover a {
 	background: #6895a0;
 }
 
-ul#navmenu li.active{
+ul.navigation li.active{
 	height: 31px;
 	padding-top: 8px;
 
 }
 
-ul#navmenu li.active a{
+ul.navigation li.active a{
 	padding: 8px 16px;
 	color: #272644;
 	background: url('../design/menu-active.png');
 }
 
-ul#navmenu li.active a span{
+ul.navigation li.active a span{
 	background: url('../design/ikona.png') no-repeat;
 	padding: 2px 0 2px 25px;
 }
