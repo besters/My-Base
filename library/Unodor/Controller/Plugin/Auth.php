@@ -11,11 +11,18 @@ class Unodor_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
         $action = $request->action;
         $module = $request->module;
         
-        if (!$auth->hasIdentity()) {
-            $module = $this->_noauth['module'];
-            $controller = $this->_noauth['controller'];
-            $action = $this->_noauth['action'];
-        }
+		$account = new Model_Account();
+		
+		if($account->isValidUrl($request->getParam('account'))){
+	        if (!$auth->hasIdentity()) {
+	            $module = $this->_noauth['module'];
+	            $controller = $this->_noauth['controller'];
+	            $action = $this->_noauth['action'];
+	        }			
+		}else{
+			throw new Zend_Controller_Dispatcher_Exception('Tohle musím ještě doladit, řádek 23 soubor Unodor_Controller_Plugin_Auth');
+		}
+
         
         $request->setModuleName($module);
         $request->setControllerName($controller);
