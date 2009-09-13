@@ -40,6 +40,9 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 			$where = $this->_primary[1] . ' = ' . $id;
 		}
 		$row = $this->fetchRow($this->select()->from($this, $columns)->where($where));
-		return $row->toArray();
+		if($row != null)
+			return $row->toArray();
+		else
+			return false;	
 	}
 }
