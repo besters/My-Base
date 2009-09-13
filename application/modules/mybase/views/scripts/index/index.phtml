@@ -1,9 +1,9 @@
 <div id="main-fixed">
     <div id="title">
         <div id="title-links">
-            <a href="<?php echo $this->baseUrl('index') ; ?>">Nový Milník</a> | 
-			<a href="<?php echo $this->baseUrl('index') ; ?>">Nový Ticket</a> | 
-			<a href="<?php echo $this->baseUrl('index') ; ?>">Nový Checklist</a>
+            <a href="<?php echo $this->baseUrl($this->Param('projekt').'/milestone/add') ; ?>">Nový Milník</a> | 
+			<a href="<?php echo $this->baseUrl($this->Param('projekt').'/ticket/add') ; ?>">Nový Ticket</a> | 
+			<a href="<?php echo $this->baseUrl($this->Param('projekt').'/checklist/add') ; ?>">Nový Checklist</a>
         </div>
         <h2>Přehled projektu</h2>
     </div>
