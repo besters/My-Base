@@ -9,6 +9,7 @@ h1{
 	font-weight: bold;
 	padding-top: 8px;
 	color: #e6eaec;
+	float: left;
 }
 
 h1 span{
@@ -75,6 +76,34 @@ h1 span{
 	color: #fff;
 	background: #0066cc;
 	text-decoration: none;
+}
+
+#userinfo{
+	float: right;
+	padding-top: 8px;
+}
+
+#userinfo img{
+	float: left;
+	margin-right: 10px;
+}
+
+#userinfo a{
+	display: block;
+	color: #e6eaec;
+	font-size: 11px;
+	text-decoration: none;
+	font-family: Arial, Verdana, sans-serif;
+	letter-spacing: 1px;
+}
+
+#userinfo a.logout{
+	color: #6895a0;
+	margin-top: 5px;
+}
+
+#userinfo a:hover{
+	text-decoration: underline;
 }
 
 

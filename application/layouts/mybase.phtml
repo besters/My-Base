@@ -18,35 +18,18 @@ echo $this->doctype(); ?>
 <div id="header">
 	<div class="wrap940">
 		<h1>Projekt <span>Company</span></h1>
+		<div id="userinfo">
+			<?php $session = new Zend_Session_Namespace('Zend_Auth'); ?>
+			<?php echo $this->gravatar($session->storage->email); ?>
+			<a href="<?php echo $this->baseUrl('people/edit/'.$session->storage->iduser) ; ?>"><?php echo $session->storage->name .' '. $session->storage->surname; ?></a>
+			<a href="<?php echo $this->baseUrl('auth/logout') ; ?>" class="logout">Logout</a>
+		</div>
 	</div>
 </div>
 
 <div id="menu">
 	<div class="wrap940">
-		<?php echo $this->navigation()->menu()->render() ?>
-		<!--<ul id="navmenu">-->
-			<!--
-			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Přehled</span></a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Milníky</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Tickety</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Checklist</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Wiki</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Diskuze</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Soubory</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Čas</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Kalendář</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Team</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Nastavení</a></li>
-			-->
-			<!--
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Nástěnka</span></a></li>
-			<li><a href="<?php echo $this->baseUrl('projekt') ; ?>">Projekty</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Přiřazení</a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Kalendář</a></li>
-			<li class="active"><a href="<?php echo $this->baseUrl('index') ; ?>"><span>Lidé</span></a></li>
-			<li><a href="<?php echo $this->baseUrl('index') ; ?>">Účet</a></li>
-			-->
-		<!--</ul>-->
+		<?php echo $this->navigation()->menu()->setMaxDepth(0); ?>
 	</div>
 </div>
 
