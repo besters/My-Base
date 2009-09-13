@@ -29,6 +29,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'project',
 				'action' => 'index',
 				'module' => 'mybase',
+				'route' => 'mybase-default',
 				'params' => array(
 					'account' => 'unodor'
 					)
@@ -38,6 +39,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'assignment',
 				'action' => 'index',
 				'module' => 'mybase',
+				'route' => 'mybase-default',
 				'params' => array(
 					'account' => 'unodor'
 					)
@@ -47,6 +49,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'calendar',
 				'action' => 'index',
 				'module' => 'mybase',
+				'route' => 'mybase-default',
 				'params' => array(
 					'account' => 'unodor'
 					)
@@ -56,6 +59,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'people',
 				'action' => 'index',
 				'module' => 'mybase',
+				'route' => 'mybase-default',
 				'params' => array(
 					'account' => 'unodor'
 					)
@@ -65,6 +69,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'account',
 				'action' => 'index',
 				'module' => 'mybase',
+				'route' => 'mybase-default',
 				'params' => array(
 					'account' => 'unodor'
 					)
