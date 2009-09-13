@@ -1,5 +1,5 @@
 <?php
-class Mybase_IndexController extends Zend_Controller_Action
+class Mybase_IndexController extends Unodor_Controller_Action
 {
 	public function indexAction()
 	{
