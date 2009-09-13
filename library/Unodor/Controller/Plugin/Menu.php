@@ -2,6 +2,7 @@
 class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 {
 	protected $_project;
+	protected $_account;
 	
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
@@ -9,6 +10,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 		//Zend_View_Helper_Navigation_HelperAbstract::setDefaultRole('member');
 		
 		$this->_project = $request->getParam('projekt');
+		$this->_account = $request->getParam('account');
 
 		switch($request->module){
 			case 'mybase' :
@@ -33,7 +35,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'index',	
 				'route' => 'mybase-default',			
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			),
 			array(                
@@ -43,7 +45,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-default',
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			),
 			array(                
@@ -53,7 +55,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-default',
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			),
 			array(                
@@ -63,7 +65,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-default',
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			),
 			array(                
@@ -73,7 +75,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-default',
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			),
 			array(                
@@ -83,7 +85,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-default',
 				'params' => array(
-					'account' => 'unodor'
+					'account' => $this->_account
 					)
 			)															
 		));
@@ -102,7 +104,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'index',	
 				'route' => 'mybase-projekt',			
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -113,7 +115,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -124,7 +126,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -135,7 +137,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -146,7 +148,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -157,7 +159,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -168,7 +170,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),	
@@ -179,7 +181,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),
@@ -190,7 +192,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),	
@@ -201,7 +203,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			),	
@@ -212,7 +214,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'params' => array(
-					'account' => 'unodor',
+					'account' => $this->_account,
 					'projekt' => $this->_project
 					)
 			)																								
