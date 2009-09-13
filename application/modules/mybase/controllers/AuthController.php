@@ -10,7 +10,7 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 	
     public function loginAction(){
     	$this->_form = new Mybase_Form_Login();
-		
+
         if (!$this->getRequest()->isPost()) {
         	$this->view->form = $this->_form;
         }else{        
@@ -20,13 +20,15 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 				$this->_flash('Všechna pole musí být vyplněna', 'error', false);
 	        }else{
 	        	$values = $form->getValues();
-		        $auth = Zend_Auth::getInstance();                
+		        $auth = Zend_Auth::getInstance();    
+				$modelAccount = new Model_Account();
+				$idaccount = $modelAccount->getId($this->getRequest()->getParam('account'));            
 		        $authAdapter = new Zend_Auth_Adapter_DbTable(
 		            Zend_Db_Table_Abstract::getDefaultAdapter(),
 		            'user',
 		            'email',
 		            'password',
-		            'MD5(?)'
+		            'MD5(?) AND idaccount = '.$idaccount
 		        );
 		        $authAdapter->setIdentity($values['email']);
 		        $authAdapter->setCredential($values['password']);
