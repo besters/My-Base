@@ -23,12 +23,12 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			$acl = new Zend_Acl(); 
 			
 			$identity = $auth->getIdentity();
-			
-			$acl->addRole(new Zend_Acl_Role($identity));
+
+			$acl->addRole(new Zend_Acl_Role($identity->email));
 			
 			$aclModel = new Model_Acl();
 	
-			$perms = $aclModel->getUserPerms($identity, 7);
+			$perms = $aclModel->getUserPerms($identity->email, 7);
 					
 			foreach($perms as $val => $key){
 				$acl->add(new Zend_Acl_Resource($val));
@@ -37,16 +37,16 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 				
 			foreach($perms as $val => $key){
 				if($key & self::VIEW){
-					$acl->allow($identity, $val, 'index');
+					$acl->allow($identity->email, $val, 'index');
 				}
 				if($key & self::ADD){
-					$acl->allow($identity, $val, 'add');
+					$acl->allow($identity->email, $val, 'add');
 				}
 				if($key & self::EDIT){
-					$acl->allow($identity, $val, 'edit');
+					$acl->allow($identity->email, $val, 'edit');
 				}
 				if($key & self::DELETE){
-					$acl->allow($identity, $val, 'delete');
+					$acl->allow($identity->email, $val, 'delete');
 				}			
 			}
 				
@@ -54,7 +54,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			
 			if (in_array($request->getControllerName(), $this->_resources)) {
 				             
-				$isAllowed = $acl->isAllowed($auth->getIdentity(), $request->getControllerName(), $request->getActionName());
+				$isAllowed = $acl->isAllowed($identity->email, $request->getControllerName(), $request->getActionName());
 								
 				if (!$isAllowed) {
 					$module = $this->_noacl['module'];

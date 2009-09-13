@@ -47,6 +47,8 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 				        break;
 				
 				    case Zend_Auth_Result::SUCCESS:
+						$storage = $auth->getStorage();
+						$storage->write($authAdapter->getResultRowObject(array('iduser', 'email', 'name', 'surname')));
 				        $this->_redirect('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
 				        break;
 										

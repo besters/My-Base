@@ -20,8 +20,14 @@ class Model_User
 	 */
 	public function getUserId($user)
 	{
-		$where = array('email' => $user);
-		$id = $this->_dbTable->getRow($where, array('iduser'));		
-		return $id['iduser'];
+		$session = new Zend_Session_Namespace('Zend_Auth');
+		
+		if($session->storage->email == $user){
+			return $session->storage->iduser;
+		}else{
+			$where = array('email' => $user);
+			$id = $this->_dbTable->getRow($where, array('iduser'));		
+			return $id['iduser'];
+		}
 	}
 }
