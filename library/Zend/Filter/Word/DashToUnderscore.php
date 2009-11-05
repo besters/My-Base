@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DashToUnderscore.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: DashToUnderscore.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -30,11 +30,11 @@ require_once 'Zend/Filter/Word/SeparatorToSeparator.php';
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Filter_Word_DashToUnderscore extends Zend_Filter_Word_SeparatorToSeparator
+class Zend_Filter_Word_DashToUnderscore extends Zend_Filter_Word_SeparatorToSeparator 
 {
     /**
      * Constructor
-     *
+     * 
      * @param  string $separator Space by default
      * @return void
      */

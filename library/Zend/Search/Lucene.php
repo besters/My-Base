@@ -16,7 +16,7 @@
  * @package    Zend_Search_Lucene
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Lucene.php 17840 2009-08-27 13:42:06Z alexander $
+ * @version    $Id: Lucene.php 18602 2009-10-16 19:33:40Z alexander $
  */
 
 /** Zend_Search_Lucene_Document */
@@ -987,6 +987,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
                 }
 
                 $sortArgs[] = &$valuesArray;
+                unset($valuesArray);
 
                 if ($count + 1 < count($argList)  &&  is_integer($argList[$count+1])) {
                     $count++;
@@ -1456,11 +1457,11 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      */
     public function resetTermsStream()
     {
-        if ($this->_termsStream === null) {
+    	if ($this->_termsStream === null) {
             $this->_termsStream = new Zend_Search_Lucene_TermStreamsPriorityQueue($this->_segmentInfos);
-        } else {
-            $this->_termsStream->resetTermsStream();
-        }
+    	} else {
+    		$this->_termsStream->resetTermsStream();
+    	}
     }
 
     /**

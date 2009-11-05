@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.31 $"/>
-		<generation date="$Date: 2009/06/15 03:46:24 $"/>
+		<version number="$Revision: 1.30 $"/>
+		<generation date="$Date: 2009/05/05 23:06:37 $"/>
 		<language type="ig"/>
 	</identity>
 	<characters>
@@ -166,9 +167,9 @@
 				</timeFormats>
 				<dateTimeFormats>
 					<availableFormats>
-						<dateFormatItem id="d">d</dateFormatItem>
 						<dateFormatItem id="Hm">H:mm</dateFormatItem>
 						<dateFormatItem id="M">L</dateFormatItem>
+						<dateFormatItem id="d">d</dateFormatItem>
 						<dateFormatItem id="yyQ">Q yy</dateFormatItem>
 					</availableFormats>
 				</dateTimeFormats>
@@ -188,4 +189,3 @@
 		</currencies>
 	</numbers>
 </ldml>
-

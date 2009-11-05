@@ -17,7 +17,7 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Exception.php 17560 2009-08-11 22:19:14Z mikaelkael $
+ * @version    $Id: Exception.php 16607 2009-07-09 21:51:46Z beberlei $
  */
 
 /**
@@ -37,4 +37,5 @@ require_once "Zend/Exception.php";
  */
 class Zend_Test_PHPUnit_Db_Exception extends Zend_Exception
 {
+    
 }

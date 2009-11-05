@@ -17,13 +17,13 @@
  * @subpackage Index
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: TermStreamsPriorityQueue.php 17617 2009-08-15 03:57:06Z yoshida@zend.co.jp $
+ * @version    $Id: TermStreamsPriorityQueue.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Search_Lucene_Index_TermsStream_Interface */
+/** Zend_Search_Lucene_Index_TermsStream_Interface */
 require_once 'Zend/Search/Lucene/Index/TermsStream/Interface.php';
 
-/** @see Zend_Search_Lucene_Index_TermsPriorityQueue */
+/** Zend_Search_Lucene_Index_TermsPriorityQueue */
 require_once 'Zend/Search/Lucene/Index/TermsPriorityQueue.php';
 
 
@@ -36,14 +36,14 @@ require_once 'Zend/Search/Lucene/Index/TermsPriorityQueue.php';
  */
 class Zend_Search_Lucene_TermStreamsPriorityQueue implements Zend_Search_Lucene_Index_TermsStream_Interface
 {
-    /**
-     * Array of term streams (Zend_Search_Lucene_Index_TermsStream_Interface objects)
-     *
-     * @var array
-     */
-    protected $_termStreams;
+	/**
+	 * Array of term streams (Zend_Search_Lucene_Index_TermsStream_Interface objects)
+	 *
+	 * @var array
+	 */
+	protected $_termStreams;
 
-    /**
+	/**
      * Terms stream queue
      *
      * @var Zend_Search_Lucene_Index_TermsPriorityQueue
@@ -63,14 +63,14 @@ class Zend_Search_Lucene_TermStreamsPriorityQueue implements Zend_Search_Lucene_
      *
      * @param array $termStreams  array of term streams (Zend_Search_Lucene_Index_TermsStream_Interface objects)
      */
-    public function __construct(array $termStreams)
-    {
-        $this->_termStreams = $termStreams;
+	public function __construct(array $termStreams)
+	{
+		$this->_termStreams = $termStreams;
 
-        $this->resetTermsStream();
-    }
+		$this->resetTermsStream();
+	}
 
-    /**
+	/**
      * Reset terms stream.
      */
     public function resetTermsStream()

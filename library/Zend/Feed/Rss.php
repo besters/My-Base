@@ -17,7 +17,7 @@
  * @package    Zend_Feed
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Rss.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Rss.php 18266 2009-09-18 18:32:30Z padraic $
  */
 
 
@@ -82,7 +82,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
         // Find the base channel element and create an alias to it.
         $rdfTags = $this->_element->getElementsByTagNameNS('http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF');
         if ($rdfTags->length != 0) {
-            $this->_element = $rdfTags->item(0);
+        	$this->_element = $rdfTags->item(0);
         } else  {
             $this->_element = $this->_element->getElementsByTagName('channel')->item(0);
         }
@@ -147,11 +147,11 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
         $channel->appendChild($description);
 
         $pubdate = isset($array->lastUpdate) ? $array->lastUpdate : time();
-        $pubdate = $this->_element->createElement('pubDate', gmdate('r', $pubdate));
+        $pubdate = $this->_element->createElement('pubDate', date(DATE_RSS, $pubdate));
         $channel->appendChild($pubdate);
 
         if (isset($array->published)) {
-            $lastBuildDate = $this->_element->createElement('lastBuildDate', gmdate('r', $array->published));
+            $lastBuildDate = $this->_element->createElement('lastBuildDate', date(DATE_RSS, $array->published));
             $channel->appendChild($lastBuildDate);
         }
 
@@ -425,7 +425,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
             }
 
             $pubdate = isset($dataentry->lastUpdate) ? $dataentry->lastUpdate : time();
-            $pubdate = $this->_element->createElement('pubDate', gmdate('r', $pubdate));
+            $pubdate = $this->_element->createElement('pubDate', date(DATE_RSS, $pubdate));
             $item->appendChild($pubdate);
 
             if (isset($dataentry->category)) {

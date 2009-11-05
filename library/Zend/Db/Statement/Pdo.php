@@ -17,7 +17,7 @@
  * @subpackage Statement
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Pdo.php 18078 2009-09-11 17:35:43Z ralph $
+ * @version    $Id: Pdo.php 18079 2009-09-11 17:46:45Z ralph $
  */
 
 /**

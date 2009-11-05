@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework
  *
@@ -16,13 +17,15 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ean13.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Ean13.php 16223 2009-06-21 20:04:53Z thomas $
  */
+
 
 /**
  * @see Zend_Validate_Abstract
  */
 require_once 'Zend/Validate/Abstract.php';
+
 
 /**
  * @category   Zend
@@ -36,13 +39,13 @@ class Zend_Validate_Barcode_Ean13 extends Zend_Validate_Abstract
      * Validation failure message key for when the value is
      * an invalid barcode
      */
-    const INVALID = 'ean13Invalid';
+    const INVALID = 'invalid';
 
     /**
      * Validation failure message key for when the value is
      * not 13 characters long
      */
-    const INVALID_LENGTH = 'ean13InvalidLength';
+    const INVALID_LENGTH = 'invalidLength';
 
     /**
      * Validation failure message key for when the value

@@ -16,7 +16,7 @@
  * @category   Zend
  * @package    Zend_Http
  * @subpackage Client
- * @version    $Id: Client.php 17648 2009-08-17 14:55:01Z cogo $
+ * @version    $Id: Client.php 17843 2009-08-27 14:40:35Z cogo $
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -265,11 +265,6 @@ class Zend_Http_Client
             /** @see Zend_Http_Client_Exception */
             require_once 'Zend/Http/Client/Exception.php';
             throw new Zend_Http_Client_Exception('Passed parameter is not a valid HTTP URI.');
-        }
-
-        // Set auth if username and password has been specified in the uri
-        if ($uri->getUsername() && $uri->getPassword()) {
-            $this->setAuth($uri->getUsername(), $uri->getPassword());
         }
 
         // We have no ports, set the defaults
@@ -541,9 +536,6 @@ class Zend_Http_Client
         if ($user === false || $user === null) {
             $this->auth = null;
 
-            // Clear the auth information in the uri instance as well
-            $this->getUri()->setUsername('');
-            $this->getUri()->setPassword('');
         // Else, set up authentication
         } else {
             // Check we got a proper authentication type

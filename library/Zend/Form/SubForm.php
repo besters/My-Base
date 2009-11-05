@@ -23,12 +23,12 @@ require_once 'Zend/Form.php';
 
 /**
  * Zend_Form_SubForm
- *
+ * 
  * @category   Zend
  * @package    Zend_Form
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SubForm.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: SubForm.php 16218 2009-06-21 19:44:04Z thomas $
  */
 class Zend_Form_SubForm extends Zend_Form
 {
@@ -40,7 +40,7 @@ class Zend_Form_SubForm extends Zend_Form
 
     /**
      * Load the default decorators
-     *
+     * 
      * @return void
      */
     public function loadDefaultDecorators()

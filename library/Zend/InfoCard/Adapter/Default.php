@@ -14,10 +14,10 @@
  *
  * @category   Zend
  * @package    Zend_InfoCard
- * @subpackage Adapter
+ * @subpackage Zend_InfoCard_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Default.php 17539 2009-08-10 22:51:26Z mikaelkael $
+ * @version    $Id: Default.php 16214 2009-06-21 19:34:03Z thomas $
  */
 
 /**
@@ -33,7 +33,7 @@ require_once 'Zend/InfoCard/Adapter/Interface.php';
  *
  * @category   Zend
  * @package    Zend_InfoCard
- * @subpackage Adapter
+ * @subpackage Zend_InfoCard_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

@@ -16,7 +16,7 @@
  * @package   Zend_Locale
  * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Locale.php 17485 2009-08-09 16:46:54Z thomas $
+ * @version   $Id: Locale.php 17479 2009-08-09 08:19:03Z thomas $
  */
 
 /**
@@ -322,28 +322,29 @@ class Zend_Locale
 
             if ($language !== 'C') {
                 if (strpos($language, '.') !== false) {
-                    $language = substr($language, 0, strpos($language, '.'));
+                    $language = substr($language, 0, (strpos($language, '.') - 1));
                 } else if (strpos($language, '@') !== false) {
-                    $language = substr($language, 0, strpos($language, '@'));
+                    $language = substr($language, 0, (strpos($language, '@') - 1));
                 }
 
-                $language = str_ireplace(
-                    array_keys(Zend_Locale_Data_Translation::$languageTranslation),
-                    array_values(Zend_Locale_Data_Translation::$languageTranslation),
-                    (string) $language
-                );
-
-                $language = str_ireplace(
-                    array_keys(Zend_Locale_Data_Translation::$regionTranslation),
-                    array_values(Zend_Locale_Data_Translation::$regionTranslation),
-                    $language
-                );
-
+                $splitted = explode('_', $language);
+                $language = (string) $language;
                 if (isset(self::$_localeData[$language]) === true) {
                     $languagearray[$language] = 1;
-                    if (strpos($language, '_') !== false) {
-                        $languagearray[substr($language, 0, strpos($language, '_'))] = 1;
+                    if (strlen($language) > 4) {
+                        $languagearray[substr($language, 0, 2)] = 1;
                     }
+
+                    continue;
+                }
+
+                if (empty(Zend_Locale_Data_Translation::$localeTranslation[$splitted[0]]) === false) {
+                    if (empty(Zend_Locale_Data_Translation::$localeTranslation[$splitted[1]]) === false) {
+                        $languagearray[Zend_Locale_Data_Translation::$localeTranslation[$splitted[0]] . '_' .
+                        Zend_Locale_Data_Translation::$localeTranslation[$splitted[1]]] = 1;
+                    }
+
+                    $languagearray[Zend_Locale_Data_Translation::$localeTranslation[$splitted[0]]] = 1;
                 }
             }
         }

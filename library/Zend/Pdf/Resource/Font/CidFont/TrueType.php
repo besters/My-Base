@@ -17,7 +17,7 @@
  * @subpackage Fonts
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: TrueType.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: TrueType.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /** Zend_Pdf_Resource_Font_CidFont */
@@ -46,8 +46,8 @@ class Zend_Pdf_Resource_Font_CidFont_TrueType extends Zend_Pdf_Resource_Font_Cid
 {
     /**
      * Object constructor
-     *
-     * @todo Joing this class with Zend_Pdf_Resource_Font_Simple_Parsed_TrueType
+     * 
+     * @todo Joing this class with Zend_Pdf_Resource_Font_Simple_Parsed_TrueType 
      *
      * @param Zend_Pdf_FileParser_Font_OpenType_TrueType $fontParser Font parser
      *   object containing parsed TrueType file.
@@ -61,7 +61,7 @@ class Zend_Pdf_Resource_Font_CidFont_TrueType extends Zend_Pdf_Resource_Font_Cid
         $this->_fontType = Zend_Pdf_Font::TYPE_CIDFONT_TYPE_2;
 
         $this->_resource->Subtype  = new Zend_Pdf_Element_Name('CIDFontType2');
-
+        
         $fontDescriptor = Zend_Pdf_Resource_Font_FontDescriptor::factory($this, $fontParser, $embeddingOptions);
         $this->_resource->FontDescriptor = $this->_objectFactory->newObject($fontDescriptor);
 

@@ -16,35 +16,34 @@
  * @package    Zend_Test
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ControllerTestCase.php 17560 2009-08-11 22:19:14Z mikaelkael $
+ * @version    $Id: ControllerTestCase.php 18605 2009-10-16 20:23:09Z matthew $
  */
 
-/** @see PHPUnit_Framework_TestCase */
+/** PHPUnit_Framework_TestCase */
 require_once 'PHPUnit/Framework/TestCase.php';
 
-/** @see PHPUnit_Runner_Version */
+/** PHPUnit_Runner_Version */
 require_once 'PHPUnit/Runner/Version.php';
 
-/** @see Zend_Controller_Front */
+/** Zend_Controller_Front */
 require_once 'Zend/Controller/Front.php';
 
-/** @see Zend_Controller_Action_HelperBroker */
+/** Zend_Controller_Action_HelperBroker */
 require_once 'Zend/Controller/Action/HelperBroker.php';
 
-/** @see Zend_Layout */
+/** Zend_Layout */
 require_once 'Zend/Layout.php';
 
-/** @see Zend_Session */
+/** Zend_Session */
 require_once 'Zend/Session.php';
 
-/** @see Zend_Registry */
+/** Zend_Registry */
 require_once 'Zend/Registry.php';
 
 /**
  * Functional testing scaffold for MVC applications
  *
  * @uses       PHPUnit_Framework_TestCase
- * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
@@ -142,7 +141,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->reset();
         if (null !== $this->bootstrap) {
-            if (is_callable($this->bootstrap)) {
+            if ($this->bootstrap instanceof Zend_Application) {
+                $this->bootstrap->bootstrap();
+                $this->_frontController = $this->bootstrap->getBootstrap()->getResource('frontcontroller');
+            } elseif (is_callable($this->bootstrap)) {
                 call_user_func($this->bootstrap);
             } elseif (is_string($this->bootstrap)) {
                 require_once 'Zend/Loader.php';
@@ -243,6 +245,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
      */
     public function resetRequest()
     {
+        if ($this->_request instanceof Zend_Controller_Request_HttpTestCase) {
+            $this->_request->clearQuery()
+                           ->clearPost();
+        }
         $this->_request = null;
         return $this;
     }
@@ -906,7 +912,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($module != $this->request->getModuleName()) {
-            $msg = sprintf('Failed asserting last module used was "%s"', $module);
+            $msg = sprintf('Failed asserting last module used <"%s"> was "%s"',
+                $this->request->getModuleName(),
+                $module
+            );
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
@@ -944,7 +953,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($controller != $this->request->getControllerName()) {
-            $msg = sprintf('Failed asserting last controller used was "%s"', $controller);
+            $msg = sprintf('Failed asserting last controller used <"%s"> was "%s"',
+                $this->request->getControllerName(),
+                $controller
+            );
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
@@ -963,7 +975,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($controller == $this->request->getControllerName()) {
-            $msg = sprintf('Failed asserting last controller used was NOT "%s"', $controller);
+            $msg = sprintf('Failed asserting last controller used <"%s"> was NOT "%s"',
+                $this->request->getControllerName(),
+                $controller
+            );
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
@@ -982,7 +997,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($action != $this->request->getActionName()) {
-            $msg = sprintf('Failed asserting last action used was "%s"', $action);
+            $msg = sprintf('Failed asserting last action used <"%s"> was "%s"', $this->request->getActionName(), $action);
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
@@ -1001,7 +1016,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($action == $this->request->getActionName()) {
-            $msg = sprintf('Failed asserting last action used was NOT "%s"', $action);
+            $msg = sprintf('Failed asserting last action used <"%s"> was NOT "%s"', $this->request->getActionName(), $action);
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
@@ -1021,7 +1036,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         $this->_incrementAssertionCount();
         $router = $this->frontController->getRouter();
         if ($route != $router->getCurrentRouteName()) {
-            $msg = sprintf('Failed asserting route matched was "%s"', $route);
+            $msg = sprintf('Failed asserting matched route was "%s", actual route is %s',
+                $route,
+                $router->getCurrentRouteName()
+            );
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }

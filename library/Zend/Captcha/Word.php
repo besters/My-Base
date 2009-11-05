@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Captcha_Base */
+/** Zend_Captcha_Base */
 require_once 'Zend/Captcha/Base.php';
 
 /**
@@ -32,7 +32,7 @@ require_once 'Zend/Captcha/Base.php';
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Word.php 17539 2009-08-10 22:51:26Z mikaelkael $
+ * @version    $Id: Word.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 abstract class Zend_Captcha_Word extends Zend_Captcha_Base
 {
@@ -96,6 +96,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
 
     /**#@+
      * Error codes
+     * @const string
      */
     const MISSING_VALUE = 'missingValue';
     const MISSING_ID    = 'missingID';

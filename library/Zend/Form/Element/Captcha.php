@@ -17,7 +17,7 @@
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Captcha.php 17548 2009-08-11 03:38:00Z yoshida@zend.co.jp $
+ * @version    $Id: Captcha.php 17616 2009-08-15 03:28:29Z yoshida@zend.co.jp $
  */
 
 /** @see Zend_Form_Element_Xhtml */

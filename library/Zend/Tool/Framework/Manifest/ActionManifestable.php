@@ -17,7 +17,7 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ActionManifestable.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: ActionManifestable.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -36,12 +36,12 @@ interface Zend_Tool_Framework_Manifest_ActionManifestable extends Zend_Tool_Fram
 
     /**
      * getActions()
-     *
+     * 
      * Should either return a single action, or an array
      * of actions
-     *
+     * 
      * @return array|Zend_Tool_Framework_Action_Interface
      */
     public function getActions();
-
+    
 }

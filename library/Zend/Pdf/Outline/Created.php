@@ -17,7 +17,7 @@
  * @subpackage Actions
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Created.php 17652 2009-08-17 20:38:15Z mikaelkael $
+ * @version    $Id$
  */
 
 /** Zend_Pdf_ElementFactory */

@@ -17,7 +17,7 @@
  * @subpackage Technorati
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Exception.php 17509 2009-08-10 12:20:25Z yoshida@zend.co.jp $
+ * @version    $Id: Exception.php 16211 2009-06-21 19:23:55Z thomas $
  */
 
 
@@ -35,5 +35,5 @@ require_once 'Zend/Service/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Service_Technorati_Exception extends Zend_Service_Exception
-{
-}
+{}
+

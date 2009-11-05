@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework
  *
@@ -16,13 +17,15 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Between.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Between.php 16223 2009-06-21 20:04:53Z thomas $
  */
+
 
 /**
  * @see Zend_Validate_Abstract
  */
 require_once 'Zend/Validate/Abstract.php';
+
 
 /**
  * @category   Zend
@@ -88,50 +91,17 @@ class Zend_Validate_Between extends Zend_Validate_Abstract
 
     /**
      * Sets validator options
-     * Accepts the following option keys:
-     *   'min' => scalar, minimum border
-     *   'max' => scalar, maximum border
-     *   'inclusive' => boolean, inclusive border values
      *
-     * @param  array|Zend_Config $options
+     * @param  mixed   $min
+     * @param  mixed   $max
+     * @param  boolean $inclusive
      * @return void
      */
-    public function __construct($options)
+    public function __construct($min, $max, $inclusive = true)
     {
-        if ($options instanceof Zend_Config) {
-            $options = $options->toArray();
-        } else if (!is_array($options)) {
-            $count = func_num_args();
-            if ($count > 1) {
-// @todo: Preperation for 2.0... needs to be cleared with the dev-team
-//              trigger_error('Support for multiple arguments is deprecated in favor of a single options array', E_USER_NOTICE);
-            }
-
-            $options = func_get_args();
-            $temp['min'] = array_shift($options);
-            if (!empty($options)) {
-                $temp['max'] = array_shift($options);
-            }
-
-            if (!empty($options)) {
-                $temp['inclusive'] = array_shift($options);
-            }
-
-            $options = $temp;
-        }
-
-        if (!array_key_exists('min', $options) || !array_key_exists('max', $options)) {
-            require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception("Missing option. 'min' and 'max' has to be given");
-        }
-
-        if (!array_key_exists('inclusive', $options)) {
-            $options['inclusive'] = true;
-        }
-
-        $this->setMin($options['min'])
-             ->setMax($options['max'])
-             ->setInclusive($options['inclusive']);
+        $this->setMin($min)
+             ->setMax($max)
+             ->setInclusive($inclusive);
     }
 
     /**

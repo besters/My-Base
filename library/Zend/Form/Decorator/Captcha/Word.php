@@ -19,12 +19,12 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Form_Decorator_Abstract */
+/** Zend_Form_Decorator_Abstract */
 require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * Word-based captcha decorator
- *
+ * 
  * Adds hidden field for ID and text input field for captcha text
  *
  * @category   Zend
@@ -32,14 +32,14 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Word.php 17480 2009-08-09 09:09:19Z yoshida@zend.co.jp $
+ * @version    $Id: Word.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 class Zend_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Abstract
 {
     /**
      * Render captcha
-     *
-     * @param  string $content
+     * 
+     * @param  string $content 
      * @return string
      */
     public function render($content)
@@ -54,10 +54,10 @@ class Zend_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Abstract
 
         $hiddenName = $name . '[id]';
         $textName   = $name . '[input]';
-
+        
         $label = $element->getDecorator("Label");
         if($label) {
-            $label->setOption("id", "$name-input");
+        	$label->setOption("id", "$name-input");
         }
 
         $placement = $this->getPlacement();

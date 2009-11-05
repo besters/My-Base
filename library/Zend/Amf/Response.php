@@ -16,16 +16,16 @@
  * @package    Zend_Amf
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Response.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Response.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Amf_Constants */
+/** Zend_Amf_Constants */
 require_once 'Zend/Amf/Constants.php';
 
-/** @see Zend_Amf_Parse_OutputStream */
+/** Zend_Amf_Parse_OutputStream */
 require_once 'Zend/Amf/Parse/OutputStream.php';
 
-/** @see Zend_Amf_Parse_Amf0_Serializer */
+/** Zend_Amf_Parse_Amf0_Serializer */
 require_once 'Zend/Amf/Parse/Amf0/Serializer.php';
 
 /**
@@ -172,7 +172,7 @@ class Zend_Amf_Response
 
     /**
      * Retrieve attached AMF message headers
-     *
+     * 
      * @return array Array of Zend_Amf_Value_MessageHeader objects
      */
     public function getAmfHeaders()

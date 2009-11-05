@@ -17,7 +17,7 @@
  * @subpackage Zend_Controller_Action_Helper
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AutoCompleteScriptaculous.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: AutoCompleteScriptaculous.php 16202 2009-06-21 18:53:49Z thomas $
  */
 
 /**
@@ -39,8 +39,8 @@ class Zend_Controller_Action_Helper_AutoCompleteScriptaculous extends Zend_Contr
 {
     /**
      * Validate data for autocompletion
-     *
-     * @param  mixed $data
+     * 
+     * @param  mixed $data 
      * @return bool
      */
     public function validateData($data)
@@ -54,9 +54,9 @@ class Zend_Controller_Action_Helper_AutoCompleteScriptaculous extends Zend_Contr
 
     /**
      * Prepare data for autocompletion
-     *
-     * @param  mixed   $data
-     * @param  boolean $keepLayouts
+     * 
+     * @param  mixed   $data 
+     * @param  boolean $keepLayouts 
      * @throws Zend_Controller_Action_Exception
      * @return string
      */

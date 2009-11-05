@@ -16,7 +16,7 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage App
- * @version    $Id: LoggingHttpClientAdapterSocket.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: LoggingHttpClientAdapterSocket.php 16971 2009-07-22 18:05:45Z mikaelkael $
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -27,7 +27,7 @@
 require_once 'Zend/Http/Client/Adapter/Socket.php';
 
 /**
- * Overrides the traditional socket-based adapter class for Zend_Http_Client to
+ * Overrides the traditional socket-based adapter class for Zend_Http_Client to 
  * enable logging of requests.  All requests are logged to a location specified
  * in the config as $config['logfile'].  Requests and responses are logged after
  * they are sent and received/processed, thus an error could prevent logging.

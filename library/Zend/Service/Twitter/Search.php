@@ -17,7 +17,7 @@
  * @subpackage Twitter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Search.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Search.php 18576 2009-10-16 15:51:11Z matthew $
  */
 
 /**
@@ -116,6 +116,7 @@ class Zend_Service_Twitter_Search extends Zend_Http_Client
     /**
      * Get the current twitter trends.  Currnetly only supports json as the return.
      *
+     * @throws Zend_Http_Client_Exception
      * @return array
      */
     public function trends()
@@ -127,6 +128,11 @@ class Zend_Service_Twitter_Search extends Zend_Http_Client
         return Zend_Json::decode($response->getBody());
     }
 
+    /**
+     * Performs a Twitter search query.
+     *
+     * @throws Zend_Http_Client_Exception
+     */
     public function search($query, array $params = array())
     {
 
@@ -141,7 +147,7 @@ class Zend_Service_Twitter_Search extends Zend_Http_Client
             switch($key) {
                 case 'geocode':
                 case 'lang':
-                case 'since_id':
+				case 'since_id':
                     $_query[$key] = $param;
                     break;
                 case 'rpp':

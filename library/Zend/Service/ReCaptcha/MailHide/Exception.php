@@ -19,8 +19,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Service_ReCaptcha_Exception */
-require_once 'Zend/Service/ReCaptcha/Exception.php';
+/** @see Zend_Exception */
+require_once 'Zend/Exception.php';
 
 /**
  * Zend_Service_ReCaptcha_MailHide_Exception
@@ -30,7 +30,7 @@ require_once 'Zend/Service/ReCaptcha/Exception.php';
  * @subpackage ReCaptcha
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Exception.php 17619 2009-08-15 12:21:46Z cogo $
+ * @version    $Id: Exception.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
-class Zend_Service_ReCaptcha_MailHide_Exception extends Zend_Service_ReCaptcha_Exception
+class Zend_Service_ReCaptcha_MailHide_Exception extends Zend_Exception
 {}

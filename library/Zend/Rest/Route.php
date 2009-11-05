@@ -12,29 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
  * @package    Zend_Rest
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Route.php 18003 2009-09-07 02:02:02Z lcrouch $
+ * @version    $Id: Route.php 18108 2009-09-14 17:52:55Z matthew $
  */
 
-/**
- * @see Zend_Controller_Router_Route_Interface
+/** 
+ * @see Zend_Controller_Router_Route_Interface 
  */
 require_once 'Zend/Controller/Router/Route/Interface.php';
 
-/**
+/** 
  * @see Zend_Controller_Router_Route_Module
  */
 require_once 'Zend/Controller/Router/Route/Module.php';
 
-/**
+/** 
  * @see Zend_Controller_Dispatcher_Interface
  */
 require_once 'Zend/Controller/Dispatcher/Interface.php';
 
-/**
+/** 
  * @see Zend_Controller_Request_Abstract
  */
 require_once 'Zend/Controller/Request/Abstract.php';
@@ -44,7 +43,6 @@ require_once 'Zend/Controller/Request/Abstract.php';
  *
  * Request-aware route for RESTful modular routing
  *
- * @category   Zend
  * @package    Zend_Rest
  * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -54,15 +52,15 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
     /**
      * Specific Modules to receive RESTful routes
      * @var array
-     */
-    protected $_restfulModules = null;
-
+     */ 
+    protected $_restfulModules = null; 
+ 
     /**
      * Specific Modules=>Controllers to receive RESTful routes
      * @var array
-     */
-    protected $_restfulControllers = null;
-
+     */ 
+    protected $_restfulControllers = null; 
+     
     /**
      * @var Zend_Controller_Front
      */
@@ -144,10 +142,10 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
 
             //Store path count for method mapping
             $pathElementCount = count($path);
-
-            // Check for leading "special get" URI's
+            
+            // Check for leading "special get" URI's 
             $specialGetTarget = false;
-            if ($pathElementCount && array_search($path[0], array('index', 'new')) > -1) {
+            if ($pathElementCount && array_search($path[0], array('index', 'new')) > -1) { 
                 $specialGetTarget = array_shift($path);
             } elseif ($pathElementCount && $path[$pathElementCount-1] == 'edit') {
                 $specialGetTarget = 'edit';
@@ -192,17 +190,17 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
                         $values[$this->_actionKey] = 'put';
                         break;
                 }
-
-            } elseif ($specialGetTarget) {
-                $values[$this->_actionKey] = $specialGetTarget;
-            }
-
-        }
+                
+            } elseif ($specialGetTarget) {  
+                $values[$this->_actionKey] = $specialGetTarget; 
+            } 
+              
+        }  
         $this->_values = $values + $params;
-
-        return $this->_values + $this->_defaults;
-    }
-
+         
+        return $this->_values + $this->_defaults;  
+    } 
+  
     /**
      * Assembles user submitted parameters forming a URL path defined by this route
      *
@@ -245,7 +243,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         unset($params[$this->_controllerKey]);
 
         unset($params[$this->_actionKey]);
-
+        
         if (isset($params['index']) && $params['index']) {
             unset($params['index']);
             $url .= '/index';
@@ -255,27 +253,27 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         } elseif (isset($params['id'])) {
             $url .= '/' . $params['id'];
         }
-
-        if (!empty($url) || $controller !== $this->_defaults[$this->_controllerKey]) {
-            $url = '/' . $controller . $url;
-        }
-
-        if (isset($module)) {
-            $url = '/' . $module . $url;
-        }
-
-        return ltrim($url, self::URI_DELIMITER);
-    }
-
+  
+        if (!empty($url) || $controller !== $this->_defaults[$this->_controllerKey]) {  
+            $url = '/' . $controller . $url;  
+        }  
+  
+        if (isset($module)) {  
+            $url = '/' . $module . $url;  
+        }  
+  
+        return ltrim($url, self::URI_DELIMITER);  
+    } 
+     
     /**
      * Tells Rewrite Router which version this Route is
      *
      * @return int Route "version"
-     */
-    public function getVersion()
-    {
-        return 2;
-    }
+     */ 
+    public function getVersion() 
+    { 
+        return 2; 
+    } 
 
     /**
      * Parses the responders array sent to constructor to know
@@ -349,10 +347,10 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
      *
      * @return bool
      */
-    private function _allRestful()
-    {
-        return (!$this->_restfulModules && !$this->_restfulControllers);
-    }
+    private function _allRestful() 
+    { 
+        return (!$this->_restfulModules && !$this->_restfulControllers); 
+    } 
 
     /**
      * Determines if RESTful routing applies to an entire module

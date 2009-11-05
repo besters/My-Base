@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework
  *
@@ -16,13 +17,15 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ccnum.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Ccnum.php 16223 2009-06-21 20:04:53Z thomas $
  */
+
 
 /**
  * @see Zend_Validate_Abstract
  */
 require_once 'Zend/Validate/Abstract.php';
+
 
 /**
  * @category   Zend
@@ -104,4 +107,5 @@ class Zend_Validate_Ccnum extends Zend_Validate_Abstract
 
         return true;
     }
+
 }

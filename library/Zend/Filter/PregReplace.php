@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PregReplace.php 18081 2009-09-11 21:48:09Z thomas $
+ * @version    $Id: PregReplace.php 16217 2009-06-21 19:39:00Z thomas $
  */
 
 /**
@@ -77,32 +77,19 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
 
     /**
      * Constructor
-     * Supported options are
-     *     'match'   => matching pattern
-     *     'replace' => replace with this
      *
-     * @param  string|array $options
+     * @param  string $match
+     * @param  string $replace
      * @return void
      */
-    public function __construct($options = null)
+    public function __construct($matchPattern = null, $replacement = null)
     {
-        if ($options instanceof Zend_Config) {
-            $options = $options->toArray();
-        } else if (!is_array($options)) {
-            $options       = func_get_args();
-            $temp['match'] = array_shift($options);
-            if (!empty($options)) {
-                $temp['replace'] = array_shift($options);
-            }
-            $options = $temp;
+        if ($matchPattern) {
+            $this->setMatchPattern($matchPattern);
         }
 
-        if (array_key_exists('match', $options)) {
-            $this->setMatchPattern($options['match']);
-        }
-
-        if (array_key_exists('replace', $options)) {
-            $this->setReplacement($options['replace']);
+        if ($replacement) {
+            $this->setReplacement($replacement);
         }
     }
 

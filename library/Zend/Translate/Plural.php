@@ -16,7 +16,7 @@
  * @package    Zend_Locale
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Plural.php 17438 2009-08-07 19:23:53Z thomas $
+ * @version    $Id: Plural.php 17439 2009-08-07 19:25:20Z thomas $
  */
 
 /**

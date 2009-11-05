@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Barcode.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Barcode.php 16223 2009-06-21 20:04:53Z thomas $
  */
 
 /**
@@ -42,35 +42,25 @@ class Zend_Validate_Barcode extends Zend_Validate_Abstract
     /**
      * Generates the standard validator object
      *
-     * @param  string|Zend_Config $barcode Barcode validator to use
+     * @param  string $barcodeType - Barcode validator to use
      * @return void
      * @throws Zend_Validate_Exception
      */
-    public function __construct($barcode)
+    public function __construct($barcodeType)
     {
-        if ($barcode instanceof Zend_Config) {
-            $barcode = $barcode->toArray();
-            if (array_key_exists('barcode', $barcode)) {
-                $barcode = $barcode['barcode'];
-            } else {
-                require_once 'Zend/Validate/Exception.php';
-                throw new Zend_Validate_Exception("Missing option 'barcode'");
-            }
-        }
-
-        $this->setType($barcode);
+        $this->setType($barcodeType);
     }
 
     /**
      * Sets a new barcode validator
      *
-     * @param  string $barcode - Barcode validator to use
+     * @param  string $barcodeType - Barcode validator to use
      * @return void
      * @throws Zend_Validate_Exception
      */
-    public function setType($barcode)
+    public function setType($barcodeType)
     {
-        switch (strtolower($barcode)) {
+        switch (strtolower($barcodeType)) {
             case 'upc':
             case 'upc-a':
                 require_once 'Zend/Validate/Barcode/UpcA.php';
@@ -83,7 +73,7 @@ class Zend_Validate_Barcode extends Zend_Validate_Abstract
                 break;
             default:
                 require_once 'Zend/Validate/Exception.php';
-                throw new Zend_Validate_Exception("Barcode type '$barcode' is not supported'");
+                throw new Zend_Validate_Exception("Barcode type '$barcodeType' is not supported'");
                 break;
         }
 

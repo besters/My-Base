@@ -16,22 +16,22 @@
  * @package    Zend_Amf
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Request.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Request.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Amf_Parse_InputStream */
+/** Zend_Amf_Parse_InputStream */
 require_once 'Zend/Amf/Parse/InputStream.php';
 
-/** @see Zend_Amf_Parse_Amf0_Deserializer */
+/** Zend_Amf_Parse_Amf0_Deserializer */
 require_once 'Zend/Amf/Parse/Amf0/Deserializer.php';
 
-/** @see Zend_Amf_Constants */
+/** Zend_Amf_Constants */
 require_once 'Zend/Amf/Constants.php';
 
-/** @see Zend_Amf_Value_MessageHeader */
+/** Zend_Amf_Value_MessageHeader */
 require_once 'Zend/Amf/Value/MessageHeader.php';
 
-/** @see Zend_Amf_Value_MessageBody */
+/** Zend_Amf_Value_MessageBody */
 require_once 'Zend/Amf/Value/MessageBody.php';
 
 /**

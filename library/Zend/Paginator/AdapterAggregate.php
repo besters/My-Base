@@ -17,7 +17,7 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AdapterAggregate.php 17630 2009-08-16 12:25:06Z norm2782 $
+ * @version    $Id: AdapterAggregate.php 17631 2009-08-16 12:29:46Z norm2782 $
  */
 
 /**

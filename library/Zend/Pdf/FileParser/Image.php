@@ -17,7 +17,7 @@
  * @subpackage FileParser
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Image.php 17181 2009-07-27 13:47:50Z alexander $
+ * @version    $Id: Image.php 17182 2009-07-27 13:54:11Z alexander $
  */
 
 /**

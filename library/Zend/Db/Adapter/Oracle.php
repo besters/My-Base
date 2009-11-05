@@ -17,7 +17,7 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Oracle.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Oracle.php 18415 2009-09-25 17:46:24Z mikaelkael $
  */
 
 /**
@@ -81,7 +81,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     /**
      * @var integer
      */
-    protected $_execute_mode = OCI_COMMIT_ON_SUCCESS;
+    protected $_execute_mode = null;
 
     /**
      * Default class name for a DB statement.
@@ -119,8 +119,10 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Oracle_Exception('The OCI8 extension is required for this adapter but the extension is not loaded');
         }
 
-        $connectionFuncName = ($this->_config['persistent'] == true) ? 'oci_pconnect' : 'oci_connect';
+        $this->_setExecuteMode(OCI_COMMIT_ON_SUCCESS);
 
+        $connectionFuncName = ($this->_config['persistent'] == true) ? 'oci_pconnect' : 'oci_connect';
+        
         $this->_connection = @$connectionFuncName(
                 $this->_config['username'],
                 $this->_config['password'],

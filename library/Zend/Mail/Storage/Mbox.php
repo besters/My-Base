@@ -11,13 +11,13 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
+ * 
  * @category   Zend
  * @package    Zend_Mail
  * @subpackage Storage
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Mbox.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Mbox.php 16219 2009-06-21 19:45:39Z thomas $
  */
 
 
@@ -224,7 +224,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
         if (is_array($params)) {
             $params = (object)$params;
         }
-
+    
         if (!isset($params->filename) /* || Zend_Loader::isReadable($params['filename']) */) {
             /**
              * @see Zend_Mail_Storage_Exception

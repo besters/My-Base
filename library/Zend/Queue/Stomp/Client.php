@@ -17,7 +17,7 @@
  * @subpackage Stomp
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Client.php 17188 2009-07-27 17:37:13Z matthew $
+ * @version    $Id: Client.php 17189 2009-07-27 17:41:34Z matthew $
  */
 
 /**

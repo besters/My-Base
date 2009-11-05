@@ -17,7 +17,7 @@
  * @subpackage Protocol
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Imap.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Imap.php 18499 2009-10-08 22:24:02Z yoshida@zend.co.jp $
  */
 
 
@@ -241,8 +241,8 @@ class Zend_Mail_Protocol_Imap
                 // only count braces if more than one
                 $braces -= strlen($token) + 1;
                 // only add if token had more than just closing braces
-                if ($token) {
-                    $tokens[] = $token;
+                if (rtrim($token) != '') {
+                    $tokens[] = rtrim($token);
                 }
                 $token = $tokens;
                 $tokens = array_pop($stack);

@@ -38,7 +38,7 @@ require_once 'Zend/File/Transfer/Adapter/Http.php';
  * @subpackage Decorator
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: File.php 17936 2009-08-31 20:59:26Z thomas $
+ * @version    $Id: File.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 class Zend_Form_Decorator_File
     extends Zend_Form_Decorator_Abstract
@@ -112,7 +112,7 @@ class Zend_Form_Decorator_File
         }
 
         if (Zend_File_Transfer_Adapter_Http::isApcAvailable()) {
-            $markup[] = $view->formHidden(ini_get('apc.rfc1867_name'), uniqid(), array('id' => 'progress_key'));
+            $markup[] = $view->formHidden('APC_UPLOAD_PROGRESS', uniqid(), array('id' => 'progress_key'));
         } else if (Zend_File_Transfer_Adapter_Http::isUploadProgressAvailable()) {
             $markup[] = $view->formHidden('UPLOAD_IDENTIFIER', uniqid(), array('id' => 'progress_key'));
         }

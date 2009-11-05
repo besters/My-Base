@@ -16,7 +16,7 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ElementFactory.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: ElementFactory.php 17533 2009-08-10 19:06:27Z alexander $
  */
 
 
@@ -406,7 +406,7 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
         $result = array();
         foreach ($this->_modifiedObjects as $objNum => $obj) {
             if ($this->_removedObjects->contains($obj)) {
-                            $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer($objNum + $shift,
+        	                $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer($objNum + $shift,
                                                                            $obj->getGenNum()+1,
                                                                            true);
             } else {

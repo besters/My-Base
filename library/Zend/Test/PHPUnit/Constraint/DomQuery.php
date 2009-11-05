@@ -14,23 +14,21 @@
  *
  * @category   Zend
  * @package    Zend_Test
- * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DomQuery.php 17560 2009-08-11 22:19:14Z mikaelkael $
+ * @version    $Id: DomQuery.php 18234 2009-09-18 14:06:43Z sgehrig $
  */
 
-/** @see PHPUnit_Framework_Constraint */
+/** PHPUnit_Framework_Constraint */
 require_once 'PHPUnit/Framework/Constraint.php';
 
-/** @see Zend_Dom_Query */
+/** Zend_Dom_Query */
 require_once 'Zend/Dom/Query.php';
 
 /**
  * Zend_Dom_Query-based PHPUnit Constraint
  *
  * @uses       PHPUnit_Framework_Constraint
- * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
@@ -39,7 +37,7 @@ require_once 'Zend/Dom/Query.php';
 class Zend_Test_PHPUnit_Constraint_DomQuery extends PHPUnit_Framework_Constraint
 {
     /**#@+
-     * Assertion type constants
+     * @const string Assertion type constants
      */
     const ASSERT_QUERY            = 'assertQuery';
     const ASSERT_CONTENT_CONTAINS = 'assertQueryContentContains';
@@ -392,10 +390,14 @@ class Zend_Test_PHPUnit_Constraint_DomQuery extends PHPUnit_Framework_Constraint
      */
     protected function _getNodeContent(DOMNode $node)
     {
-        $doc     = $node->ownerDocument;
-        $content = $doc->saveXML($node);
-        $tag     = $node->nodeName;
-        $regex   = '|</?' . $tag . '[^>]*>|';
-        return preg_replace($regex, '', $content);
+        if ($node instanceof DOMAttr) {
+            return $node->value;
+        } else {
+            $doc     = $node->ownerDocument;
+            $content = $doc->saveXML($node);
+            $tag     = $node->nodeName;
+            $regex   = '|</?' . $tag . '[^>]*>|';
+            return preg_replace($regex, '', $content);
+        }
     }
 }

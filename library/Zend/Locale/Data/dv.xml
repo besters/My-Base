@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.54 $"/>
-		<generation date="$Date: 2009/06/15 04:15:33 $"/>
+		<version number="$Revision: 1.52 $"/>
+		<generation date="$Date: 2009/05/05 23:06:34 $"/>
 		<language type="dv"/>
 	</identity>
 	<localeDisplayNames>
@@ -174,8 +175,8 @@
 				</timeFormats>
 				<dateTimeFormats>
 					<availableFormats>
-						<dateFormatItem id="MMdd">dd-MM</dateFormatItem>
 						<dateFormatItem id="MMMMd">d MMMM</dateFormatItem>
+						<dateFormatItem id="MMdd">dd-MM</dateFormatItem>
 						<dateFormatItem id="yyQ">Q yy</dateFormatItem>
 						<dateFormatItem id="yyyyMM">MM-yyyy</dateFormatItem>
 						<dateFormatItem id="yyyyMMMM">MMMM y</dateFormatItem>
@@ -191,8 +192,8 @@
 	</dates>
 	<numbers>
 		<symbols>
-			<list>,</list>
-			<nativeZeroDigit>0</nativeZeroDigit>
+			<list>،</list>
+			<nativeZeroDigit>٠</nativeZeroDigit>
 		</symbols>
 		<decimalFormats>
 			<decimalFormatLength>

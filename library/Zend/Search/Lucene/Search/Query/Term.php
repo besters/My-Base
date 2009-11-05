@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Term.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Term.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -198,7 +198,7 @@ class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Que
      */
     protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
     {
-        $highlighter->highlight($this->_term->text);
+    	$highlighter->highlight($this->_term->text);
     }
 
     /**
@@ -210,9 +210,9 @@ class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Que
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_term->field !== null) {
-            $query = $this->_term->field . ':';
+        	$query = $this->_term->field . ':';
         } else {
-            $query = '';
+        	$query = '';
         }
 
         $query .= $this->_term->text;

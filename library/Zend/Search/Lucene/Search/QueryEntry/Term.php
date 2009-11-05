@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Term.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Term.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /** Zend_Search_Lucene_Index_Term */
@@ -105,26 +105,26 @@ class Zend_Search_Lucene_Search_QueryEntry_Term extends Zend_Search_Lucene_Searc
      */
     public function getQuery($encoding)
     {
-        if ($this->_fuzzyQuery) {
-            $query = new Zend_Search_Lucene_Search_Query_Preprocessing_Fuzzy($this->_term,
-                                                                             $encoding,
-                                                                             ($this->_field !== null)?
+    	if ($this->_fuzzyQuery) {
+    		$query = new Zend_Search_Lucene_Search_Query_Preprocessing_Fuzzy($this->_term,
+    		                                                                 $encoding,
+    		                                                                 ($this->_field !== null)?
                                                                                   iconv($encoding, 'UTF-8', $this->_field) :
                                                                                   null,
-                                                                             $this->_similarity
-                                                                             );
+    		                                                                 $this->_similarity
+    		                                                                 );
             $query->setBoost($this->_boost);
             return $query;
-        }
+    	}
 
 
-        $query = new Zend_Search_Lucene_Search_Query_Preprocessing_Term($this->_term,
-                                                                        $encoding,
-                                                                        ($this->_field !== null)?
+    	$query = new Zend_Search_Lucene_Search_Query_Preprocessing_Term($this->_term,
+    	                                                                $encoding,
+    	                                                                ($this->_field !== null)?
                                                                               iconv($encoding, 'UTF-8', $this->_field) :
                                                                               null
                                                                         );
-        $query->setBoost($this->_boost);
+    	$query->setBoost($this->_boost);
         return $query;
     }
 }

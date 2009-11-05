@@ -16,16 +16,16 @@
  * @package    Zend_Amf
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Auth.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Auth.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Amf_Auth_Abstract */
+/** Zend_Amf_Auth_Abstract */
 require_once 'Zend/Amf/Auth/Abstract.php';
 
-/** @see Zend_Acl */
+/** Zend_Acl */
 require_once 'Zend/Acl.php';
 
-/** @see Zend_Auth_Result */
+/** Zend_Auth_Result */
 require_once 'Zend/Auth/Result.php';
 
 /**
@@ -38,24 +38,24 @@ require_once 'Zend/Auth/Result.php';
  */
 class Zend_Amf_Adobe_Auth extends Zend_Amf_Auth_Abstract
 {
-
+    
     /**
      * ACL for authorization
-     *
+     * 
      * @var Zend_Acl
      */
     protected $_acl;
-
+    
     /**
      * Username/password array
-     *
+     * 
      * @var array
      */
     protected $_users = array();
-
+    
     /**
      * Create auth adapter
-     *
+     * 
      * @param string $rolefile File containing XML with users and roles
      */
     public function __construct($rolefile)
@@ -70,31 +70,31 @@ Roles file format:
     </role>
    <role id=”hr”>
         <user name=”user2” password=”pwd2”/>
-    </role>
+    </role>    
 </roles>
 */
         foreach($xml->role as $role) {
             $this->_acl->addRole(new Zend_Acl_Role((string)$role["id"]));
             foreach($role->user as $user) {
-                $this->_users[(string)$user["name"]] = array("password" => (string)$user["password"],
-                                                             "role" => (string)$role["id"]);
-            }
+		        $this->_users[(string)$user["name"]] = array("password" => (string)$user["password"], 
+		        										"role" => (string)$role["id"]);
+	        }
         }
     }
-
+    
     /**
      * Get ACL with roles from XML file
-     *
+     * 
      * @return Zend_Acl
      */
     public function getAcl()
     {
         return $this->_acl;
     }
-
+    
     /**
      * Perform authentication
-     *
+     * 
      * @throws Zend_Auth_Adapter_Exception
      * @return Zend_Auth_Result
      * @see Zend_Auth_Adapter_Interface#authenticate()
@@ -109,14 +109,14 @@ Roles file format:
             require_once 'Zend/Auth/Adapter/Exception.php';
             throw new Zend_Auth_Adapter_Exception('Username/password should be set');
         }
-
+        
         if(!isset($this->_users[$this->_username])) {
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
                 null,
                 array('Username not found')
                 );
         }
-
+        
         $user = $this->_users[$this->_username];
         if($user["password"] != $this->_password) {
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
@@ -124,7 +124,7 @@ Roles file format:
                 array('Authentication failed')
                 );
         }
-
+        
         $id = new stdClass();
         $id->role = $user["role"];
         $id->name = $this->_username;

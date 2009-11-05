@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.38 $"/>
-		<generation date="$Date: 2009/06/15 05:50:27 $"/>
+		<version number="$Revision: 1.35 $"/>
+		<generation date="$Date: 2009/05/05 23:06:41 $"/>
 		<language type="uz"/>
 		<script type="Arab"/>
 	</identity>
@@ -132,8 +133,8 @@
 				</timeFormats>
 				<dateTimeFormats>
 					<availableFormats>
-						<dateFormatItem id="Md">M/d</dateFormatItem>
 						<dateFormatItem id="MMMMd">d نچی MMMM</dateFormatItem>
+						<dateFormatItem id="Md">M/d</dateFormatItem>
 					</availableFormats>
 				</dateTimeFormats>
 			</calendar>
@@ -142,12 +143,12 @@
 	<numbers>
 		<defaultNumberingSystem>arabext</defaultNumberingSystem>
 		<symbols>
-			<decimal>,</decimal>
-			<group>.</group>
-			<percentSign>%</percentSign>
-			<nativeZeroDigit>0</nativeZeroDigit>
+			<decimal>٫</decimal>
+			<group>٬</group>
+			<percentSign>٪</percentSign>
+			<nativeZeroDigit>۰</nativeZeroDigit>
 			<minusSign>−</minusSign>
-			<exponential>E</exponential>
+			<exponential>×۱۰^</exponential>
 		</symbols>
 		<currencyFormats>
 			<currencyFormatLength>

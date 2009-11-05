@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Alpha.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Alpha.php 16223 2009-06-21 20:04:53Z thomas $
  */
 
 /**
@@ -34,7 +34,7 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
 {
     const INVALID      = 'alphaInvalid';
     const NOT_ALPHA    = 'notAlpha';
-    const STRING_EMPTY = 'alphaStringEmpty';
+    const STRING_EMPTY = 'stringEmpty';
 
     /**
      * Whether to allow white space characters; off by default
@@ -65,21 +65,11 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
     /**
      * Sets default option values for this instance
      *
-     * @param  boolean|Zend_Config $allowWhiteSpace
+     * @param  boolean $allowWhiteSpace
      * @return void
      */
     public function __construct($allowWhiteSpace = false)
     {
-        if ($allowWhiteSpace instanceof Zend_Config) {
-            $allowWhiteSpace = $allowWhiteSpace->toArray();
-            if (array_key_exists('allowWhiteSpace', $allowWhiteSpace)) {
-                $allowWhiteSpace = $allowWhiteSpace['allowWhiteSpace'];
-            } else {
-                require_once 'Zend/Validate/Exception.php';
-                throw new Zend_Validate_Exception("Missing option 'allowWhiteSpace'");
-            }
-        }
-
         $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
     }
 

@@ -17,7 +17,7 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FormSelect.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: FormSelect.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -67,7 +67,7 @@ class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
         $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
         extract($info); // name, id, value, attribs, options, listsep, disable
 
-        // force $value to array so we can compare multiple values to multiple
+        // force $value to array so we can compare multiple values to multiple 
         // options; also ensure it's a string for comparison purposes.
         $value = array_map('strval', (array) $value);
 
@@ -94,7 +94,7 @@ class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
                 $multiple = '';
             }
             unset($attribs['multiple']);
-        }
+        } 
 
         // now start building the XHTML.
         $disabled = '';

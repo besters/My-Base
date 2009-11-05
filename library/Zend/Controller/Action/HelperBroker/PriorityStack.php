@@ -17,7 +17,7 @@
  * @subpackage Zend_Controller_Action
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PriorityStack.php 17946 2009-09-02 01:25:21Z yoshida@zend.co.jp $
+ * @version    $Id: PriorityStack.php 17947 2009-09-02 03:58:21Z yoshida@zend.co.jp $
  */
 
 /**

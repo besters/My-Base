@@ -17,27 +17,15 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DeleteAll.php 17560 2009-08-11 22:19:14Z mikaelkael $
+ * @version    $Id: DeleteAll.php 16607 2009-07-09 21:51:46Z beberlei $
  */
 
-/**
- * @see PHPUnit_Extensions_Database_Operation_IDatabaseOperation
- */
 require_once "PHPUnit/Extensions/Database/Operation/IDatabaseOperation.php";
 
-/**
- * @see PHPUnit_Extensions_Database_DB_IDatabaseConnection
- */
 require_once "PHPUnit/Extensions/Database/DB/IDatabaseConnection.php";
 
-/**
- * @see PHPUnit_Extensions_Database_DataSet_IDataSet
- */
 require_once "PHPUnit/Extensions/Database/DataSet/IDataSet.php";
 
-/**
- * @see PHPUnit_Extensions_Database_Operation_Exception
- */
 require_once "PHPUnit/Extensions/Database/Operation/Exception.php";
 
 /**

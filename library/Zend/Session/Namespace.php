@@ -16,7 +16,7 @@
  * @package    Zend_Session
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Namespace.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Namespace.php 16210 2009-06-21 19:22:17Z thomas $
  * @since      Preview Release 0.2
  */
 
@@ -84,11 +84,11 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
             }
             return;
         }
-
+        
         self::$_singleInstances = array();
         return;
     }
-
+    
     /**
      * __construct() - Returns an instance object bound to a particular, isolated section
      * of the session, identified by $namespace name (defaulting to 'Default').

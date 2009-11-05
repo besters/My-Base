@@ -16,7 +16,7 @@
  * @package    Zend_Paginator
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Array.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Array.php 16215 2009-06-21 19:36:07Z thomas $
  */
 
 /**
@@ -34,21 +34,21 @@ class Zend_Paginator_Adapter_Array implements Zend_Paginator_Adapter_Interface
 {
     /**
      * Array
-     *
+     * 
      * @var array
      */
     protected $_array = null;
-
+    
     /**
      * Item count
      *
      * @var integer
      */
     protected $_count = null;
-
+    
     /**
      * Constructor.
-     *
+     * 
      * @param array $array Array to paginate
      */
     public function __construct(array $array)

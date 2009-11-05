@@ -17,17 +17,17 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Preprocessing.php 17617 2009-08-15 03:57:06Z yoshida@zend.co.jp $
+ * @version    $Id: Preprocessing.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
 /**
- * @see Zend_Search_Lucene_Search_Query
+ * Zend_Search_Lucene_Search_Query
  */
 require_once 'Zend/Search/Lucene/Search/Query.php';
 
 /**
- * @see Zend_Search_Lucene_Search_Weight
+ * Zend_Search_Lucene_Search_Weight
  */
 require_once 'Zend/Search/Lucene/Search/Weight.php';
 

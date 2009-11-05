@@ -17,7 +17,7 @@
  * @package    Zend_Ldap
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ldap.php 17539 2009-08-10 22:51:26Z mikaelkael $
+ * @version    $Id: Ldap.php 18250 2009-09-18 15:53:49Z sgehrig $
  */
 
 /**
@@ -1056,16 +1056,30 @@ class Zend_Ldap
             if (is_array($value)) {
                 foreach ($value as $i => $v) {
                     if (is_null($v)) unset($value[$i]);
-                    else if (empty($v)) unset($value[$i]);
                     else if (!is_scalar($v)) {
                         throw new InvalidArgumentException('Only scalar values allowed in LDAP data');
+                    } else {
+                        $v = (string)$v;
+                        if (strlen($v) == 0) {
+                            unset($value[$i]);
+                        } else {
+                            $value[$i] = $v;
+                        }
                     }
                 }
                 $entry[$key] = array_values($value);
             } else {
-               if (is_null($value)) $entry[$key] = array();
-               else if (empty($value)) $entry[$key] = array();
-               else $entry[$key] = array($value);
+                if (is_null($value)) $entry[$key] = array();
+                else if (!is_scalar($value)) {
+                    throw new InvalidArgumentException('Only scalar values allowed in LDAP data');
+                } else {
+                    $value = (string)$value;
+                    if (strlen($value) == 0) {
+                        $entry[$key] = array();
+                    } else {
+                        $entry[$key] = array($value);
+                    }
+                }
             }
         }
         $entry = array_change_key_case($entry, CASE_LOWER);

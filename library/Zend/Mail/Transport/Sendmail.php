@@ -11,13 +11,13 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
+ * 
  * @category   Zend
  * @package    Zend_Mail
  * @subpackage Transport
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Sendmail.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Sendmail.php 18264 2009-09-18 18:25:38Z beberlei $
  */
 
 
@@ -164,6 +164,9 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
 
         // Prepare headers
         parent::_prepareHeaders($headers);
+
+        // Fix issue with empty blank line ontop when using Sendmail Trnasport
+        $this->header = rtrim($this->header);
     }
 
 }

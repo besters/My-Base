@@ -16,7 +16,7 @@
  * @package   Zend_Date
  * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Date.php 17944 2009-09-01 11:03:44Z thomas $
+ * @version   $Id: Date.php 17696 2009-08-20 20:12:33Z thomas $
  */
 
 /**
@@ -1513,14 +1513,8 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::DAY_OF_YEAR:
                 if (is_numeric($date)) {
-                    if (($calc == 'add') || ($calc == 'sub')) {
-                        $year = 1970;
-                        ++$date;
-                        ++$day;
-                    }
-
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, $date, $year, true),
-                                                 $this->mktime(0, 0, 0, $month, $day, $year, true), $hour);
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + $date, 1970, true),
+                                                 $this->mktime(0, 0, 0, $month, 1 + $day, 1970, true), $hour);
                 }
                 require_once 'Zend/Date/Exception.php';
                 throw new Zend_Date_Exception("invalid date ($date) operand, day expected", $date);

@@ -17,7 +17,7 @@
  * @subpackage Parse
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: InputStream.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: InputStream.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /** Zend_Amf_Util_BinaryStream */
@@ -26,7 +26,7 @@ require_once 'Zend/Amf/Util/BinaryStream.php';
 /**
  * InputStream is used to iterate at a binary level through the AMF request.
  *
- * InputStream extends BinaryStream as eventually BinaryStream could be placed
+ * InputStream extends BinaryStream as eventually BinaryStream could be placed 
  * outside of Zend_Amf in order to allow other packages to use the class.
  *
  * @package    Zend_Amf

@@ -17,10 +17,10 @@
  * @subpackage Parse_Amf0
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Deserializer.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Deserializer.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Amf_Parse_Deserializer */
+/** Zend_Amf_Parse_Deserializer */
 require_once 'Zend/Amf/Parse/Deserializer.php';
 
 /**
@@ -270,9 +270,9 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
                 $returnObject->$key = $value;
             }
         }
-        if($returnObject instanceof Zend_Amf_Value_Messaging_ArrayCollection) {
-            $returnObject = get_object_vars($returnObject);
-        }
+	   if($returnObject instanceof Zend_Amf_Value_Messaging_ArrayCollection) {
+			$returnObject = get_object_vars($returnObject);
+	   }
         return $returnObject;
     }
 
@@ -284,7 +284,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
      */
     public function readAmf3TypeMarker()
     {
-        require_once 'Zend/Amf/Parse/Amf3/Deserializer.php';
+    	require_once 'Zend/Amf/Parse/Amf3/Deserializer.php';
         $deserializer = new Zend_Amf_Parse_Amf3_Deserializer($this->_stream);
         $this->_objectEncoding = Zend_Amf_Constants::AMF3_OBJECT_ENCODING;
         return $deserializer->readTypeMarker();

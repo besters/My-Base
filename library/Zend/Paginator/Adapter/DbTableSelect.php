@@ -16,7 +16,7 @@
  * @package    Zend_Paginator
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DbTableSelect.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: DbTableSelect.php 16215 2009-06-21 19:36:07Z thomas $
  */
 
 /**
@@ -42,7 +42,7 @@ class Zend_Paginator_Adapter_DbTableSelect extends Zend_Paginator_Adapter_DbSele
     public function getItems($offset, $itemCountPerPage)
     {
         $this->_select->limit($itemCountPerPage, $offset);
-
+        
         return $this->_select->getTable()->fetchAll($this->_select);
     }
 }

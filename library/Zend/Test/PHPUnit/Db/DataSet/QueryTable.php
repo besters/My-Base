@@ -17,17 +17,12 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: QueryTable.php 17560 2009-08-11 22:19:14Z mikaelkael $
+ * @version    $Id: QueryTable.php 17117 2009-07-26 09:41:26Z beberlei $
  */
 
-/**
- * @see PHPUnit_Extensions_Database_DataSet_QueryTable
- */
+
 require_once "PHPUnit/Extensions/Database/DataSet/QueryTable.php";
 
-/**
- * @see PHPUnit_Extensions_Database_DB_IDatabaseConnection
- */
 require_once "PHPUnit/Extensions/Database/DB/IDatabaseConnection.php";
 
 /**

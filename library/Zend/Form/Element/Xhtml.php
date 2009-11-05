@@ -24,13 +24,13 @@ require_once 'Zend/Form/Element.php';
 
 /**
  * Base element for XHTML elements
- *
+ * 
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Xhtml.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Xhtml.php 16218 2009-06-21 19:44:04Z thomas $
  */
 abstract class Zend_Form_Element_Xhtml extends Zend_Form_Element
 {

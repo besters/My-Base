@@ -16,7 +16,7 @@
  * @package    Zend_Ldap
  * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Attribute.php 17461 2009-08-08 13:58:52Z sgehrig $
+ * @version    $Id: Attribute.php 17831 2009-08-26 15:24:30Z sgehrig $
  */
 
 /**

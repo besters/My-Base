@@ -16,7 +16,7 @@
  * @package    Zend_Tool
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ProjectProvider.php 17450 2009-08-08 08:25:24Z yoshida@zend.co.jp $
+ * @version    $Id: ProjectProvider.php 17452 2009-08-08 08:27:54Z yoshida@zend.co.jp $
  */
 
 /** @see Zend_Tool_Project_Provider_Abstract */

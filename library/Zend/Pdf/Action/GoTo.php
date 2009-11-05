@@ -17,7 +17,7 @@
  * @subpackage Actions
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: GoTo.php 17244 2009-07-28 13:58:09Z alexander $
+ * @version    $Id: GoTo.php 17245 2009-07-28 13:59:45Z alexander $
  */
 
 /** Zend_Pdf_Action */

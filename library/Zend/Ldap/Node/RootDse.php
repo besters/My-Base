@@ -17,7 +17,7 @@
  * @subpackage RootDSE
  * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: RootDse.php 17459 2009-08-08 12:18:44Z sgehrig $
+ * @version    $Id: RootDse.php 17829 2009-08-26 15:07:10Z sgehrig $
  */
 
 /**

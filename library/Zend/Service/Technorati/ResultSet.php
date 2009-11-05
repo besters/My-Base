@@ -17,7 +17,7 @@
  * @subpackage Technorati
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ResultSet.php 17509 2009-08-10 12:20:25Z yoshida@zend.co.jp $
+ * @version    $Id: ResultSet.php 16211 2009-06-21 19:23:55Z thomas $
  */
 
 
@@ -64,8 +64,9 @@ abstract class Zend_Service_Technorati_ResultSet implements SeekableIterator
      * The offset in the total result set of this search set
      *
      * @var     int
+     * @todo
      */
-    //TODO public $firstResultPosition;
+    // public $firstResultPosition;
 
 
     /**
@@ -147,8 +148,8 @@ abstract class Zend_Service_Technorati_ResultSet implements SeekableIterator
      * This method is called once each time a new instance is created
      * or a serialized object is unserialized.
      *
-     * @param   DomDocument $dom the ReST fragment for this object
-     * @param   array $options   query options as associative array
+     * @param   DomDocument $dom    the ReST fragment for this object
+     * @param   array $options      query options as associative array
      *      * @return  void
      */
     protected function _init(DomDocument $dom, $options = array())

@@ -17,7 +17,7 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Activemq.php 17778 2009-08-23 17:43:13Z danlo $
+ * @version    $Id: Activemq.php 18701 2009-10-26 13:03:47Z matthew $
  */
 
 /**
@@ -95,7 +95,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
 
         $response = $this->_client->send($connect)->receive();
 
-        if ((false !== $response)
+        if ((false !== $response) 
             && ($response->getCommand() != 'CONNECTED')
         ) {
             require_once 'Zend/Queue/Exception.php';

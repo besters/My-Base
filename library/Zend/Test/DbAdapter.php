@@ -13,11 +13,11 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Test
+ * @package    Test
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DbAdapter.php 17985 2009-09-05 09:47:36Z beberlei $
+ * @version    $Id: DbAdapter.php 18391 2009-09-24 18:11:51Z beberlei $
  */
 
 /**
@@ -38,9 +38,10 @@ require_once 'Zend/Db/Profiler.php';
 /**
  * Testing Database Adapter which acts as a stack for SQL Results
  *
+ * @uses       uses
  * @category   Zend
- * @package    Zend_Test
- * @subpackage PHPUnit
+ * @package    package
+ * @subpackage subpackage
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -95,7 +96,7 @@ class Zend_Test_DbAdapter extends Zend_Db_Adapter_Abstract
 
     /**
      * Append a new Insert Id to the {@see lastInsertId}.
-     *
+     * 
      * @param  int|string $id
      * @return Zend_Test_DbAdapter
      */

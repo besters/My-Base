@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework
  *
@@ -16,13 +17,15 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: GreaterThan.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: GreaterThan.php 17470 2009-08-08 22:27:09Z thomas $
  */
+
 
 /**
  * @see Zend_Validate_Abstract
  */
 require_once 'Zend/Validate/Abstract.php';
+
 
 /**
  * @category   Zend
@@ -59,21 +62,11 @@ class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  mixed|Zend_Config $min
+     * @param  mixed $min
      * @return void
      */
     public function __construct($min)
     {
-        if ($min instanceof Zend_Config) {
-            $min = $min->toArray();
-            if (array_key_exists('min', $min)) {
-                $min = $min['min'];
-            } else {
-                require_once 'Zend/Validate/Exception.php';
-                throw new Zend_Validate_Exception("Missing option 'min'");
-            }
-        }
-
         $this->setMin($min);
     }
 

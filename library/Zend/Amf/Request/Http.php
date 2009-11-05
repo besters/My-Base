@@ -17,10 +17,10 @@
  * @subpackage Request
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Http.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Http.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/** @see Zend_Amf_Request */
+/** Zend_Amf_Request */
 require_once 'Zend/Amf/Request.php';
 
 /**
@@ -54,8 +54,8 @@ class Zend_Amf_Request_Http extends Zend_Amf_Request
      */
     public function __construct()
     {
-        // php://input allows you to read raw POST data. It is a less memory
-        // intensive alternative to $HTTP_RAW_POST_DATA and does not need any
+        // php://input allows you to read raw POST data. It is a less memory 
+        // intensive alternative to $HTTP_RAW_POST_DATA and does not need any 
         // special php.ini directives
         $amfRequest = file_get_contents('php://input');
 
@@ -70,7 +70,7 @@ class Zend_Amf_Request_Http extends Zend_Amf_Request
 
     /**
      * Retrieve raw AMF Request
-     *
+     * 
      * @return string
      */
     public function getRawRequest()

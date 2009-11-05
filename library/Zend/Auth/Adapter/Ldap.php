@@ -17,7 +17,7 @@
  * @subpackage Zend_Auth_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ldap.php 17975 2009-09-04 14:43:22Z sgehrig $
+ * @version    $Id: Ldap.php 17976 2009-09-04 14:50:25Z sgehrig $
  */
 
 /**
@@ -466,7 +466,7 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
     /**
      * getAccountObject() - Returns the result entry as a stdClass object
      *
-     * This resembles the feature {@see Zend_Auth_Adapter_DbTable::getResultRowObject()}.
+     * This ressembles the feature {@see Zend_Auth_Adapter_DbTable::getResultRowObject()}.
      * Closes ZF-6813
      *
      * @param  array $returnAttribs

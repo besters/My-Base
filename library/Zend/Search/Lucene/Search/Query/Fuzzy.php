@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Fuzzy.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Fuzzy.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
@@ -434,9 +434,9 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
         $docBody = $highlighter->getDocument()->getFieldUtf8Value('body');
         $tokens = Zend_Search_Lucene_Analysis_Analyzer::getDefault()->tokenize($docBody, 'UTF-8');
         foreach ($tokens as $token) {
-            $termText = $token->getTermText();
+        	$termText = $token->getTermText();
 
-            if (substr($termText, 0, $prefixByteLength) == $prefix) {
+        	if (substr($termText, 0, $prefixByteLength) == $prefix) {
                 // Calculate similarity
                 $target = substr($termText, $prefixByteLength);
 

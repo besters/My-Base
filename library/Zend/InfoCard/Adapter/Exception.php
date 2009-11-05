@@ -14,10 +14,10 @@
  *
  * @category   Zend
  * @package    Zend_InfoCard
- * @subpackage Adapter
+ * @subpackage Zend_InfoCard_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Exception.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Exception.php 16877 2009-07-20 13:00:00Z mikaelkael $
  */
 
 /**
@@ -27,11 +27,10 @@ require_once 'Zend/InfoCard/Exception.php';
 
 /**
  * @category   Zend
- * @package    Zend_InfoCard
- * @subpackage Adapter
+ * @subpackage Zend_InfoCard_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_InfoCard_Adapter_Exception extends Zend_InfoCard_Exception
+class Zend_InfoCard_Adapter_Exception extends Zend_InfoCard_Exception 
 {
 }

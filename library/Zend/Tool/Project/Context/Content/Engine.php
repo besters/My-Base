@@ -17,7 +17,7 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Engine.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id$
  */
 
 /**
@@ -35,7 +35,7 @@ require_once 'Zend/Tool/Project/Context/Content/Engine/Phtml.php';
  *
  * A profile is a hierarchical set of resources that keep track of
  * items within a specific project.
- *
+ * 
  * @category   Zend
  * @package    Zend_Tool
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
@@ -47,17 +47,17 @@ class Zend_Tool_Project_Context_Content_Engine
      * @var Zend_Tool_Framework_Client_Storage
      */
     protected $_storage = null;
-
+    
     /**
      * @var string
      */
     protected $_keyInStorage = 'project/content';
-
+    
     /**
      * @var array
      */
     protected $_engines = array();
-
+    
     /**
      * __construct()
      *
@@ -71,7 +71,7 @@ class Zend_Tool_Project_Context_Content_Engine
             new Zend_Tool_Project_Context_Content_Engine_Phtml($storage, $this->_keyInStorage),
             );
     }
-
+    
     /**
      * getContent()
      *
@@ -83,24 +83,24 @@ class Zend_Tool_Project_Context_Content_Engine
     public function getContent(Zend_Tool_Project_Context_Interface $context, $methodName, $parameters)
     {
         $content = null;
-
+        
         foreach ($this->_engines as $engine) {
             if ($engine->hasContent($context, $methodName, $parameters)) {
                 $content = $engine->getContent($context, $methodName, $parameters);
-
+                
                 if ($content != null) {
                     break;
                 }
-
+                
             }
-
+            
         }
-
+        
         if ($content == null) {
             return false;
         }
-
+        
         return $content;
     }
-
+    
 }

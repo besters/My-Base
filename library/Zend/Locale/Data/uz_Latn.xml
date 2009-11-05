@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.23 $"/>
-		<generation date="$Date: 2009/06/15 03:46:25 $"/>
+		<version number="$Revision: 1.22 $"/>
+		<generation date="$Date: 2009/05/05 23:06:41 $"/>
 		<language type="uz"/>
 		<script type="Latn"/>
 	</identity>
@@ -118,10 +119,13 @@
 				<months>
 					<monthContext type="format">
 						<monthWidth type="wide">
+							<month type="1">Muharram</month>
+							<month type="2">Safar</month>
 							<month type="3">Rabiul-avval</month>
 							<month type="4">Rabiul-oxir</month>
 							<month type="5">Jumodiul-ulo</month>
 							<month type="6">Jumodiul-uxro</month>
+							<month type="7">Rajab</month>
 							<month type="8">Shaʿbon</month>
 							<month type="9">Ramazon</month>
 							<month type="10">Shavvol</month>
@@ -166,4 +170,3 @@
 		</currencies>
 	</numbers>
 </ldml>
-

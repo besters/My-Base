@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.28 $"/>
-		<generation date="$Date: 2009/06/15 17:12:26 $"/>
+		<version number="$Revision: 1.27 $"/>
+		<generation date="$Date: 2009/05/05 23:06:39 $"/>
 		<language type="rw"/>
 	</identity>
 	<localeDisplayNames>
@@ -298,7 +299,7 @@
 		</symbols>
 		<currencies>
 			<currency type="RWF">
-				<symbol>RF</symbol>
+				<symbol>F</symbol>
 			</currency>
 		</currencies>
 	</numbers>

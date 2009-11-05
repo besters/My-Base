@@ -16,7 +16,7 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Validate.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Validate.php 16286 2009-06-25 15:11:37Z thomas $
  */
 
 /**
@@ -205,20 +205,7 @@ class Zend_Validate implements Zend_Validate_Interface
                 $class = new ReflectionClass($className);
                 if ($class->implementsInterface('Zend_Validate_Interface')) {
                     if ($class->hasMethod('__construct')) {
-                        $keys    = array_keys($args);
-                        $numeric = false;
-                        foreach($keys as $key) {
-                            if (is_numeric($key)) {
-                                $numeric = true;
-                                break;
-                            }
-                        }
-
-                        if ($numeric) {
-                            $object = $class->newInstanceArgs($args);
-                        } else {
-                            $object = $class->newInstance($args);
-                        }
+                        $object = $class->newInstanceArgs($args);
                     } else {
                         $object = $class->newInstance();
                     }

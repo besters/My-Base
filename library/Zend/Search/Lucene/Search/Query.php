@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Query.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Query.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 /** Zend_Search_Lucene_Document_Html */
@@ -195,7 +195,7 @@ abstract class Zend_Search_Lucene_Search_Query
     public function highlightMatches($inputHTML, $defaultEncoding = '', $highlighter = null)
     {
         if ($highlighter === null) {
-            $highlighter = new Zend_Search_Lucene_Search_Highlighter_Default();
+        	$highlighter = new Zend_Search_Lucene_Search_Highlighter_Default();
         }
 
         $doc = Zend_Search_Lucene_Document_Html::loadHTML($inputHTML, false, $defaultEncoding);
@@ -223,7 +223,7 @@ abstract class Zend_Search_Lucene_Search_Query
         $inputHTML = '<html><head><META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/></head><body>'
                    . iconv($encoding, 'UTF-8//IGNORE', $inputHtmlFragment) . '</body></html>';
 
-        $doc = Zend_Search_Lucene_Document_Html::loadHTML($inputHTML);
+    	$doc = Zend_Search_Lucene_Document_Html::loadHTML($inputHTML);
         $highlighter->setDocument($doc);
 
         $this->_highlightMatches($highlighter);

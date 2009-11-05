@@ -15,7 +15,7 @@
  * @category   Zend
  * @package    Zend_Http
  * @subpackage Client_Adapter_Exception
- * @version    $Id: Exception.php 17026 2009-07-24 09:09:19Z shahar $
+ * @version    $Id: Exception.php 17118 2009-07-26 09:41:41Z shahar $
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

@@ -16,7 +16,7 @@
  * @package    Zend_Feed_Reader
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Atom.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Atom.php 16966 2009-07-22 15:22:18Z padraic $
  */
 
 /**
@@ -76,7 +76,7 @@ class Zend_Feed_Reader_Entry_Atom extends Zend_Feed_Reader_EntryAbstract impleme
         $this->_extensions['Thread_Entry'] = new $threadClass($entry, $entryKey, $type);
     }
 
-    /**
+	/**
      * Get the specified author
      *
      * @param  int $index

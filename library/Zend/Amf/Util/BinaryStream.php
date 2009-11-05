@@ -17,7 +17,7 @@
  * @subpackage Util
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: BinaryStream.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: BinaryStream.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -53,8 +53,8 @@ class Zend_Amf_Util_BinaryStream
     /**
      * Constructor
      *
-     * Create a refrence to a byte stream that is going to be parsed or created
-     * by the methods in the class. Detect if the class should use big or
+     * Create a refrence to a byte stream that is going to be parsed or created 
+     * by the methods in the class. Detect if the class should use big or 
      * little Endian encoding.
      *
      * @param  string $stream use '' if creating a new stream or pass a string if reading.

@@ -16,7 +16,7 @@
  * @package    Zend_Mail
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: File.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: File.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
@@ -59,7 +59,7 @@ class Zend_Mail_Message_File extends Zend_Mail_Part_File implements Zend_Mail_Me
             // set key and value to the same value for easy lookup
             $this->_flags = array_combine($params['flags'], $params['flags']);
         }
-
+        
         parent::__construct($params);
     }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
 <ldml>
 	<identity>
-		<version number="$Revision: 1.45 $"/>
-		<generation date="$Date: 2009/06/15 03:46:25 $"/>
+		<version number="$Revision: 1.44 $"/>
+		<generation date="$Date: 2009/05/05 23:06:36 $"/>
 		<language type="haw"/>
 	</identity>
 	<localeDisplayNames>
@@ -190,8 +191,8 @@
 				</timeFormats>
 				<dateTimeFormats>
 					<availableFormats>
-						<dateFormatItem id="Md">d/M</dateFormatItem>
 						<dateFormatItem id="MMMMd">d MMMM</dateFormatItem>
+						<dateFormatItem id="Md">d/M</dateFormatItem>
 						<dateFormatItem id="yyM">M/yy</dateFormatItem>
 						<dateFormatItem id="yyQ">Q yy</dateFormatItem>
 						<dateFormatItem id="yyyyMMMM">MMMM y</dateFormatItem>
@@ -215,4 +216,3 @@
 		</currencyFormats>
 	</numbers>
 </ldml>
-

@@ -17,7 +17,7 @@
  * @subpackage Stomp
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Connection.php 17539 2009-08-10 22:51:26Z mikaelkael $
+ * @version    $Id: Connection.php 17241 2009-07-28 13:01:20Z matthew $
  */
 
 /**
@@ -145,7 +145,7 @@ class Zend_Queue_Stomp_Client_Connection
     /**
      * Write a frame to the stomp server
      *
-     * example: $response = $client->write($frame)->read();
+     * @example $response = $client->write($frame)->read();
      *
      * @param Zend_Queue_Stom_FrameInterface $frame
      * @return $this

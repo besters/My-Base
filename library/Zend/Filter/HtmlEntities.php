@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: HtmlEntities.php 18081 2009-09-11 21:48:09Z thomas $
+ * @version    $Id: HtmlEntities.php 17809 2009-08-24 21:51:22Z thomas $
  */
 
 /**
@@ -63,8 +63,7 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
     public function __construct($options = array())
     {
         if (!is_array($options)) {
-// @todo: Preperation for 2.0... needs to be cleared with the dev-team
-//            trigger_error('Support for multiple arguments is deprecated in favor of a single options array', E_USER_NOTICE);
+            trigger_error('Support for multiple arguments is deprecated in favor of a single options array', E_USER_NOTICE);
             $options = func_get_args();
             $temp['quotestyle'] = array_shift($options);
             if (!empty($options)) {

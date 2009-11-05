@@ -17,7 +17,7 @@
  * @subpackage Resource
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Modules.php 17729 2009-08-21 19:49:10Z matthew $
+ * @version    $Id: Modules.php 17730 2009-08-21 19:50:07Z matthew $
  */
 
 /**

@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Encrypt.php 18081 2009-09-11 21:48:09Z thomas $
+ * @version    $Id: Encrypt.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -51,10 +51,6 @@ class Zend_Filter_Encrypt implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
-        if ($options instanceof Zend_Config) {
-            $options = $options->toArray();
-        }
-
         $this->setAdapter($options);
     }
 

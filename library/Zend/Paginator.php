@@ -16,7 +16,7 @@
  * @package    Zend_Paginator
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Paginator.php 17630 2009-08-16 12:25:06Z norm2782 $
+ * @version    $Id: Paginator.php 17631 2009-08-16 12:29:46Z norm2782 $
  */
 
 /**
@@ -646,10 +646,10 @@ class Zend_Paginator implements Countable, IteratorAggregate
      */
     public function getItem($itemNumber, $pageNumber = null)
     {
+        $itemNumber = $this->normalizeItemNumber($itemNumber);
+
         if ($pageNumber == null) {
             $pageNumber = $this->getCurrentPageNumber();
-        } else if ($pageNumber < 0) {
-            $pageNumber = ($this->count() + 1) + $pageNumber;
         }
 
         $page = $this->getItemsByPage($pageNumber);
@@ -663,12 +663,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
 
             throw new Zend_Paginator_Exception('Page ' . $pageNumber . ' does not exist');
         }
-
-        if ($itemNumber < 0) {
-            $itemNumber = ($itemCount + 1) + $itemNumber;
-        }
-
-        $itemNumber = $this->normalizeItemNumber($itemNumber);
 
         if ($itemNumber > $itemCount) {
             /**

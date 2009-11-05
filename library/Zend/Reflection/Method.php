@@ -16,7 +16,7 @@
  * @package    Zend_Reflection
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Method.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Method.php 18165 2009-09-17 13:24:09Z carlton $
  */
 
 /**
@@ -144,7 +144,7 @@ class Zend_Reflection_Method extends ReflectionMethod
     public function getBody()
     {
         $lines = array_slice(
-            file($this->getDeclaringClass()->getFileName()),
+            file($this->getDeclaringClass()->getFileName(), FILE_IGNORE_NEW_LINES),
             $this->getStartLine(),
             ($this->getEndLine() - $this->getStartLine()),
             true
@@ -162,7 +162,7 @@ class Zend_Reflection_Method extends ReflectionMethod
             array_push($lines, $lastLine);
         }
 
-        // just in case we had code on the braket lines
+        // just in case we had code on the bracket lines
         return rtrim(ltrim(implode("\n", $lines), '{'), '}');
     }
 }

@@ -14,10 +14,10 @@
  *
  * @category   Zend
  * @package    Zend_Auth
- * @subpackage Adapter
+ * @subpackage Zend_Auth_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DbTable.php 18065 2009-09-10 18:39:49Z ralph $
+ * @version    $Id: DbTable.php 18066 2009-09-10 18:47:53Z ralph $
  */
 
 
@@ -40,7 +40,7 @@ require_once 'Zend/Auth/Result.php';
 /**
  * @category   Zend
  * @package    Zend_Auth
- * @subpackage Adapter
+ * @subpackage Zend_Auth_Adapter
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -58,7 +58,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
      * @var Zend_Db_Select
      */
     protected $_dbSelect = null;
-
+    
     /**
      * $_tableName - the table name to check
      *
@@ -241,10 +241,10 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
         if ($this->_dbSelect == null) {
             $this->_dbSelect = $this->_zendDb->select();
         }
-
+        
         return $this->_dbSelect;
     }
-
+    
     /**
      * getResultRowObject() - Returns the result row as a stdClass object
      *

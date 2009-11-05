@@ -16,7 +16,7 @@
  * @package   Zend_File_Transfer
  * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Http.php 17936 2009-08-31 20:59:26Z thomas $
+ * @version   $Id: Http.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -344,7 +344,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
         if (!empty($id)) {
             if (self::isApcAvailable()) {
 
-                $call = call_user_func(self::$_callbackApc, ini_get('apc.rfc1867_prefix') . $id);
+                $call = call_user_func(self::$_callbackApc, 'upload_' . $id);
                 if (is_array($call)) {
                     $status = $call + $status;
                 }

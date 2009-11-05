@@ -17,7 +17,7 @@
  * @subpackage Php
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DefaultValue.php 18000 2009-09-06 16:57:51Z beberlei $
+ * @version    $Id: DefaultValue.php 18010 2009-09-07 21:58:40Z beberlei $
  */
 
 /**

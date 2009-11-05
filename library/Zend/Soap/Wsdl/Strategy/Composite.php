@@ -17,23 +17,11 @@
  * @subpackage Wsdl
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Composite.php 17558 2009-08-11 21:03:55Z mikaelkael $
+ * @version    $Id: Composite.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
-/**
- * @see Zend_Soap_Wsdl_Strategy_Interface
- */
 require_once "Zend/Soap/Wsdl/Strategy/Interface.php";
 
-/**
- * Zend_Soap_Wsdl_Strategy_Composite
- *
- * @category   Zend
- * @package    Zend_Soap
- * @subpackage Wsdl
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Interface
 {
     /**

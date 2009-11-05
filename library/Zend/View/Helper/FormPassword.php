@@ -17,7 +17,7 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FormPassword.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: FormPassword.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -73,7 +73,7 @@ class Zend_View_Helper_FormPassword extends Zend_View_Helper_FormElement
             }
             unset($attribs['renderPassword']);
         }
-
+        
         // XHTML or HTML end tag?
         $endTag = ' />';
         if (($this->view instanceof Zend_View_Abstract) && !$this->view->doctype()->isXhtml()) {

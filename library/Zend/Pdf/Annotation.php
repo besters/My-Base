@@ -17,7 +17,7 @@
  * @subpackage Annotation
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Annotation.php 17652 2009-08-17 20:38:15Z mikaelkael $
+ * @version    $Id:
  */
 
 /** @see Zend_Pdf_ElementFactory */
@@ -227,3 +227,4 @@ abstract class Zend_Pdf_Annotation
         /** @todo implementation */
     }
 }
+

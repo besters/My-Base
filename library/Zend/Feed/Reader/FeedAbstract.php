@@ -16,7 +16,7 @@
  * @package    Zend_Feed_Reader
  * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FeedAbstract.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: FeedAbstract.php 16966 2009-07-22 15:22:18Z padraic $
  */
 
 /**
@@ -48,7 +48,7 @@ require_once 'Zend/Feed/Reader/FeedInterface.php';
  */
 abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInterface
 {
-    /**
+	/**
      * Parsed feed data
      *
      * @var array
@@ -106,7 +106,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
         $this->_loadExtensions();
     }
 
-    /**
+	/**
      * Get the number of feed entries.
      * Required by the Iterator interface.
      *
@@ -117,7 +117,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
         return count($this->_entries);
     }
 
-    /**
+	/**
      * Return the current entry
      *
      * @return Zend_Feed_Reader_Entry_Interface
@@ -196,7 +196,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
         return $this->_data['type'];
     }
 
-    /**
+	/**
      * Return the current feed key
      *
      * @return unknown
@@ -206,7 +206,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
         return $this->_entriesKey;
     }
 
-    /**
+	/**
      * Move the feed pointer forward
      *
      */

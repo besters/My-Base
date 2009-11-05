@@ -17,7 +17,7 @@
  * @subpackage Dispatcher
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Interface.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Interface.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 /**
@@ -185,21 +185,21 @@ interface Zend_Controller_Dispatcher_Interface
 
     /**
      * Retrieve the default module name
-     *
+     * 
      * @return string
      */
     public function getDefaultModule();
 
     /**
      * Retrieve the default controller name
-     *
+     * 
      * @return string
      */
     public function getDefaultControllerName();
 
     /**
      * Retrieve the default action
-     *
+     * 
      * @return string
      */
     public function getDefaultAction();

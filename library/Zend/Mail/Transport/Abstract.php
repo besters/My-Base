@@ -17,7 +17,7 @@
  * @subpackage Transport
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Abstract.php 17319 2009-07-31 02:29:51Z yoshida@zend.co.jp $
+ * @version    $Id: Abstract.php 17334 2009-08-01 01:25:22Z yoshida@zend.co.jp $
  */
 
 

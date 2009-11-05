@@ -16,7 +16,7 @@
  * @package    Zend_Feed_Reader
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: EntryAbstract.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: EntryAbstract.php 16966 2009-07-22 15:22:18Z padraic $
  */
 
 /**
@@ -134,7 +134,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
         return $dom->saveXml();
     }
 
-    /**
+	/**
      * Get the entry type
      *
      * @return string
@@ -154,7 +154,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
         return $this->_xpath;
     }
 
-    /**
+	/**
      * Set the XPath query
      *
      * @param  DOMXPath $xpath

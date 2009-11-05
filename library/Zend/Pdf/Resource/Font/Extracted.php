@@ -17,7 +17,7 @@
  * @subpackage Fonts
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Extracted.php 17298 2009-07-30 11:14:36Z alexander $
+ * @version    $Id: Extracted.php 17530 2009-08-10 18:47:29Z alexander $
  */
 
 /** Zend_Pdf_Resource_Font */

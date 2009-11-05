@@ -17,7 +17,7 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Manifest.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Manifest.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -66,10 +66,10 @@ require_once 'Zend/Tool/Project/Provider/ProjectProvider.php';
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_Manifest implements
+class Zend_Tool_Project_Provider_Manifest implements 
     Zend_Tool_Framework_Manifest_ProviderManifestable
 {
-
+    
     /**
      * getProviders()
      *

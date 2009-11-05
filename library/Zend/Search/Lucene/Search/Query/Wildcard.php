@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Wildcard.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Wildcard.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
@@ -84,7 +84,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      */
     public static function getMinPrefixLength()
     {
-        return self::$_minPrefixLength;
+    	return self::$_minPrefixLength;
     }
 
     /**
@@ -94,7 +94,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      */
     public static function setMinPrefixLength($minPrefixLength)
     {
-        self::$_minPrefixLength = $minPrefixLength;
+    	self::$_minPrefixLength = $minPrefixLength;
     }
 
     /**
@@ -144,7 +144,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
         $matchExpression = '/^' . str_replace(array('\\?', '\\*'), array('.', '.*') , preg_quote($this->_pattern->text, '/')) . '$/';
 
         if ($prefixLength < self::$_minPrefixLength) {
-            throw new Zend_Search_Lucene_Exception('At least ' . self::$_minPrefixLength . ' non-wildcard characters are required at the beginning of pattern.');
+        	throw new Zend_Search_Lucene_Exception('At least ' . self::$_minPrefixLength . ' non-wildcard characters are required at the beginning of pattern.');
         }
 
         /** @todo check for PCRE unicode support may be performed through Zend_Environment in some future */
@@ -168,7 +168,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
                         $this->_matches[] = $index->currentTerm();
 
                         if ($maxTerms != 0  &&  count($this->_matches) > $maxTerms) {
-                            throw new Zend_Search_Lucene_Exception('Terms per query limit is reached.');
+                        	throw new Zend_Search_Lucene_Exception('Terms per query limit is reached.');
                         }
                     }
 

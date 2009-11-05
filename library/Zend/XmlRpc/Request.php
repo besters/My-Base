@@ -43,7 +43,7 @@ require_once 'Zend/XmlRpc/Fault.php';
  * @package  Zend_XmlRpc
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version $Id: Request.php 17762 2009-08-23 01:01:18Z lars $
+ * @version $Id: Request.php 17786 2009-08-23 22:26:33Z lars $
  */
 class Zend_XmlRpc_Request
 {

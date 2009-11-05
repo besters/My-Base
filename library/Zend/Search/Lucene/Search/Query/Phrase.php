@@ -17,7 +17,7 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Phrase.php 17687 2009-08-20 12:55:34Z thomas $
+ * @version    $Id: Phrase.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -543,7 +543,7 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
         if (isset($this->_terms[0]) && $this->_terms[0]->field !== null) {
             $query = $this->_terms[0]->field . ':';
         } else {
-            $query = '';
+        	$query = '';
         }
 
         $query .= '"';

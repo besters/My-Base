@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework
  *
@@ -16,13 +17,15 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Regex.php 18028 2009-09-08 20:52:23Z thomas $
+ * @version    $Id: Regex.php 17470 2009-08-08 22:27:09Z thomas $
  */
+
 
 /**
  * @see Zend_Validate_Abstract
  */
 require_once 'Zend/Validate/Abstract.php';
+
 
 /**
  * @category   Zend
@@ -60,21 +63,11 @@ class Zend_Validate_Regex extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  string|Zend_Config $pattern
+     * @param  string $pattern
      * @return void
      */
     public function __construct($pattern)
     {
-        if ($pattern instanceof Zend_Config) {
-            $pattern = $pattern->toArray();
-            if (array_key_exists('pattern', $pattern)) {
-                $pattern = $pattern['pattern'];
-            } else {
-                require_once 'Zend/Validate/Exception.php';
-                throw new Zend_Validate_Exception("Missing option 'pattern'");
-            }
-        }
-
         $this->setPattern($pattern);
     }
 

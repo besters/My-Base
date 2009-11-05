@@ -14,16 +14,17 @@
  *
  * @category   Zend
  * @package    Zend_Auth
- * @subpackage Storage
+ * @subpackage Zend_Auth_Storage
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Interface.php 17561 2009-08-11 22:20:28Z mikaelkael $
+ * @version    $Id: Interface.php 16200 2009-06-21 18:50:06Z thomas $
  */
+
 
 /**
  * @category   Zend
  * @package    Zend_Auth
- * @subpackage Storage
+ * @subpackage Zend_Auth_Storage
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

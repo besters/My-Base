@@ -17,7 +17,7 @@
  * @subpackage Parse
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Stream.php 17420 2009-08-07 04:07:15Z yoshida@zend.co.jp $
+ * @version    $Id: Stream.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 /**
@@ -32,7 +32,7 @@ class Zend_Amf_Parse_Resource_Stream
 {
     /**
      * Parse resource into string
-     *
+     * 
      * @param resource $resource Stream resource
      * @return array
      */
