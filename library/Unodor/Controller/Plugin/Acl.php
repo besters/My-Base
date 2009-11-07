@@ -30,9 +30,9 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	
 			$perms = $aclModel->getUserPerms($identity->email, 7);
 			
-			//$access = self::VIEW + self::ADD + self::EDIT + self::DELETE;
+			$access = self::VIEW + self::ADD + self::EDIT + self::DELETE;
 			
-			//$perms = array('index' => $access, 'project' => $access, 'people' => 0);
+			$perms = array('index' => $access, 'project' => $access, 'people' => 0);
 			
 			foreach($perms as $val => $key){
 				$acl->add(new Zend_Acl_Resource($val));
