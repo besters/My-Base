@@ -2,6 +2,7 @@
 
 /**
  * Application Resource ktera nastavuje ZFDebug plugin
+ * 
  */
 class Resource_Debug extends Zend_Application_Resource_ResourceAbstract {
 
@@ -58,6 +59,7 @@ class Resource_Debug extends Zend_Application_Resource_ResourceAbstract {
     
     /**
      * Defined by Zend_Application_Resource_Resource
+     * 
      */
     public function init() {
         $this->initDebugPlugin();
@@ -65,6 +67,7 @@ class Resource_Debug extends Zend_Application_Resource_ResourceAbstract {
     
     /**
      * Initialize ZFDebug plugin
+     * 
      */
     public function initDebugPlugin() {
         if (!$this->_init && $this->getEnabled()) {

@@ -1,6 +1,15 @@
 <?php
+
+/**
+ * CheckBox dekorator
+ *
+ */
 class Unodor_Form_Decorator_CheckBox extends Zend_Form_Decorator_Abstract
 {
+	/**
+	 * Dava dohromady Label inputu
+	 * 
+	 */
     public function buildLabel()
     {
         $element = $this->getElement();
@@ -12,6 +21,10 @@ class Unodor_Form_Decorator_CheckBox extends Zend_Form_Decorator_Abstract
         return $element->getView()->formLabel($element->getName(), $label);
     }
 
+    /**
+     * Sklada Input
+     * 
+     */
     public function buildInput()
     {
         $element = $this->getElement();
@@ -24,6 +37,11 @@ class Unodor_Form_Decorator_CheckBox extends Zend_Form_Decorator_Abstract
         );
     }
 
+    /**
+     * Renderuje formular
+     * 
+     * @param $content
+     */
     public function render($content)
     {
         $element = $this->getElement();

@@ -1,13 +1,26 @@
 <?php
 
+/**
+ * Materska trida vsech Controlleru
+ *
+ */
 abstract class Unodor_Controller_Action extends Zend_Controller_Action
 {
 
 	//protected $_model;
 
 	//protected $_form;
-
+	
+	const ERROR = 'error';		
+	const DONE = 'done';
+	
+	/**
+	 * Instance FlashMessenger action helperu
+	 * 
+	 * @var Zend_Controller_Action_Helper_FlashMessenger
+	 */
 	protected $_flashMessenger;
+		
 	/*
 	public function init()
 	{
@@ -25,7 +38,14 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
 		}
 		$menu->build();
 	}*/
-
+	
+	/**
+	 * Uklada stavove zpravy
+	 * 
+	 * @param string $message Zprava
+	 * @param const $status Status
+	 * @param bool $nextRequest Zobrazit hned, nebo az pri dalsim requestu
+	 */
 	protected function _flash($message, $status, $nextRequest = true)
 	{
 		if($nextRequest == false){
@@ -121,6 +141,12 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
 		$this->_helper->viewRenderer->setRender('table');
 	}*/
 
+	/**
+	 * Zakazuje a povoluje renderovani layoutu a view
+	 * 
+	 * @param bool $layout Ovlada layout
+	 * @param bool $view Ovlada view
+	 */
 	protected function disableMvc($layout = true, $view = true)
 	{
 		if($view) $this->_helper->viewRenderer->setNoRender();

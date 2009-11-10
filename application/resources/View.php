@@ -1,13 +1,25 @@
 <?php
 
+/**
+ * Application Resource ktera nastavuje View
+ * 
+ */
 class Resource_View extends Zend_Application_Resource_ResourceAbstract
 {
-
+    /**
+     * Defined by Zend_Application_Resource_Resource
+     * 
+     */
 	public function init()
 	{
 		return $this->getView();
 	}
-
+	
+	/**
+	 * Nastavuje view
+	 * 
+	 * @return Zend_View
+	 */
 	public function getView()
 	{
 		$view = new Zend_View();

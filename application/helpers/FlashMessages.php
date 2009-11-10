@@ -1,6 +1,16 @@
 <?php
+
+/**
+ * Flash Messages view helper
+ *
+ */
 class Unodor_View_Helper_FlashMessages extends Zend_View_Helper_Abstract
 {
+	/**
+	 * Zpracovava a zobrazuje flash zpravy
+	 * 
+	 * @param unknown_type $translator
+	 */
     public function flashMessages ($translator = NULL)
     {
         $messages = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')->getMessages();

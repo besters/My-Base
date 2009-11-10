@@ -1,9 +1,30 @@
 <?php
+
+/**
+ * Menu Controller plugin
+ *
+ */
 class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 {
+	/**
+	 * Aktivni projekt
+	 * 
+	 * @var int
+	 */
 	protected $_project;
+	
+	/**
+	 * Aktivni ucet
+	 * 
+	 * @var int
+	 */
 	protected $_account;
 	
+	/**
+	 * Nastavuje ktere menu zobrazit a uklada do registru
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		//Zend_View_Helper_Navigation_HelperAbstract::setDefaultAcl($acl);
@@ -25,6 +46,11 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 		}
 	}
 	
+	/**
+	 * Hlavni menu aplikace
+	 * 
+	 * @return Zend_Navigation Menu Container 
+	 */
 	private function _mybaseDefaultMenu()
 	{
 		$container = new Zend_Navigation(array(
@@ -88,14 +114,17 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					'account' => $this->_account
 					)
 			)															
-		));
-		
+		));		
 		return $container;
 	}
 	
+	/**
+	 * Menu pro podsekci projektu
+	 * 
+	 * @return Zend_Navigation Menu Container
+	 */
 	private function _mybaseProjectMenu()
-	{
-		
+	{		
 		$container = new Zend_Navigation(array(
 			array(                
 				'label' => 'Přehled',    
@@ -218,8 +247,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					'projekt' => $this->_project
 					)
 			)																								
-		));
-		
+		));		
 		return $container;
 	}
 }

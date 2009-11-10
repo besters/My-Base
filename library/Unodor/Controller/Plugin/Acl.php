@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Access Control List controller plugin
+ *
+ */
 class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 {
 	const VIEW = 1;
@@ -7,9 +11,18 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	const EDIT = 4;
 	const DELETE = 8;
 	
+	/**
+	 * Vychozi modul, controller a action pri zamitnutem pristupu
+	 * 
+	 * @var array
+	 */
 	private $_noacl = array('module'=>'mybase', 'controller'=>'auth', 'action'=>'acl');
-    private $_resources = array();
 	
+    /**
+     * Hlavni logika ACL 
+     * 
+     * @param $request
+     */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{		
 		$controller = $request->controller;
@@ -20,7 +33,9 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 		
 		if($auth->hasIdentity())
 		{			
-			$acl = new Zend_Acl(); 
+			$acl = new Zend_Acl();
+
+			$resources = array();
 			
 			$identity = $auth->getIdentity();
 
@@ -36,7 +51,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			
 			foreach($perms as $val => $key){
 				$acl->add(new Zend_Acl_Resource($val));
-				$this->_resources[] = $val;
+				$resources[] = $val;
 			}					
 				
 			foreach($perms as $val => $key){
@@ -56,7 +71,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 				
 			Zend_Registry::set('acl', $acl);
 			
-			if (in_array($request->getControllerName(), $this->_resources)) {
+			if (in_array($request->getControllerName(), $resources)) {
 				             
 				$isAllowed = $acl->isAllowed($identity->email, $request->getControllerName(), $request->getActionName());
 								
