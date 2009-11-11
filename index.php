@@ -12,6 +12,8 @@ define('MODULE_PATH', APP_PATH . '/modules') ;
 
 define('CONFIG_PATH', APP_PATH . '/configs') ;
 
+define('LANGUAGES_PATH', ROOT_PATH . '/languages') ;
+
 set_include_path(implode(PATH_SEPARATOR, array(
     LIB_PATH,
     get_include_path(),

@@ -1,0 +1,28 @@
+<div id="main-fixed">
+
+    <div id="title">
+        <div id="title-links">
+            <a href="<?php echo $this->baseUrl($this->Param('projekt').'/milestone/add') ; ?>"><?php echo $this->translate('New milestone') ;?></a> | 
+			<a href="<?php echo $this->baseUrl($this->Param('projekt').'/ticket/add') ; ?>"><?php echo $this->translate('New ticket') ;?></a> | 
+			<a href="<?php echo $this->baseUrl($this->Param('projekt').'/checklist/add') ; ?>"><?php echo $this->translate('New checklist') ;?>t</a>
+        </div>
+        <h2><?php echo $this->translate('My Project') ;?></h2>
+    </div>
+
+</div>
+
+<div id="side">
+	<div class="block">
+	    <h3><?php echo $this->translate('Process work') ;?> </h3>
+	    <div class="bar center">
+	        <div style="width: 100%">
+	        </div>
+	    </div>
+		<div id="progress-info"><strong>7</strong> ze <strong>7</strong> úkolů dokončeno (<strong>100%</strong>)</div>
+	</div>
+	
+	<div class="block">
+		<h3>Lidé přiřazení k projektu</h3>
+		
+	</div>
+</div>

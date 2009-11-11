@@ -36,4 +36,5 @@ class Resource_View extends Zend_Application_Resource_ResourceAbstract
 		// Return it, so that it can be stored by the bootstrap
 		return $view;
 	}
+	
 }
