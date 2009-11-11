@@ -62,7 +62,6 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   `name` VARCHAR(100) NOT NULL COMMENT 'Křestní jméno' ,
   `surname` VARCHAR(100) NOT NULL COMMENT 'Příjmení' ,
   `email` VARCHAR(200) NOT NULL COMMENT 'E-mail' ,
-  `username` VARCHAR(20) NOT NULL COMMENT 'Uživatelské jméno' ,
   `password` VARCHAR(50) NOT NULL COMMENT 'Heslo - MD5 hash' ,
   `mobile` VARCHAR(50) NULL COMMENT 'Číslo na mobil' ,
   `home` VARCHAR(50) NULL COMMENT 'Číslo do práce / kanceláře' ,
@@ -165,6 +164,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mybase`.`priority`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`priority` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`priority` (
+  `idpriority` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idaccount` INT UNSIGNED NOT NULL ,
+  `name` VARCHAR(155) NOT NULL ,
+  PRIMARY KEY (`idpriority`, `idaccount`) ,
+  INDEX `fk_account_priority` (`idaccount` ASC) ,
+  CONSTRAINT `fk_account_priority`
+    FOREIGN KEY (`idaccount` )
+    REFERENCES `mybase`.`account` (`idaccount` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mybase`.`milestone`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mybase`.`milestone` ;
@@ -172,19 +190,244 @@ DROP TABLE IF EXISTS `mybase`.`milestone` ;
 CREATE  TABLE IF NOT EXISTS `mybase`.`milestone` (
   `idmilestone` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `idproject` INT UNSIGNED NOT NULL ,
-  `iduser` INT UNSIGNED NOT NULL ,
-  `idpriority` INT UNSIGNED NOT NULL ,
-  `name` VARCHAR(150) NULL ,
-  `datetime` DATETIME NULL ,
+  `iduser` INT UNSIGNED NULL ,
+  `idpriority` INT UNSIGNED NULL ,
+  `name` VARCHAR(150) NOT NULL ,
+  `datetime` DATETIME NOT NULL ,
   `description` VARCHAR(255) NULL ,
-  `assignee` VARCHAR(255) NULL ,
-  `status` SET('active','complete','canceled','paused') NULL ,
+  `status` SET('active','complete','canceled','paused') NOT NULL ,
   `parent` INT UNSIGNED NULL ,
-  PRIMARY KEY (`idmilestone`, `idproject`, `iduser`, `idpriority`) ,
+  PRIMARY KEY (`idmilestone`, `idproject`) ,
   INDEX `fk_project_milestone` (`idproject` ASC) ,
+  INDEX `fk_user_milestone` (`iduser` ASC) ,
+  INDEX `fk_priority_milestone` (`idpriority` ASC) ,
   CONSTRAINT `fk_project_milestone`
     FOREIGN KEY (`idproject` )
     REFERENCES `mybase`.`project` (`idproject` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_milestone`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_priority_milestone`
+    FOREIGN KEY (`idpriority` )
+    REFERENCES `mybase`.`priority` (`idpriority` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`checklist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`checklist` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`checklist` (
+  `idchecklist` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `iduser` INT UNSIGNED NULL ,
+  `idproject` INT UNSIGNED NOT NULL ,
+  `idmilestone` INT UNSIGNED NOT NULL ,
+  `name` VARCHAR(100) NOT NULL ,
+  `description` VARCHAR(255) NULL ,
+  PRIMARY KEY (`idchecklist`, `idproject`, `idmilestone`) ,
+  INDEX `fk_user_checklist` (`iduser` ASC) ,
+  INDEX `fk_project_checklist` (`idproject` ASC) ,
+  INDEX `fk_milestone_checklist` (`idmilestone` ASC) ,
+  CONSTRAINT `fk_user_checklist`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_project_checklist`
+    FOREIGN KEY (`idproject` )
+    REFERENCES `mybase`.`project` (`idproject` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_milestone_checklist`
+    FOREIGN KEY (`idmilestone` )
+    REFERENCES `mybase`.`milestone` (`idmilestone` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`category` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`category` (
+  `idcategory` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idaccount` INT UNSIGNED NOT NULL ,
+  `name` VARCHAR(155) NOT NULL ,
+  PRIMARY KEY (`idcategory`, `idaccount`) ,
+  INDEX `fk_account_category` (`idaccount` ASC) ,
+  CONSTRAINT `fk_account_category`
+    FOREIGN KEY (`idaccount` )
+    REFERENCES `mybase`.`account` (`idaccount` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`milestoneuser`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`milestoneuser` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`milestoneuser` (
+  `idmilestoneuser` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idmilestone` INT UNSIGNED NOT NULL ,
+  `iduser` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`idmilestoneuser`, `idmilestone`, `iduser`) ,
+  INDEX `fk_milestone_MU` (`idmilestone` ASC) ,
+  INDEX `fk_user_MU` (`iduser` ASC) ,
+  CONSTRAINT `fk_milestone_MU`
+    FOREIGN KEY (`idmilestone` )
+    REFERENCES `mybase`.`milestone` (`idmilestone` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_MU`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`typ`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`typ` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`typ` (
+  `idtyp` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idaccount` INT UNSIGNED NOT NULL ,
+  `name` VARCHAR(155) NOT NULL ,
+  PRIMARY KEY (`idtyp`, `idaccount`) ,
+  INDEX `fk_account_typ` (`idaccount` ASC) ,
+  CONSTRAINT `fk_account_typ`
+    FOREIGN KEY (`idaccount` )
+    REFERENCES `mybase`.`account` (`idaccount` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`ticket`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`ticket` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`ticket` (
+  `idticket` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idproject` INT UNSIGNED NOT NULL ,
+  `iduser` INT UNSIGNED NULL ,
+  `idmilestone` INT UNSIGNED NOT NULL ,
+  `idtyp` INT UNSIGNED NULL ,
+  `idcategory` INT UNSIGNED NULL ,
+  `idpriority` INT UNSIGNED NULL ,
+  `status` SET('active','complete','canceled','paused') NOT NULL ,
+  `name` VARCHAR(150) NOT NULL ,
+  `description` VARCHAR(255) NULL ,
+  `datetime` DATETIME NOT NULL ,
+  PRIMARY KEY (`idticket`, `idproject`, `idmilestone`) ,
+  INDEX `fk_project_ticket` (`idproject` ASC) ,
+  INDEX `fk_user_ticket` (`iduser` ASC) ,
+  INDEX `fk_milestone_ticket` (`idmilestone` ASC) ,
+  INDEX `fk_typ_ticket` (`idtyp` ASC) ,
+  INDEX `fk_category_ticket` (`idcategory` ASC) ,
+  INDEX `fk_priority_ticket` (`idpriority` ASC) ,
+  CONSTRAINT `fk_project_ticket`
+    FOREIGN KEY (`idproject` )
+    REFERENCES `mybase`.`project` (`idproject` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_ticket`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_milestone_ticket`
+    FOREIGN KEY (`idmilestone` )
+    REFERENCES `mybase`.`milestone` (`idmilestone` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_typ_ticket`
+    FOREIGN KEY (`idtyp` )
+    REFERENCES `mybase`.`typ` (`idtyp` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_category_ticket`
+    FOREIGN KEY (`idcategory` )
+    REFERENCES `mybase`.`category` (`idcategory` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_priority_ticket`
+    FOREIGN KEY (`idpriority` )
+    REFERENCES `mybase`.`priority` (`idpriority` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`ticketuser`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`ticketuser` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`ticketuser` (
+  `idticketuser` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idticket` INT UNSIGNED NOT NULL ,
+  `iduser` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`idticketuser`, `idticket`, `iduser`) ,
+  INDEX `fk_ticket_TU` (`idticket` ASC) ,
+  INDEX `fk_user_TU` (`iduser` ASC) ,
+  CONSTRAINT `fk_ticket_TU`
+    FOREIGN KEY (`idticket` )
+    REFERENCES `mybase`.`ticket` (`idticket` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_TU`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mybase`.`task`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`task` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`task` (
+  `idtask` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `iduser` INT UNSIGNED NULL ,
+  `idproject` INT UNSIGNED NOT NULL ,
+  `idmilestone` INT UNSIGNED NOT NULL ,
+  `name` VARCHAR(155) NOT NULL ,
+  `status` SET('active','complete') NOT NULL ,
+  `completed` DATETIME NULL ,
+  PRIMARY KEY (`idtask`, `idproject`, `idmilestone`) ,
+  INDEX `fk_user_task` (`iduser` ASC) ,
+  INDEX `fk_project_task` (`idproject` ASC) ,
+  INDEX `fk_milestone_task` (`idmilestone` ASC) ,
+  CONSTRAINT `fk_user_task`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_project_task`
+    FOREIGN KEY (`idproject` )
+    REFERENCES `mybase`.`project` (`idproject` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_milestone_task`
+    FOREIGN KEY (`idmilestone` )
+    REFERENCES `mybase`.`milestone` (`idmilestone` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
