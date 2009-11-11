@@ -1,25 +1,18 @@
 <?php
-  /** 
-     * 
-     * Třída pro nastavení jazykového rozhraní
-     *
-     */
 
+/**
+ * Třída pro nastavení jazykového rozhraní
+ *
+ */
 class Unodor_Translate extends Zend_Translate
 {  
-  /**
-     *
-     * Aktivuje Zendovskou třídu
-     *
-     */
-
-
-    public function Translate($string){
+	/**
+	 * Aktivuje Zendovskou třídu
+	 * @param string $string Prekladana fraze
+	 */
+	public function Translate($string){    	
+		$translate = self::_translate($string) ;
     	
-		$load_translate = self::_translate($string) ;
-    	
-		return $load_translate ; 
+		return $translate ; 
     }
-    
-}
-	
+}	
