@@ -2,6 +2,10 @@
 $this->headLink()
     ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/layout.css'), 'screen,projection');
+    
+$this->headScript()
+	->appendFile($this->baseUrl('/public/js/jquery.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.js'));    
 
 echo $this->doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,6 +34,16 @@ echo $this->doctype(); ?>
 <div id="menu">
 	<div class="wrap940">
 		<?php echo $this->navigation()->menu()->setMaxDepth(0); ?>
+	</div>
+
+	<div id="submenu">
+		<div class="wrap940">
+			<?php 
+				if($this->param('projekt') > 0){
+					echo $this->navigation()->menu()->renderSubMenu(null, 'subnavigation', 4);
+				}
+			?>
+		</div>
 	</div>
 </div>
 
