@@ -1,8 +1,23 @@
 <?php 
+
+/**
+ * Controller Plugin pro autentifikaci
+ *
+ */
 class Unodor_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract 
 {
+	/**
+	 * Vychozi modul, controller a action ktere se zobrazi kdyz uzivatel neni prihlasen
+	 * 
+	 * @var array
+	 */
     private $_noauth = array('module'=>'mybase', 'controller'=>'auth', 'action'=>'login');
     
+    /**
+     * Zjistuje jestli je uzivatel prihlaseny a podle toho nastavuje parametry do routy
+     * 
+     * @param Zend_Controller_Request_Abstract $request
+     */
     public function preDispatch(Zend_Controller_Request_Abstract $request) 
 	{    
         $auth = Zend_Auth::getInstance();
@@ -22,7 +37,6 @@ class Unodor_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
 		}else{
 			throw new Zend_Controller_Dispatcher_Exception('Tohle musím ještě doladit, řádek 23 soubor Unodor_Controller_Plugin_Auth');
 		}
-
         
         $request->setModuleName($module);
         $request->setControllerName($controller);

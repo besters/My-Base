@@ -1,7 +1,17 @@
 <?php
 
+/**
+ * Materska trida vsech Model_DbTable_* trid
+ *
+ */
 class Unodor_Db_Table extends Zend_Db_Table_Abstract
 {
+	/**
+	 * Provadi INSERT / UPDATE dotaz na DB
+	 * 
+	 * @param array $data Ukladane data
+	 * @param int $id ID editovaneho zaznamu
+	 */
 	public function save($data, $id = null)
 	{
 		if(isset($id)){
@@ -13,6 +23,11 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		}
 	}
 
+	/**
+	 * Maze zaznam z DB
+	 * 
+	 * @param int $id ID mazaneho zaznamu
+	 */
 	public function deleteEntry($id)
 	{
 		$stav = $this->delete($this->_primary[1] . ' =' . (int)$id);
@@ -21,6 +36,12 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		}
 	}
 
+	/**
+	 * Vybere z DB vsechny zaznamy
+	 * 
+	 * @param string $where
+	 * @return array
+	 */
 	public function fetchAllEntry($where = false)
 	{
 		if($where){
@@ -31,6 +52,13 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		return $fetch->toArray();
 	}
 
+	/**
+	 * Vybere jeden nebo vice zaznamu podle zadaneho ID
+	 * 
+	 * @param int|array $id parametr pro WHERE podminku
+	 * @param array $columns Sloupce
+	 * @return array|false
+	 */
 	public function getRow($id, array $columns = array('*'))
 	{
 		if(is_array($id)){

@@ -3,20 +3,24 @@ class Model_User
 {
 	/**
 	 * Ukazatel na DbTable layer
-	 * @var object
+	 * @var Model_DbTable_User
 	 */
 	private $_dbTable;
 
+	/**
+	 * Konstruktor
+	 * 
+	 */
 	public function __construct()
 	{
 		$this->_dbTable = new Model_DbTable_User();
 	}
 	
 	/**
-	 * Zjišťuje ID uživatele
+	 * Zjistuje ID uzivatele
 	 * 
-	 * @param string $user Uživatelské jméno
-	 * @return string ID uživatele
+	 * @param string $user Uzivatelske jmeno
+	 * @return string ID uzivatele
 	 */
 	public function getUserId($user)
 	{

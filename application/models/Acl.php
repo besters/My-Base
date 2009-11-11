@@ -7,19 +7,23 @@ class Model_Acl
 	 */
 	private $_dbTable;
 
+	/**
+	 * Konstruktor
+	 * 
+	 */
 	public function __construct()
 	{
 		$this->_dbTable = new Model_DbTable_Acl();
 	}
 	
 	/**
-	 * Zjišťuje oprávnění uživatele
+	 * Zjistuje opravneni uzivatele
 	 * 
-	 * @TODO Dopsat podmínku pro selekci podle projektu
+	 * @TODO Dopsat podminku pro selekci podle projektu
 	 * 
-	 * @param string $user Uživatelské jméno
+	 * @param string $user Uzivatelske jmeno
 	 * @param string $project ID projektu
-	 * @return array Oprávnění
+	 * @return array Opravneni
 	 */
 	public function getUserPerms($user, $project)
 	{
