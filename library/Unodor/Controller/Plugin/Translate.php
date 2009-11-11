@@ -1,21 +1,39 @@
 <?php
-class Unodor_Translate extends Zend_Translate
-{  
-    public function __contruct($string){
-    	$translate =  new Zend_Translate('gettext', LANGUAGES_PATH.'/LC_MESSAGES/en/default.mo' , 'en'); 
-    	$translate->setLocale('en');
-    	Zend_Registry::set('Zend_Translate' , $translate);
-    	$this->translate = $translate ;
-    	$this->newTranslate($string) ;
+
+/**
+ * Translate Controller plugin
+ *
+ */
+class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
+{
+		/**
+		 * 
+		 *  @file /library/Unodor/Translate.php
+		 *  @param string
+		 * 	@return string
+		 * 
+		 */	
+	 public $string ;
+	 public $load_class_translate ;
+	 
+   public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
     	
-    }
-    
-    public function newTranslate($string){
-    	$my_translate = $this->translate($string); 
+    	$language = 'de';
     	
-    	return $my_translate ;
+    	$load_class =  
+    	new Zend_Translate(
+    						'gettext', 
+    						LANGUAGES_PATH.'/'.$language.'.mo' ,
+    						 $language
+    					   ); 
+    					   
+    	$load_class->setLocale($language);
+    	
+		Zend_Registry::set('Zend_Translate' , $load_class);
+		
+  
+         return $load_class ; 
     }
-	
-	
+		
 }
-	
