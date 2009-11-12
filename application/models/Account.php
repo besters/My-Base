@@ -3,14 +3,10 @@ class Model_Account
 {
 	/**
 	 * Ukazatel na DbTable layer
-	 * @var Model_DbTable_Account
+	 * @var object
 	 */
 	private $_dbTable;
 
-	/**
-	 * Konstruktor
-	 * 
-	 */
 	public function __construct()
 	{
 		$this->_dbTable = new Model_DbTable_Account();
@@ -29,12 +25,6 @@ class Model_Account
 		return $id['idaccount'];
 	}
 	
-	/**
-	 * Zjistuje jestli je subdomena v DB
-	 * 
-	 * @param string $url Subdomena
-	 * @return bool
-	 */
 	public function isValidUrl($url){
 		$where = array('url' => $url);
 		$id = $this->_dbTable->getRow($where, array('idaccount'));		
@@ -44,4 +34,20 @@ class Model_Account
 			return true;
 		}	
 	}
+	
+	/**
+	 * Příprava na Account - editace/zobrazeni inputu
+	 * 
+	 * @todo Dokončit model...
+	 * @param array $tablevars Ucet
+	 * @return array
+	 
+	public function getTableVars(){
+		$tablevars = $this->_dbTable->fetchAllEntry() ;	
+
+		return $tablevars ;
+	}
+	*/
+	
+	
 }

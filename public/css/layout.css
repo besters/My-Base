@@ -150,6 +150,9 @@ div.bar > div {
   height: 14px
 }
 
+
+
+
 #progress-info{
 	color: #272644;
 	font-family: Arial, Verdana, sans-serif;
@@ -381,4 +384,42 @@ ul.subnavigation li.active a span{
 	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
 	padding: 5px 15px 11px 0px;
 }
+
+.working-bar{
+	width: 220px;
+	border: 1px solid #c9dbe0;
+	background: #fff;	 
+	padding: 2px; 
+}
+
+
+div.working-bar > div {
+  background-color: #b70000; 
+  height: 14px
+}
+
+.activity-bar{
+	margin-top:2px ;
+	width: 220px;
+	border: 1px solid #c9dbe0;
+	background: #fff;	 
+	padding: 2px; 
+}
+
+
+div.activity-bar > div {
+  background-color: #ebec75;
+  height: 14px;
+background-image: url('../design/ico-show.gif') 100% 0 no-repeat ;
+}
+
+ #supertitle {
+	border:1px solid #c9dbe0;
+	background:#fff;
+	color:black;
+	padding:5px;
+	position:absolute;
+	font-size:0.8em; 
+	ming-height:20px ;
+	}
 
