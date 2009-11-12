@@ -114,13 +114,31 @@ DROP TABLE IF EXISTS `mybase`.`project` ;
 CREATE  TABLE IF NOT EXISTS `mybase`.`project` (
   `idproject` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `idaccount` INT UNSIGNED NOT NULL ,
+  `iduser` INT UNSIGNED NULL ,
+  `idcompany` INT UNSIGNED NULL ,
   `name` VARCHAR(100) NOT NULL COMMENT 'Název projektu' ,
+  `description` VARCHAR(255) NULL ,
+  `start` DATETIME NOT NULL ,
+  `img` VARCHAR(155) NULL ,
+  `status` SET('active','complete','canceled') NOT NULL ,
   PRIMARY KEY (`idproject`, `idaccount`) ,
   INDEX `fk_account_project` (`idaccount` ASC) ,
+  INDEX `fk_user_project` (`iduser` ASC) ,
+  INDEX `fk_company_project` (`idcompany` ASC) ,
   CONSTRAINT `fk_account_project`
     FOREIGN KEY (`idaccount` )
     REFERENCES `mybase`.`account` (`idaccount` )
     ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_project`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_company_project`
+    FOREIGN KEY (`idcompany` )
+    REFERENCES `mybase`.`company` (`idcompany` )
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
