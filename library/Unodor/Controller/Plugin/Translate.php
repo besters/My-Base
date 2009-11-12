@@ -6,30 +6,29 @@
  */
 class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 {	 
-	/**
-	 * @desc Nastavení jazyku 
-	 * @todo $language(podle cookies)
-	 */	
-	private  $language ; 
-
    	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{    			
     	$language = 'de';
     	
-    	/*
-    	 * 
-    	 * Cache 
-    	 * param bool "reload" true/false
-    	 *  
-    	 */  
-    	  	
-    	$cache = array('reload' => true);
+         $frontendOptions = array(
+            'automatic_serialization' => true
+        );
+
+        $backendOptions  = array(
+            'cache_dir' =>  './cache'
+        );
+           	
+    	$cache = Zend_Cache::factory('Core',
+    	                             'File',                             
+    								 $frontendOptions,                             
+    								 $backendOptions);
+    								 
+    	Zend_Translate::setCache($cache);
     	   	
     	$translate = new Zend_Translate(
 	    					'gettext', 
 	    					LANGUAGES_PATH.'/'.$language.'.mo' ,
-	    					$language ,
-	    					$cache  
+	    					$language
     					); 
 						
     	$writer = new Zend_Log_Writer_Stream(LANGUAGES_PATH.'/log/log.phtml');
