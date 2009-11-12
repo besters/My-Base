@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mybase\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-11 23:49+0100\n"
+"POT-Creation-Date: 2009-11-12 01:18+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Filip Procházka <b.besters@hotmail.com>\n"
 "Language-Team: unodor\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-Country: czech republic\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-KeywordsList: translate;Translate\n"
 "X-Poedit-SearchPath-0: C:\\amp\\Apache\\htdocs\\My-Base\n"
 
 #: C:\amp\Apache\htdocs\My-Base/application/modules/mybase/views/scripts/account/index.phtml:5
@@ -35,4 +35,9 @@ msgstr "nemecky projekt"
 #: C:\amp\Apache\htdocs\My-Base/application/modules/mybase/views/scripts/account/index.phtml:16
 msgid "Process work"
 msgstr "nemecká práce"
+
+#: C:\amp\Apache\htdocs\My-Base/application/modules/mybase/views/scripts/project/index.phtml:3
+#, fuzzy
+msgid "Projekty"
+msgstr "nemecky projekt"
 
