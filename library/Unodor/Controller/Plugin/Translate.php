@@ -6,12 +6,6 @@
  */
 class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 {	 
-	/**
-	 * @desc Nastavení jazyku 
-	 * @todo $language(podle cookies)
-	 */	
-	private  $language ; 
-
    	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{    			
     	$language = 'de';
