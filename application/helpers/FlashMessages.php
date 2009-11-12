@@ -6,13 +6,9 @@
  */
 class Unodor_View_Helper_FlashMessages extends Zend_View_Helper_Abstract
 {
-	/**
-	 * Zpracovava a zobrazuje flash zpravy
-	 * 
-	 * @param unknown_type $translator
-	 */
-    public function flashMessages ($translator = NULL)
+    public function flashMessages ()
     {
+    	$translator = Zend_Registry::get('Zend_Translate');
         $messages = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')->getMessages();
         $statMessages = array();
         $output = '';
@@ -20,9 +16,9 @@ class Unodor_View_Helper_FlashMessages extends Zend_View_Helper_Abstract
             foreach ($messages as $message) {
                 if (! array_key_exists($message['status'], $statMessages))
                     $statMessages[$message['status']] = array();
-                //if ($translator != NULL && $translator instanceof Zend_Translate)
-                    //array_push($statMessages[$message['status']], $translator->_($message['message']));
-                //else
+                if ($translator != NULL && $translator instanceof Zend_Translate)
+                    array_push($statMessages[$message['status']], $translator->_($message['message']));
+                else
                     array_push($statMessages[$message['status']], $message['message']);
             }
             foreach ($statMessages as $status => $messages) {
