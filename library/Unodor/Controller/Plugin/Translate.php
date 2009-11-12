@@ -17,12 +17,19 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
     	$language = 'de';
     	
     	/*
-    	 * @todo upgrade Cache (později)
-    	 */    	
+    	 * 
+    	 * Cache 
+    	 * param bool "reload" true/false
+    	 *  
+    	 */  
+    	  	
+    	$cache = array('reload' => true);
+    	   	
     	$translate = new Zend_Translate(
 	    					'gettext', 
 	    					LANGUAGES_PATH.'/'.$language.'.mo' ,
-	    					$language
+	    					$language ,
+	    					$cache  
     					); 
 						
     	$writer = new Zend_Log_Writer_Stream(LANGUAGES_PATH.'/log/log.phtml');
