@@ -359,7 +359,7 @@ ul.subnavigation {
 ul.subnavigation li {
 	margin: 0;
 	border: 0 none;
-	padding: 7px 1px 0 0;
+	padding: 7px 5px 0 0;
 	float: left; /*For Gecko*/
 	display: inline;
 	list-style: none;
@@ -384,14 +384,13 @@ ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover
 	padding-right: 0px;
 	color: #545254;
 	background: url('../design/submenu-left.gif') no-repeat;
-	font-weight: bold;
-	height: 19px;
+	height: 19px;		
 }
 
 ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span
 	{
 	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
-	padding: 5px 15px 11px 0px;
+	padding: 5px 16px 11px 0px;
 }
 
 /* Active state */
