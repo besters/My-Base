@@ -1,10 +1,10 @@
 <?php
 
-class Model_DbTable_Acl extends Unodor_Db_Table {
+class Model_DbTable_Checklist extends Unodor_Db_Table {
 	
-	protected $_name = 'acl';
+	protected $_name = 'checklist';
 	
-	protected $_primary = 'idacl';
+	protected $_primary = 'idchecklist';
 	
 	protected $_sequence = true;
 	
@@ -18,6 +18,11 @@ class Model_DbTable_Acl extends Unodor_Db_Table {
 			'columns' => array('idproject'),
 			'refTableClass' => 'Project',
 			'refColumns' => array('idproject')
+		),
+		'Milestone' => array(
+			'columns' => array('idmilestone'),
+			'refTableClass' => 'Milestone',
+			'refColumns' => array('idmilestone')
 		)
 	);
 }
