@@ -44,7 +44,7 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 		    'logMessage'      => 
 		    "$"."this->translate('%message%');".
 		    "$"."this->language('%locale%');",
-		    'logUntranslated' => true));
+		    'logUntranslated' => false));
 
     	$translate->setLocale($language);
     
