@@ -16,9 +16,21 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 	{    			
     	$language = 'de';
     	
-    	/*
-    	 * @todo upgrade Cache (později)
-    	 */    	
+         $frontendOptions = array(
+            'automatic_serialization' => true
+        );
+
+        $backendOptions  = array(
+            'cache_dir' =>  './cache'
+        );
+           	
+    	$cache = Zend_Cache::factory('Core',
+    	                             'File',                             
+    								 $frontendOptions,                             
+    								 $backendOptions);
+    								 
+    	Zend_Translate::setCache($cache);
+    	   	
     	$translate = new Zend_Translate(
 	    					'gettext', 
 	    					LANGUAGES_PATH.'/'.$language.'.mo' ,
