@@ -49,7 +49,7 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		}else{
 			$fetch = $this->fetchAll();
 		}
-		return $fetch->toArray();
+		return $fetch;
 	}
 
 	/**

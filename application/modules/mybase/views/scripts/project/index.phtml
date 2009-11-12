@@ -3,90 +3,38 @@
         <h2><?php echo $this->Translate('Projekty'); ?></h2>
     </div>
 	<div id="obsah">
-				
-		<div class="project-table">
-			<div class="top"></div>
-			<div class="content">
-				<img src="../public/design/placeholder.gif" />
-				<div class="right">
-					<a href="<?php echo $this->baseUrl('1/index/overview') ; ?>" class="title">Název Projektu</a>
-					<p>Popis projektu bla bla bla bla bla bla bla bla lbga</p>
-					<dl>
-						<dt>Vedoucí:</dt>
-					  	<dd><a href="#">Daniel Marchlík</a></dd>
-					  	<dt>Klient:</dt>
-					  	<dd><a href="#">Vlastní společnost</a></dd>
-					  	<dt>Začátek:</dt>
-					  	<dd>18. srpen 2009</dd>
-					</dl>
-				</div>
-				<br class="clear" />
-			</div>
-			<div class="bottom"></div>
-		</div>		
 		
+		<?php 
+		foreach($this->project as $row):
+		?>	
 		<div class="project-table">
 			<div class="top"></div>
 			<div class="content">
-				<img src="../public/design/placeholder.gif" />
+				<?php 
+					if($row->img == null)
+						$row->img = 'design/placeholder.gif';
+				?>
+				<img src="../public/<?php echo $row->img; ?>" />
 				<div class="right">
-					<a href="<?php echo $this->baseUrl('1/index/overview') ; ?>" class="title">Název Projektu</a>
-					<p>Popis projektu bla bla bla bla bla bla bla bla lbga</p>
+					<a href="<?php echo $this->baseUrl($row->idproject.'/index/overview') ; ?>" class="title"><?php echo $row->name; ?></a>
+					<p><?php echo $row->description; ?></p>
 					<dl>
 						<dt>Vedoucí:</dt>
-					  	<dd><a href="#">Daniel Marchlík</a></dd>
+					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->userName .' '. $row->userSurname; ?></a></dd>
 					  	<dt>Klient:</dt>
-					  	<dd><a href="#">Vlastní společnost</a></dd>
+					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->companyName; ?></a></dd>
 					  	<dt>Začátek:</dt>
-					  	<dd>18. srpen 2009</dd>
+					  	<dd><?php echo $this->DateTime($row->start); ?></dd>
 					</dl>
 				</div>
 				<br class="clear" />
 			</div>
 			<div class="bottom"></div>
 		</div>
+		<?php 
+		endforeach;		
+		?>
 		
-		<div class="project-table">
-			<div class="top"></div>
-			<div class="content">
-				<img src="../public/design/placeholder.gif" />
-				<div class="right">
-					<a href="<?php echo $this->baseUrl('1/index/overview') ; ?>" class="title">Název Projektu</a>
-					<p>Popis projektu bla bla bla bla bla bla bla bla lbga</p>
-					<dl>
-						<dt>Vedoucí:</dt>
-					  	<dd><a href="#">Daniel Marchlík</a></dd>
-					  	<dt>Klient:</dt>
-					  	<dd><a href="#">Vlastní společnost</a></dd>
-					  	<dt>Začátek:</dt>
-					  	<dd>18. srpen 2009</dd>
-					</dl>
-				</div>
-				<br class="clear" />
-			</div>
-			<div class="bottom"></div>
-		</div>
-		
-		<div class="project-table">
-			<div class="top"></div>
-			<div class="content">
-				<img src="../public/design/placeholder.gif" />
-				<div class="right">
-					<a href="<?php echo $this->baseUrl('1/index/overview') ; ?>" class="title">Název Projektu</a>
-					<p>Popis projektu bla bla bla bla bla bla bla bla lbga</p>
-					<dl>
-						<dt>Vedoucí:</dt>
-					  	<dd><a href="#">Daniel Marchlík</a></dd>
-					  	<dt>Klient:</dt>
-					  	<dd><a href="#">Vlastní společnost</a></dd>
-					  	<dt>Začátek:</dt>
-					  	<dd>18. srpen 2009</dd>
-					</dl>
-				</div>
-				<br class="clear" />
-			</div>
-			<div class="bottom"></div>
-		</div>
 		
 		<br class="clear" />
 	</div>

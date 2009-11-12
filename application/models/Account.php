@@ -32,8 +32,7 @@ class Model_Account
 	 * @return bool
 	 */
 	public function isValidUrl($url){
-		$where = array('url' => $url);
-		$id = $this->_dbTable->getRow($where, array('idaccount'));		
+		$id = $this->getId($url);		
 		if(empty($id)){
 			return false;
 		}else{

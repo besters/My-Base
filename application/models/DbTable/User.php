@@ -13,12 +13,12 @@ class Model_DbTable_User extends Unodor_Db_Table {
 	protected $_referenceMap = array (
 		'Account' => array (
 			'columns' => array('idaccount'), 
-			'refTableClass' => 'Account', 
+			'refTableClass' => 'Model_DbTable_Account', 
 			'refColumns' => array('idaccount') 
 		), 
 		'Company' => array (
 			'columns' => array('idcompany'),
-			'refTableClass' => 'Company',
+			'refTableClass' => 'Model_DbTable_Company',
 			'refColumns' => array('idcompany')
 		)
 	);
