@@ -17,5 +17,6 @@ class Unodor_View_Helper_Translate extends Zend_View_Helper_Abstract
    {   		
    	    $registry = Zend_Registry::get('Zend_Translate');   		 		
         return $registry->translate($word);
+    
    }     
 }
