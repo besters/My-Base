@@ -188,6 +188,17 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							'account' => $this->_account,
 							'projekt' => $this->_project
 							)
+					),
+					array(                
+						'label' => 'Nový',    
+						'module' => 'mybase',            
+						'controller' => 'project',
+						'action' => 'new',	
+						'route' => 'mybase-default',	
+						'visible' => false,		
+						'params' => array(
+							'account' => $this->_account
+							)
 					)
 				),
 				'params' => array(

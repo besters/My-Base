@@ -1,5 +1,8 @@
 <div id="main">
     <div id="title">
+         <div id="title-links">
+            <a href="<?php echo $this->baseUrl('/project/new') ; ?>">Nový Projekt</a>
+        </div>    
         <h2><?php echo $this->Translate('Projekty'); ?></h2>
     </div>
 	<div id="obsah">
@@ -12,9 +15,11 @@
 			<div class="content">
 				<?php 
 					if($row->img == null)
-						$row->img = 'design/placeholder.gif';
+						$img = 'design/placeholder.gif';
+					else 
+						$img = 'files/'.$row->img;	
 				?>
-				<img src="../public/<?php echo $row->img; ?>" />
+				<img src="../public/<?php echo $img; ?>" />
 				<div class="right">
 					<a href="<?php echo $this->baseUrl($row->idproject.'/index/overview') ; ?>" class="title"><?php echo $row->name; ?></a>
 					<p><?php echo $row->description; ?></p>

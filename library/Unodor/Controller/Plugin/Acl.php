@@ -59,7 +59,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 					$acl->allow($identity->email, $val, 'index');
 				}
 				if($key & self::ADD){
-					$acl->allow($identity->email, $val, 'add');
+					$acl->allow($identity->email, $val, 'new');
 				}
 				if($key & self::EDIT){
 					$acl->allow($identity->email, $val, 'edit');

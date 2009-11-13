@@ -1,3 +1,6 @@
+@import url('../css/menu.css');
+@import url('../css/form.css');
+
 body {
 	background: #f8f8f8;
 	color: #272644;
@@ -65,22 +68,24 @@ h1 span {
 	font-size: 11px;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	margin: 6px 6px 0 0;
-	color: #0066cc;
+	color: #ebebeb;
 	padding: 4px;
 }
 
 #title-links a {
 	padding: 4px;
+	color: #ebebeb;
 }
 
 #title-links a:visited {
-	color: #0066cc;
+	color: #ebebeb;
 }
 
 #title-links a:hover {
 	color: #fff;
-	background: #0066cc;
+	background: #ebebeb;
 	text-decoration: none;
+	color: #545254;
 }
 
 #obsah {
@@ -203,6 +208,7 @@ div.bar>div {
 
 .project-table .content .right {
 	float: left;
+	width: 300px;
 }
 
 .project-table .content .right p {
@@ -279,133 +285,4 @@ div.activity-bar>div {
 	position: absolute;
 	font-size: 0.8em;
 	ming-height: 20px;
-}
-
-
-/*---------------------------------------
-  Menu
- ----------------------------------------*/
-ul.navigation {
-	margin: 0;
-	border: 0 none;
-	padding: 0;
-	width: 100%; /*For KHTML*/
-	list-style: none;
-	font-size: 12px;
-	font-family: Arial, Verdana, sans-serif;
-	height: 36px;
-}
-
-ul.navigation li {
-	margin: 0;
-	border: 0 none;
-	padding: 11px 1px 0 0;
-	float: left; /*For Gecko*/
-	display: inline;
-	list-style: none;
-	position: relative;
-	height: 26px;
-}
-
-ul.navigation a {
-	color: #20720d;
-	padding: 5px 16px;
-	float: none !important; /*For Opera*/
-	float: left; /*For IE*/
-	display: block;
-	text-decoration: none;
-	height: auto !important;
-	height: 1%; /*For IE*/
-}
-
-/* Root Menu Hover Persistence */
-ul.navigation a:hover,ul.navigation li:hover a,ul.navigation li.iehover a
-	{
-	color: #545254;
-	text-decoration: underline;
-}
-
-ul.navigation li.active {
-	height: 29px;
-	padding-top: 8px;
-}
-
-ul.navigation li.active a {
-	padding: 8px 0px 8px 16px;
-	color: #fff;
-	background: url('../design/list-left.png') no-repeat;
-	font-weight: bold;
-}
-
-ul.navigation li.active a span {
-	background: url('../design/list-right.gif') 100% 0 no-repeat;;
-	padding: 8px 25px 5px 10px;
-}
-
-/*---------------------------------------
-  Submenu
- ----------------------------------------*/
-ul.subnavigation {
-	margin: 0;
-	border: 0 none;
-	padding: 0;
-	width: 100%; /*For KHTML*/
-	list-style: none;
-	font-size: 12px;
-	font-family: Arial, Verdana, sans-serif;
-	height: 36px;
-}
-
-ul.subnavigation li {
-	margin: 0;
-	border: 0 none;
-	padding: 7px 5px 0 0;
-	float: left; /*For Gecko*/
-	display: inline;
-	list-style: none;
-	position: relative;
-	height: 26px;
-}
-
-ul.subnavigation a {
-	color: #fff;
-	padding: 5px 16px;
-	float: none !important; /*For Opera*/
-	float: left; /*For IE*/
-	display: block;
-	text-decoration: none;
-	height: auto !important;
-	height: 1%; /*For IE*/
-}
-
-/* Root Menu Hover Persistence */
-ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover a
-	{
-	padding-right: 0px;
-	color: #545254;
-	background: url('../design/submenu-left.gif') no-repeat;
-	height: 19px;		
-}
-
-ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span
-	{
-	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
-	padding: 5px 16px 11px 0px;
-}
-
-/* Active state */
-ul.subnavigation li.active {
-	height: 19px;
-}
-
-ul.subnavigation li.active a {
-	padding-right: 0px;
-	color: #545254;
-	background: url('../design/submenu-left.gif') no-repeat;
-	font-weight: bold;
-}
-
-ul.subnavigation li.active a span {
-	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
-	padding: 5px 15px 11px 0px;
 }
