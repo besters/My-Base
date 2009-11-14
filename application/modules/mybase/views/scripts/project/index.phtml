@@ -1,4 +1,4 @@
-<div id="main">
+<div id="main-fixed">
     <div id="title">
          <div id="title-links">
             <a href="<?php echo $this->baseUrl('/project/new') ; ?>">Nový Projekt</a>
@@ -28,8 +28,6 @@
 					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->userName .' '. $row->userSurname; ?></a></dd>
 					  	<dt>Klient:</dt>
 					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->companyName; ?></a></dd>
-					  	<dt>Začátek:</dt>
-					  	<dd><?php echo $this->DateTime($row->start); ?></dd>
 					</dl>
 				</div>
 				<br class="clear" />

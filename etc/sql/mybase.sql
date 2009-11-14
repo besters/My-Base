@@ -118,7 +118,6 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`project` (
   `idcompany` INT UNSIGNED NULL ,
   `name` VARCHAR(100) NOT NULL COMMENT 'Název projektu' ,
   `description` VARCHAR(255) NULL ,
-  `start` DATETIME NOT NULL ,
   `img` VARCHAR(155) NULL ,
   `status` SET('active','complete','canceled') NOT NULL ,
   PRIMARY KEY (`idproject`, `idaccount`) ,
