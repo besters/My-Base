@@ -25,7 +25,7 @@ class Model_Project
 		
 		$query = $this->_dbTable->select()
 					   			->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))  
-					   			->join('user', 'project.iduser = user.iduser', array('userName' => 'name', 'userSurname' => 'surname'))       
+					   			->join('user', 'project.iduser = user.iduser', array('CONCAT_WS(" ", user.name, user.surname) as jmeno'))       
 					   			->join('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
 					   			->where('project.idaccount = ?', $idaccount);					   			
 					   			
@@ -37,6 +37,5 @@ class Model_Project
 		
 		return $result;
 	}
-	
 
 }

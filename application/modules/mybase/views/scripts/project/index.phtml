@@ -25,7 +25,7 @@
 					<p><?php echo $row->description; ?></p>
 					<dl>
 						<dt>Vedoucí:</dt>
-					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->userName .' '. $row->userSurname; ?></a></dd>
+					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->jmeno;?></a></dd>
 					  	<dt>Klient:</dt>
 					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->companyName; ?></a></dd>
 					</dl>
