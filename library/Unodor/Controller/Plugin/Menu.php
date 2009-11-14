@@ -52,7 +52,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 	{
 		$container = new Zend_Navigation(array(
 			array(                
-				'label' => 'Nástěnka',    
+				'label' => 'Dashboard',    
 				'module' => 'mybase',            
 				'controller' => 'index',
 				'action' => 'index',	
@@ -62,7 +62,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					)
 			),
 			array(                
-				'label' => 'Projekty',                
+				'label' => 'Projects',                
 				'controller' => 'project',
 				'action' => 'index',
 				'module' => 'mybase',
@@ -80,7 +80,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Milníky',                
+						'label' => 'Milestones',                
 						'controller' => 'milestone',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -91,7 +91,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Tickety',                
+						'label' => 'Tickets',                
 						'controller' => 'ticket',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -102,7 +102,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Checklist',                
+						'label' => 'Checklists',                
 						'controller' => 'checklist',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -124,7 +124,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Diskuze',                
+						'label' => 'Discuss',                
 						'controller' => 'discussion',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -135,7 +135,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Soubory',                
+						'label' => 'Files',                
 						'controller' => 'files',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -146,7 +146,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),	
 					array(                
-						'label' => 'Čas',                
+						'label' => 'Time',                
 						'controller' => 'time',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -157,7 +157,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Kalendář',                
+						'label' => 'Calendar',                
 						'controller' => 'calendar',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -179,7 +179,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),	
 					array(                
-						'label' => 'Nastavení',                
+						'label' => 'Settings',                
 						'controller' => 'settings',
 						'action' => 'index',
 						'module' => 'mybase',
@@ -190,7 +190,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 							)
 					),
 					array(                
-						'label' => 'Nový',    
+						'label' => 'New',    
 						'module' => 'mybase',            
 						'controller' => 'project',
 						'action' => 'new',	
@@ -206,7 +206,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					)
 			),
 			array(                
-				'label' => 'Přiřazení',                
+				'label' => 'Assignmets',                
 				'controller' => 'assignment',
 				'action' => 'index',
 				'module' => 'mybase',
@@ -216,7 +216,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					)
 			),
 			array(                
-				'label' => 'Kalendář',                
+				'label' => 'Calendar',                
 				'controller' => 'calendar',
 				'action' => 'index',
 				'module' => 'mybase',
@@ -226,7 +226,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					)
 			),
 			array(                
-				'label' => 'Lidé',                
+				'label' => 'People',                
 				'controller' => 'people',
 				'action' => 'index',
 				'module' => 'mybase',
@@ -236,7 +236,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					)
 			),
 			array(                
-				'label' => 'Účet',                
+				'label' => 'Account',                
 				'controller' => 'account',
 				'action' => 'index',
 				'module' => 'mybase',
