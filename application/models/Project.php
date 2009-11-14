@@ -15,7 +15,7 @@ class Model_Project
 	/**
 	 * Vraci z db seznam projektu pro aktivni ucet
 	 * 
-	 * @return Zend_Db_Statement Vysledek dotazu
+	 * @return object Vysledek dotazu
 	 */
 	public function getProjectsList()
 	{		
@@ -23,19 +23,15 @@ class Model_Project
 
 		$idaccount = $modelAccount->getId();		
 		
-		$query = $this->_dbTable->select()
-					   			->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))  
-					   			->join('user', 'project.iduser = user.iduser', array('CONCAT_WS(" ", user.name, user.surname) as jmeno'))       
-					   			->join('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
-					   			->where('project.idaccount = ?', $idaccount);					   			
-					   			
-		$query->setIntegrityCheck(false);   						   			
-					   			
-		$stmt = $query->query();
-		
-		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+		$result = $this->_dbTable->getFullProjectList($idaccount);		
 		
 		return $result;
 	}
+	
+	public function save($data, $id = null)
+	{
+		$this->_dbTable->save($data, $id);
+	}
+
 
 }
