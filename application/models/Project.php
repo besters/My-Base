@@ -20,11 +20,11 @@ class Model_Project
 	public function getProjectsList()
 	{		
 		$modelAccount = new Model_Account();
-		$account = Zend_Controller_Front::getInstance()->getRequest()->getParam('account');
-		$idaccount = $modelAccount->getId($account);		
+
+		$idaccount = $modelAccount->getId();		
 		
 		$query = $this->_dbTable->select()
-					   			->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'start', 'img', 'status'))  
+					   			->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))  
 					   			->join('user', 'project.iduser = user.iduser', array('userName' => 'name', 'userSurname' => 'surname'))       
 					   			->join('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
 					   			->where('project.idaccount = ?', $idaccount);					   			
@@ -37,4 +37,6 @@ class Model_Project
 		
 		return $result;
 	}
+	
+
 }

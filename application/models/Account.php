@@ -13,16 +13,43 @@ class Model_Account
 	}
 	
 	/**
-	 * Zjistuje ID uctu
+	 * Zjistuje aktualni ID uctu ze session a volitelne ID uctu z DB
 	 * 
-	 * @param string $user Ucet
-	 * @return string
+	 * @param string $account Ucet
+	 * @return int idaccount
 	 */
-	public function getId($account)
+	public function getId($account = false)
+	{
+		if(!$account){
+			$session = new Zend_Session_Namespace('Unodor_Account');
+			return $session->idaccount;
+		}else{
+			return $this->_getId($account);
+		}
+	}
+	
+	/**
+	 * Zjistuje ID uctu z DB
+	 * 
+	 * @param string $account Ucet
+	 * @return int
+	 */	
+	private function _getId($account)
 	{
 		$where = array('url' => $account);
 		$id = $this->_dbTable->getRow($where, array('idaccount'));		
-		return $id['idaccount'];
+		return $id['idaccount'];		
+	}
+	
+	/**
+	 * Uklada ID uctu do session
+	 * 
+	 * @param int $id idaccount
+	 */
+	private function _setId($id)
+	{
+		$session = new Zend_Session_Namespace('Unodor_Account');
+		$session->idaccount = $id;
 	}
 	
 	/**
@@ -32,27 +59,12 @@ class Model_Account
 	 * @return bool
 	 */
 	public function isValidUrl($url){
-		$id = $this->getId($url);		
+		$id = $this->_getId($url);		
 		if(empty($id)){
 			return false;
 		}else{
+			$this->_setId($id);
 			return true;
 		}	
-	}
-	
-	/**
-	 * Příprava na Account - editace/zobrazeni inputu
-	 * 
-	 * @todo Dokončit model...
-	 * @param array $tablevars Ucet
-	 * @return array
-	 
-	public function getTableVars(){
-		$tablevars = $this->_dbTable->fetchAllEntry() ;	
-
-		return $tablevars ;
-	}
-	*/
-	
-	
+	}	
 }
