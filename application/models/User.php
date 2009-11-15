@@ -34,4 +34,26 @@ class Model_User
 			return $id['iduser'];
 		}
 	}
+	
+	/**
+	 * Vraci pole ve tvaru "id => jmeno uzivatele"
+	 * 
+	 * @param int $idaccount ID uctu
+	 * @return array
+	 */
+	public function getFormSelect($idaccount = null)
+	{
+		if(is_null($idaccount)){
+			$account = new Model_Account();
+			$idaccount = $account->getId();
+		}
+		
+		$users = $this->_dbTable->fetchAllEntry('idaccount = '.$idaccount.'', array('iduser', 'name', 'surname'));
+		
+		foreach ($users as $row) {
+			$return[$row->iduser] = $row->surname .' '. $row->name;
+		}
+		
+		return $return;	
+	}
 }

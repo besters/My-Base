@@ -4,12 +4,15 @@ class Mybase_Form_Project extends Zend_Form
 {
 	public function __construct()
 	{
+		$account = new Model_Account();
+		$idaccount = $account->getId();
+		
 		$this->addElementPrefixPath('Unodor_Form_Decorator', 'Unodor/Form/Decorator/', 'decorator');
 		$this->setMethod('post')->setLegend('Stránka');
 		
 		$this->addElement('text','name', array(
 				'order' => 0,
-			    'label' => "Název projektu:",
+			    'label' => "Project name:",
 			    'class'	=> 'input-text',
 			    'required' => true,
 				'validators' => array(
@@ -24,34 +27,37 @@ class Mybase_Form_Project extends Zend_Form
 				
 			$this->addElement('textarea','description', array(
 				'order' => 1,
-			    'label' => "Stručný popis:",
+			    'label' => "Description:",
 			    'class'	=> 'input-textarea',
 				'rows'	=> 6,
-			    'required' => true,
 			));	
 			
+			$user = new Model_User();			
 			$this->addElement('select', 'iduser', array(
 				'order' => 2,
-			    'label' => "Pamatovat přihlášení",
+			    'label' => "Project leader:",
+				'multiOptions' => $user->getFormSelect($idaccount),
 				'class' => 'input-select'
 			));	
 			
+			$company = new Model_Company();
 			$this->addElement('select', 'idcompany', array(
 				'order' => 3,
-			    'label' => "Pamatovat přihlášení",
+			    'label' => "Client company:",
+				'multiOptions' => $company->getFormSelect($idaccount),
 				'class' => 'input-select'
 			));	
 										
 			$this->addElement('file', 'img', array(
 				'order' => 4,
-			    'label' => "Přihlásit",
+			    'label' => "Image:",
 			    'class'	=> 'input-file',
 
 			));	   
 										
 			$this->addElement('submit', 'save', array(
 				'order' => 5,
-			    'label' => "Přihlásit",
+			    'label' => "Create project",
 			    'class'	=> 'input-submit',
 
 			));	   
