@@ -56,17 +56,20 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 	/**
 	 * Vybere z DB vsechny zaznamy
 	 * 
-	 * @param string $where
-	 * @return array
-	 * 
-	 * @todo zjistit jestli je kod ok, pripadne udelat nejake optimalizace
+	 * @param string $where WHERE podminka
+	 * @param array $columns Sloupce
+	 * @return Zend_Db_Statement
 	 */
-	public function fetchAllEntry($where = false)
+	public function fetchAllEntry($where = null, array $columns = null)
 	{
-		if($where){
-			$fetch = $this->fetchAll($where);
+		if(is_array($columns)){
+			if(is_null($where)){
+				$fetch = $this->fetchAll($this->select()->from($this, $columns));	
+			}else{
+				$fetch = $this->fetchAll($this->select()->from($this, $columns)->where($where));
+			}
 		}else{
-			$fetch = $this->fetchAll();
+			$fetch = $this->fetchAll($where);
 		}
 		return $fetch;
 	}
