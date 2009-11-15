@@ -10,8 +10,13 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 	{    			
     	$language = 'de';
     	
+    	 $repair_log_function = array(
+            'plugin_online' => true 
+        );
+    	
+        
          $frontendOptions = array(
-            'automatic_serialization' => true
+            'automatic_serialization' => true 
         );
 
         $backendOptions  = array(
@@ -30,24 +35,52 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 	    					LANGUAGES_PATH.'/'.$language.'.mo' ,
 	    					$language
     					); 
-						
-    	$writer = new Zend_Log_Writer_Stream(LANGUAGES_PATH.'/log/log.phtml');
-    	
-		$formatter = new Zend_Log_Formatter_Simple('%message%' . PHP_EOL);
-		$writer->setFormatter($formatter);
-		
-		$logger = new Zend_Log();
-		$logger->addWriter($writer);
-		
-		$translate->setOptions(array(
-		    'log'             => $logger,
-		    'logMessage'      => 
-		    "$"."this->translate('%message%');".
-		    "$"."this->language('%locale%');",
-		    'logUntranslated' => false));
+    				
+  
+    				
+    					
+			    	$writer = new Zend_Log_Writer_Stream(LANGUAGES_PATH.'/log/log.phtml');
+			    	
+			    	
+					$formatter = new Zend_Log_Formatter_Simple('%message%' . PHP_EOL);
+					$writer->setFormatter($formatter);
+					
+					
+					$logger = new Zend_Log();
+					$logger->addWriter($writer);
+				
+					$translate->setOptions(array(
+					    'log'             => $logger,
+					    'logMessage'      => 
+					    "$"."this->translate('%message%');".
+					    "$"."this->language('%locale%');",
+					    'logUntranslated' => true));
+			
+			    	$translate->setLocale($language);
+			    	
+			    	self::removeDuplicatelines(LANGUAGES_PATH.'/log/log.phtml' , $repair_log_function);
+			    	
 
-    	$translate->setLocale($language);
-    
+	    	
+   
 		Zend_Registry::set('Zend_Translate' , $translate);		
+    }
+    
+    private function removeDuplicatelines($file , $options){
+    			if($options['plugin_online'] == true ){
+						$text = array_unique(file($file));
+
+						$repair = @fopen(
+								$file,
+								'w+'
+								);
+						
+								if($repair){
+									fputs($repair , join('' , $text));
+									fclose($repair) ;
+								}
+    			}else{
+    			 return false ;
+    			}
     }
 }
