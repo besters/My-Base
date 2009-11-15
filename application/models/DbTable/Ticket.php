@@ -1,10 +1,10 @@
 <?php
 
-class Model_DbTable_User extends Unodor_Db_Table {
+class Model_DbTable_Ticket extends Unodor_Db_Table {
 	
-	protected $_name = 'user';
+	protected $_name = 'ticket';
 	
-	protected $_primary = 'iduser';
+	protected $_primary = 'idticket';
 	
 	protected $_sequence = true;
 	
