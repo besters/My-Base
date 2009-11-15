@@ -40,9 +40,8 @@ class Model_DbTable_Project extends Unodor_Db_Table {
 					  ->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))  
 					  ->join('user', 'project.iduser = user.iduser', array('CONCAT_WS(" ", user.name, user.surname) as jmeno'))       
 					  ->join('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
-					  ->where('project.idaccount = ?', $idaccount);					   			
-					   			
-		$query->setIntegrityCheck(false);   						   			
+					  ->where('project.idaccount = ?', $idaccount)
+					  ->setIntegrityCheck(false);		
 					   			
 		$stmt = $query->query();
 
