@@ -10,7 +10,7 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 	{    			
     	$language = 'de';
     	
-    	 $repair_log_function = array(
+    	 $myOptions = array(
             'plugin_online' => true 
         );
     	
@@ -45,6 +45,7 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 					$formatter = new Zend_Log_Formatter_Simple('%message%' . PHP_EOL);
 					$writer->setFormatter($formatter);
 					
+					print_r($formatter) ;
 					
 					$logger = new Zend_Log();
 					$logger->addWriter($writer);
@@ -58,7 +59,7 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 			
 			    	$translate->setLocale($language);
 			    	
-			    	self::removeDuplicatelines(LANGUAGES_PATH.'/log/log.phtml' , $repair_log_function);
+			    	self::removeDuplicatelines(LANGUAGES_PATH.'/log/log.phtml' , $myOptions);
 			    	
 
 	    	
