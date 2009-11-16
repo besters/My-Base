@@ -31,20 +31,24 @@ class Mybase_Form_Project extends Zend_Form
 			    'class'	=> 'input-textarea',
 				'rows'	=> 6,
 			));	
+						
+			$user = new Model_User();	
+			$company = new Model_Company();
 			
-			$user = new Model_User();			
+			$companyData = $company->getFormSelect($idaccount, '--- None ---');
+			
+			// TODO: automaticky nastavit autora projektu jako selected
 			$this->addElement('select', 'iduser', array(
 				'order' => 2,
 			    'label' => "Project leader:",
-				'multiOptions' => $user->getFormSelect($idaccount),
+				'multiOptions' => $user->getFormSelect($idaccount, $companyData),
 				'class' => 'input-select'
 			));	
-			
-			$company = new Model_Company();
+
 			$this->addElement('select', 'idcompany', array(
 				'order' => 3,
 			    'label' => "Client company:",
-				'multiOptions' => $company->getFormSelect($idaccount),
+				'multiOptions' => $companyData,
 				'class' => 'input-select'
 			));	
 										
