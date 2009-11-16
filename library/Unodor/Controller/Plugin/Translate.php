@@ -45,7 +45,7 @@ class Unodor_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstract
 					$formatter = new Zend_Log_Formatter_Simple('%message%' . PHP_EOL);
 					$writer->setFormatter($formatter);
 					
-					print_r($formatter) ;
+					
 					
 					$logger = new Zend_Log();
 					$logger->addWriter($writer);

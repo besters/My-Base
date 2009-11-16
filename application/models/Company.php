@@ -20,9 +20,10 @@ class Model_Company
 	 * Vraci pole ve tvaru "id => nazev spolecnosti"
 	 * 
 	 * @param int $idaccount ID uctu
+	 * @param string $nullVal Prvni prvek selectu
 	 * @return array
 	 */
-	public function getFormSelect($idaccount = null)
+	public function getFormSelect($idaccount = null, $nullVal = null)
 	{
 		if(is_null($idaccount)){
 			$account = new Model_Account();
@@ -32,6 +33,8 @@ class Model_Company
 		$company = $this->_dbTable->fetchAllEntry('idaccount = '.$idaccount.'', array('idcompany', 'name'));
 		
 		foreach ($company as $row) {
+			if(!is_null($nullVal))
+				$return[null] = $nullVal;
 			$return[$row->idcompany] = $row->name;
 		}
 		

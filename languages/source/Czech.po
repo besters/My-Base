@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MyBase\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-16 00:39+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Daniel Marchlik <d.marchlik@hotmail.com>\n"
+"Language-Team: Unodor\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: translate;Translate\n"
+"X-Poedit-Basepath: P:\\www\\MyBase\n"
+"X-Poedit-SearchPath-0: P:\\www\\MyBase\\languages\n"
+"X-Poedit-SearchPath-1: P:\\www\\MyBase\\library\\Unodor\n"
+"X-Poedit-SearchPath-2: P:\\www\\MyBase\\application\n"
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/account/index.phtml:5
+msgid "New milestone"
+msgstr "Nový milník"
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/account/index.phtml:6
+msgid "New ticket"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/account/index.phtml:7
+msgid "New checklist"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/account/index.phtml:9
+msgid "My Project"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/account/index.phtml:16
+msgid "Process work"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/index/index.phtml:19
+msgid "Bussines"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/project/index.phtml:6
+msgid "Projekty"
+msgstr ""
+
+#: P:\www\MyBase\application/modules/mybase/views/scripts/project/new.phtml:3
+msgid "New Project"
+msgstr ""
+

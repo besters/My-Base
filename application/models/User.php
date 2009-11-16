@@ -39,19 +39,37 @@ class Model_User
 	 * Vraci pole ve tvaru "id => jmeno uzivatele"
 	 * 
 	 * @param int $idaccount ID uctu
+	 * @param bool|array $companyData 	Seznam spolecnosti. Prebira bud pole s daty 
+	 * 									(napr vystup metody {@link Model_Company::getFormSelect()}), 
+	 * 									anebo hodnotu true, kdy v tomto pripade provede dotaz do DB.
 	 * @return array
 	 */
-	public function getFormSelect($idaccount = null)
+	public function getFormSelect($idaccount = null, $companyData = null)
 	{
+		$return = array();
+		
 		if(is_null($idaccount)){
 			$account = new Model_Account();
 			$idaccount = $account->getId();
 		}
-		
-		$users = $this->_dbTable->fetchAllEntry('idaccount = '.$idaccount.'', array('iduser', 'name', 'surname'));
-		
-		foreach ($users as $row) {
-			$return[$row->iduser] = $row->surname .' '. $row->name;
+				
+		$users = $this->_dbTable->fetchAllEntry('idaccount = '.$idaccount.'', array('iduser', 'name', 'surname', 'idcompany'));
+
+		if(is_null($companyData)){
+			foreach ($users as $row) {
+					$return[$row->iduser] = $row->surname .' '. $row->name;
+			}			
+		}else{	
+			if(is_bool($companyData) AND $companyData == true){
+				$companies = new Model_Company();
+				$companyData = $companies->getFormSelect($idaccount);
+			}
+			foreach($companyData as $idcompany => $company){
+				foreach ($users as $row) {
+					if($idcompany == $row->idcompany)
+						$return[$company][$row->iduser] = $row->surname .' '. $row->name;
+				}
+			}
 		}
 		
 		return $return;	
