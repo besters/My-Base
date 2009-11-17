@@ -40,9 +40,10 @@ h1 span {
 #main,#main-fixed {
 	background-color: #fff;
 	padding: 7px;
-	margin-top: 10px;
+	margin-top: 10px;	
 	width: 99%;
 	border: 1px solid #eceaea;
+	margin-bottom: 50px;
 }
 
 #main-fixed {
