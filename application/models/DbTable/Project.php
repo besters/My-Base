@@ -37,10 +37,10 @@ class Model_DbTable_Project extends Unodor_Db_Table {
 	public function getFullProjectList($idaccount)
 	{
 		$query = $this->select()
-					  ->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))  
-					  ->join('user', 'project.iduser = user.iduser', array('CONCAT_WS(" ", user.name, user.surname) as jmeno'))       
-					  ->join('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
-					  ->where('project.idaccount = ?', $idaccount)
+					  ->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))					   
+					  ->joinLeft('user', 'project.iduser = user.iduser', array('CONCAT(user.name, " ", user.surname) as jmeno'))       
+					  ->joinLeft('company', 'project.idcompany = company.idcompany', array('companyName' => 'name'))  
+					  ->where('project.idaccount = ?', $idaccount)					  
 					  ->setIntegrityCheck(false);		
 					   			
 		$stmt = $query->query();
