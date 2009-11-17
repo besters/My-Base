@@ -7,15 +7,30 @@
 class Unodor_Db_Table extends Zend_Db_Table_Abstract
 {
 	/**
+	 * Ziskava idaccount
+	 * 
+	 * @return int
+	 */
+	public function getAccountId()
+	{
+		$model = new Model_Account();
+
+		$idaccount = $model->getId();
+		
+		return $idaccount;
+	}
+	
+	/**
 	 * Uklada data do databaze
 	 * 
 	 * @param array $data Ukladane data
 	 * @param int $id ID editovaneho zaznamu
+	 * @return int|void ID aktualne ukladaneho zaznamu
 	 */
 	public function save($data, $id = null)
 	{
 		if(is_null($id)){
-			self::_insert($data);
+			return self::_insert($data);
 		}else{
 			if(is_int($id)){
 				self::_update($data, $id);
@@ -26,9 +41,15 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		}
 	}
 	
+	/**
+	 * 
+	 * @param array $data ukladane data
+	 * @return int id aktualne vkladaneho zaznamu
+	 */
 	private function _insert($data)
-	{
-		print 'saved';
+	{		
+		$lasInsertId = $this->insert($data);
+		return $lasInsertId;
 	}
 	
 	private function _update($data, $id)

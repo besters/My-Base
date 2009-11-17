@@ -16,22 +16,35 @@ class Model_Project
 	 * Vraci z db seznam projektu pro aktivni ucet
 	 * 
 	 * @return object Vysledek dotazu
+	 * @todo upload obrazku a pripadny resize
 	 */
 	public function getProjectsList()
 	{		
-		$modelAccount = new Model_Account();
-
-		$idaccount = $modelAccount->getId();		
-		
-		$result = $this->_dbTable->getFullProjectList($idaccount);		
+		$result = $this->_dbTable->getFullProjectList($this->_dbTable->getAccountId());		
 		
 		return $result;
 	}
 	
-	public function save($data, $id = null)
+	/**
+	 * Uklada novy/editovany projekt do DB a presmerovava na nastaveni prav
+	 * 
+	 * @param array $formData Data z formulare
+	 * @param int $id ID editovaneho zaznamu
+	 * @return int ID ukladaneho zaznamu
+	 */
+	public function save($formData, $id = null)
 	{
-		$this->_dbTable->save($data, $id);
+		$data = array(
+			'name' 			=> 	$formData['name'],
+			'description' 	=>	empty($formData['description']) ? null : $formData['description'],
+			'iduser'		=> 	$formData['iduser'],
+			'idcompany'		=>	empty($formData['idcompany']) ? null : $formData['idcompany'],
+			'img'			=>	$formData['img'],
+			'idaccount'		=>	$this->_dbTable->getAccountId(),
+			'status'		=> 'active'
+		);
+
+		$lastInsertId = $this->_dbTable->save($data, $id);
+		return $lastInsertId;
 	}
-
-
 }
