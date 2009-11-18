@@ -28,7 +28,7 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 				$this->_flash('New project has been successfully created', 'done');
 				return $this->_redirect('/'.$lastInsertId.'/people');
 			}else{
-				$this->_flash('Formulář není vyplněn správně', 'error', false);
+				//$this->_flash('Formulář není vyplněn správně', 'error', false);
 				$this->_form->populate($formData);
 			}
 		}		

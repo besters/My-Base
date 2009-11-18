@@ -17,12 +17,9 @@ class Mybase_Form_Project extends Zend_Form
 			    'required' => true,
 				'validators' => array(
 					//'alnum',
-					array('regex', true, array('/^[a-z]+/', 'messages' => 'Musí začínat písmenem')),
-					array('stringLength', false, array(6, 20))
-				),
-				'filters' => array(
-					'StringToLower'
-				)	
+					//array('regex', true, array('/^[a-z]+/', 'messages' => 'Musí začínat písmenem')),
+					array('stringLength', false, array(3, 100))
+				)
 			));	
 				
 			$this->addElement('textarea','description', array(
@@ -42,7 +39,8 @@ class Mybase_Form_Project extends Zend_Form
 				'order' => 2,
 			    'label' => "Project leader:",
 				'multiOptions' => $user->getFormSelect($idaccount, $companyData),
-				'class' => 'input-select'
+				'class' => 'input-select',
+				'required' => true,
 			));	
 
 			$this->addElement('select', 'idcompany', array(
@@ -68,7 +66,7 @@ class Mybase_Form_Project extends Zend_Form
 	     		
 	         $this->setDecorators(array(
 			    'FormElements',
-				//array('FormErrors', array('placement' => 'prepend')),
+				array('FormErrors', array('placement' => 'prepend')),
 				//'Fieldset',
 			    //array('HtmlTag', array('tag' => 'table', 'class' => 'nostyle')),
 			    'Form'
