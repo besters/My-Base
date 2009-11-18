@@ -142,16 +142,19 @@ h1 span {
 	margin-bottom: 30px;
 }
 
-.bar {
+.bar, .bar-project {
 	width: 220px;
 	border: 1px solid #c9dbe0;
 	background: #fff;
 	padding: 2px;
 }
 
-div.bar>div {
-	background-color: #b70000;
+div.bar>div, .bar-project>div {
 	height: 14px
+}
+
+.bar-project{
+	width: 160px;
 }
 
 #progress-info {
@@ -177,27 +180,16 @@ div.bar>div {
 	clear: both;
 }
 
-.project-table { /*border-right: 2px solid #e3e3e3;*/
-	width: 421px;
-	float: left;
+.project-table {
+	width: 90%;	
 	padding: 5px;
-	margin: 15px;
-}
-
-.project-table .top {
-	height: 13px;
-	background: url('../design/project-table-top.png') no-repeat;
-}
-
-.project-table .bottom {
-	height: 13px;
-	background: url('../design/project-table-bottom.png') no-repeat;
+	margin: 0 auto;
+	padding-bottom: 15px;
 }
 
 .project-table .content {
-	border-right: 2px solid #e3e3e3;
-	background: #f8f8f8;
 	padding: 0px 5px;
+	position: relative;
 }
 
 .project-table .content img {
@@ -205,11 +197,15 @@ div.bar>div {
 	margin-left: 7px;
 	margin-right: 10px;
 	float: left;
+	margin-top: 5px;
+	pargin-bottom: 5px;
+	clear: both;
 }
 
 .project-table .content .right {
 	float: left;
-	width: 300px;
+	width: 50%;
+	padding-top: 5px;
 }
 
 .project-table .content .right p {
@@ -229,54 +225,40 @@ div.bar>div {
 	text-decoration: underline;
 }
 
-.project-table .content .right dl dt {
-	width: 70px;
-	text-align: right;
+.project-table dl{
+	background-color: #dadada;
+	height: 20px;
+	padding-left: 10px;
+}
+
+.project-table dl dt {
 	float: left;
-	margin-right: 5px;
+	padding-right: 5px;	
 }
 
-.project-table .content .right dl dd {
-	margin-bottom: 4px;
+.project-table dl dd {
+	float: left;
+	padding-right: 15px;
 }
 
-.project-table .content .right dl,.project-table .content .right dl dd a
-	{
+.project-table dl,.project-table dl dd a{
 	color: #545254;
 	font-size: 12px;
-	font-family: Verdana, sans-serif;
+	font-family: Arial, sans-serif;
+	padding-top: 5px;
 }
 
-.project-table .content .right dl dd a:hover {
+.project-table dl dd a:hover {
 	text-decoration: none;
 }
 
-
-.working-bar {
-	width: 220px;
-	border: 1px solid #c9dbe0;
-	background: #fff;
-	padding: 2px;
+.project-table .bar-container{
+	background: yellow;
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
 }
 
-div.working-bar>div {
-	background-color: #b70000;
-	height: 14px
-}
-
-.activity-bar {
-	margin-top: 2px;
-	width: 220px;
-	border: 1px solid #c9dbe0;
-	background: #fff;
-	padding: 2px;
-}
-
-div.activity-bar>div {
-	background-color: #ebec75;
-	height: 14px;
-	background-image: url('../design/ico-show.gif') 100% 0 no-repeat;
-}
 
 #supertitle {
 	border: 1px solid #c9dbe0;

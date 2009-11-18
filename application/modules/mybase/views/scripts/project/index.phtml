@@ -1,40 +1,54 @@
 <div id="main-fixed">
     <div id="title">
          <div id="title-links">
-            <a href="<?php echo $this->baseUrl('/project/new') ; ?>">Nový Projekt</a>
+            <a href="<?php echo $this->baseUrl('/project/new') ; ?>"><?php echo $this->Translate('Create new Project'); ?></a>
         </div>    
         <h2><?php echo $this->Translate('Projekty'); ?></h2>
     </div>
 	<div id="obsah">
 		
 		<?php 
+		$i = 0;
 		foreach($this->project as $row):
 		?>	
 		<div class="project-table">
-			<div class="top"></div>
 			<div class="content">
 				<?php 
 					if($row->img == null)
 						$img = 'design/placeholder.gif';
 					else 
 						$img = 'files/'.$row->img;	
-				?>
-				<img src="../public/<?php echo $img; ?>" />
+				?>				
+					<dl>
+						<?php if(!is_null($row->iduser)): ?>
+						<dt>Vedoucí:</dt>
+					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->user;?></a></dd>
+					  	<?php 
+					  		endif;
+					  		if(!is_null($row->idcompany)): 
+					  	?>
+					  	<dt>Klient:</dt>
+					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->company; ?></a></dd>
+					  	<?php endif;?>
+					</dl>
+					<img src="../public/<?php echo $img; ?>" />
+				
 				<div class="right">
 					<a href="<?php echo $this->baseUrl($row->idproject.'/index/overview') ; ?>" class="title"><?php echo $row->name; ?></a>
-					<p><?php echo $row->description; ?></p>
-					<dl>
-						<dt>Vedoucí:</dt>
-					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->jmeno;?></a></dd>
-					  	<dt>Klient:</dt>
-					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->companyName; ?></a></dd>
-					</dl>
+					<p><?php echo $row->description; ?></p>					
 				</div>
+				
+				<div class="bar-container">
+					<div class="bar-project">
+		        		<?php echo $this->Bar(rand(0, 100)); ?>
+		    		</div>
+		    	</div>	
+				
 				<br class="clear" />
 			</div>
-			<div class="bottom"></div>
 		</div>
 		<?php 
+		$i++;
 		endforeach;		
 		?>
 		
