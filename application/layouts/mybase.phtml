@@ -33,7 +33,10 @@ echo $this->doctype(); ?>
 
 <div id="menu">
 	<div class="wrap940">
-		<?php echo $this->navigation()->menu()->setMaxDepth(0); ?>
+		<?php 
+		$acl = Zend_Registry::get('acl');
+		$this->navigation()->setAcl($acl)->setRole($session->storage->email);
+		echo $this->navigation()->menu()->setMaxDepth(0); ?>
 	</div>
 
 	<div id="submenu">

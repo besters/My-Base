@@ -23,7 +23,28 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	 * 
 	 * @var array
 	 */
-	private $_resources = array();
+	private $_resources = array('index', 'project', 'assignment', 'calendar', 'people', 'account', 'auth');
+	
+	/**
+	 * Pole s povolenymy action pro cteni
+	 * 
+	 * @var array
+	 */
+	private $_read = array('index', 'overview');
+	
+	/**
+	 * Pole s povolenymy action pro vytvareni novych zaznamu
+	 * 
+	 * @var array
+	 */	
+	private $_create = array('new');
+	
+	/**
+	 * Pole s povolenymy action pro editaci a mazani
+	 * 
+	 * @var array
+	 */	
+	private $_manage = array('edit', 'delete');
 	
     /**
      * Hlavni logika ACL 
@@ -44,21 +65,42 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			
 			$identity = $auth->getIdentity();
 
-			$acl->addRole(new Zend_Acl_Role($identity->email));
+			$acl->addRole(new Zend_Acl_Role('user'))
+				->addRole(new Zend_Acl_Role('owner'))
+				->addRole(new Zend_Acl_Role('admin'), 'owner');
+
+			if($identity->owner == true)
+				$inherit = 'owner';
+			elseif($identity->administrator == true)
+				$inherit = 'admin';
+			else
+				$inherit = 'user';			
 			
-			$aclModel = new Model_Acl();
-			
-			$projekt = $request->getParam('projekt');			
-				
-			$perms = $aclModel->getUserPerms($identity->email, $projekt);
-			
-			if($projekt > 0)
-				$this->_projectAcl($acl, $identity, $perms, $projekt);
-						
-			$this->_globalAcl($acl, $identity, $perms);
-				
-			Zend_Registry::set('acl', $acl);
+			$acl->addRole(new Zend_Acl_Role($identity->email), $inherit);	
 					
+			$projekt = $request->getParam('projekt');			
+			
+			// Zakladni resource
+			foreach($this->_resources as $val => $key){
+				$acl->add(new Zend_Acl_Resource($key));
+			}
+			
+			// Prava pro zakladni resource
+			$acl->allow('owner');			
+			$acl->deny('admin', 'account');			
+			$acl->allow('user');
+			$acl->deny('user', 'account');	
+			$acl->deny('user', 'project', $this->_create);
+			$acl->deny('user', 'people', $this->_create);
+			$acl->deny('user', 'project', $this->_manage);
+			$acl->deny('user', 'people', $this->_manage);
+			
+			// Resource pro projektovou podsekci
+			if($projekt > 0)			
+				$this->_projectAcl($acl, $identity, $projekt);				
+
+			Zend_Registry::set('acl', $acl);	
+				
 			if (in_array($projekt.'|'.$request->getControllerName(), $this->_resources)) {		
 				$isAllowed = $acl->isAllowed($identity->email, $projekt.'|'.$request->getControllerName(), $request->getActionName());								
 			}elseif(in_array($request->getControllerName(), $this->_resources)){
@@ -80,61 +122,30 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	}
 	
 	/**
-	 * Nastavuje globalni opravneni
-	 * 
-	 * @param Zend_Acl $acl ACL objekt
-	 * @param Zend_Auth_Storage_Session $identity Objekt s identitou
-	 * @param array $perms Opravneni
-	 */
-	private function _globalAcl($acl, $identity, $perms)
-	{			
-		foreach($perms['global'] as $val => $key){
-			$acl->add(new Zend_Acl_Resource($val));
-			$this->_resources[] = $val;
-		}	
-							
-		foreach($perms['global'] as $val => $key){
-			if($key & self::READ){
-				$acl->allow($identity->email, $val, 'index');
-				$acl->allow($identity->email, $val, 'detail');
-			}
-			if($key & self::CREATE){
-				$acl->allow($identity->email, $val, 'new');
-			}
-			if($key & self::MANAGE){
-				$acl->allow($identity->email, $val, 'edit');
-				$acl->allow($identity->email, $val, 'delete');
-			}			
-		}
-	}
-	
-	/**
 	 * Nastavuje opravneni pro podsekci projektu
 	 * 
 	 * @param Zend_Acl $acl ACL objekt
 	 * @param Zend_Auth_Storage_Session $identity Objekt s identitou
-	 * @param array $perms Opravneni
 	 * @param int $projekt ID projektu
 	 */
-	private function _projectAcl($acl, $identity, $perms, $projekt)
-	{			
-		foreach($perms['project'] as $val => $key){
+	private function _projectAcl($acl, $identity, $projekt)
+	{	
+		$aclModel = new Model_Acl();	
+		$perms = $aclModel->getUserPerms($identity->email, $projekt);
+
+		foreach($perms as $val => $key){
 			$acl->add(new Zend_Acl_Resource($projekt.'|'.$val));
-			$this->_resources[] = $projekt.'|'.$val;
-		}	
+			
+			if($key & self::READ)
+				$acl->allow($identity->email, $projekt.'|'.$val, $this->_read);
+			
+			if($key & self::CREATE)
+				$acl->allow($identity->email, $projekt.'|'.$val, $this->_create);
+			
+			if($key & self::MANAGE)
+				$acl->allow($identity->email, $projekt.'|'.$val, $this->_manage);
 							
-		foreach($perms['project'] as $val => $key){
-			if($key & self::READ){
-				$acl->allow($identity->email, $projekt.'|'.$val, 'index');
-				$acl->allow($identity->email, $projekt.'|'.$val, 'overview');
-			}
-			if($key & self::CREATE){
-				$acl->allow($identity->email, $projekt.'|'.$val, 'new');
-			}
-			if($key & self::MANAGE){
-				$acl->allow($identity->email, $projekt.'|'.$val, 'edit');
-				$acl->allow($identity->email, $projekt.'|'.$val, 'delete');
-			}			
-		}		
+			$this->_resources[] = $projekt.'|'.$val;
+		}			
 	}
 }

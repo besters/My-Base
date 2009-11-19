@@ -70,6 +70,7 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   `im` VARCHAR(150) NULL COMMENT 'Uživatelské jméno / číslo v instant messengeru' ,
   `imservice` SET('aol','msn','icq','yahoo','jabber','skype','gtalk') NULL COMMENT 'Název instant messengeru' ,
   `owner` TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'Majitel účtu' ,
+  `administrator` TINYINT(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`iduser`, `idaccount`, `idcompany`) ,
   INDEX `fk_account_user` (`idaccount` ASC) ,
   INDEX `fk_company_user` (`idcompany` ASC) ,
@@ -150,9 +151,9 @@ DROP TABLE IF EXISTS `mybase`.`acl` ;
 CREATE  TABLE IF NOT EXISTS `mybase`.`acl` (
   `idacl` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `iduser` INT UNSIGNED NOT NULL ,
-  `idproject` INT UNSIGNED NULL ,
+  `idproject` INT UNSIGNED NOT NULL ,
   `permission` VARCHAR(255) NOT NULL COMMENT 'Oprávnění. Ukládá se serializované pole ve tvaru array(sekce => bitová maska, ...)' ,
-  PRIMARY KEY (`idacl`, `iduser`) ,
+  PRIMARY KEY (`idacl`, `iduser`, `idproject`) ,
   INDEX `fk_user_acl` (`iduser` ASC) ,
   INDEX `fk_project_acl` (`idproject` ASC) ,
   CONSTRAINT `fk_user_acl`

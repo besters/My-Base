@@ -48,7 +48,7 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 				
 				    case Zend_Auth_Result::SUCCESS:
 						$storage = $auth->getStorage();
-						$storage->write($authAdapter->getResultRowObject(array('iduser', 'email', 'name', 'surname')));
+						$storage->write($authAdapter->getResultRowObject(array('iduser', 'email', 'name', 'surname', 'owner', 'administrator')));
 						if($form->getValue('remember') == 1) Zend_Session::rememberMe(60*60*24*14);
 				        $this->_redirect('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
 				        break;

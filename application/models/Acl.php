@@ -28,19 +28,9 @@ class Model_Acl
 		$userModel = new Model_User();
 		$idUser = $userModel->getUserId($user);
 		
-		$projectCond = '';
-		if($project > 0)
-			$projectCond = 'idproject = '.$project.' OR';
-		
-		$acl = $this->_dbTable->fetchAllEntry('iduser = '.$idUser.' AND '.$projectCond.' idproject IS NULL', array('permission', 'idproject'));
-		
-		foreach($acl as $perm){
-			if(is_null($perm->idproject)){
-				$return['global'] = unserialize($perm->permission);
-			}else{
-				$return['project'] = unserialize($perm->permission);
-			}
-		}
+		$acl = $this->_dbTable->fetchAllEntry('iduser = '.$idUser.' AND idproject = '.$project.'', array('permission', 'idproject'));		
+
+		$return = unserialize($acl[0]->permission);
 		
 		return $return;
 	}

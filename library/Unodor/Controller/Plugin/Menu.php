@@ -30,11 +30,6 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 		$auth = Zend_Auth::getInstance();
 		$identity = $auth->getIdentity();
 		
-		$acl = Zend_Registry::get('acl');
-		
-		Zend_View_Helper_Navigation_HelperAbstract::setDefaultAcl($acl);
-		Zend_View_Helper_Navigation_HelperAbstract::setDefaultRole($identity->email);
-		
 		if($request->getParam('projekt') > 0)
 			$this->_project = $request->getParam('projekt');
 			
@@ -42,7 +37,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 
 		switch($request->module){
 			case 'mybase' :		
-				Zend_Registry::set('Zend_Navigation', $this->_mybaseDefaultMenu());
+				Zend_Registry::set('Zend_Navigation', $this->_mybaseDefaultMenu($request));
 				break;
 			default :
 				Zend_Registry::set('Zend_Navigation', $this->_DefaultMenu());
@@ -55,7 +50,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 	 * 
 	 * @return Zend_Navigation Menu Container 
 	 */
-	private function _mybaseDefaultMenu()
+	private function _mybaseDefaultMenu($request)
 	{
 		$container = new Zend_Navigation(array(
 			array(                
@@ -64,8 +59,6 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'controller' => 'index',
 				'action' => 'index',	
 				'route' => 'mybase-default',	
-				'resource'   => 'index',	
-				'privilege' => 'index',	
 				'params' => array(
 					'account' => $this->_account
 					)
@@ -76,13 +69,11 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'index',
 				'module' => 'mybase',
 				'route' => 'mybase-default',
-				'resource'   => 'project',
-				'privilege' => 'index',	
 				'params' => array(
 					'account' => $this->_account
 				),
 				
-				 'pages' => $this->_projectMenu()
+				 'pages' => $this->_projectMenu($request)
 			),
 			array(                
 				'label' => 'Assignmets',                
@@ -90,8 +81,6 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'index',
 				'module' => 'mybase',
 				'route' => 'mybase-default',
-				'resource'   => 'assignment',
-				'privilege' => 'index',	
 				'params' => array(
 					'account' => $this->_account
 					)
@@ -102,8 +91,6 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'index',
 				'module' => 'mybase',
 				'route' => 'mybase-default',
-				'resource'   => 'calendar',
-				'privilege' => 'index',	
 				'params' => array(
 					'account' => $this->_account
 					)
@@ -136,7 +123,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 		return $container;
 	}
 	
-	private function _projectMenu()
+	private function _projectMenu($request)
 	{
 		$return = array();
 		
@@ -261,11 +248,11 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 			array(                
 				'label' => 'Team',                
 				'controller' => 'people',
-				'action' => 'index',
+				'action' => 'overview',
 				'module' => 'mybase',
 				'route' => 'mybase-projekt',
 				'resource'   => $this->_project.'|people',	
-				'privilege' => 'index',
+				'privilege' => 'overview',
 				'params' => array(
 					'account' => $this->_account,
 					'projekt' => $this->_project
@@ -283,24 +270,29 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 					'account' => $this->_account,
 					'projekt' => $this->_project
 				)
-			),
-			array(                
-				'label' => 'New',    
-				'module' => 'mybase',            
-				'controller' => 'project',
-				'action' => 'new',	
-				'route' => 'mybase-default',	
-				'resource'   => $this->_project.'|project',	
-				'privilege' => 'new',
-				'visible' => false,		
-				'params' => array(
-					'account' => $this->_account
-				)
 			)
 		);
 		
-		if(isset($this->_project))
-			$return = $container;
+		if(isset($this->_project)){
+			$return = $container;		
+		}elseif($request->getParam('controller') == 'project'){
+			$return = array(
+				array(                
+					'label' => 'New',    
+					'module' => 'mybase',            
+					'controller' => 'project',
+					'action' => 'new',	
+					'route' => 'mybase-default',
+					'visible' => false,		
+					'params' => array(
+						'account' => $this->_account
+					)
+				)
+			);
+		}
+			
+			
+			
 		
 		return $return;
 	}
