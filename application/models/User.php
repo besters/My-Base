@@ -22,11 +22,11 @@ class Model_User
 	 * @param string $user Uzivatelske jmeno
 	 * @return string ID uzivatele
 	 */
-	public function getUserId($user)
+	public function getUserId($user = null)
 	{
 		$session = new Zend_Session_Namespace('Zend_Auth');
 		
-		if($session->storage->email == $user){
+		if(is_null($user) OR $session->storage->email == $user){
 			return $session->storage->iduser;
 		}else{
 			$where = array('email' => $user);
