@@ -34,4 +34,49 @@ class Model_Acl
 		
 		return $return;
 	}
+	
+	/**
+	 * Seznam resources pro projektovou podsekci
+	 * 
+	 * @return array
+	 */
+	private function _getResources()
+	{
+		$resources = array(
+			'index',
+			'milestone',
+			'ticket',
+			'checklist',
+			'calendar',
+			'people',
+			'settings'
+		);
+		
+		return $resources;
+	}
+	
+	/**
+	 * Uklada ACL pro aktualniho uzivatele
+	 * 
+	 * @param int $project idproject
+	 */
+	public function createDefault($project)
+	{
+		$userModel = new Model_User();
+		$idUser = $userModel->getUserId();
+		
+		$resources = $this->_getResources();
+		
+		foreach($resources as $resource){
+			$perm[$resource] = 7;
+		}
+		
+		$data = array(
+			'iduser'		=> 	$idUser,
+			'idproject'		=>	$project,
+			'permission'	=> 	serialize($perm)
+		);
+
+		$this->_dbTable->save($data);
+	}
 }

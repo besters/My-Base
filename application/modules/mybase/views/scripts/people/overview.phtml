@@ -1,0 +1,16 @@
+<div id="main-fixed">
+    <div id="title">
+         <div id="title-links">
+            <a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/new') ; ?>"><?php echo $this->Translate('Add people to project'); ?></a>
+        </div>    
+        <h2><?php echo $this->Translate('People on this project'); ?></h2>
+    </div>
+	<div id="obsah">
+		<?php echo $this->flashMessages(); ?>
+		<?php echo $this->form; ?>		
+
+		
+		
+		<br class="clear" />
+	</div>
+</div>

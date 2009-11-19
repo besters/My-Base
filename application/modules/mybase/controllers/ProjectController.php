@@ -25,8 +25,10 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 		if($this->getRequest()->isPost()){
 			if($this->_form->isValid($formData)){
 				$lastInsertId = $this->_model->save($this->_form->getValues());
+				$acl = new Model_Acl;
+				$acl->createDefault($lastInsertId);
 				$this->_flash('New project has been successfully created', 'done');
-				return $this->_redirect('/'.$lastInsertId.'/people');
+				return $this->_redirect('/'.$lastInsertId.'/people/overview');
 			}else{
 				//$this->_flash('Formulář není vyplněn správně', 'error', false);
 				$this->_form->populate($formData);
