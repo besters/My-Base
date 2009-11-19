@@ -150,9 +150,9 @@ DROP TABLE IF EXISTS `mybase`.`acl` ;
 CREATE  TABLE IF NOT EXISTS `mybase`.`acl` (
   `idacl` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `iduser` INT UNSIGNED NOT NULL ,
-  `idproject` INT UNSIGNED NOT NULL ,
-  `permission` VARCHAR(255) NULL COMMENT 'Oprávnění. Ukládá se serializované pole ve tvaru array(sekce => bitová maska, ...)' ,
-  PRIMARY KEY (`idacl`, `iduser`, `idproject`) ,
+  `idproject` INT UNSIGNED NULL ,
+  `permission` VARCHAR(255) NOT NULL COMMENT 'Oprávnění. Ukládá se serializované pole ve tvaru array(sekce => bitová maska, ...)' ,
+  PRIMARY KEY (`idacl`, `iduser`) ,
   INDEX `fk_user_acl` (`iduser` ASC) ,
   INDEX `fk_project_acl` (`idproject` ASC) ,
   CONSTRAINT `fk_user_acl`

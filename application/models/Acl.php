@@ -19,8 +19,6 @@ class Model_Acl
 	/**
 	 * Zjistuje opravneni uzivatele
 	 * 
-	 * @TODO Dopsat podminku pro selekci podle projektu
-	 * 
 	 * @param string $user Uzivatelske jmeno
 	 * @param string $project ID projektu
 	 * @return array Opravneni
@@ -29,10 +27,20 @@ class Model_Acl
 	{
 		$userModel = new Model_User();
 		$idUser = $userModel->getUserId($user);
-
-		$acl = $this->_dbTable->getRow(array('iduser' => $idUser), array('permission'));
 		
-		$return = unserialize($acl['permission']);
+		$projectCond = '';
+		if($project > 0)
+			$projectCond = 'idproject = '.$project.' OR';
+		
+		$acl = $this->_dbTable->fetchAllEntry('iduser = '.$idUser.' AND '.$projectCond.' idproject IS NULL', array('permission', 'idproject'));
+		
+		foreach($acl as $perm){
+			if(is_null($perm->idproject)){
+				$return['global'] = unserialize($perm->permission);
+			}else{
+				$return['project'] = unserialize($perm->permission);
+			}
+		}
 		
 		return $return;
 	}
