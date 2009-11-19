@@ -59,6 +59,7 @@ class Model_Acl
 	 * Uklada ACL pro aktualniho uzivatele
 	 * 
 	 * @param int $project idproject
+	 * @todo ukladat k uzivateli ktery byl nastaven jako vedouci, ne k tomu co projekt vytvari
 	 */
 	public function createDefault($project)
 	{
@@ -78,5 +79,23 @@ class Model_Acl
 		);
 
 		$this->_dbTable->save($data);
+	}
+	
+	public function getUsers($idproject)
+	{
+		$users = $this->_dbTable->getFullUserList($idproject);
+		
+		$return = array();
+		
+		foreach($users as $user){
+			$return[$user->company][] = array(
+				'iduser' => $user->iduser,
+				'idacl' => $user->idacl,
+				'user' => $user->user,
+				'email' => $user->email
+			);	
+		}
+		
+		return $return;		
 	}
 }

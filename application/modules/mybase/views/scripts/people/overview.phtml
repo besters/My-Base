@@ -3,11 +3,36 @@
          <div id="title-links">
             <a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/new') ; ?>"><?php echo $this->Translate('Add people to project'); ?></a>
         </div>    
-        <h2><?php echo $this->Translate('People on this project'); ?></h2>
+        <h2><?php echo $this->Translate('Project Team'); ?></h2>
     </div>
 	<div id="obsah">
 		<?php echo $this->flashMessages(); ?>
-		<?php echo $this->form; ?>		
+		
+		<?php foreach($this->userList as $company => $users): ?>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="4"><?php echo $company; ?></th>
+				</tr>
+			</thead>
+			
+			<?php 
+			$i = 0;
+			foreach($users as $user): ?>
+			<tr <?php echo ($i % 2 == 0 ? '' : 'class="even"') ?>>
+				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
+				<td><?php echo $user['email']; ?></td>
+				<td colspan="1" class="small-cell">
+				<a href="<?php echo $this->baseUrl('/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" /></a>
+				<a href="<?php echo $this->baseUrl('/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" /></a>
+				</td>
+			</tr>
+			<?php 
+			$i++;
+			endforeach; ?>
+			
+		</table>
+		<?php endforeach; ?>	
 
 		
 		
