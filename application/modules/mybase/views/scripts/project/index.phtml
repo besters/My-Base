@@ -35,7 +35,7 @@
 				
 				<div class="right">
 					<a href="<?php echo $this->baseUrl($row->idproject.'/index/overview') ; ?>" class="title"><?php echo $row->name; ?></a>
-					<p><?php echo $row->description; ?></p>					
+					<p><?php echo nl2br($row->description, true); ?></p>					
 				</div>
 				
 				<div class="bar-container">
