@@ -106,19 +106,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'params' => array(
 					'account' => $this->_account
 					)
-			),
-			array(                
-				'label' => 'Account',                
-				'controller' => 'account',
-				'action' => 'index',
-				'module' => 'mybase',
-				'route' => 'mybase-default',
-				'resource'   => 'account',
-				'privilege' => 'index',	
-				'params' => array(
-					'account' => $this->_account
-					)
-			)															
+			)														
 		));		
 		return $container;
 	}
@@ -135,7 +123,7 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'action' => 'overview',	
 				'route' => 'mybase-projekt',
 				'resource'   => $this->_project.'|index',	
-				'privilege' => 'overview',				
+				'privilege' => 'overview',	
 				'params' => array(
 					'account' => $this->_account,
 					'projekt' => $this->_project
@@ -256,7 +244,21 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'params' => array(
 					'account' => $this->_account,
 					'projekt' => $this->_project
-				)
+				),
+				'pages' => 	array(
+					array(                
+						'label' => 'New',                
+						'controller' => 'people',
+						'action' => 'new',
+						'module' => 'mybase',
+						'route' => 'mybase-projekt',
+						//'visible' => false,
+						'params' => array(
+							'account' => $this->_account,
+							'projekt' => $this->_project
+						)
+					)
+				)		
 			),	
 			array(                
 				'label' => 'Settings',                

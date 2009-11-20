@@ -43,7 +43,16 @@ echo $this->doctype(); ?>
 		<div class="wrap940">
 			<?php 
 				if($this->param('projekt') > 0){
-					echo $this->navigation()->menu()->renderSubMenu(null, 'subnavigation', 4);
+					$options = array(    
+						'ulClass'		   => 'subnavigation',    
+						'indent'           => 4,    
+						'minDepth'         => null,    
+						'maxDepth'         => 1,    
+						'onlyActiveBranch' => true,    
+						'renderParents'    => false
+					);
+					//echo $this->navigation()->menu()->renderSubMenu(null, 'subnavigation', 4);
+					echo $this->navigation()->menu()->renderMenu(null, $options);
 				}
 			?>
 		</div>
