@@ -88,7 +88,8 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			// Prava pro zakladni resource
 			$acl->allow('owner');			
 			$acl->deny('admin', 'account');			
-			$acl->allow('user');
+			
+			$acl->allow('user', array('index', 'project', 'assignment', 'calendar', 'people'));
 			$acl->deny('user', 'account');	
 			$acl->deny('user', 'project', $this->_create);
 			$acl->deny('user', 'people', $this->_create);
@@ -102,7 +103,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			Zend_Registry::set('acl', $acl);	
 				
 			if (in_array($projekt.'|'.$request->getControllerName(), $this->_resources)) {		
-				$isAllowed = $acl->isAllowed($identity->email, $projekt.'|'.$request->getControllerName(), $request->getActionName());								
+				$isAllowed = $acl->isAllowed($identity->email, $projekt.'|'.$request->getControllerName(), $request->getActionName());							
 			}elseif(in_array($request->getControllerName(), $this->_resources)){
 				$isAllowed = $acl->isAllowed($identity->email, $request->getControllerName(), $request->getActionName());
 			}else{
@@ -114,7 +115,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 				$controller = $this->_noacl['controller'];
 				$action = $this->_noacl['action'];
 			}
-									
+							
 			$request->setModuleName($module);
 			$request->setControllerName($controller);
 			$request->setActionName($action);		
@@ -135,15 +136,16 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 
 		foreach($perms as $val => $key){
 			$acl->add(new Zend_Acl_Resource($projekt.'|'.$val));
-			
-			if($key & self::READ)
+						
+			if($key & self::READ){
 				$acl->allow($identity->email, $projekt.'|'.$val, $this->_read);
-			
-			if($key & self::CREATE)
+			}
+			if($key & self::CREATE){
 				$acl->allow($identity->email, $projekt.'|'.$val, $this->_create);
-			
-			if($key & self::MANAGE)
+			}
+			if($key & self::MANAGE){
 				$acl->allow($identity->email, $projekt.'|'.$val, $this->_manage);
+			}
 							
 			$this->_resources[] = $projekt.'|'.$val;
 		}			
