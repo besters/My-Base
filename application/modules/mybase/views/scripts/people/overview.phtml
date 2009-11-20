@@ -1,7 +1,9 @@
 <div id="main-fixed">
     <div id="title">
          <div id="title-links">
+         <?php if($this->acl('people', 'new')): ?>
             <a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/new') ; ?>"><?php echo $this->Translate('Add people to project'); ?></a>
+         <?php endif; ?>  
         </div>    
         <h2><?php echo $this->Translate('Project Team'); ?></h2>
     </div>
@@ -23,8 +25,10 @@
 				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" class="small-cell">
-				<a href="<?php echo $this->baseUrl('/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" /></a>
-				<a href="<?php echo $this->baseUrl('/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" /></a>
+				<?php if($this->acl('people', 'edit')): ?>
+				<a href="<?php echo $this->baseUrl('/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
+				<a href="<?php echo $this->baseUrl('/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
+				<?php endif; ?>
 				</td>
 			</tr>
 			<?php 
