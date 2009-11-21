@@ -22,7 +22,7 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 
 		$formData = $this->getRequest()->getPost();
 		
-		if($this->getRequest()->isPost()){
+		if($this->_request->isPost()){
 			if($this->_form->isValid($formData)){
 				$lastInsertId = $this->_model->save($this->_form->getValues());
 				$acl = new Model_Acl;
