@@ -22,4 +22,28 @@ class Model_DbTable_User extends Unodor_Db_Table {
 			'refColumns' => array('idcompany')
 		)
 	);
+	
+	/**
+	 * Ziskava z DB seznam uzivatelu kteri nejsou prirazeni k danemu projektu
+	 * 
+	 * @param int $idproject ID projektu
+	 * @return Zend_Db_Statement Vysledek
+	 */
+	public function getFreeUsers($idproject)
+	{
+		$idaccount = $this->getAccountId();
+				  
+		$query = $this->select()             			                   
+					  ->from('user', array('iduser', 'CONCAT(user.name, " ", user.surname) as user'))
+					  ->join('company', 'user.idcompany = company.idcompany', array('name AS company')) 
+					  ->where('user.iduser NOT IN (?)',new Zend_Db_Expr('SELECT DISTINCT iduser FROM acl WHERE idproject = '.$idproject.''))
+					  ->where('user.idaccount = ?', $idaccount)           
+					  ->setIntegrityCheck(false); 
+					   			
+		$stmt = $query->query();
+
+		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+
+		return $result;
+	}
 }

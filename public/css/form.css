@@ -48,10 +48,7 @@ form dt{
 	padding: 5px 20px;
 }
 
-.msg {
-	
-}
-
-.error {
-	
+.submit-block{
+	text-align: right;
+	margin-right: 50px;
 }

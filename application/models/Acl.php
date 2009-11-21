@@ -40,19 +40,36 @@ class Model_Acl
 	 * 
 	 * @return array
 	 */
-	private function _getResources()
+	public function getResources()
 	{
 		$resources = array(
-			'index',
-			'milestone',
-			'ticket',
-			'checklist',
-			'calendar',
-			'people',
-			'settings'
+			'index' => 'Dashboard',
+			'milestone' => 'Milestones',
+			'ticket' => 'Tickets',
+			'checklist' => 'Checklists',
+			'calendar' => 'Calendar',
+			'people' => 'Team',
+			'settings' => 'Settings'
 		);
 		
 		return $resources;
+	}
+	
+	public function addUserToProject($formData, $iduser, $project)
+	{		
+		foreach($formData as $name => $perm){
+			$formData[$name] = (int)$perm;
+		}	
+
+		$formData['index'] = 7;
+		
+		$data = array(
+			'iduser' => $iduser,
+			'idproject' => $project,
+			'permission' => serialize($formData)
+		);
+		
+		$this->_dbTable->save($data);				
 	}
 	
 	/**
@@ -66,9 +83,9 @@ class Model_Acl
 		$userModel = new Model_User();
 		$idUser = $userModel->getUserId();
 		
-		$resources = $this->_getResources();
+		$resources = $this->getResources();
 		
-		foreach($resources as $resource){
+		foreach($resources as $resource => $name){
 			$perm[$resource] = 7;
 		}
 		
@@ -81,6 +98,12 @@ class Model_Acl
 		$this->_dbTable->save($data);
 	}
 	
+	/**
+	 * Vraci asociativni pole se spolecnostmi a jejich uzivateli
+	 * 
+	 * @param int $idproject ID projektu
+	 * @return array
+	 */
 	public function getUsers($idproject)
 	{
 		$users = $this->_dbTable->getFullUserList($idproject);

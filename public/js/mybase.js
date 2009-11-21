@@ -2,9 +2,8 @@ $(document).ready(function(){
 
 	$('li > a').wrapInner('<span></span>');
 	
-
-	
-		 
+	 $("#userSelect").multiSelect({selectAll: false}); 
+			 
 		// pohybuje s prvkem tooltip při pohybu myši
 		   $(document).mousemove(function(e){
 		      $('#supertitle').css({top:e.pageY-5,left:e.pageX+15});
@@ -22,6 +21,4 @@ $(document).ready(function(){
 		      $(this).attr({title:$('#supertitle').text()});      // zapíše atribut title zpátky k odkazu (aby jej bylo možno znovu použít)
 		      $('#supertitle').hide().remove();                    // skryje DIV s ID tooltip a potom ho odstraní
 		   }); 
-		   
-		
 });

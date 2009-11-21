@@ -21,6 +21,11 @@ h1 span {
 	color: #bdc3c5;
 }
 
+hr{
+	margin: 10px;
+	border: 1px solid #efefef;
+}
+
 #header {
 	background: url('../design/header-bg.png') #f7f7f7;
 	height: 64px;
@@ -186,6 +191,10 @@ div.bar>div, .bar-project>div {
 	background-color: #46c315;
 }
 
+.error{
+	background-color: #bf0000;
+}
+
 .center {
 	margin: 0 auto;
 	text-align: center;
@@ -193,6 +202,14 @@ div.bar>div, .bar-project>div {
 
 .clear {
 	clear: both;
+}
+
+.cancel{
+	color: #aa0000;
+}
+
+.cancel:hover{
+	text-decoration: none;
 }
 
 .project-table {
@@ -276,7 +293,6 @@ div.bar>div, .bar-project>div {
 	float: left;
 }
 
-
 #supertitle {
 	border: 1px solid #c9dbe0;
 	background: #fff;
@@ -330,14 +346,45 @@ tr.even{
 }
 
 tr:hover{
-	background-color: #f2f2f2;
+	background-color: #fffce3;
 }
 
 th{
 	background-color: #e3e7d7;
-	color: #fff;
 	text-align: left;
 	color: #13682f;
 	padding: 5px 10px;
 	font-size: 14px;
+}
+
+table.acl{
+	width: 75%;
+	float: right;
+	margin-top: 30px;
+}
+
+table.acl input{
+	margin-right: 3px;
+}
+
+table.acl td label{
+	font-weight: normal;
+	font-size: 11px;
+	font-family: Verdana;
+}
+
+table.acl td.noaccess label{
+	color: #aa0000;
+}
+
+table.acl td.manage label{
+	color: #3db900;
+}
+
+table.acl td.read label{
+	color: #b97100;
+}
+
+table.acl td.create label{
+	color: #aab900;
 }

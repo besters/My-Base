@@ -73,5 +73,27 @@ class Model_User
 		}
 		
 		return $return;	
+	}	
+	
+	/**
+	 * Vraci asociativni pole se spolecnostmi a jejich uzivateli kteri nejsou prirazeni k danemu projektu
+	 * 
+	 * @param int $idproject ID projektu
+	 * @return array
+	 */
+	public function getFreeUsers($idproject)
+	{
+		$users = $this->_dbTable->getFreeUsers($idproject);
+		
+		$return = array();
+		
+		foreach($users as $user){
+			$return[$user->company][] = array(
+				'iduser' => $user->iduser,
+				'user' => $user->user
+			);	
+		}
+		
+		return $return;		
 	}
 }
