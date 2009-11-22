@@ -17,7 +17,7 @@
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
  */
-class ZFDebug_Controller_Plugin_Debug_Plugin_Html implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface
+class ZFDebug_Controller_Plugin_Debug_Plugin_Html extends ZFDebug_Controller_Plugin_Debug_Plugin implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface
 {
     /**
      * Contains plugin identifier name
@@ -47,6 +47,16 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Html implements ZFDebug_Controller_
     {
         return $this->_identifier;
     }
+    
+    /**
+     * Returns the base64 encoded icon
+     *
+     * @return string
+     **/
+    public function getIconData()
+    {
+        return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAEdSURBVDjLjZIxTgNBDEXfbDZIlIgmCKWgSpMGxEk4AHehgavQcJY0KRKJJiBQLkCR7PxvmiTsbrJoLY1sy/Ibe+an9XodtqkfSUd+Op0mTlgpidFodKpGRAAwn8/pstI2AHvfbi6KAkndgHZx31iP2/CTE3Q1A0ji6fUjsiFn8fJ4k44mSCmR0sl3QhJXF2fYwftXPl5hsVg0Xr0d2yZnIwWbqrlyOZlMDtc+v33H9eUQO7ACOZAC2Ye8qqIJqCfZRtnIIBnVQH8AdQOqylTZWPBwX+zGj93ZrXU7ZLlcxj5vArYi5/Iweh+BNQCbrVl8/uAMvjvvJbBU/++6rVarGI/HB0BbI4PBgNlsRtGlsL4CK7sAfQX2L6CPwH4BZf1E9tbX5ioAAAAASUVORK5CYII=';
+    }
 
     /**
      * Gets menu tab for the Debugbar
@@ -67,8 +77,8 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Html implements ZFDebug_Controller_
     {
         $body = Zend_Controller_Front::getInstance()->getResponse()->getBody();
         $panel = '<h4>HTML Information</h4>';
-        $panel .= '
-        <script type="text/javascript" charset="utf-8">
+        $panel .= $this->_isXhtml().'
+        <script type="text/javascript">
             var ZFHtmlLoad = window.onload;
             window.onload = function(){
                 if (ZFHtmlLoad) {
@@ -80,12 +90,12 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Html implements ZFDebug_Controller_
                 jQuery("#ZFDebug_Html_Imgcount").html(jQuery("img[src]").length);
             };
         </script>';
-        $panel .= '<span id="ZFDebug_Html_Tagcount"></span> Tags<br />'
-                . 'HTML Size: '.round(strlen($body)/1024, 2).'K<br />'
-                . '<span id="ZFDebug_Html_Stylecount"></span> Stylesheet Files<br />'
-                . '<span id="ZFDebug_Html_Scriptcount"></span> Javascript Files<br />'
-                . '<span id="ZFDebug_Html_Imgcount"></span> Images<br />'
-                . '<form method="POST" action="http://validator.w3.org/check" target="_blank"><input type="hidden" name="fragment" value="'.htmlentities($body).'"><input type="submit" value="Validate With W3"></form>';
+        $panel .= '<span id="ZFDebug_Html_Tagcount"></span> Tags'.$this->getLinebreak()
+                . 'HTML Size: '.round(strlen($body)/1024, 2).'K'.$this->getLinebreak()
+                . '<span id="ZFDebug_Html_Stylecount"></span> Stylesheet Files'.$this->getLinebreak()
+                . '<span id="ZFDebug_Html_Scriptcount"></span> Javascript Files'.$this->getLinebreak()
+                . '<span id="ZFDebug_Html_Imgcount"></span> Images'.$this->getLinebreak()
+                . '<form method="post" action="http://validator.w3.org/check"><p><input type="hidden" name="fragment" value="'.htmlentities($body).'"'.$this->getClosingBracket().'<input type="submit" value="Validate With W3C"'.$this->getClosingBracket().'</p></form>';
         return $panel;
     }
 }

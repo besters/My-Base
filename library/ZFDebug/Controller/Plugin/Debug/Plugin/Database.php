@@ -7,7 +7,7 @@
  * @subpackage Plugins
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
- * @version    $Id: Database.php 74 2009-05-19 12:30:36Z gugakfugl $
+ * @version    $Id: Database.php 109 2009-09-21 20:56:13Z gugakfugl $
  */
 
 /**
@@ -36,6 +36,8 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
      * @var array
      */
     protected $_db = array();
+    
+    protected $_explain = false;
 
     /**
      * Create ZFDebug_Controller_Plugin_Debug_Plugin_Variables
@@ -61,6 +63,10 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
                 }
             }
         }
+        
+        if (isset($options['explain'])) {            
+            $this->_explain = (bool)$options['explain'];
+        }
     }
 
     /**
@@ -71,6 +77,16 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
     public function getIdentifier()
     {
         return $this->_identifier;
+    }
+    
+    /**
+     * Returns the base64 encoded icon
+     *
+     * @return string
+     **/
+    public function getIconData()
+    {
+        return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAEYSURBVBgZBcHPio5hGAfg6/2+R980k6wmJgsJ5U/ZOAqbSc2GnXOwUg7BESgLUeIQ1GSjLFnMwsKGGg1qxJRmPM97/1zXFAAAAEADdlfZzr26miup2svnelq7d2aYgt3rebl585wN6+K3I1/9fJe7O/uIePP2SypJkiRJ0vMhr55FLCA3zgIAOK9uQ4MS361ZOSX+OrTvkgINSjS/HIvhjxNNFGgQsbSmabohKDNoUGLohsls6BaiQIMSs2FYmnXdUsygQYmumy3Nhi6igwalDEOJEjPKP7CA2aFNK8Bkyy3fdNCg7r9/fW3jgpVJbDmy5+PB2IYp4MXFelQ7izPrhkPHB+P5/PjhD5gCgCenx+VR/dODEwD+A3T7nqbxwf1HAAAAAElFTkSuQmCC';
     }
 
     /**
@@ -109,12 +125,40 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
             $html .= 'Metadata cache is DISABLED';
         }
 
+        # For adding quotes to query params
+        function add_quotes(&$value, $key) {
+            $value = "'".$value."'";
+        }
+
         foreach ($this->_db as $name => $adapter) {
             if ($profiles = $adapter->getProfiler()->getQueryProfiles()) {
+                $adapter->getProfiler()->setEnabled(false);
                 $html .= '<h4>Adapter '.$name.'</h4><ol>';
                 foreach ($profiles as $profile) {
-                    $html .= '<li><strong>['.round($profile->getElapsedSecs()*1000, 2).' ms]</strong> '
-                             .htmlspecialchars($profile->getQuery()).'</li>';
+                    $params = $profile->getQueryParams();
+                    array_walk($params, 'add_quotes');
+                    $paramCount = count($params);
+                    if ($paramCount) {
+                        $html .= '<li>'.htmlspecialchars(preg_replace(array_fill(0, $paramCount, '/\?/'), $params, $profile->getQuery(), 1));
+                    } else {
+                        $html .= '<li>'.htmlspecialchars($profile->getQuery());
+                    }
+                    $html .= '<p><strong>Time:</strong> '.round($profile->getElapsedSecs()*1000, 2).' ms'.$this->getLinebreak();
+                    
+                    $supportedAdapter = ($adapter instanceof Zend_Db_Adapter_Mysqli 
+                        || $adapter instanceof Zend_Db_Adapter_Pdo_Mysql);
+                
+                    # Run explain if enabled, supported adapter and SELECT query
+                    if ($this->_explain && $supportedAdapter && Zend_Db_Profiler::SELECT == $profile->getQueryType()) {
+                        $explain = $adapter->fetchRow('EXPLAIN '.$profile->getQuery());
+                        $html .= '<strong>Type:</strong> '.strtolower($explain['select_type']).', '.$explain['type'].$this->getLinebreak()
+                                .'<strong>Possible Keys:</strong> '.$explain['possible_keys'].$this->getLinebreak()
+                                .'<strong>Key Used:</strong> '.$explain['key'].$this->getLinebreak()
+                                .'<strong>Rows:</strong> '.$explain['rows'].$this->getLinebreak()
+                                .'<strong>Extra:</strong> '.$explain['Extra'];
+                    }
+
+                    $html .= '</p></li>';
                 }
                 $html .= '</ol>';
             }
