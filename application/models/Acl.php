@@ -17,7 +17,7 @@ class Model_Acl
 	}
 	
 	/**
-	 * Zjistuje opravneni uzivatele
+	 * Zjistuje opravneni uzivatele pro dany projekt
 	 * 
 	 * @param string $user Uzivatelske jmeno
 	 * @param string $project ID projektu
@@ -33,6 +33,22 @@ class Model_Acl
 		$return = unserialize($acl[0]->permission);
 		
 		return $return;
+	}
+	
+	/**
+	 * Zjistuje vsechna opravneni uzivatele
+	 * 
+	 * @param string $user Uzivatelske jmeno
+	 * @return array Opravneni
+	 */	
+	public function getAllPerms($user)
+	{
+		$userModel = new Model_User();
+		$idUser = $userModel->getUserId($user);
+		
+		$acl = $this->_dbTable->fetchAllEntry('iduser = '.$idUser.'', array('permission', 'idproject'));		
+		
+		return $acl;		
 	}
 	
 	/**

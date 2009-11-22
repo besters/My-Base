@@ -18,7 +18,12 @@ class Unodor_View_Helper_Acl extends Zend_View_Helper_Abstract {
 		$acl = Zend_Registry::get('acl');
 		$auth = new Zend_Session_Namespace('Zend_Auth');		
 		
-		$return = $acl->isAllowed($auth->storage->email, $resource, $action);
+		try {
+			$return = $acl->isAllowed($auth->storage->email, $resource, $action);
+		} catch (Zend_Acl_Exception $e) {
+			return false;
+		}
+		
 		return $return;
 	}	
 }

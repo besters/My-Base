@@ -96,9 +96,8 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			$acl->deny('user', 'project', $this->_manage);
 			$acl->deny('user', 'people', $this->_manage);
 			
-			// Resource pro projektovou podsekci
-			if($projekt > 0)			
-				$this->_projectAcl($acl, $identity, $projekt);				
+			// Resource pro projektovou podsekci		
+			$this->_projectAcl($acl, $identity);				
 
 			Zend_Registry::set('acl', $acl);	
 				
@@ -127,27 +126,32 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	 * 
 	 * @param Zend_Acl $acl ACL objekt
 	 * @param Zend_Auth_Storage_Session $identity Objekt s identitou
-	 * @param int $projekt ID projektu
 	 */
-	private function _projectAcl($acl, $identity, $projekt)
+	private function _projectAcl($acl, $identity)
 	{	
-		$aclModel = new Model_Acl();	
-		$perms = $aclModel->getUserPerms($identity->email, $projekt);
-
-		foreach($perms as $val => $key){
-			$acl->add(new Zend_Acl_Resource($projekt.'|'.$val));
-						
-			if($key & self::READ){
-				$acl->allow($identity->email, $projekt.'|'.$val, $this->_read);
-			}
-			if($key & self::CREATE){
-				$acl->allow($identity->email, $projekt.'|'.$val, $this->_create);
-			}
-			if($key & self::MANAGE){
-				$acl->allow($identity->email, $projekt.'|'.$val, $this->_manage);
-			}
+		$aclModel = new Model_Acl();
+			
+		$dbData = $aclModel->getAllPerms($identity->email);		
+		
+		foreach($dbData as $aclData)
+		{
+			$perms = unserialize($aclData->permission);
+			foreach($perms as $resource => $perm)
+			{	
+				$acl->add(new Zend_Acl_Resource($aclData->idproject.'|'.$resource));
 							
-			$this->_resources[] = $projekt.'|'.$val;
+				if($perm & self::READ){
+					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_read);
+				}
+				if($perm & self::CREATE){
+					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_create);
+				}
+				if($perm & self::MANAGE){
+					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_manage);
+				}
+								
+				$this->_resources[] = $aclData->idproject.'|'.$resource;
+			}
 		}			
-	}
+	}	
 }
