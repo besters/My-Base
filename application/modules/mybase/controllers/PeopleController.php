@@ -35,8 +35,13 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	}
 	
 	public function deleteAction()
-	{
-		
+	{	
+		$projekt = $this->_request->getParam('projekt');
+		if(isset($projekt)){
+			return $this->_deleteTeam($projekt);
+		}else{
+			return $this->_deletePeople();
+		}		
 	}
 	
 	private function _newTeam($projekt)
@@ -75,9 +80,11 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 		
 	}
 	
-	private function _deleteTeam()
+	private function _deleteTeam($projekt)
 	{
-		
+		$this->_modelAcl->removeFromProject((int)$this->_request->getParam('id'));
+		$this->_flash('User has been successfully removed from project', 'done');
+		return $this->_redirect('/'.$projekt.'/people/overview');
 	}
 	
 	private function _deletePeople()

@@ -68,7 +68,11 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 	 */
 	public function deleteEntry($id)
 	{
-		$stav = $this->delete($this->_primary[1] . ' =' . (int)$id);
+		if(is_int($id)){
+			$stav = $this->delete($this->_primary . ' =' . (int)$id);
+		}else{
+			$stav = $this->delete(key($id) .' = '. $id[key($id)]);
+		}
 		if($stav == 0){
 			throw new Exception("Nelze smazat záznam s ID $id");
 		}

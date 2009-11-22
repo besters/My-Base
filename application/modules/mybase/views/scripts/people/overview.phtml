@@ -26,8 +26,8 @@
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" class="small-cell">
 				<?php if($this->acl('people', 'edit')): ?>
-				<a href="<?php echo $this->baseUrl('/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
-				<a href="<?php echo $this->baseUrl('/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
 				<?php endif; ?>
 				</td>
 			</tr>

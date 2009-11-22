@@ -71,6 +71,13 @@ class Model_Acl
 		return $resources;
 	}
 	
+	/**
+	 * Ulozi novy ACL zaznam = priradi k projektu noveho uzivatele
+	 * 
+	 * @param array $formData $_POST data z formulare
+	 * @param int $iduser ID uzivatele
+	 * @param int $project ID projektu
+	 */
 	public function addUserToProject($formData, $iduser, $project)
 	{		
 		foreach($formData as $name => $perm){
@@ -136,5 +143,15 @@ class Model_Acl
 		}
 		
 		return $return;		
+	}
+	
+	/**
+	 * Smaze ACL zaznam
+	 * 
+	 * @param int $idacl
+	 */
+	public function removeFromProject($idacl)
+	{
+		$this->_dbTable->deleteEntry($idacl);
 	}
 }
