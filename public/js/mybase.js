@@ -7,6 +7,6 @@ $(document).ready(function(){
 	$('.modal').modal({opacity: 0.6, bgColor: '#fff'});			   
 	//$.modal('<div class="ne">not implemented</div>');
 	
-	$('*[title]').tooltip({top: 20, left: 10});
+	$('*[title]').tooltip();
 
 });
