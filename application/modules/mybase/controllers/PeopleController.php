@@ -5,6 +5,7 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	{
 		$this->_modelAcl = new Model_Acl();
 		$this->_modelUser = new Model_User();
+		$this->_projekt = $this->_request->getParam('projekt');
 	}
 	
 	public function indexAction()
@@ -14,16 +15,15 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	public function overviewAction()
 	{
-		$users = $this->_modelAcl->getUsers($this->_request->getParam('projekt'));
+		$users = $this->_modelAcl->getUsers($this->_projekt);
 		
 		$this->view->userList = $users;
 	}
 	
 	public function newAction()
 	{
-		$projekt = $this->_request->getParam('projekt');
-		if(isset($projekt)){
-			return $this->_newTeam($projekt);
+		if(isset($this->_projekt)){
+			return $this->_newTeam($this->_projekt);
 		}else{
 			return $this->_newPeople();
 		}
@@ -31,14 +31,17 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	public function editAction()
 	{
-		
+		if(isset($this->_projekt)){
+			return $this->_editTeam();
+		}else{
+			return $this->_editPeople();
+		}		
 	}
 	
 	public function deleteAction()
 	{	
-		$projekt = $this->_request->getParam('projekt');
-		if(isset($projekt)){
-			return $this->_deleteTeam($projekt);
+		if(isset($this->_projekt)){
+			return $this->_deleteTeam($this->_projekt);
 		}else{
 			return $this->_deletePeople();
 		}		
@@ -72,7 +75,9 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	private function _editTeam()
 	{
-		
+		sleep(2);
+		$this->view->resources = $this->_modelAcl->getResources();
+		$this->disableMvc(true, false);
 	}
 	
 	private function _editPeople()

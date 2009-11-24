@@ -9,9 +9,10 @@
     </div>
 	<div id="obsah">
 		<?php echo $this->flashMessages(); ?>
-		
+		<hr class="clear" />
 		<?php foreach($this->userList as $company => $users): ?>
-		<table>
+		
+		<table class="people-overview">
 			<thead>
 				<tr>
 					<th colspan="4"><?php echo $company; ?></th>
@@ -26,7 +27,7 @@
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" class="small-cell">
 				<?php if($this->acl('people', 'edit')): ?>
-				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/acl/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/edit/'.$user['idacl']); ?>" class="modal"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
 				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
 				<?php endif; ?>
 				</td>
@@ -41,5 +42,6 @@
 		
 		
 		<br class="clear" />
+		
 	</div>
 </div>
