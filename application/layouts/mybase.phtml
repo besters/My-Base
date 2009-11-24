@@ -3,12 +3,14 @@ $this->headLink()
     ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/jquery.multiSelect.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/mybase.modal.css'), 'screen,projection')
+    ->appendStylesheet($this->baseUrl('/public/css/mybase.tooltip.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/layout.css'), 'screen,projection');
     
 $this->headScript()
 	->appendFile($this->baseUrl('/public/js/jquery.js'))
 	->appendFile($this->baseUrl('/public/js/jquery.multiSelect.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.modal.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.tooltip.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.js'));    
 
 echo $this->doctype(); ?>

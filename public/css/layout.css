@@ -297,16 +297,6 @@ div.bar>div, .bar-project>div {
 	float: left;
 }
 
-#supertitle {
-	border: 1px solid #c9dbe0;
-	background: #fff;
-	color: black;
-	padding: 5px;
-	position: absolute;
-	font-size: 0.8em;
-	ming-height: 20px;
-}
-
 table{
 	width: 90%;
 	font-size: 12px;
