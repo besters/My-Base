@@ -2,7 +2,7 @@
 <?php echo "
 $(document).ready(function() {
 	$('#img').uploadify({
-	'uploader'  : '".$this->baseUrl('public/swf/uploadify.swf')."'
+	'uploader'  : '".$this->baseUrl('public/swf/uploadify.swf')."',
 	'script'    : 'http://unodor.mybase/project/upload/?__tkn=".Zend_Session::getId()."',
 	'cancelImg' : '".$this->baseUrl('public/design/cancel.png')."',
 	'auto'      : true,
