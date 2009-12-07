@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#img').uploadify({
 	'uploader'  : '".$this->baseUrl('public/swf/uploadify.swf')."',
 	'script'    : 'http://unodor.mybase/project/upload/?__tkn=".Zend_Session::getId()."',
-	'cancelImg' : '".$this->baseUrl('public/design/cancel.png')."',
+	'cancelImg' : '".$this->baseUrl('public/design/ico-cross.png')."',
 	'auto'      : true,
 	'buttonText': '".$this->translate('BROWSE')."',
 	'fileDesc'	: '".$this->translate('Image Files')."',
