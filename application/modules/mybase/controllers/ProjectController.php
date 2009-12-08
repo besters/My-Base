@@ -29,7 +29,10 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 
 				if(isset($formData['img'])){
 					$account = new Model_Account();
-					mkdir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/');
+					
+					if(!is_dir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/'))
+						mkdir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/');
+											
 					rename(ROOT_PATH.'/public/files/tmp/'.$formData['img'], ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/'.$formData['img']);
 				}
 				
@@ -48,6 +51,10 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 		$account = new Model_Account();
 
 		$adapter = new Zend_File_Transfer_Adapter_Http();
+		
+		if(!is_dir(ROOT_PATH.'/public/files/tmp/'))
+			mkdir(ROOT_PATH.'/public/files/tmp/');
+						
 		$adapter->setDestination(ROOT_PATH.'/public/files/tmp/');
 		
 		$info = $adapter->getFileInfo();
