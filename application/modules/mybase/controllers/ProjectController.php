@@ -29,9 +29,11 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 
 				if(isset($formData['img'])){
 					$account = new Model_Account();
+
+					if(!is_dir(ROOT_PATH.'/public/files/'.$account->getId()))
+						mkdir(ROOT_PATH.'/public/files/'.$account->getId());
 					
-					if(!is_dir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/'))
-						mkdir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/');
+					mkdir(ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/');
 											
 					rename(ROOT_PATH.'/public/files/tmp/'.$formData['img'], ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/'.$formData['img']);
 				}
