@@ -22,6 +22,8 @@ class Model_Acl
 	 * @param string $user Uzivatelske jmeno
 	 * @param string $project ID projektu
 	 * @return array Opravneni
+	 * 
+	 * @todo Upravit fetch dotaz aby vracel jen jeden vysledek (ne fetchAll), jelikoz jeden user muze mit v jednom projektu jen jeden ACL
 	 */
 	public function getUserPerms($user, $project)
 	{
@@ -33,6 +35,19 @@ class Model_Acl
 		$return = unserialize($acl[0]->permission);
 		
 		return $return;
+	}
+	
+	/**
+	 * Vraci opravneni podle zadaneho ID
+	 * 
+	 * @param int $idacl Primary key v tabulce ACL
+	 * @return array Opravneni
+	 */
+	public function getPerms($idacl)
+	{
+		$acl = $this->_dbTable->getRow($idacl, array('permission'));
+		
+		return unserialize($acl['permission']);
 	}
 	
 	/**
@@ -153,5 +168,17 @@ class Model_Acl
 	public function removeFromProject($idacl)
 	{
 		$this->_dbTable->deleteEntry($idacl);
+	}
+	
+	public function updatePerms($idacl, $perms)
+	{
+		$perms = serialize($perms);
+		$data = array('permission' => $perms);
+		
+		if($this->_dbTable->update($data, $idacl)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

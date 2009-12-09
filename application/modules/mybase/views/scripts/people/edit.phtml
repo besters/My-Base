@@ -1,5 +1,5 @@
-<?php printf($this->translate("Editing permissions for acl %1\$s", $this->param('id')))?>
-		<table class="acl">
+		<span id="idacl" style="display: none"><?php echo $this->param('id'); ?></span>
+		<table class="acl modalwin">
 			<thead>
 				<tr>
 					<th>Sekce</th>
@@ -8,17 +8,16 @@
 			</thead>
 			<tbody>
 				<?php $i = 0; 
-				foreach($this->resources as $name => $resource):
+				foreach($this->acl as $name => $perm):
 					if($name == 'index') continue;
 				?>
 				<tr <?php echo ($i % 2 == 0 ? '' : 'class="even"') ?>>
-					<td><?php echo $this->translate($resource)?></td>
-					<td class="noaccess"><?php echo $this->formRadio('acl['.$name.']', null, array('class' => 'input-radio acl'), array('0' => $this->translate('No access'))); ?></td>
-					<td class="read"><?php echo $this->formRadio('acl['.$name.']', null, array('class' => 'input-radio acl'), array('1' => $this->translate('Read only'))); ?></td>
-					<td class="create"><?php echo $this->formRadio('acl['.$name.']', null, array('class' => 'input-radio acl'), array('3' => $this->translate('Can create'))); ?></td>
-					<td class="manage"><?php echo $this->formRadio('acl['.$name.']', 7, array('class' => 'input-radio acl'), array('7' => $this->translate('Can manage'))); ?></td>
+					<td><?php echo $this->translate($name)?></td>
+					<td class="noaccess"><?php echo $this->formRadio('acl['.$name.']', $perm, array('class' => 'input-radio acl'), array('0' => $this->translate('No access'))); ?></td>
+					<td class="read"><?php echo $this->formRadio('acl['.$name.']', $perm, array('class' => 'input-radio acl'), array('1' => $this->translate('Read only'))); ?></td>
+					<td class="create"><?php echo $this->formRadio('acl['.$name.']', $perm, array('class' => 'input-radio acl'), array('3' => $this->translate('Can create'))); ?></td>
+					<td class="manage"><?php echo $this->formRadio('acl['.$name.']', $perm, array('class' => 'input-radio acl'), array('7' => $this->translate('Can manage'))); ?></td>
 				</tr>				
 				<?php $i++; endforeach; ?>
 			</tbody>
 		</table>
-		<!--  <a href="#" class="close">Done editing</a><h4><?php echo $this->param('id');?></h4>-->

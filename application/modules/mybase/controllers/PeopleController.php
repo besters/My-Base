@@ -53,13 +53,10 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 		$this->view->resources = $this->_modelAcl->getResources();
 		
 		if($this->_request->isPost()){
-			if(isset($_POST['user'])){
-				$acl = new Model_Acl;
-				
+			if(isset($_POST['user'])){				
 				foreach($_POST['user'] as $iduser){
-					$acl->addUserToProject($_POST['acl'], $iduser, $projekt);
-				}
-				
+					$this->_modelAcl->addUserToProject($_POST['acl'], $iduser, $projekt);
+				}				
 				$this->_flash('User has been successfully added to project', 'done');
 				return $this->_redirect('/'.$projekt.'/people/new');
 			}else{
@@ -75,9 +72,27 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	private function _editTeam()
 	{
-		sleep(2);
-		$this->view->resources = $this->_modelAcl->getResources();
+		
+		$idacl = $this->_request->getParam('id');
+		$this->view->acl = $this->_modelAcl->getPerms($idacl);
+
 		$this->disableMvc(true, false);
+		
+		if($this->_request->isPost()){
+
+			$this->disableMvc(true, true);		
+			
+			$perms = $this->_modelAcl->getPerms($idacl);			
+			$ex = explode('-', $this->_request->getParam('perm'));			
+			$perms[$ex[1]] = (int)$ex[2];
+			
+			if($this->_modelAcl->updatePerms($idacl, $perms)){
+				echo true;
+			}else{
+				echo false;
+			}
+
+		}
 	}
 	
 	private function _editPeople()

@@ -42,6 +42,7 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 	}
 	
 	/**
+	 * Pomocna metoda ktera provadi insert nad DB
 	 * 
 	 * @param array $data ukladane data
 	 * @return int id aktualne vkladaneho zaznamu
@@ -52,11 +53,28 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 		return $lasInsertId;
 	}
 	
+	/**
+	 * Provadi update nad DB
+	 * 
+	 * @param array $data Ukladane data
+	 * @param int $id Primarni klic
+	 * @return bool
+	 */
+	public function update(array $data, $id)
+	{
+		$id = array($this->_primary[1] . ' = ?' => (int)$id);
+		if(parent::update($data, $id)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	private function _update($data, $id)
 	{
-			//$this->update($data, array(
-				//$this->_primary[1] . ' = ?' => (int)$id
-			//));		
+		$this->update($data, array(
+			$this->_primary[1] . ' = ?' => (int)$id
+		));		
 	}	
 
 	/**
@@ -114,7 +132,11 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
 			$key = key($id);
 			$where = $key . ' = "' . $id[$key].'"';
 		}else{
-			$where = $this->_primary[1] . ' = ' . $id;
+			if(is_array($this->_primary)){
+				$where = $this->_primary[1] . ' = ' . $id;
+			}else{
+				$where = $this->_primary . ' = ' . $id;
+			}
 		}
 		$row = $this->fetchRow($this->select()->from($this, $columns)->where($where));
 		if($row != null)
