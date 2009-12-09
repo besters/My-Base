@@ -14,25 +14,11 @@ $(document).ready(function() {
 			alert(errorObj.info);
 			$('.input-submit').removeAttr('disabled');
 		},
-	onComplete: function (event, queueID, fileObj, response, data) {
-	
-			/*console.log('event = '+event);
-			console.log('queueID = '+queueID);
-			console.log('fileObj.name = '+fileObj.name);
-			console.log('fileObj.filePath = '+fileObj.filePath);
-			console.log('fileObj.size = '+fileObj.size);
-			console.log('fileObj.creationDate = '+fileObj.creationDate);
-			console.log('fileObj.modificationDate = '+fileObj.modificationDate);
-			console.log('fileObj.type = '+fileObj.type);
-			console.log('response = '+response);
-			console.log('data.fileCount = '+data.fileCount);
-			console.log('data.speed = '+data.speed);*/
-			
+	onComplete: function (event, queueID, fileObj, response, data) {				
 			$('.input-submit').removeAttr('disabled');
 			$('#imgUploader').after('<br /><img src=\"/public/files/tmp/'+response+'\" />');
 			$('#imgUploader').hide();
 			$('#img').after('<input type=\"hidden\" name=\"img\" value=\"'+response+'\" />');
-			//alert(response);
 		},
 	onOpen: function(event, queueID, fileObj){
 		$('.input-submit').attr({disabled: 'disabled'});		
@@ -42,9 +28,6 @@ $(document).ready(function() {
 	},
 	
 	onProgress: function(event, queueID, fileObj, data){
-		/*console.log('data.percentage = '+data.percentage);
-		console.log('data.bytesLoaded = '+data.bytesLoaded);
-		console.log('data.speed  = '+data.speed);*/
 	}
 	
 	});
