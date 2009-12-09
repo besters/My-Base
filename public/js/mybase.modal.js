@@ -17,7 +17,8 @@
 		opacity:	0.6,
 		overlay:	true,
 		close:		'.close',
-		loadingImg: '/public/design/loader.gif'
+		loadingImg: '/public/design/loader.gif',
+		closeText:	'Close'
 	};
 	
 	$.modal.main = {	
@@ -51,7 +52,7 @@
 			$.modal.main.overlay();
 			
 			$('#modal').remove();
-			$('body').append('<div id="modal"><div class="body"><a href="#" class="close">Close It</a><div class="content"></div></div></div>');			
+			$('body').append('<div id="modal"><div class="body"><div class="content"></div><a href="#" class="close">'+cfg.closeText+'</a></div></div>');			
 			$('#modal').hide();				
 			$('#modal .body').children().hide().end().append('<div class="loading"><img src="'+cfg.loadingImg+'" /></div>');			
 			$('#modal').css({top:	getPageScroll()[1] + (getPageHeight() / 10), left: ($(window).width() - $('#modal').outerWidth(true)) / 2}).fadeIn(200);
