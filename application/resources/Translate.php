@@ -32,9 +32,7 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 		$options = $this->getOptions();
 		
 		$locale = new Zend_Locale();
-		
-		//$locale->setLocale('sk_SK'); // Nastaveni locale - nejspis se to nastavi nekde v pluginu podle preferenci uzivatele a ulozi do registru nebo session
-		
+			
 		switch ($locale) {
 			case 'cs_CZ':
 				$this->_lang->code = 'cs';
@@ -49,7 +47,7 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 			case 'de_LU':
 			case 'de':				
 				$this->_lang->code = 'de';
-				$this->_lang->locale = $locale;
+				$this->_lang->locale = 'de';
 				$this->_lang->name = 'German';
 				break;			
 			default:
@@ -58,6 +56,9 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 				$this->_lang->name = 'English';
 				break;
 		}
+		
+		$locale->setLocale($this->_lang->locale); // Nastaveni locale - nejspis se to nastavi nekde v pluginu podle preferenci uzivatele a ulozi do registru nebo session
+		Zend_Registry::set('Zend_Locale', $locale);
 
 		$frontendOptions = array(
 			'automatic_serialization' => true

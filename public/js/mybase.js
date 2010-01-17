@@ -23,6 +23,15 @@ $(document).ready(function(){
 	$("input[name='company[]']").click(function(){
 		$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
 	});
+	
+	$('input:not(:submit), select, textarea').focusin(function(){
+		$(this).parent('div.input').addClass('hover');
+	});
+	
+	$('input, select, textarea').focusout(function(){
+		$(this).parent('div.input').removeClass('hover');
+	});
+	
 	 
 	// Ajaxova editace ACL -------------------------------------------------------------------------------------------------------------------
 	$('.acl.modalwin label').live('mouseup', function(event){
@@ -64,10 +73,13 @@ $(document).ready(function(){
 		changeYear: true,
 		showOtherMonths: false,
 		showMonthAfterYear: false,
-		yearRange: '-1:+10',
-		altField: '#datetime'
+		yearRange: '-5:+10',
+		altField: '#datetime',
+		altFormat: 'yy-mm-dd',
+		onSelect: function(dateText, inst) {
+			$('#check').attr('value', dateText);
+		}		
 	});
-
 	// ---------------------------------------------------------------------------------
 	
 

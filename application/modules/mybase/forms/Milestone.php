@@ -4,6 +4,8 @@ class Mybase_Form_Milestone extends Unodor_Form
 {
 	public function init()
 	{					
+		$projectId = $this->getProjectId();
+		
 		$this->addElement('text', 'name', array(
 			'label' => "Milestone name:",
 			'class'	=> 'input-text',
@@ -19,32 +21,38 @@ class Mybase_Form_Milestone extends Unodor_Form
 		$priority = new Model_Priority();
 		$this->addElement('select', 'idpriority', array(
 			'label' => "Priority:",
-			'multiOptions' => $priority->getFormSelect($this->getAccountId(), '--- None ---'),
+			'multiOptions' => $priority->getFormSelect(null, '--- None ---'),
 			'disableTranslator'	=> true,
 			'class' => 'input-select',
 			'decorators' => $this->setInputDecorators()	
 		));	
 
-		$this->addElement('select', 'idstatus', array(
+		$this->addElement('select', 'status', array(
 			'label' => "Status:",
-			'multiOptions' => array('Active', 3 => 'Paused'),
+			'multiOptions' => array('active' => 'Active', 'paused' => 'Paused'),
 			'class' => 'input-select',
 			'decorators' => $this->setInputDecorators()	
 		));	
 
-		$this->addElement('select', 'idmilestone', array(
+		$milestone = new Model_Milestone();
+		$this->addElement('select', 'parent', array(
 			'label' => "Parent milestone:",
-			'multiOptions' => array('1', '2'),
+			'multiOptions' => $milestone->getParentMilestonesList($projectId, '--- None ---'),
 			'disableTranslator'	=> true,
 			'class' => 'input-select',
 			'decorators' => $this->setInputDecorators()	
 		));	
-		
-		$this->addElement('text', 'datetime', array(
+
+		$date = new Zend_Date();
+		$this->addElement('text', 'check', array(
 			'class' => 'milestone-datetime',
 			'readonly' => 'readonly',
 			'label' => "Due date:",
 			'description' => 'Select a date from the calendar',
+			'decorators' => $this->setInputDecorators()
+		));  
+				
+		$this->addElement('hidden', 'datetime', array(
 			'decorators' => $this->setInputDecorators()
 		));  
 			
@@ -60,7 +68,7 @@ class Mybase_Form_Milestone extends Unodor_Form
 			'label' => 'Assignments: ',
 			'required'	=> true,
 			'disableTranslator' => true,
-			'multiOptions'	=>	$user->getProjectUsers($this->getProjectId()),
+			'multiOptions'	=>	$user->getProjectUsers($projectId),
 			'decorators' => $this->setInputDecorators()
 		));
 		

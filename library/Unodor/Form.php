@@ -17,16 +17,10 @@ class Unodor_Form extends Zend_Form
 		parent::__construct($options);
 	}
 	
-	protected function getAccountId()
-	{
-		$account = new Model_Account();
-		return $account->getId();
-	}
-	
 	protected function getProjectId()
 	{
-		$request = Zend_Controller_Front::getInstance()->getRequest();
-		return $request->getParam('projekt');
+		$projekt = new Model_Project();
+		return $projekt->getId();
 	}
 	
 	public function loadDefaultDecorators()

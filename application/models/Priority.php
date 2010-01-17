@@ -26,8 +26,7 @@ class Model_Priority
 	public function getFormSelect($idaccount = null, $nullVal = null)
 	{		
 		if(is_null($idaccount)){
-			$account = new Model_Account();
-			$idaccount = $account->getId();
+			$idaccount = $this->_dbTable->getAccountId();
 		}
 		
 		$priority = $this->_dbTable->fetchAllEntry('idaccount = '.$idaccount.'', array('idpriority', 'name'));

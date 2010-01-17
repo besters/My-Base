@@ -13,16 +13,21 @@ class Model_Milestone
 	}
 
 	/**
-	 * Vraci z db seznam milniku
+	 * Vraci z db seznam milniku ktere muzou byt pouzity jako rodicovske
 	 * 
 	 * @return object Vysledek dotazu
 	 */
-	public function getMilestonesList()
-	{	
-		// TODO	
-		//$result = $this->_dbTable->getFullProjectList($this->_dbTable->getAccountId());		
+	public function getParentMilestonesList($projectId, $nullVal = null)
+	{		
+		$milestone = $this->_dbTable->fetchAllEntry('idproject = '.$projectId.' AND parent IS NULL', array('idmilestone', 'name'));
 		
-		return $result;
+		foreach ($milestone as $row) {
+			if(!is_null($nullVal))
+				$return[null] = $nullVal;
+			$return[$row->idmilestone] = $row->name;
+		}
+		
+		return $return;	
 	}
 	
 	/**
@@ -33,17 +38,20 @@ class Model_Milestone
 	 * @return int ID ukladaneho zaznamu
 	 */
 	public function save($formData, $id = null)
-	{
-		/*
+	{		
+		$user = new Model_User();
+		$project = new Model_Project();
+
 		$data = array(
-			'name' 			=> 	$formData['name'],
-			'description' 	=>	empty($formData['description']) ? null : $formData['description'],
-			'iduser'		=> 	$formData['iduser'],
-			'idcompany'		=>	empty($formData['idcompany']) ? null : $formData['idcompany'],
-			'img'			=>	$formData['img'],
-			'idaccount'		=>	$this->_dbTable->getAccountId(),
-			'status'		=> 'active'
-		);*/
+			'idproject' 	=> $project->getId(),
+			'iduser'			=> $user->getUserId(),
+			'idpriority'	=>	empty($formData['idpriority']) ? null : $formData['idpriority'],
+			'name'			=>	$formData['name'],
+			'datetime'		=>	$formData['datetime'],
+			'description'	=> empty($formData['description']) ? null : $formData['description'],
+			'status'			=> $formData['status'],
+			'parent'			=>	empty($formData['parent']) ? null : $formData['parent']
+		);
 
 		$lastInsertId = $this->_dbTable->save($data, $id);
 		return $lastInsertId;

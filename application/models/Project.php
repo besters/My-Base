@@ -11,6 +11,20 @@ class Model_Project
 	{
 		$this->_dbTable = new Model_DbTable_Project();
 	}
+	
+	/**
+	 * Zjistuje ID projektu
+	 * 
+	 * @param string $project Nazev projektu
+	 * @return int Id projektu
+	 * 
+	 * @todo Zjistovat id projektu podle jeho nazvu
+	 */
+	public function getId($project = null)
+	{
+		$request = Zend_Controller_Front::getInstance()->getRequest();
+		return $request->getParam('projekt');
+	}
 
 	/**
 	 * Vraci z db seznam projektu pro aktivni ucet

@@ -213,7 +213,7 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`milestone` (
   `iduser` INT UNSIGNED NULL ,
   `idpriority` INT UNSIGNED NULL ,
   `name` VARCHAR(150) NOT NULL ,
-  `datetime` DATETIME NOT NULL ,
+  `datetime` DATE NOT NULL ,
   `description` VARCHAR(255) NULL ,
   `status` SET('active','complete','canceled','paused') NOT NULL ,
   `parent` INT UNSIGNED NULL ,
