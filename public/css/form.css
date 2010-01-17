@@ -1,11 +1,52 @@
+form{
+	margin: 0 auto;
+	width: 90%;
+}
 
+img.description{
+	margin-left: 10px;
+}
 
-label{
+div.description{
+	clear: both;
+}
+
+form div.input{
+	margin: 3px;
+	padding: 5px;
+}
+
+form div.input:hover{
+	background-color: #feffe2;
+}
+
+form div.calendar{
+	width: 200px;
+	height: 200px;
+	background-color: #fff;
+	float: left;
+	border-right: 1px solid #e6e6e6;
+	padding-right: 7px;
+	margin-right: 7px;
+}
+
+form div.calendar:hover{
+	background-color: #fff;
+}
+
+form label.optional, form label.required{
+	display: block;
 	color: #545254;
 	font-size: 13px;
 	font-weight: bold;
 	margin-left: 20px;
-	font-family: Arial;
+	font-family: Arial;	
+}
+
+.input-textarea{
+	width: 550px;
+	overflow: auto;
+	padding: 5px;
 }
 
 .input-text {
@@ -16,39 +57,67 @@ label{
 	color: #545254;
 }
 
-form dd{
-	/*width: 312px;*/
-	background: #fbfbfb;
-	padding: 4px 10px 10px 10px;
-}
-
-form dt{
-	/*width: 332px;*/
-	background: #fbfbfb;
-	margin-top: 10px;
-	padding-top: 3px;
-}
-
-.input-textarea{
-	width: 550px;
-	overflow: auto;
-	padding: 5px;
-}
-
-.input-select{
-	
-}
-
-.input-file{
-	
-}
-
 .input-submit{
 	font-size: 15px;
 	padding: 5px 20px;
 }
 
-.submit-block{
-	text-align: right;
-	margin-right: 50px;
+div.submit{
+	border-top: 1px dashed #e6e6e6;
+	margin-top: 10px !important;
+	padding-left: 20px !important;
+	padding-top: 15px !important;
+	text-align: left;
 }
+
+div.submit:hover{
+	background-color: #fff !important;
+}
+
+input.milestone-datetime{
+	border: 0;
+	color: #000;
+	font-weight: bold;
+	font-size: 15px;
+	width: 80px;
+}
+
+
+
+
+div.user-assign, div.user-assign-company{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #767676;
+}
+
+div.user-assign input, div.user-assign-company input{
+	margin-right: 5px;
+}
+
+div.user-assign label, div.user-assign-company label{
+	margin-right: 15px;
+}
+
+div.user-assign{
+	padding-top: 5px;
+}
+
+div.user-assign-company{
+	border-bottom: 1px dashed #e6e6e6;
+	padding-top: 15px;
+}
+
+div.user-assign label{
+	white-space: pre;
+	display: inline-block;
+	min-width: 120px;
+}
+
+div.user-assign-company label{
+	font-weight: bold;
+}
+div.user-assign-company input{
+	
+}
+

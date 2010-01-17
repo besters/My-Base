@@ -1,75 +1,59 @@
 <?php
 
-class Mybase_Form_Project extends Zend_Form
+class Mybase_Form_Project extends Unodor_Form
 {
-	public function __construct()
+	public function init()
 	{
-		$account = new Model_Account();
-		$idaccount = $account->getId();
-		
-		$this->addElementPrefixPath('Unodor_Form_Decorator', 'Unodor/Form/Decorator/', 'decorator');
-		$this->setMethod('post')->setLegend('Stránka');
-		
+		$idaccount = $this->getAccountId();
+
 		$this->addElement('text','name', array(
-				'order' => 0,
-			    'label' => "Project name:",
-			    'class'	=> 'input-text',
-			    'required' => true,
-				'validators' => array(
-					//'alnum',
-					//array('regex', true, array('/^[a-z]+/', 'messages' => 'Musí začínat písmenem')),
-					array('stringLength', false, array(3, 100))
-				)
-			));	
-				
-			$this->addElement('textarea','description', array(
-				'order' => 1,
-			    'label' => "Description:",
-			    'class'	=> 'input-textarea',
-				'rows'	=> 6,
-			));	
-						
-			$user = new Model_User();	
-			$company = new Model_Company();
+			'label' => "Project name:",
+			'class'	=> 'input-text',
+			'required' => true,
+			'validators' => array(
+				array('stringLength', false, array(3, 100))
+			),
+			'decorators' => $this->setInputDecorators()
+		));
+
+		$this->addElement('textarea','description', array(
+			'label' => "Description:",
+			'class'	=> 'input-textarea',
+			'rows'	=> 6,
+			'decorators' => $this->setInputDecorators()
+		));
+
+		$user = new Model_User();
+		$company = new Model_Company();
 			
-			$companyData = $company->getFormSelect($idaccount, '--- None ---');
+		$companyData = $company->getFormSelect($idaccount, '--- None ---');
 			
-			// TODO: automaticky nastavit autora projektu jako selected
-			$this->addElement('select', 'iduser', array(
-				'order' => 2,
-			    'label' => "Project leader:",
-				'multiOptions' => $user->getFormSelect($idaccount, $companyData),
-				'class' => 'input-select',
-				'required' => true,
-			));	
+		// TODO: automaticky nastavit autora projektu jako selected
+		$this->addElement('select', 'iduser', array(
+			'label' => "Project leader:",
+			'multiOptions' => $user->getFormSelect($idaccount, $companyData),
+			'class' => 'input-select',
+			'required' => true,
+			'decorators' => $this->setInputDecorators()
+		));
 
-			$this->addElement('select', 'idcompany', array(
-				'order' => 3,
-			    'label' => "Client company:",
-				'multiOptions' => $companyData,
-				'class' => 'input-select'
-			));	
-										
-			$this->addElement('file', 'img', array(
-				'order' => 4,
-			    'label' => "Image:",
-			    'class'	=> 'input-file',
+		$this->addElement('select', 'idcompany', array(
+			'label' => "Client company:",
+			'multiOptions' => $companyData,
+			'class' => 'input-select',
+			'decorators' => $this->setInputDecorators()
+		));
 
-			));	   
-										
-			$this->addElement('submit', 'save', array(
-				'order' => 5,
-			    'label' => "Create project",
-			    'class'	=> 'input-submit',
+		$this->addElement('file', 'img', array(
+			'label' => "Image:",
+			'class'	=> 'input-file',
+			'decorators' => $this->setFileDecorators()
+		));
 
-			));	   
-	     		
-	         $this->setDecorators(array(
-			    'FormElements',
-				array('FormErrors', array('placement' => 'prepend')),
-				//'Fieldset',
-			    //array('HtmlTag', array('tag' => 'table', 'class' => 'nostyle')),
-			    'Form'
-			));
+		$this->addElement('submit', 'save', array(
+			'value' => "Create project",
+			'class'	=> 'input-submit',
+			'decorators' => $this->setSubmitDecorators('project')
+		));
 	}
 }

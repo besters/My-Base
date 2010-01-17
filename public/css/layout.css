@@ -298,10 +298,14 @@ div.bar>div, .bar-project>div {
 }
 
 table{
+	border-collapse: collapse;
+}
+
+/*
+table{
 	width: 90%;
 	font-size: 12px;
 	font-family: verdana;
-	border-collapse: collapse;
 	border-bottom: 1px solid #f5f5f5;
 }
 
@@ -349,6 +353,7 @@ th{
 	padding: 5px 10px;
 	font-size: 14px;
 }
+*/
 
 table.people-overview{
 	margin: 0 auto;
@@ -386,3 +391,12 @@ table.acl td.read label{
 table.acl td.create label{
 	color: #aab900;
 }
+
+
+
+
+
+
+
+
+
