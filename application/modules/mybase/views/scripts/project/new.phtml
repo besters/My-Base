@@ -17,7 +17,7 @@ $(document).ready(function() {
 	onComplete: function (event, queueID, fileObj, response, data) {				
 			$('.input-submit').removeAttr('disabled');
 			$('#imgUploader').after('<br /><img src=\"/public/files/tmp/'+response+'\" />');
-			$('#imgUploader').hide();
+			//$('#imgUploader').hide();
 			$('#img').after('<input type=\"hidden\" name=\"img\" value=\"'+response+'\" />');
 		},
 	onOpen: function(event, queueID, fileObj){
@@ -34,7 +34,7 @@ $(document).ready(function() {
 });"; ?>
 // ]]></script>
 
-<div id="main">
+<div id="main-fixed">
     <div id="title">
         <h2><?php echo $this->Translate('New Project'); ?></h2>
     </div>

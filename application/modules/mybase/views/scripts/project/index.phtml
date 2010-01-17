@@ -1,7 +1,7 @@
 <div id="main-fixed">
     <div id="title">
          <div id="title-links">
-            <?php if($this->acl($this->Param('projekt').'|project', 'new')): ?>
+            <?php if($this->acl('project', 'new')): ?>
             <a href="<?php echo $this->baseUrl('/project/new') ; ?>"><?php echo $this->Translate('Create new Project'); ?></a>
             <?php endif; ?>
         </div>    

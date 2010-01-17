@@ -25,6 +25,7 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 	 * @return void
 	 * @todo nastavit cache pro Zend_Locale + otestovat vykon
 	 * @todo nastaveni Zend_Locale podle nastaveni v db
+	 * @todo pouziti $locale->getLanguage nebo neco podobneho - mohlo by to zkratit switch, pripadne by se nove jazyky mohly pridavat pres admin rozhrani
 	 */
 	public function setLanguage()
 	{		
