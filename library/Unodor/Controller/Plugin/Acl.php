@@ -89,7 +89,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			$acl->allow('owner');			
 			$acl->deny('admin', 'account');			
 			
-			$acl->allow('user', array('index', 'project', 'assignment', 'calendar', 'people'));
+			$acl->allow('user', array('index', 'project', 'assignment', 'calendar', 'people', 'auth'));
 			$acl->deny('user', 'account');	
 			$acl->deny('user', 'project', $this->_create);
 			$acl->deny('user', 'people', $this->_create);
