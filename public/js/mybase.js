@@ -1,11 +1,14 @@
 $(document).ready(function(){
     
+	 // Spravne zobrazeni menu
     $('li > a').wrapInner('<span></span>');
     
+	 // Vyberovy blok pri pridavani ACL
     $("#userSelect").multiSelect({
         selectAll: false
     });
     
+	 // Nastaveni modaloveho okna
     $('.modal').modal({
         opacity: 0.6,
         bgColor: '#fff'
@@ -13,13 +16,18 @@ $(document).ready(function(){
     
     //$.modal('<div class="ne">not implemented</div>');
     
+	 // Inicializace tooltipu
     $('*[title]').tooltip();
 	 
-	
+	// Hromadne oznacovani a odznacovani checkboxu
+	$("input[name='company[]']").click(function(){
+		$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+	});
+	 
+	// Ajaxova editace ACL -------------------------------------------------------------------------------------------------------------------
 	$('.acl.modalwin label').live('mouseup', function(event){
 		var label = $(this).attr('for');
 		var radio = $('#'+label);
-
 		var prev = $("input[name='" + radio[0].name + "']:checked");
 		
 		if ($(radio).is(':checked') == false) {
@@ -44,8 +52,24 @@ $(document).ready(function(){
 					$('#acl-spinner').remove();
 				}
 			});
-		}
-		
+		}				
+	});
+	// ------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Zobrazeni kalendare v sekci milestones	------------------------------------------
+	$.datepicker.setDefaults($.extend($.datepicker.regional['']));
+				
+	$("#datepicker").datepicker({ 
+		changeMonth: true,
+		changeYear: true,
+		showOtherMonths: false,
+		showMonthAfterYear: false,
+		yearRange: '-1:+10',
+		altField: '#datetime'
 	});
 
+	// ---------------------------------------------------------------------------------
+	
+
+	 
 });

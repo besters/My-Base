@@ -96,4 +96,23 @@ class Model_User
 		
 		return $return;		
 	}
+	
+	/**
+	 * Vraci asociativni pole se spolecnostmi a jejich uzivateli kteri jsou prirazeni k danemu projektu
+	 * 
+	 * @param int $idproject ID projektu
+	 * @return array
+	 */	
+	public function getProjectUsers($idproject)
+	{
+		$users = $this->_dbTable->getProjectUsers($idproject);
+		
+		$return = array();
+		
+		foreach($users as $user){
+			$return[$user->company.';'.$user->idcompany][$user->iduser] = $user->user;
+		}	
+		
+		return $return;
+	}
 }

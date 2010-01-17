@@ -20,13 +20,21 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
 	 * @var Zend_Controller_Action_Helper_FlashMessenger
 	 */
 	protected $_flashMessenger;
+	
+	protected $_project;
 		
-	/*
+	
 	public function init()
 	{
+		/*
 		$validate = $this->_request->getParam('validate');
         if(isset($validate)) $this->_forward('validate');
-	}*/
+       */
+
+		$this->_project = $this->_request->getParam('projekt');
+		
+	}
+	
 	/*
 	public function preDispatch(){
 		switch($this->_request->module){

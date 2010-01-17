@@ -1,0 +1,19 @@
+<?php // TODO nastaveni podle locale ?>
+<script type="text/javascript">
+	$(function() {
+		$('#datepicker').datepicker('option', $.extend($.datepicker.regional['cs']));		
+	});	
+</script>
+
+<div id="main-fixed">
+    <div id="title">
+        <h2><?php echo $this->Translate('New Milestone'); ?></h2>
+    </div>
+	<div id="obsah">	
+		<?php echo $this->flashMessages(); ?>
+		<?php echo $this->form; ?>
+	
+		
+		<br class="clear" />
+	</div>
+</div>

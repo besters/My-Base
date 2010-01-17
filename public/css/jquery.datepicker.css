@@ -1,0 +1,117 @@
+.ui-icon { 
+	display: block; 
+	text-indent: -99999px; 
+	overflow: hidden; 
+	background-repeat: no-repeat;	
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.ui-datepicker-header{
+	text-align: center;
+	padding-bottom: 5px;
+	width: 95%;
+}
+
+.ui-datepicker-prev {
+	float: left;
+}
+
+.ui-datepicker-next {
+	float: right;
+}
+
+.ui-datepicker-next-hover, .ui-datepicker-prev-hover{
+	background-color: #fff !important;
+}
+
+span.ui-icon-circle-triangle-w{
+	background: url('/public/design/ico-arrow-left.png');
+}
+
+span.ui-icon-circle-triangle-e{
+	background: url('/public/design/ico-arrow-right.png');
+}
+
+select.ui-datepicker-month{
+	margin-right: 5px;
+}
+
+.ui-datepicker table {
+    width: 95%;
+    font-size: 13px;
+    border-collapse: collapse;
+    margin: 0 0 1px;
+}
+
+.ui-datepicker th {
+	font-weight: bold;
+	border: 0;	 
+	background-color: #545254;
+	color: #fff;
+	padding: 7px 5px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.ui-datepicker td {
+    border: 0;
+    padding: 1px 0;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: block;
+    padding: 4px;
+    text-align: right;
+    text-decoration: none;
+}
+
+.ui-state-default{
+    background: #F8F8F8;
+    font-weight: normal;
+    color: #20720d;
+    outline: none;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+    color: #20720d;
+    text-decoration: none;
+    outline: none;
+}
+
+.ui-state-hover, .ui-state-focus{
+    background: #e0e0e0;
+    font-weight: normal;
+    color: #212121;
+    outline: none;
+}
+
+.ui-state-hover a, .ui-state-hover a:hover {
+    color: #212121;
+    text-decoration: none;
+    outline: none;
+}
+
+.ui-state-active {
+    background: #545254;
+    font-weight: normal;
+    color: #fff;
+    outline: none;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: #212121;
+    outline: none;
+    text-decoration: none;
+}
+
+.ui-state-highlight {
+    background: #fff1ce !important;
+    color: #363636 !important;
+}
+
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a {
+    color: #363636;
+}

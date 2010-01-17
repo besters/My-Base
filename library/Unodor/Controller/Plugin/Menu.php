@@ -140,7 +140,21 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'params' => array(
 					'account' => $this->_account,
 					'projekt' => $this->_project
-				)
+				),
+				'pages' => 	array(
+					array(                
+						'label' => 'New',                
+						'controller' => 'milestone',
+						'action' => 'new',
+						'module' => 'mybase',
+						'route' => 'mybase-projekt',
+						//'visible' => false,
+						'params' => array(
+							'account' => $this->_account,
+							'projekt' => $this->_project
+						)
+					)
+				)	
 			),
 			array(                
 				'label' => 'Tickets',                

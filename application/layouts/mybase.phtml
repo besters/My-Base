@@ -3,12 +3,17 @@ $this->headLink()
     ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/jquery.multiSelect.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/jquery.uploadify.css'), 'screen,projection')
+    ->appendStylesheet($this->baseUrl('/public/css/jquery.datepicker.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/mybase.modal.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/mybase.tooltip.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/layout.css'), 'screen,projection');
     
 $this->headScript()
-	->appendFile($this->baseUrl('/public/js/jquery.js'))
+	//->appendFile($this->baseUrl('/public/js/jquery.js'))
+	//->appendFile($this->baseUrl('/public/js/jquery-ui.js'))
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js')
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js')
+	->appendFile('http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js')
 	->appendFile($this->baseUrl('/public/js/jquery.multiSelect.js'))
 	->appendFile($this->baseUrl('/public/js/jquery.uploadify.js'))
 	->appendFile($this->baseUrl('/public/js/swfobject.js'))
@@ -25,6 +30,7 @@ echo $this->doctype(); ?>
 	echo $this->headLink();
 	echo $this->headScript();
 	?>
+	
 </head>
 <body>	
 
