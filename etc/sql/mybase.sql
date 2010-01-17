@@ -2,6 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
+DROP SCHEMA IF EXISTS `mybase` ;
 CREATE SCHEMA IF NOT EXISTS `mybase` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 USE `mybase`;
 
@@ -75,6 +76,7 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   INDEX `fk_account_user` (`idaccount` ASC) ,
   INDEX `fk_company_user` (`idcompany` ASC) ,
   INDEX `email` (`email` ASC) ,
+  UNIQUE INDEX `mail` (`email` ASC) ,
   CONSTRAINT `fk_account_user`
     FOREIGN KEY (`idaccount` )
     REFERENCES `mybase`.`account` (`idaccount` )
