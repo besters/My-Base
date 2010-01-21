@@ -21,9 +21,12 @@ class Model_Milestone
 	{		
 		$milestone = $this->_dbTable->fetchAllEntry('idproject = '.$projectId.' AND parent IS NULL', array('idmilestone', 'name'));
 		
-		foreach ($milestone as $row) {
-			if(!is_null($nullVal))
-				$return[null] = $nullVal;
+		$return = array();
+		
+		if(!is_null($nullVal))
+			$return[null] = $nullVal;
+			
+		foreach ($milestone as $row) {			
 			$return[$row->idmilestone] = $row->name;
 		}
 		
