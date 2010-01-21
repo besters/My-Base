@@ -24,14 +24,14 @@ class Mybase_Form_Milestone extends Unodor_Form
 			'multiOptions' => $priority->getFormSelect(null, '--- None ---'),
 			'disableTranslator'	=> true,
 			'class' => 'input-select',
-			'decorators' => $this->setInputDecorators()	
+			'decorators' => $this->setInputDecorators('half left')	
 		));	
 
 		$this->addElement('select', 'status', array(
 			'label' => "Status:",
 			'multiOptions' => array('active' => 'Active', 'paused' => 'Paused'),
 			'class' => 'input-select',
-			'decorators' => $this->setInputDecorators()	
+			'decorators' => $this->setInputDecorators('half left')	
 		));	
 
 		$milestone = new Model_Milestone();
@@ -40,17 +40,17 @@ class Mybase_Form_Milestone extends Unodor_Form
 			'multiOptions' => $milestone->getParentMilestonesList($projectId, '--- None ---'),
 			'disableTranslator'	=> true,
 			'class' => 'input-select',
-			'decorators' => $this->setInputDecorators()	
+			'decorators' => $this->setInputDecorators('half left')	
 		));	
 
-		$date = new Zend_Date();
+		/*
 		$this->addElement('text', 'check', array(
 			'class' => 'milestone-datetime',
 			'readonly' => 'readonly',
 			'label' => "Due date:",
 			'description' => 'Select a date from the calendar',
-			'decorators' => $this->setInputDecorators()
-		));  
+			'decorators' => $this->setInputDecorators('half left')
+		));  */
 				
 		$this->addElement('hidden', 'datetime', array(
 			'decorators' => $this->setInputDecorators()
