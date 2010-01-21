@@ -27,7 +27,7 @@ class Unodor_Form extends Zend_Form
 	{
 		$this->setDecorators(array(
 			'FormElements',
-			array('FormErrors', array('placement' => 'prepend')),
+			//array('FormErrors', array('placement' => 'prepend')),
 			'Form'
 		));
 	}	
@@ -38,9 +38,11 @@ class Unodor_Form extends Zend_Form
 			'label', 
 			'ViewHelper', 
 			'Errors', 
-			array('Description'),
-			array('HtmlTag', array('tag' => 'div', 'class' => 'input '.$class))
+			//array('Description'),
+			array('HtmlTag', array('tag' => 'div', 'class' => 'input '.$class)),
 		);
+		
+
 		
 		return $defaultElementDecorators;
 	}

@@ -24,14 +24,29 @@ $(document).ready(function(){
 		$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
 	});
 	
-	$('input:not(:submit), select, textarea').focusin(function(){
-		$(this).parent('div.input').addClass('hover');
+	$('input:not(:checkbox), select, textarea').focusin(function(){
+		$(this).parents('div.input').addClass('hover');
+		$(this).parents('div.error').removeClass('hover');
+		
+		$('input:checkbox').parents('div.input').removeClass('hover');
 	});
 	
-	$('input, select, textarea').focusout(function(){
-		$(this).parent('div.input').removeClass('hover');
+	$('input:checkbox').click(function(){
+		$(this).parents('div.input').addClass('hover');
+		$(this).parents('div.error').removeClass('hover');
 	});
 	
+	$('input:not(:checkbox), select, textarea').focusout(function(){
+		$(this).parents('div.input').removeClass('hover');
+	});
+	
+	$('input::submit').focusin(function(){
+		$(this).parents('div.input').removeClass('hover');
+	});
+	
+
+
+
 	 
 	// Ajaxova editace ACL -------------------------------------------------------------------------------------------------------------------
 	$('.acl.modalwin label').live('mouseup', function(event){
