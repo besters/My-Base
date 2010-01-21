@@ -4,8 +4,6 @@ class Mybase_Form_Project extends Unodor_Form
 {
 	public function init()
 	{
-		$idaccount = $this->getAccountId();
-
 		$this->addElement('text','name', array(
 			'label' => "Project name:",
 			'class'	=> 'input-text',
@@ -26,12 +24,12 @@ class Mybase_Form_Project extends Unodor_Form
 		$user = new Model_User();
 		$company = new Model_Company();
 			
-		$companyData = $company->getFormSelect($idaccount, '--- None ---');
+		$companyData = $company->getFormSelect(null, '--- None ---');
 			
 		// TODO: automaticky nastavit autora projektu jako selected
 		$this->addElement('select', 'iduser', array(
 			'label' => "Project leader:",
-			'multiOptions' => $user->getFormSelect($idaccount, $companyData),
+			'multiOptions' => $user->getFormSelect(null, $companyData),
 			'class' => 'input-select',
 			'required' => true,
 			'decorators' => $this->setInputDecorators()
