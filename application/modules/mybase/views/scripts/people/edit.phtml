@@ -1,9 +1,9 @@
-		<span id="idacl" style="display: none"><?php echo $this->param('id'); ?></span>
-		<table class="acl modalwin">
+		<span id="idacl" class="hidden" ><?php echo $this->param('id'); ?></span>
+		<table class="skin acl modalwin">
 			<thead>
 				<tr>
-					<th>Sekce</th>
-					<th colspan="4">Oprávnění</th>
+					<th><?php echo $this->translate('Section')?></th>
+					<th colspan="4"><?php echo $this->translate('Permissons')?></th>
 				</tr>
 			</thead>
 			<tbody>

@@ -1,0 +1,36 @@
+/*
+ * -------------------------
+ * New / Edit
+ * -------------------------
+ */
+table.acl{
+	float: right;
+}
+
+table.acl.new{
+	width: 70% !important;
+}
+
+table.acl input{
+	margin-right: 3px;
+}
+
+table.acl td label{
+	font-size: 11px;
+}
+
+table.acl td.noaccess label{
+	color: #aa0000;
+}
+
+table.acl td.manage label{
+	color: #3db900;
+}
+
+table.acl td.read label{
+	color: #b97100;
+}
+
+table.acl td.create label{
+	color: #aab900;
+}

@@ -95,16 +95,14 @@ ul.subnavigation a {
 }
 
 /* Root Menu Hover Persistence */
-ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover a
-	{
+ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover a{
 	padding-right: 0px;
 	color: #545254;
 	background: url('../design/submenu-left.gif') no-repeat;
 	height: 19px;		
 }
 
-ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span
-	{
+ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span{
 	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
 	padding: 5px 16px 11px 0px;
 }
