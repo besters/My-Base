@@ -39,4 +39,9 @@ class Unodor_Log_Writer_Translate extends Zend_Log_Writer_Abstract
 		if(strstr($file, $line) == false)
 			file_put_contents($this->_stream, $line, FILE_APPEND);
     }
+    
+    public static function factory($config)
+    {
+    	parent::factory($config);
+    }
 }
