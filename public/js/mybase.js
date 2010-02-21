@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
 	 // Spravne zobrazeni menu
-    $('li > a').wrapInner('<span></span>');
+    $('ul.subnavigation li > a').wrapInner('<span></span>');
     
 	 // Vyberovy blok pri pridavani ACL
     $("#userSelect").multiSelect({
@@ -24,6 +24,7 @@ $(document).ready(function(){
 		$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
 	});
 	
+	// Zvyrazneni aktualniho prvku ve formulari ------------------------------
 	$('input:not(:checkbox), select, textarea').focusin(function(){
 		$(this).parents('div.input').addClass('hover');
 		$(this).parents('div.error').removeClass('hover');
@@ -43,7 +44,7 @@ $(document).ready(function(){
 	$('input::submit').focusin(function(){
 		$(this).parents('div.input').removeClass('hover');
 	});
-	
+	// -------------------------------------------------------------------------
 
 
 

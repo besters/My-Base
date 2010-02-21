@@ -34,6 +34,7 @@
 	font-weight: bold;
 	color: #545254;
 	text-decoration: none;
+	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 .project-table .content .right a.title:hover {
@@ -48,7 +49,7 @@
 }
 
 .project-table dl{
-	background-color: #e3e7d7;
+	background-color: #e9eef4;
 	height: 20px;
 	padding-left: 10px;
 }

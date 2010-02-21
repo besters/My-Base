@@ -2,30 +2,23 @@
   Menu
  ----------------------------------------*/
 ul.navigation {
-	margin: 0;
-	border: 0 none;
-	padding: 0;
 	width: 100%; /*For KHTML*/
 	list-style: none;
-	font-size: 12px;
-	font-family: Arial, Verdana, sans-serif;
-	height: 36px;
+	height: 39px;
 }
 
 ul.navigation li {
-	margin: 0;
-	border: 0 none;
-	padding: 11px 1px 0 0;
+	padding: 0px 1px 0 0;
 	float: left; /*For Gecko*/
 	display: inline;
 	list-style: none;
 	position: relative;
-	height: 26px;
+	height: 39px;
 }
 
 ul.navigation a {
-	color: #20720d;
-	padding: 5px 16px;
+	color: #a4a4a4;
+	padding: 12px 16px;
 	float: none !important; /*For Opera*/
 	float: left; /*For IE*/
 	display: block;
@@ -34,92 +27,88 @@ ul.navigation a {
 	height: 1%; /*For IE*/
 }
 
-/* Root Menu Hover Persistence */
-ul.navigation a:hover,ul.navigation li:hover a,ul.navigation li.iehover a
-	{
+/* Hlavni menu - hover */
+ul.navigation a:hover,ul.navigation li:hover a,ul.navigation li.iehover a{
 	color: #545254;
 	text-decoration: underline;
 }
 
+/* Aktivni prvek */
 ul.navigation li.active {
-	height: 29px;
-	padding-top: 8px;
+	height: 39px;
+
 }
 
 ul.navigation li.active a {
-	padding: 8px 0px 8px 16px;
-	color: #fff;
-	background: url('../design/list-left.png') no-repeat;
-	font-weight: bold;
+	color: #595959;
+	background-color: #ecebec;
 }
 
-ul.navigation li.active a span {
-	background: url('../design/list-right.gif') 100% 0 no-repeat;;
-	padding: 8px 25px 5px 10px;
+ul.navigation li.active a:hover{
+	text-decoration: none;
 }
+
+
+
 
 /*---------------------------------------
   Submenu
  ----------------------------------------*/
 ul.subnavigation {
-	margin: 0;
-	border: 0 none;
-	padding: 0;
 	width: 100%; /*For KHTML*/
 	list-style: none;
-	font-size: 12px;
-	font-family: Arial, Verdana, sans-serif;
-	height: 36px;
+	font-size: 11px;
+	height: 34px;
 }
 
 ul.subnavigation li {
-	margin: 0;
-	border: 0 none;
-	padding: 7px 5px 0 0;
+	margin: 5px 5px 0 0;
 	float: left; /*For Gecko*/
 	display: inline;
 	list-style: none;
 	position: relative;
-	height: 26px;
+	
 }
 
 ul.subnavigation a {
-	color: #fff;
-	padding: 5px 16px;
+	color: #888888;
+	padding: 5px 8px 6px 8px;
 	float: none !important; /*For Opera*/
 	float: left; /*For IE*/
 	display: block;
 	text-decoration: none;
 	height: auto !important;
 	height: 1%; /*For IE*/
+
 }
 
 /* Root Menu Hover Persistence */
 ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover a{
 	padding-right: 0px;
-	color: #545254;
-	background: url('../design/submenu-left.gif') no-repeat;
-	height: 19px;		
+	color: #fff;
+	background: url('../design/submenu-hover-left.png') #bababa no-repeat;		
 }
 
 ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span{
-	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
-	padding: 5px 16px 11px 0px;
+	background: url('../design/submenu-hover-right.png') 100% 0 no-repeat;
+	padding: 5px 8px 11px 0px;
 }
 
 /* Active state */
 ul.subnavigation li.active {
-	height: 19px;
+	height: 34px;
 }
 
 ul.subnavigation li.active a {
 	padding-right: 0px;
-	color: #545254;
-	background: url('../design/submenu-left.gif') no-repeat;
-	font-weight: bold;
+	background: url('../design/submenu-active-left.png') no-repeat;
 }
 
 ul.subnavigation li.active a span {
-	background: url('../design/submenu-right.gif') 100% 0 no-repeat;
-	padding: 5px 15px 11px 0px;
+	background: url('../design/submenu-active-right.png') 100% 0 no-repeat;
+	padding: 5px 8px 11px 0px;
+}
+
+ul.subnavigation li.active a:hover, ul.subnavigation li.active:hover a{
+	color: #888888;
 }

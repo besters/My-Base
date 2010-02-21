@@ -2,7 +2,7 @@
     <div id="title">
          <div id="title-links">
             <?php if($this->acl('project', 'new')): ?>
-            <a href="<?php echo $this->baseUrl('/project/new') ; ?>"><?php echo $this->Translate('Create new Project'); ?></a>
+            <a href="<?php echo $this->baseUrl('/project/new') ; ?>"><?php echo $this->Translate('Create new Project'); ?><span></span></a>
             <?php endif; ?>
         </div>    
         <h2><?php echo $this->Translate('Projekty'); ?></h2>

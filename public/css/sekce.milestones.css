@@ -1,0 +1,45 @@
+table.milestone{
+	width: 98%;
+	margin: 0 auto;
+}
+
+table.milestone th{
+	background-color: #e3e7d7;
+	text-align: left;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 5px;
+}
+
+table.milestone td{
+	border-bottom: 1px solid #e6e6e6;
+}
+
+table.milestone td.name{
+	padding: 7px 10px;
+}
+
+table.milestone td.name a{
+	color: #545254;
+	font-size: 18px;
+	text-decoration: none;
+	display: block;
+}
+table.milestone td.name a:hover{
+	text-decoration: underline;
+}
+
+table.milestone td.name p{
+	font-size: 11px;
+	color: #838383;
+}
+
+table.milestone td.date{
+	border-left: 1px solid #e6e6e6;
+	width: 15%;
+}
+
+table.milestone td.priority{
+	background-color: #008ac3;
+	width: 7px;
+}

@@ -5,7 +5,7 @@ $this->headLink()
 $this->headScript()
 	//->appendFile($this->baseUrl('/public/js/jquery.js'))
 	//->appendFile($this->baseUrl('/public/js/jquery-ui.js'))
-	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js')
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
 	->appendFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js')
 	->appendFile('http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js')
 	->appendFile($this->baseUrl('/public/js/jquery.multiSelect.js'))
@@ -30,24 +30,29 @@ echo $this->doctype(); ?>
 
 <div id="header">
 	<div class="wrap940">
-		<h1>Projekt <span>Company</span></h1>
+		<h1>Název Firmy</h1>
 		<div id="userinfo">
 			<?php $session = new Zend_Session_Namespace('Zend_Auth'); ?>
 			<?php echo $this->gravatar($session->storage->email); ?>
-			<a href="<?php echo $this->baseUrl('people/edit/'.$session->storage->iduser) ; ?>"><?php echo $session->storage->name .' '. $session->storage->surname; ?></a>
-			<a href="<?php echo $this->baseUrl('auth/logout') ; ?>" class="logout">Logout</a>
+			<a href="<?php echo $this->baseUrl('people/edit/'.$session->storage->iduser) ; ?>" class="user"><?php echo $session->storage->name .' '. $session->storage->surname; ?></a>
+			<a href="<?php echo $this->baseUrl('auth/settings') ; ?>" class="link">Settings</a>
+			<a href="<?php echo $this->baseUrl('auth/logout') ; ?>" class="link">Logout</a>
+			<p>Last login: 13.01.2010 11:39</p>
 		</div>
 	</div>
 </div>
 
 <div id="menu">
-	<div class="wrap940">
-		<?php 
-		$acl = Zend_Registry::get('acl');
-		$this->navigation()->setAcl($acl)->setRole($session->storage->email);
-		echo $this->navigation()->menu()->setMaxDepth(0); ?>
-	</div>
-
+	<div id="mainmenu">
+		<div class="wrap940">
+			<?php 
+			$acl = Zend_Registry::get('acl');
+			$this->navigation()->setAcl($acl)->setRole($session->storage->email);
+			echo $this->navigation()->menu()->setMaxDepth(0); ?>
+		</div>
+	</div>	
+	
+<?php if($this->param('projekt')): ?>
 	<div id="submenu">
 		<div class="wrap940">
 			<?php 
@@ -67,6 +72,7 @@ echo $this->doctype(); ?>
 		</div>
 	</div>
 </div>
+<?php endif; ?>
 
 <div class="wrap940">	  
 
