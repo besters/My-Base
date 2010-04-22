@@ -7,7 +7,7 @@ img.description{
 	margin-left: 10px;
 }
 
-div.description{
+div.clear{
 	clear: both;
 }
 
@@ -24,11 +24,19 @@ form div.hover{
 }
 
 form div.half{
-	width: 50%;
+	width: 44%;
 }
 
 form div.left{
 	float: left;
+}
+
+form div.right{
+	float: right;
+}
+
+form div.hide{
+	display: none;
 }
 
 
@@ -58,6 +66,10 @@ form label.required{
 	font-weight: bold;
 }
 
+form a.create-link{
+
+}
+
 .cancel{
 	color: #aa0000;
 }
@@ -72,16 +84,21 @@ form label.required{
 	padding: 5px;
 }
 
-.input-text {
+.input-text, .input-text-big {
 	width: 100%;
-	font-size: 20px;
-	font-weight: bold;
+
 	padding: 5px;
 	color: #545254;
 }
 
+.input-text-big{
+ 	font-size: 20px;
+	font-weight: bold;
+}
+
 .input-select{
 	width: 100%;
+	padding: 5px;
 }
 
 .input-submit{
@@ -177,5 +194,3 @@ div.error input{
 div.error label{
 	color: #df0000;
 }
-
-

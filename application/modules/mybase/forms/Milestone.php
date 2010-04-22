@@ -8,7 +8,7 @@ class Mybase_Form_Milestone extends Unodor_Form
 		
 		$this->addElement('text', 'name', array(
 			'label' => "Milestone name:",
-			'class'	=> 'input-text',
+			'class'	=> 'input-text-big',
 			'description' => 'Nějaký dlooouhatananananánský popisek formulářového pole',
 			'required'	=> true,
 			'decorators' => $this->setInputDecorators()		
@@ -60,7 +60,7 @@ class Mybase_Form_Milestone extends Unodor_Form
 			'label' => "Description:",
 			'class'	=> 'input-textarea',
 			'rows'	=> 6,
-			'decorators' => $this->setInputDecorators('description')	
+			'decorators' => $this->setInputDecorators('clear')
 		)); 
 		
 		$user = new Model_User();

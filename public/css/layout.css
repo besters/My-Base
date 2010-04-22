@@ -275,6 +275,7 @@ table.skin a:hover{
 table.skin td{
 	vertical-align: middle;
 	padding: 5px;
+	height: 25px;
 }
 
 table.skin td img{

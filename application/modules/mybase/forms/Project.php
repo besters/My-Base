@@ -6,7 +6,7 @@ class Mybase_Form_Project extends Unodor_Form
 	{
 		$this->addElement('text','name', array(
 			'label' => "Project name:",
-			'class'	=> 'input-text',
+			'class'	=> 'input-text-big',
 			'required' => true,
 			'validators' => array(
 				array('stringLength', false, array(3, 100))
@@ -18,7 +18,8 @@ class Mybase_Form_Project extends Unodor_Form
 			'label' => "Description:",
 			'class'	=> 'input-textarea',
 			'rows'	=> 6,
-			'decorators' => $this->setInputDecorators()
+			'decorators' => $this->setInputDecorators(),
+			'required' => true,
 		));
 
 		$user = new Model_User();
@@ -31,8 +32,8 @@ class Mybase_Form_Project extends Unodor_Form
 			'label' => "Project leader:",
 			'multiOptions' => $user->getFormSelect(null, $companyData),
 			'class' => 'input-select',
-			'required' => true,
-			'decorators' => $this->setInputDecorators()
+			'decorators' => $this->setInputDecorators(),
+			'required' => true
 		));
 
 		$this->addElement('select', 'idcompany', array(
