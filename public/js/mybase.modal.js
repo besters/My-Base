@@ -18,7 +18,8 @@
 		overlay:	true,
 		close:		'.close',
 		loadingImg: '/public/design/loader.gif',
-		closeText:	'Close'
+		closeText:	'Close',
+		target:		''
 	};
 	
 	$.modal.main = {	
@@ -60,9 +61,15 @@
 		
 		contentSwitch: function(data){
 			$.modal.main.modal();
-			
-			$.modal.main.contentAjax(data);
-			//$.modal.main.contentSimple(element);
+
+			if(cfg.target != ''){
+			  $.modal.main.contentAjax(cfg.target);
+			}else{
+			  $.modal.main.contentAjax(data);
+			}
+
+
+			//$.modal.main.contentSimple(data);
 			//$.modal.main.contentImage(element);
 			//$.modal.main.contentTarget(element);			
 		},
