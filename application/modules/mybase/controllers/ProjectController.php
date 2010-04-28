@@ -5,6 +5,7 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 	public function init()
 	{
 		$this->_model = new Model_Project();
+		parent::init();
 	}
 	
 	public function indexAction()
@@ -82,4 +83,5 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 		echo true;
 		return true;
 	}
+
 }
