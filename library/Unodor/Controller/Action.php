@@ -26,13 +26,26 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
 	
 	public function init()
 	{
-		/*
-		$validate = $this->_request->getParam('validate');
-        if(isset($validate)) $this->_forward('validate');
-       */
-
 		$this->_project = $this->_request->getParam('projekt');
-		
+
+		$validate = $this->_request->getParam('validate');
+		if(!is_null($validate))
+			$this->_forward('validate');
+	}
+
+	public function validateAction()
+	{
+		$controller = $this->_request->getControllerName();
+		$class = 'Mybase_Form_'.$controller;
+		$form = new $class;
+		$form->isValid($this->_getAllParams());
+		$this->_helper->json($form->getMessages());
+	}
+	
+	protected function getProjectId($project = null)
+	{
+		$projekt = new Model_Project();
+		return $projekt->getId($project);
 	}
 	
 	/*
