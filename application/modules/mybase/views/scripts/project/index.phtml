@@ -5,7 +5,7 @@
             <a href="<?php echo $this->baseUrl('/project/new') ; ?>"><?php echo $this->Translate('Create new Project'); ?><span></span></a>
             <?php endif; ?>
         </div>    
-        <h2><?php echo $this->Translate('Projekty'); ?></h2>
+        <h2><?php echo $this->Translate('Projects'); ?></h2>
     </div>
 	<div id="obsah">
 		
@@ -24,13 +24,13 @@
 				?>				
 					<dl>
 						<?php if(!is_null($row->iduser)): ?>
-						<dt>Vedoucí:</dt>
+						<dt><?php echo $this->Translate('Leader'); ?>:</dt>
 					  	<dd><a href="<?php echo $this->baseUrl('/people/detail/'.$row->iduser) ; ?>"><?php echo $row->user;?></a></dd>
 					  	<?php 
 					  		endif;
 					  		if(!is_null($row->idcompany)): 
 					  	?>
-					  	<dt>Klient:</dt>
+					  	<dt><?php echo $this->Translate('Client'); ?>:</dt>
 					  	<dd><a href="<?php echo $this->baseUrl('/company/detail/'.$row->idcompany) ; ?>"><?php echo $row->company; ?></a></dd>
 					  	<?php endif;?>
 					</dl>
