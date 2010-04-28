@@ -72,7 +72,7 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 		
 		Zend_Translate::setCache($cache);	
 
-		if(isset($options['log']) AND $options['log']== true){
+		if(isset($options['logUntranslated']) AND $options['logUntranslated']== true){
 			$writer = new Unodor_Log_Writer_Translate(LANGUAGES_PATH . '/source/stringtable.php');
 			
 			$log = new Zend_Log();
@@ -86,7 +86,7 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 		}
 		
 		$translate = new Zend_Translate('gettext', LANGUAGES_PATH . '/' . $this->_lang->name . '.mo', $this->_lang->code, $options);
-		
+
 		Zend_Registry::set('Zend_Translate', $translate);
 	}	
 }
