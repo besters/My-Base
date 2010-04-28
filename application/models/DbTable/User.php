@@ -59,7 +59,7 @@ class Model_DbTable_User extends Unodor_Db_Table {
 				  
 		$query = $this->select()             			                   
 					  ->from('user', array('iduser', 'CONCAT(user.name, " ", user.surname) as user'))
-					  ->join('company', 'user.idcompany = company.idcompany', array('name AS company', 'idcompany')) 
+					  ->joinLeft('company', 'user.idcompany = company.idcompany', array('name AS company', 'idcompany'))
 					  ->where('user.iduser IN (?)',new Zend_Db_Expr('SELECT DISTINCT iduser FROM acl WHERE idproject = '.$idproject.''))
 					  ->where('user.idaccount = ?', $idaccount)           
 					  ->setIntegrityCheck(false); 
@@ -69,5 +69,28 @@ class Model_DbTable_User extends Unodor_Db_Table {
 		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
 
 		return $result;		
+	}
+
+	/**
+	 * Ziskava z DB seznam uzivatelu podle accountu
+	 *
+	 * @return Zend_Db_Statement Vysledek
+	 */
+	public function getAccountUsers()
+	{
+		$account = $this->getAccountId();
+
+		$query = $this->select()
+					  ->from('user', array('user.name', 'user.surname', 'user.email', 'user.iduser'))
+					  ->join('company', 'user.idcompany = company.idcompany', array('company.name AS company'))
+					  ->where('user.idaccount = ?', $account)
+					  ->where('company.idaccount = ?', $account)
+					  ->setIntegrityCheck(false);
+
+		$stmt = $query->query();
+
+		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+
+		return $result;
 	}
 }

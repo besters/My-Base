@@ -105,7 +105,19 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 				'privilege' => 'index',	
 				'params' => array(
 					'account' => $this->_account
+					),
+				'pages' => 	array(
+					array(
+						'label' => 'New',
+						'controller' => 'people',
+						'action' => 'new',
+						'module' => 'mybase',
+						'route' => 'mybase-default',
+						'params' => array(
+							'account' => $this->_account
+						)
 					)
+				)
 			)														
 		));		
 		return $container;
@@ -148,7 +160,6 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 						'action' => 'new',
 						'module' => 'mybase',
 						'route' => 'mybase-projekt',
-						//'visible' => false,
 						'params' => array(
 							'account' => $this->_account,
 							'projekt' => $this->_project

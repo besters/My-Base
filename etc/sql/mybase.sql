@@ -2,9 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `mybase` ;
 CREATE SCHEMA IF NOT EXISTS `mybase` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
-USE `mybase`;
 
 -- -----------------------------------------------------
 -- Table `mybase`.`account`
@@ -63,15 +61,16 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   `name` VARCHAR(100) NOT NULL COMMENT 'Křestní jméno' ,
   `surname` VARCHAR(100) NOT NULL COMMENT 'Příjmení' ,
   `email` VARCHAR(200) NOT NULL COMMENT 'E-mail' ,
-  `password` VARCHAR(50) NOT NULL COMMENT 'Heslo - MD5 hash' ,
+  `password` CHAR(32) NOT NULL COMMENT 'Heslo - MD5 hash' ,
   `mobile` VARCHAR(50) NULL COMMENT 'Číslo na mobil' ,
   `home` VARCHAR(50) NULL COMMENT 'Číslo do práce / kanceláře' ,
   `work` VARCHAR(50) NULL COMMENT 'Číslo domů' ,
   `fax` VARCHAR(50) NULL COMMENT 'Číslo faxu' ,
   `im` VARCHAR(150) NULL COMMENT 'Uživatelské jméno / číslo v instant messengeru' ,
   `imservice` SET('aol','msn','icq','yahoo','jabber','skype','gtalk') NULL COMMENT 'Název instant messengeru' ,
-  `owner` TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'Majitel účtu' ,
-  `administrator` TINYINT(1) NOT NULL DEFAULT 0 ,
+  `owner` TINYINT(1)  NOT NULL DEFAULT 0 COMMENT 'Majitel účtu' ,
+  `administrator` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `status` TINYINT(1)  NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`iduser`, `idaccount`, `idcompany`) ,
   INDEX `fk_account_user` (`idaccount` ASC) ,
   INDEX `fk_company_user` (`idcompany` ASC) ,

@@ -22,13 +22,15 @@
 			<?php 
 			$i = 0;
 			foreach($users as $user): ?>
-			<tr <?php echo ($i % 2 == 0 ? '' : 'class="even"') ?>>
+			<tr class="hidden-action-container <?php echo ($i % 2 == 0 ? '' : 'even') ?>">
 				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" class="small-cell">
-				<?php if($this->acl('people', 'edit')): ?>
+				<?php if($this->acl($this->Param('projekt').'|people', 'edit')): ?>
+					<div class="hidden-action">
 				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/edit/'.$user['idacl']); ?>" class="modal"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
 				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
+					</div>
 				<?php endif; ?>
 				</td>
 			</tr>

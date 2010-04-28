@@ -5,33 +5,37 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	{
 		$this->_modelAcl = new Model_Acl();
 		$this->_modelUser = new Model_User();
-		$this->_projekt = $this->_request->getParam('projekt');
+		parent::init();
 	}
 	
 	public function indexAction()
 	{
+		$users = $this->_modelUser->getAccountUsers();
 
+		$this->view->userList = $users;
 	}	
 	
 	public function overviewAction()
 	{
-		$users = $this->_modelAcl->getUsers($this->_projekt);
+		$users = $this->_modelAcl->getUsers($this->_project);
 		
 		$this->view->userList = $users;
 	}
 	
 	public function newAction()
 	{
-		if(isset($this->_projekt)){
-			return $this->_newTeam($this->_projekt);
+		if(isset($this->_project)){
+			$this->_helper->viewRenderer('new-team');
+			return $this->_newTeam($this->_project);
 		}else{
+			$this->_helper->viewRenderer('new-people');
 			return $this->_newPeople();
 		}
 	}
 	
 	public function editAction()
 	{
-		if(isset($this->_projekt)){
+		if(isset($this->_project)){
 			return $this->_editTeam();
 		}else{
 			return $this->_editPeople();
@@ -40,8 +44,8 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	public function deleteAction()
 	{	
-		if(isset($this->_projekt)){
-			return $this->_deleteTeam($this->_projekt);
+		if(isset($this->_project)){
+			return $this->_deleteTeam($this->_project);
 		}else{
 			return $this->_deletePeople();
 		}		
@@ -67,7 +71,33 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 	
 	private function _newPeople()
 	{
-		
+		$this->_form = new Mybase_Form_People();
+
+		$this->view->form = $this->_form;
+
+		$formData = $this->getRequest()->getPost();
+
+
+		if($this->_request->isPost()){
+			if($this->_form->isValid($formData)){
+				$company = new Model_Company();
+
+				empty($formData['idcompany']) ? $formData['idcompany'] = $company->save($formData) : $formData['idcompany'];
+
+				Zend_Debug::dump($formData['idcompany']);
+
+				$this->_modelUser->save($formData);
+
+				$mail = new Model_Mail();
+				$mail->prepare($formData)->generate(Model_Mail::INVITE)->send($formData['email']);
+
+				$this->_flash('New User has been successfully created and E-mailed ***TODO***', 'done', true);
+				return $this->_redirect('/people');
+			}else{
+				//$this->_flash('There is an errors in the form', 'error', false);
+				$this->_form->populate($formData);
+			}
+		}
 	}
 	
 	private function _editTeam()

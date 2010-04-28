@@ -1,0 +1,27 @@
+<html>
+	<body style="background-color: #f9f9f9;color: #2f3030;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;font-size: 13px;">
+		<div style="background-color: #fff;padding: 10px;width: 660px;border: 1px solid #ebebeb;margin: 0 auto">
+			<img src="#" alt="MyBase Logo" title="MyBase Logo" />
+			<?=$this->company; ?>
+			<h1>You have been invited bla bla bla ....</h1>
+
+			<p>
+				Hi <?=$this->name; ?>, <br />
+				<?=$this->sender;?> created an account for you bla bla bla ....
+			</p>
+
+			<div>
+				<h2>For account activate click on following link</h2>
+				<a href="http://mybase.cz/account/confrim/<?=$this->hash;?>">http://mybase.cz/activation/<?=$this->hash;?></a>
+				<p>You can choose your own password after account activation</p>
+			</div>
+
+			<h3>Your friend also wrote:</h3>
+			<p><?=$this->note;?></p>
+
+			<hr />
+
+			<p>Have a question? Contact <?=$this->sender;?> - <a href="mailto:<?=$this->mail;?>"><?=$this->mail;?></a></p>
+		</div>
+	</body>
+</html>

@@ -115,4 +115,55 @@ class Model_User
 		
 		return $return;
 	}
+
+	/**
+	 * Ziskava vsechny uzivatele prislusne k aktualnimu uctu
+	 *
+	 * @return array
+	 */
+	public function getAccountUsers()
+	{
+		$users = $this->_dbTable->getAccountUsers();
+
+		$return = array();
+
+		foreach($users as $user){
+			$return[$user->company][] = array(
+				'user' => $user->name.' '.$user->surname,
+				'iduser' => $user->iduser,
+				'email' => $user->email
+			);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Uklada noveho/editovaneho uzivatele do DB
+	 *
+	 * @param array $formData Data z formulare
+	 * @param int $id ID editovaneho zaznamu
+	 * @return int ID ukladaneho zaznamu
+	 *
+	 * @todo Dodelat sloupce pro editaci
+	 */
+	public function save($formData, $id = null)
+	{
+		$salt = 'ofsdmší&;516#@ešěýp-§)údjs861fds';
+
+		$data = array(
+			'idaccount'			=> $this->_dbTable->getAccountId(),
+			'idcompany'			=> $formData['idcompany'],
+			'name'				=>	$formData['name'],
+			'surname'			=>	$formData['surname'],
+			'email'				=>	$formData['email'],
+			'password'			=>	md5($formData['idcompany'].$formData['name'].$formData['surname'].$formData['email'].$salt),
+			'owner'				=>	0,
+			'administrator'	=>	0,
+			'status'				=> 0
+		);
+
+		$lastInsertId = $this->_dbTable->save($data, $id);
+		return $lastInsertId;
+	}
 }

@@ -140,4 +140,33 @@ $(document).ready(function(){
   }
   // ---------------------------------------------------------------------------------
 
+  // vytvorit x vybrat tlactko ------------------------------------------------------
+  $('.company-select').click(function(){
+    $('.idcompany select').val('');
+    $('.idcompany').hide();
+    $('.company').show();
+    return false;
+  });
+
+  $('.company-create').click(function(){
+    $('.idcompany').show();
+    $('.company input').val('');
+    $('.company').hide();
+    return false;
+  });
+  // -------------------------------------------------------------------------------
+
+  // Zobrazeni action menu pro hoveru -------------------------
+  $(".hidden-action-container").hover(
+    function(){
+      $(".hidden-action", this).show();
+    },
+    function(){
+      $(".hidden-action", this).hide();
+    }
+  );
+
+  $(".hidden-action", this).hide();
+  // --------------------------------------------------------
+
 });

@@ -25,6 +25,8 @@ class Model_Company
 	 */
 	public function getFormSelect($idaccount = null, $nullVal = null)
 	{
+		$return = array();
+
 		if(is_null($idaccount)){
 			$account = new Model_Account();
 			$idaccount = $account->getId();
@@ -39,5 +41,26 @@ class Model_Company
 		}
 		
 		return $return;	
+	}
+
+	/**
+	 * Uklada novou/editovanou spolecnost do DB
+	 *
+	 * @param array $formData Data z formulare
+	 * @param int $id ID editovaneho zaznamu
+	 * @return int ID ukladaneho zaznamu
+	 *
+	 * @todo Dodelat sloupce pro editaci
+	 */
+	public function save($formData, $id = null)
+	{
+		$data = array(
+			'idaccount' 	=> $this->_dbTable->getAccountId(),
+			'name'		=>	$formData['company'],
+			//'description'	=> empty($formData['description']) ? null : $formData['description'],
+		);
+
+		$lastInsertId = $this->_dbTable->save($data, $id);
+		return $lastInsertId;
 	}
 }

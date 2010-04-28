@@ -1,0 +1,49 @@
+<div id="main-fixed">
+    <div id="title">
+         <div id="title-links">
+            <?php if($this->acl('people', 'new')): ?>
+            <a href="<?php echo $this->baseUrl('/people/new') ; ?>"><?php echo $this->Translate('Create new User'); ?><span></span></a>
+            <?php endif; ?>
+        </div>
+        <h2><?php echo $this->Translate('Users'); ?></h2>
+    </div>
+
+	<div id="obsah">
+		<?php echo $this->flashMessages(); ?>
+
+		<?php foreach($this->userList as $company => $users): ?>
+
+		<table class="skin people-table">
+			<thead>
+				<tr>
+					<th colspan="4"><?php echo $company; ?></th>
+				</tr>
+			</thead>
+
+			<?php
+			$i = 0;
+			foreach($users as $user): ?>
+			<tr class="hidden-action-container <?php echo ($i % 2 == 0 ? '' : 'even') ?>">
+				<td width="50px"><?=$this->Gravatar($user['email'], '40');?></td>
+				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>" class="title"><?php echo $user['user']; ?></a>
+				<p><?php echo $user['email']; ?></p>
+				<td colspan="1" class="small-cell">
+				<?php if($this->acl('people', 'edit')): ?>
+					<div class="hidden-action">
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/edit/'.$user['iduser']); ?>" class="modal"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Edit User') ?>" /></a>
+				<br />
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/delete/'.$user['iduser']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove User') ?>" /></a>
+					</div>
+				<?php endif; ?>
+				</td>
+			</tr>
+			<?php
+			$i++;
+			endforeach; ?>
+
+		</table>
+		<?php endforeach; ?>	
+
+		<br class="clear" />
+	</div>
+</div>
