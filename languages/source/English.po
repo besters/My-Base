@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Poedit-Language: Czech\n"
+"X-Poedit-Language: English\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: translate;Translate\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: P:\www\MyBase\library\Unodor/Form/Decorator/Submit.php:53
 msgid "or"
-msgstr "nebo"
+msgstr "or"
 
 #: P:\www\MyBase\library\Unodor/Form/Decorator/Submit.php:53
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "Cancel"
 
 #~ msgid "New milestone"
 #~ msgstr "Nový milník"
