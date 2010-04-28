@@ -11,6 +11,8 @@ class Unodor_Form extends Zend_Form
 		);
 		
 		$this->addPrefixPaths($spec);
+
+		$this->addElementPrefixPath('Unodor_Validate', 'Unodor/Validate/', 'validate');
 		
 		$this->setMethod('post');
 		
@@ -32,14 +34,16 @@ class Unodor_Form extends Zend_Form
 		));
 	}	
 	
-	protected function setInputDecorators($class = null)
+	protected function setInputDecorators($class = null, $decorators = array())
 	{
 		$defaultElementDecorators = array(
 			'label', 
 			'ViewHelper', 
 			'Errors', 
 			//array('Description'),
+			$decorators,
 			array('HtmlTag', array('tag' => 'div', 'class' => 'input '.$class)),
+			
 		);
 		
 
