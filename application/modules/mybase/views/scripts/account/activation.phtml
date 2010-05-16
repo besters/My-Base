@@ -1,0 +1,68 @@
+<?php
+$this->headLink()
+    ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
+    ->appendStylesheet($this->baseUrl('/public/css/layout.css'), 'screen,projection')
+    ->appendStylesheet($this->baseUrl('/public/css/activation.css'), 'screen,projection');
+
+$this->headScript()
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')
+	->appendFile($this->baseUrl('/public/js/jquery.multiSelect.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.modal.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.tooltip.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.js'));
+
+echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<?php
+	echo $this->headMeta();
+	echo $this->headTitle();
+	echo $this->headLink();
+	echo $this->headScript();
+	?>
+</head>
+<body>
+
+<div id="header">
+	<div class="wrap940">
+		<?php $session = new Zend_Session_Namespace('Unodor_Account'); ?>
+		<h1><?=$session->name;?></h1>
+	</div>
+</div>
+
+<div class="wrap940">
+<div id="main-fixed">
+
+    <div id="title">
+        <h2><?php echo $this->Translate('Account Activation'); ?></h2>
+    </div>
+
+	<div id="obsah">
+		<?php echo $this->flashMessages(); ?>
+		<p>Bla bla bla aktivuj si účet bla bla bla...</p>
+
+		
+		<a href="#">Create New UnodorID</a>
+		<a href="#">I allready have Unodor ID</a>
+
+
+		<?=$this->form;?>
+
+
+
+
+		<br class="clear" />
+	</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

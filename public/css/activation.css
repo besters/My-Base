@@ -1,0 +1,11 @@
+#main-fixed{
+  margin: 0 auto;
+  float: none;
+  margin-top: 20px;
+}
+
+#header{
+  background: none;
+  width: 660px;
+  margin: 0 auto;
+}
