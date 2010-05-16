@@ -25,6 +25,7 @@ ul.navigation a {
 	text-decoration: none;
 	height: auto !important;
 	height: 1%; /*For IE*/
+	text-shadow: #ffffff 1px 1px 1px;
 }
 
 /* Hlavni menu - hover */
@@ -79,6 +80,7 @@ ul.subnavigation a {
 	text-decoration: none;
 	height: auto !important;
 	height: 1%; /*For IE*/
+	text-shadow: #ffffff 1px 1px 1px;
 
 }
 
@@ -86,7 +88,8 @@ ul.subnavigation a {
 ul.subnavigation a:hover,ul.subnavigation li:hover a,ul.subnavigation li.iehover a{
 	padding-right: 0px;
 	color: #fff;
-	background: url('../design/submenu-hover-left.png') #bababa no-repeat;		
+	background: url('../design/submenu-hover-left.png') #bababa no-repeat;
+	text-shadow: none;
 }
 
 ul.subnavigation a:hover span,ul.subnavigation li:hover a span,ul.subnavigation li.iehover a span{

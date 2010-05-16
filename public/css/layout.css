@@ -22,7 +22,7 @@
 body {
 	background-color: #f9f9f9;
 	color: #2f3030;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	font-weight: normal;
 	font-variant: normal;
@@ -86,15 +86,11 @@ table{
 #userinfo p{
 	color: #888888;
 	font-size: 11px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 #userinfo a:hover {
 	text-decoration: underline;
-}
-
-#menu {
-	height: 80px;
 }
 
 #mainmenu{
@@ -127,12 +123,13 @@ table{
 #main h2,#main-fixed h2 {
 	font-size: 17px;
 	font-weight: normal;
-	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 	padding: 8px 8px 8px 15px;
 }
 
 #title {
-	background-color: #e2e6eb;
+	background-color: #a9a9a9;
+	text-shadow: #dbdbdb 0px 1px 1px;
 }
 
 #title-links {
@@ -142,28 +139,46 @@ table{
 	margin: 6px 6px 0 0;
 	color: #ebebeb;
 	padding: 4px;
-	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;	
+	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 #title-links a {
+
+  background: url('../design/sprite.png') no-repeat 0 0;
 	color: #474849;
-	background: url('../design/titlelink-left.png') no-repeat;
-	padding: 3px 0px 5px 6px;
 	text-decoration: none;
+	padding-left: 3px;
+	height: 24px;
+	display: inline-block;
 }
 
 #title-links a span{
-	background: url('../design/titlelink-right.png') 100% 0 no-repeat;	
-	padding: 3px 6px 5px 0px;
+  background: url('../design/sprite.png') no-repeat 100% 0;
+  display: block;
+  line-height: 14px;
+  padding: 5px 11px 5px 8px;
 }
 
 #title-links a:hover {
-	background: url('../design/titlelink-left-hover.png') no-repeat;
+  background-position: 0 -48px;
+  padding-left: 3px;
 }
 
 #title-links a:hover span {
-	background: url('../design/titlelink-right-hover.png') 100% 0 no-repeat;
+  background-position:  100% -48px;
+  padding: 5px 11px 5px 8px;
 }
+
+#title-links a:focus, #title-links a:active {
+  background-position: 0 -24px;
+  padding-left: 9px;
+}
+
+#title-links a:focus span, #title-links a:active span {
+  background-position:  100% -24px;
+  padding: 5px 11px 5px 2px;
+}
+
 
 #obsah {
 	padding: 3px;
@@ -243,12 +258,51 @@ div.bar>div, .bar-project>div {
 	text-align: center;
 }
 
+.right{
+  text-align: right;
+}
+
 .clear {
 	clear: both;
 }
 
 .hidden{
 	display: none;
+}
+
+tr, td{
+  /*border: 1px solid black !important;*/
+}
+
+a.actionlink{
+  background-color: #a9a9a9;
+  color: #fff !important;
+  font-size: 9px !important;
+  font-family: Verdana;
+  margin: 2px;
+  padding: 3px 6px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none !important;
+}
+
+a.actionlink:hover{
+  background-color: #101010;
+  text-decoration: none !important;
+}
+
+a.actionlink.delete{
+  background-color: #f46060;
+  font-size: 9px !important;
+  padding: 2px 4px;
+}
+
+a.actionlink.delete:hover{
+  background-color: #d80000;
+}
+
+.hidden-action{
+  float: right;
 }
 
 /*
@@ -308,5 +362,5 @@ table.skin th{
 	padding: 5px 10px;
 	font-size: 14px;
 	text-align: left;
-	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;	
+	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 }

@@ -31,6 +31,14 @@ form div.left{
 	float: left;
 }
 
+form div.right label{
+    text-align: left;
+}
+
+form div.right ul{
+    text-align: left;
+}
+
 form div.right{
 	float: right;
 }
@@ -130,7 +138,7 @@ input.milestone-datetime{
 
 
 div.user-assign, div.user-assign-company{
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #767676;
 }
@@ -182,7 +190,7 @@ div.error ul{
 div.error li{
 	color: #df0000;
 	list-style: none;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: bold;
 }
