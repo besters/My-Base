@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <main>
+
+
+        <index label="Dashboard" module="mybase" controller="index" action="index" route="mybase-default">
+            <params account=""></params>
+        </index>
+
+
+        <project label="Project" module="mybase" controller="project" action="index" route="mybase-default">
+            <pages>
+                <new label="New" module="mybase" controller="project" action="new" route="mybase-default" visible="0">
+                    <params account=""></params>
+                </new>
+            </pages>
+            <params account=""></params>
+        </project>
+
+
+        <assignments label="Assignments" module="mybase" controller="index" action="todoa" route="mybase-default">
+            <params account=""></params>
+        </assignments>
+
+ 
+        <calendar label="Calendar" module="mybase" controller="index" action="todo" route="mybase-default">
+            <params account=""></params>
+        </calendar>
+
+
+        <people label="People" module="mybase" controller="people" action="index" route="mybase-default" resource="people" privilege="index">
+            <params account=""></params>
+            <pages>
+
+                <new label="New" module="mybase" controller="people" action="new" route="mybase-default">
+                    <params account=""></params>
+                </new>
+
+                <edit label="Edit" module="mybase" controller="people" action="edit" route="mybase-default">
+                    <params account=""></params>
+                </edit>
+
+                <detail label="Detail" module="mybase" controller="people" action="detail" route="mybase-default">
+                    <params account=""></params>
+                </detail>
+
+            </pages>
+        </people>
+
+
+    </main>
+
+
+    <sub extends="main">
+
+
+        <project>
+            <pages>
+
+
+                <index label="Overview" module="mybase" controller="index" action="overview" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </index>
+
+
+                <milestone label="Milestone" module="mybase" controller="milestone" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </milestone>
+
+
+                <!--<tickets label="Tickets" module="mybase" controller="ticket" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </tickets>-->
+
+
+                <!--<checklists label="Checklists" module="mybase" controller="checklist" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </checklists>-->
+
+
+                <!--<wiki label="Wiki" module="mybase" controller="wiki" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </wiki>-->
+
+
+                <!--<discuss label="Discuss" module="mybase" controller="discuss" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </discuss>-->
+
+
+                <!--<files label="Files" module="mybase" controller="files" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </files>-->
+
+
+                <!--<time label="Time" module="mybase" controller="time" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </time>-->
+
+
+                <!--<calendar label="Calendar" module="mybase" controller="calendar" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </calendar>-->
+
+
+                <team label="Team" module="mybase" controller="team" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                    <pages>
+                        <new label="New" module="mybase" controller="team" action="new" route="mybase-projekt" resource="" privilege="new">
+                            <params account="" projekt=""></params>
+                        </new>
+                    </pages>
+                </team>
+
+
+                <!--<settings label="Settings" module="mybase" controller="settings" action="index" route="mybase-projekt" resource="" privilege="index">
+                    <params account="" projekt=""></params>
+                </settings>-->
+
+            </pages>
+        </project>
+
+
+    </sub>
+
+</config>

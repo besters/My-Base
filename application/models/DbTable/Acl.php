@@ -31,8 +31,8 @@ class Model_DbTable_Acl extends Unodor_Db_Table {
 	{
 		$query = $this->select()
 					  ->from('acl', array('idacl', 'iduser'))					   
-					  ->join('user', 'acl.iduser = user.iduser', array('CONCAT(user.name, " ", user.surname) as user', 'email'))        
-					  ->joinLeft('company', 'user.idcompany = company.idcompany', array('name AS company'))
+					  ->join('user_meta', 'acl.iduser = user_meta.iduser', array('CONCAT(user_meta.name, " ", user_meta.surname) as user', 'email'))
+					  ->joinLeft('company', 'user_meta.idcompany = company.idcompany', array('name AS company'))
 					  ->where('acl.idproject = ?', $idproject)					  
 					  ->setIntegrityCheck(false);		
 					   			

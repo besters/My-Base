@@ -55,7 +55,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	{		
 		$controller = $request->controller;
         $action = $request->action;
-        $module = $request->module;	
+        $module = $request->module;
 		
 		$auth = Zend_Auth::getInstance();
 		
@@ -95,11 +95,14 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 			$acl->deny('user', 'people', $this->_create);
 			$acl->deny('user', 'project', $this->_manage);
 			$acl->deny('user', 'people', $this->_manage);
+
+			if($request->id == $identity->iduser)
+				$acl->allow('user', 'people', $this->_manage);
 			
 			// Resource pro projektovou podsekci		
-			$this->_projectAcl($acl, $identity);				
+			$this->_projectAcl($acl, $identity);
 
-			Zend_Registry::set('acl', $acl);	
+        	Zend_Registry::set('acl', $acl);
 				
 			if (in_array($projekt.'|'.$request->getControllerName(), $this->_resources)) {		
 				$isAllowed = $acl->isAllowed($identity->email, $projekt.'|'.$request->getControllerName(), $request->getActionName());							
@@ -132,25 +135,25 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 		$aclModel = new Model_Acl();
 			
 		$dbData = $aclModel->getAllPerms($identity->email);		
-		
+
 		foreach($dbData as $aclData)
-		{
-			$perms = unserialize($aclData->permission);
+		{		   
+			$perms = unserialize($aclData['permission']);
 			foreach($perms as $resource => $perm)
 			{	
-				$acl->add(new Zend_Acl_Resource($aclData->idproject.'|'.$resource));
+				$acl->add(new Zend_Acl_Resource($aclData['idproject'].'|'.$resource));
 							
 				if($perm & self::READ){
-					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_read);
+					$acl->allow($identity->email, $aclData['idproject'].'|'.$resource, $this->_read);
 				}
 				if($perm & self::CREATE){
-					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_create);
+					$acl->allow($identity->email, $aclData['idproject'].'|'.$resource, $this->_create);
 				}
 				if($perm & self::MANAGE){
-					$acl->allow($identity->email, $aclData->idproject.'|'.$resource, $this->_manage);
+					$acl->allow($identity->email, $aclData['idproject'].'|'.$resource, $this->_manage);
 				}
 								
-				$this->_resources[] = $aclData->idproject.'|'.$resource;
+				$this->_resources[] = $aclData['idproject'].'|'.$resource;
 			}
 		}			
 	}	
