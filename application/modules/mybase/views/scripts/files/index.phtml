@@ -1,0 +1,38 @@
+<div id="main-fixed">
+    <div id="title">
+         <div id="title-links">
+            <?php if($this->acl($this->Param('projekt').'|files', 'new')): ?>
+            <?=$this->ActionLink('/files/new', 'Upload New File', true);?>
+            <?php endif; ?>
+        </div>
+        <h2><?php echo $this->Translate('Files'); ?></h2>
+    </div>
+
+	<div id="obsah">
+		<?php echo $this->flashMessages(); ?>
+
+		<?php
+		echo '<br />';
+		echo '<hr />';
+
+		Zend_Debug::dump($this->objects, 'Objects');
+
+		echo '<br />';
+		echo '<hr />';
+
+		Zend_Debug::dump($_POST, 'Post');
+
+		echo '<br />';
+		echo '<hr />';
+
+		Zend_Debug::dump($_FILES, 'Files');
+
+		echo '<br />';
+		echo '<hr />';
+		?>
+
+		<?php echo $this->form; ?>
+
+		<br class="clear" />
+	</div>
+</div>
