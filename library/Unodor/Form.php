@@ -68,7 +68,7 @@ class Unodor_Form extends Zend_Form
 	{
 		$defaultSubmitDecorators = array(
 			array('Submit', array('cancel' => $class)), 
-			array('HtmlTag', array('tag' => 'div', 'class' => 'input submit'))
+			array('HtmlTag', array('tag' => 'div', 'class' => 'input submit clear'))
 		);
 		
 		return $defaultSubmitDecorators;
