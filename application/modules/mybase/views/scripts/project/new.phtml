@@ -11,7 +11,7 @@ $(document).ready(function() {
 	'fileExt'	: '*.jpg;*.jpeg;*.gif;*.png',
 	'folder'    : '".$this->baseUrl('public/files/temp')."',
 	onError: function (evt, queueID, fileObj, errorObj) {
-			alert(errorObj.info);
+			alert('error '+errorObj.type+': '+errorObj.info + ' name: ' + fileObj.name + ' size: ' + fileObj.size);
 			$('.input-submit').removeAttr('disabled');
 		},
 	onComplete: function (event, queueID, fileObj, response, data) {				

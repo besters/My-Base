@@ -11,7 +11,7 @@
 }
 
 .project-table .content img {
-	border: 1px solid #545254;
+	border: 1px solid #f0f0f0;
 	float: left;
 	clear: both;
 	margin: 5px 10px 5px 7px;
@@ -21,6 +21,7 @@
 	float: left;
 	width: 50%;
 	padding-top: 5px;
+	text-align: left;
 }
 
 .project-table .content .right p {
@@ -34,7 +35,7 @@
 	font-weight: bold;
 	color: #545254;
 	text-decoration: none;
-	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 .project-table .content .right a.title:hover {
@@ -44,7 +45,7 @@
 .project-table dl,.project-table dl dd a{
 	color: #545254;
 	font-size: 12px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 	padding-top: 5px;
 }
 

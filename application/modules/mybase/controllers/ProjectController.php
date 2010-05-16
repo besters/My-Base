@@ -17,10 +17,13 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 	public function newAction()
 	{
 		$this->_form = new Mybase_Form_Project();
+
+		$session = new Zend_Session_Namespace('Zend_Auth');
+		$this->_form->populate(array('iduser' => $session->storage->iduser));
 		
 		$this->view->form = $this->_form;
 
-		$formData = $this->getRequest()->getPost();
+    	$formData = $this->getRequest()->getPost();
 				
 		if($this->_request->isPost()){
 			if($this->_form->isValid($formData)){
@@ -38,9 +41,9 @@ class Mybase_ProjectController extends Unodor_Controller_Action
 					rename(ROOT_PATH.'/public/files/tmp/'.$formData['img'], ROOT_PATH.'/public/files/'.$account->getId().'/'.$lastInsertId.'/'.$formData['img']);
 				}
 				
-				$acl->createDefault($lastInsertId);
+				$acl->createDefault($lastInsertId, $formData['iduser']);
 				$this->_flash('New project has been successfully created', 'done');
-				return $this->_redirect('/'.$lastInsertId.'/people/overview');
+				return $this->_redirect('/'.$lastInsertId.'/team');
 			}else{
 				$this->_flash('Formulář není vyplněn správně', 'error', false);
 				$this->_form->populate($formData);

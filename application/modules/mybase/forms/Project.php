@@ -22,12 +22,11 @@ class Mybase_Form_Project extends Unodor_Form
 			'required' => true,
 		));
 
-		$user = new Model_User();
+		$user = new Model_UserMeta();
 		$company = new Model_Company();
 			
 		$companyData = $company->getFormSelect(null, '--- None ---');
 			
-		// TODO: automaticky nastavit autora projektu jako selected
 		$this->addElement('select', 'iduser', array(
 			'label' => "Project leader:",
 			'multiOptions' => $user->getFormSelect(null, $companyData),
