@@ -4,7 +4,7 @@ class Mybase_Form_Login extends Unodor_Form
 {
 	public function init()
 	{
-		$this->addElement('text','email', array(
+		$this->addElement('text','username', array(
 			'label' => "E-mail:",
 			'class'	=> 'input-text',
 			'required' => true,

@@ -3,6 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 CREATE SCHEMA IF NOT EXISTS `mybase` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+CREATE SCHEMA IF NOT EXISTS `new_schema1` ;
 
 -- -----------------------------------------------------
 -- Table `mybase`.`account`
@@ -30,7 +31,6 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`company` (
   `name` VARCHAR(100) NOT NULL COMMENT 'Název společnosti' ,
   `logo` VARCHAR(100) NULL COMMENT 'Logo společnosti' ,
   `phone` VARCHAR(50) NULL COMMENT 'Telefonní kontakt' ,
-  `fax` VARCHAR(50) NULL COMMENT 'Číslo faxu' ,
   `website` VARCHAR(255) NULL COMMENT 'Webová stránka' ,
   `address1` VARCHAR(100) NULL COMMENT '1. řádek adresy' ,
   `address2` VARCHAR(100) NULL COMMENT '2. řádek adresy' ,
@@ -49,33 +49,45 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mybase`.`login`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`login` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`login` (
+  `idlogin` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `username` VARCHAR(200) NULL ,
+  `password` CHAR(32) NULL ,
+  `name` VARCHAR(100) NULL ,
+  `surname` VARCHAR(100) NULL ,
+  `email` VARCHAR(200) NULL ,
+  PRIMARY KEY (`idlogin`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mybase`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mybase`.`user` ;
 
 CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   `iduser` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idlogin` INT UNSIGNED NOT NULL ,
   `idaccount` INT UNSIGNED NOT NULL ,
   `idcompany` INT UNSIGNED NULL ,
-  `title` VARCHAR(30) NULL COMMENT 'Titul - Ing, Mgr, atd.' ,
-  `name` VARCHAR(100) NOT NULL COMMENT 'Křestní jméno' ,
-  `surname` VARCHAR(100) NOT NULL COMMENT 'Příjmení' ,
-  `email` VARCHAR(200) NOT NULL COMMENT 'E-mail' ,
-  `password` CHAR(32) NOT NULL COMMENT 'Heslo - MD5 hash' ,
+  `email` VARCHAR(200) NULL COMMENT 'Příjmení' ,
   `mobile` VARCHAR(50) NULL COMMENT 'Číslo na mobil' ,
   `home` VARCHAR(50) NULL COMMENT 'Číslo do práce / kanceláře' ,
   `work` VARCHAR(50) NULL COMMENT 'Číslo domů' ,
-  `fax` VARCHAR(50) NULL COMMENT 'Číslo faxu' ,
   `im` VARCHAR(150) NULL COMMENT 'Uživatelské jméno / číslo v instant messengeru' ,
   `imservice` SET('aol','msn','icq','yahoo','jabber','skype','gtalk') NULL COMMENT 'Název instant messengeru' ,
   `owner` TINYINT(1)  NOT NULL DEFAULT 0 COMMENT 'Majitel účtu' ,
   `administrator` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `status` TINYINT(1)  NOT NULL DEFAULT 0 ,
-  PRIMARY KEY (`iduser`, `idaccount`, `idcompany`) ,
+  `registered` DATE NOT NULL ,
+  PRIMARY KEY (`iduser`, `idaccount`, `idcompany`, `idlogin`) ,
   INDEX `fk_account_user` (`idaccount` ASC) ,
   INDEX `fk_company_user` (`idcompany` ASC) ,
-  INDEX `email` (`email` ASC) ,
-  UNIQUE INDEX `mail` (`email` ASC) ,
+  INDEX `fk_login_user` (`idlogin` ASC) ,
   CONSTRAINT `fk_account_user`
     FOREIGN KEY (`idaccount` )
     REFERENCES `mybase`.`account` (`idaccount` )
@@ -84,6 +96,11 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`user` (
   CONSTRAINT `fk_company_user`
     FOREIGN KEY (`idcompany` )
     REFERENCES `mybase`.`company` (`idcompany` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_login_user`
+    FOREIGN KEY (`idlogin` )
+    REFERENCES `mybase`.`login` (`idlogin` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -451,6 +468,36 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`task` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Placeholder table for view `mybase`.`user_login`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mybase`.`user_login` (`iduser` INT, `email` INT, `owner` INT, `administrator` INT, `name` INT, `surname` INT, `username` INT, `password` INT, `idaccount` INT);
+
+-- -----------------------------------------------------
+-- Placeholder table for view `mybase`.`user_meta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mybase`.`user_meta` (`name` INT, `surname` INT, `username` INT, `iduser` INT, `idaccount` INT, `idcompany` INT, `email` INT, `mobile` INT, `home` INT, `work` INT, `im` INT, `imservice` INT, `status` INT);
+
+-- -----------------------------------------------------
+-- View `mybase`.`user_login`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `mybase`.`user_login` ;
+DROP TABLE IF EXISTS `mybase`.`user_login`;
+CREATE  OR REPLACE VIEW `mybase`.`user_login` AS 
+SELECT user.iduser, login.email, user.owner, user.administrator, login.name, login.surname, login.username, login.password, user.idaccount
+FROM login
+LEFT JOIN user ON login.idlogin = user.idlogin;
+
+-- -----------------------------------------------------
+-- View `mybase`.`user_meta`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `mybase`.`user_meta` ;
+DROP TABLE IF EXISTS `mybase`.`user_meta`;
+CREATE  OR REPLACE VIEW `mybase`.`user_meta` AS
+SELECT login.name, login.surname, login.username, user.iduser, user.idaccount, user.idcompany, user.email, user.mobile, user.home, user.work, user.im, user.imservice, user.status
+FROM login
+LEFT JOIN user ON login.idlogin = user.idlogin;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

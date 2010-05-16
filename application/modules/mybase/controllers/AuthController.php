@@ -21,16 +21,20 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 	        }else{
 	        	$values = $form->getValues();
 		        $auth = Zend_Auth::getInstance();    
-				$modelAccount = new Model_Account();
-				$idaccount = $modelAccount->getId($this->_request->account);            
 		        $authAdapter = new Zend_Auth_Adapter_DbTable(
 		            Zend_Db_Table_Abstract::getDefaultAdapter(),
-		            'user',
-		            'email',
+		            'user_login',
+		            'username',
 		            'password',
-		            'MD5(?) AND idaccount = '.$idaccount
+		            'MD5(?)'
 		        );
-		        $authAdapter->setIdentity($values['email']);
+					$modelAccount = new Model_Account();
+					$idaccount = $modelAccount->getId($this->_request->account);
+
+				  $select = $authAdapter->getDbSelect();
+				  $select->where('idaccount = '.$idaccount);
+
+		        $authAdapter->setIdentity($values['username']);
 		        $authAdapter->setCredential($values['password']);
 		        $result = $auth->authenticate($authAdapter);
 		        
@@ -48,7 +52,7 @@ class Mybase_AuthController extends Unodor_Controller_Action{
 				
 				    case Zend_Auth_Result::SUCCESS:
 						$storage = $auth->getStorage();
-						$storage->write($authAdapter->getResultRowObject(array('iduser', 'email', 'name', 'surname', 'owner', 'administrator')));
+						$storage->write($authAdapter->getResultRowObject(array('email', 'name', 'surname', 'username', 'iduser', 'owner', 'administrator')));
 						if($form->getValue('remember') == 1) Zend_Session::rememberMe(60*60*24*14);
 				        //$this->_redirect('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
 				        $this->_redirect('/');

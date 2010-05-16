@@ -1,96 +1,60 @@
 <?php
 
-class Model_DbTable_User extends Unodor_Db_Table {
-	
-	protected $_name = 'user';
-	
-	protected $_primary = 'iduser';
-	
-	protected $_sequence = true;
-	
-	protected $_dependentTables = array ('Activity', 'Acl', 'Milestone', 'Checklist', 'MilestoneUser', 'Ticket', 'TicketUser', 'Task', 'Project');
-	
-	protected $_referenceMap = array (
-		'Account' => array (
-			'columns' => array('idaccount'), 
-			'refTableClass' => 'Model_DbTable_Account', 
-			'refColumns' => array('idaccount') 
-		), 
-		'Company' => array (
-			'columns' => array('idcompany'),
-			'refTableClass' => 'Model_DbTable_Company',
-			'refColumns' => array('idcompany')
-		)
-	);
-	
-	/**
-	 * Ziskava z DB seznam uzivatelu kteri nejsou prirazeni k danemu projektu
-	 * 
-	 * @param int $idproject ID projektu
-	 * @return Zend_Db_Statement Vysledek
-	 */
-	public function getFreeUsers($idproject)
-	{
-		$idaccount = $this->getAccountId();
-				  
-		$query = $this->select()             			                   
-					  ->from('user', array('iduser', 'CONCAT(user.name, " ", user.surname) as user'))
-					  ->join('company', 'user.idcompany = company.idcompany', array('name AS company')) 
-					  ->where('user.iduser NOT IN (?)',new Zend_Db_Expr('SELECT DISTINCT iduser FROM acl WHERE idproject = '.$idproject.''))
-					  ->where('user.idaccount = ?', $idaccount)           
-					  ->setIntegrityCheck(false); 
-					   			
-		$stmt = $query->query();
+class Model_DbTable_User extends Unodor_Db_Table
+{
+   protected $_name = 'user';
+   protected $_primary = 'iduser';
+   protected $_sequence = true;
+   protected $_dependentTables = array('Activity', 'Acl', 'Milestone', 'Checklist', 'MilestoneUser', 'Ticket', 'TicketUser', 'Task', 'Project');
+   protected $_referenceMap = array(
+       'Account' => array(
+           'columns' => array('idaccount'),
+           'refTableClass' => 'Model_DbTable_Account',
+           'refColumns' => array('idaccount')
+       ),
+       'Company' => array(
+           'columns' => array('idcompany'),
+           'refTableClass' => 'Model_DbTable_Company',
+           'refColumns' => array('idcompany')
+       ),
+       'Login' => array(
+           'columns' => array('idlogin'),
+           'refTableClass' => 'Model_DbTable_Login',
+           'refColumns' => array('idlogin')
+       )
+   );
 
-		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+   public function getUserInfo($iduser)
+   {
+      $query = $this->select()
+              ->from('user', array('iduser', 'idlogin', 'idcompany', 'email AS mail', 'mobile', 'home', 'work', 'im', 'imservice', 'administrator'))
+              ->join('login', 'user.idlogin = login.idlogin', array('name', 'surname', 'email', 'username'))
+              ->where('user.iduser = ?', $iduser)
+              ->limit(1)
+              ->setIntegrityCheck(false);
 
-		return $result;
-	}
-	
-	/**
-	 * Ziskava z DB seznam uzivatelu kteri jsou prirazeni k danemu projektu
-	 * 
-	 * @param int $idproject ID projektu
-	 * @return Zend_Db_Statement Vysledek
-	 */	
-	public function getProjectUsers($idproject)
-	{
-		$idaccount = $this->getAccountId();
-				  
-		$query = $this->select()             			                   
-					  ->from('user', array('iduser', 'CONCAT(user.name, " ", user.surname) as user'))
-					  ->joinLeft('company', 'user.idcompany = company.idcompany', array('name AS company', 'idcompany'))
-					  ->where('user.iduser IN (?)',new Zend_Db_Expr('SELECT DISTINCT iduser FROM acl WHERE idproject = '.$idproject.''))
-					  ->where('user.idaccount = ?', $idaccount)           
-					  ->setIntegrityCheck(false); 
-					   			
-		$stmt = $query->query();
+      $stmt = $query->query();
 
-		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+      $result = $stmt->fetchObject();
 
-		return $result;		
-	}
+      return $result;
+   }
 
-	/**
-	 * Ziskava z DB seznam uzivatelu podle accountu
-	 *
-	 * @return Zend_Db_Statement Vysledek
-	 */
-	public function getAccountUsers()
-	{
-		$account = $this->getAccountId();
+   public function isOwner($idacl)
+   {
+      $query = $this->select()
+	      ->from('user', array('owner'))
+	      ->joinLeft('acl', 'user.iduser = acl.iduser')
+	      ->where('acl.idacl = ?', $idacl)
+	      ->limit(1)
+	      ->setIntegrityCheck(false);
 
-		$query = $this->select()
-					  ->from('user', array('user.name', 'user.surname', 'user.email', 'user.iduser'))
-					  ->join('company', 'user.idcompany = company.idcompany', array('company.name AS company'))
-					  ->where('user.idaccount = ?', $account)
-					  ->where('company.idaccount = ?', $account)
-					  ->setIntegrityCheck(false);
+      $stmt = $query->query();
 
-		$stmt = $query->query();
+      $result = $stmt->fetchObject();
 
-		$result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+      return $result;
+   }
 
-		return $result;
-	}
 }
+

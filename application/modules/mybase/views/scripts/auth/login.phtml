@@ -3,6 +3,10 @@ $this->headLink()
     ->appendStylesheet($this->baseUrl('/public/css/reset.css'), 'screen,projection')
     ->appendStylesheet($this->baseUrl('/public/css/login.css'), 'screen,projection');
 
+$this->headScript()
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
+	->appendFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js');
+
 echo $this->doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
