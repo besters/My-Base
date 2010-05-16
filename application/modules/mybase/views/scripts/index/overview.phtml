@@ -1,0 +1,22 @@
+<div id="main">
+   <div id="title">
+      <div id="title-links">
+         <?php if($this->acl($this->Param('projekt') . '|milestone', 'new')): ?>
+                     <?=$this->ActionLink('/milestone/new', 'Create New Milestone', true); ?>
+         <?php endif; ?>
+         <?php if($this->acl($this->Param('projekt') . '|ticket', 'new')): ?>
+                     <?=$this->ActionLink('/ticket/new', 'Create New Ticket', true); ?>
+         <?php endif; ?>
+               </div>
+               <h2><?php echo $this->Translate('Overview'); ?></h2>
+            </div>
+            <div id="obsah">
+      <?php echo $this->flashMessages(); ?>
+
+
+
+      <br class="clear" />
+
+
+   </div>
+</div>
