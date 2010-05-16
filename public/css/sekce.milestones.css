@@ -4,7 +4,7 @@ table.milestone{
 }
 
 table.milestone th{
-	background-color: #e3e7d7;
+	background-color: #e9eef4;
 	text-align: left;
 	font-size: 12px;
 	font-weight: normal;
@@ -20,11 +20,16 @@ table.milestone td.name{
 }
 
 table.milestone td.name a{
+	
+}
+
+table.milestone td.name a.title{
 	color: #545254;
 	font-size: 18px;
 	text-decoration: none;
 	display: block;
 }
+
 table.milestone td.name a:hover{
 	text-decoration: underline;
 }

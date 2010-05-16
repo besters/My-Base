@@ -6,6 +6,8 @@ class Model_Milestone
 	 * @var Model_DbTable_Account
 	 */
 	private $_dbTable;
+	
+	private $_milestones;
 
 	public function __construct()
 	{
@@ -31,6 +33,65 @@ class Model_Milestone
 		}
 		
 		return $return;	
+	}
+	
+	private function whereCondition($cond)
+	{
+		if(is_null($cond)){
+			return 'iduser';
+		}elseif(is_array($cond)){
+			$return = 'iduser = '.$cond[0];
+			array_shift($cond);
+			foreach($cond as $val){
+				$return .= ' OR iduser = '.$val;
+			}
+			return $return;
+		}else{
+			return 'iduser = '.$cond;
+		}
+	}
+	
+	public function getMilestones($iduser = null)
+	{	
+		$condition = $this->whereCondition($iduser);
+		$projectModel = new Model_Project();
+		$idproject = $projectModel->getId();
+		$this->_milestones = $this->_dbTable->getMilestones($condition, $idproject);		
+		return $this;
+	}
+	
+	public function getActive()
+	{
+		return $this->statusCond('active');
+	}
+	
+	public function getComplete()
+	{
+		return $this->statusCond('complete');
+	}
+	
+	public function getPaused()
+	{
+		return $this->statusCond('paused');
+	}
+	
+	public function getCanceled()
+	{
+		return $this->statusCond('canceled');
+	}
+	
+	private function statusCond($cond)
+	{
+		$return = array();
+		
+		foreach($this->_milestones as $key => $val){
+			if($val->status == $cond){
+				$val->user = explode(',', $val->user);	
+				$val->iduser = explode(',', $val->iduser);	
+				$return[$key] = $val;			
+			}
+		}	
+		return $return;		
 	}
 	
 	/**

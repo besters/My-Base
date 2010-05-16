@@ -9,7 +9,17 @@ class Mybase_MilestoneController extends Unodor_Controller_Action
 	
 	public function indexAction()
 	{
-			
+		$milestones = $this->_model->getMilestones();	
+		
+		$acive = $milestones->getActive();
+		$complete = $milestones->getComplete();
+		$paused = $milestones->getPaused();
+		$canceled = $milestones->getCanceled();
+		
+		$this->view->active = $acive;			
+		$this->view->complete = $complete;			
+		$this->view->paused = $paused;			
+		$this->view->canceled = $canceled;			
 	}
 	
 	public function newAction()
@@ -30,7 +40,7 @@ class Mybase_MilestoneController extends Unodor_Controller_Action
 				$this->_flash('New milestone has been successfully created', 'done', true);
 				return $this->_redirect($this->_project.'/milestone');
 			}else{
-				$this->_flash('Formulář není vyplněn správně', 'error', false);
+				//$this->_flash('There is an errors in the form', 'error', false);
 				$this->_form->populate($formData);
 			}
 		}

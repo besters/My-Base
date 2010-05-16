@@ -1,8 +1,8 @@
-<div id="main-fixed">
+<div id="main">
     <div id="title">
          <div id="title-links">
          <?php if($this->acl($this->Param('projekt').'|milestone', 'new')): ?>
-            <a href="<?php echo $this->baseUrl($this->Param('projekt').'/milestone/new') ; ?>"><?php echo $this->Translate('Create new milestone'); ?></a>
+            <?=$this->ActionLink('/milestone/new', 'Create New Milestone', true);?>
          <?php endif; ?>  
         </div>    
         <h2><?php echo $this->Translate('Milestones'); ?></h2>
@@ -10,9 +10,62 @@
 	<div id="obsah">
 		<?php echo $this->flashMessages(); ?>
 				
-				
+		<table class="milestone">	
+			<thead>
+				<tr>
+					<th colspan="3"><?php echo $this->Translate('Active'); ?> (<?php echo count($this->active); ?>)</th>
+				</tr>	
+			</thead>
+			<tbody>
+			<?php 
+			$i = 0;
+			foreach($this->active as $milestone):
+			?>	
+				<tr>
+					<td class="priority"><?php //echo $milestone->idpriority; ?></td>
+					<td class="name">
+						<a href="milestone/detail/<?php echo $milestone->idmilestone; ?>" class="title"><?php echo $milestone->name; ?></a>
+						<p><strong><?php echo $this->Translate('Assignments'); ?>:</strong> 
+							<?php foreach($milestone->user as $numId => $user): ?>
+								<a href="/people/detail/<?php echo $milestone->iduser[$numId]?>"><?php echo $user; ?></a>, 
+							<?php endforeach; ?>
+						</p>
+					</td>
+					<td class="date"><?php echo $milestone->datetime; ?></td>
+				</tr>
+			<?php 
+			$i++;
+			endforeach;		
+			?>	
+			</tbody>	
+		</table>	
 		
-				
+		<table class="milestone">	
+			<thead>
+				<tr>
+					<th colspan="3"><?php echo $this->Translate('Paused'); ?> (<?php echo count($this->paused); ?>)</th>
+				</tr>	
+			</thead>
+			<tbody>
+			<?php 
+			$i = 0;
+			foreach($this->paused as $milestone):
+			?>	
+				<tr>
+					<td class="priority"><?php echo $milestone->idpriority; ?></td>
+					<td class="name">
+						<a href="milestone/detail/<?php echo $milestone->idmilestone; ?>"><?php echo $milestone->name; ?></a>
+						<p><strong><?php echo $this->Translate('Assignments') . ':</strong> ' . $milestone->user; ?></p>
+					</td>
+					<td class="date"><?php echo $milestone->datetime; ?></td>
+				</tr>
+			<?php 
+			$i++;
+			endforeach;		
+			?>	
+			</tbody>	
+		</table>			
+
 				
 				
 					
