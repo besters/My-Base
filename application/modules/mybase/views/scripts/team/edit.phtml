@@ -1,0 +1,31 @@
+<span id="idacl" class="hidden" ><?php echo $this->param('id'); ?></span>
+<table class="skin acl modalwin">
+   <thead>
+      <tr>
+	 <th><?php echo $this->translate('Section') ?></th>
+	 <th colspan="4"><?php echo $this->translate('Permissons') ?></th>
+      </tr>
+   </thead>
+   <tbody>
+      <?php
+      $i = 0;
+      if($this->owner == 1){
+	 $params =  array('class' => 'input-radio acl', 'disabled' => 'disabled');
+      }else{
+	  $params = array('class' => 'input-radio acl');
+      }
+
+      foreach($this->acl as $name => $perm):
+         if($name == 'index')
+            continue;
+      ?>
+               <tr <?php echo ($i % 2 == 0 ? '' : 'class="even"') ?>>
+         	 <td><?php echo $this->translate($perm['name']) ?></td>
+		 <td class="noaccess"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('0' => $this->translate('No access'))); ?></td>
+         	 <td class="read"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('1' => $this->translate('Read only'))); ?></td>
+         	 <td class="create"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('3' => $this->translate('Can create'))); ?></td>
+         	 <td class="manage"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('7' => $this->translate('Can manage'))); ?></td>
+            </tr>
+<?php $i++; endforeach; ?>
+   </tbody>
+</table>

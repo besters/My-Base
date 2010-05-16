@@ -1,8 +1,8 @@
 <div id="main-fixed">
     <div id="title">
          <div id="title-links">
-         <?php if($this->acl($this->Param('projekt').'|people', 'new')): ?>
-            <a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/new') ; ?>"><?php echo $this->Translate('Add people to project'); ?><span></span></a>
+         <?php if($this->acl($this->Param('projekt').'|team', 'new')): ?>
+				<?=$this->ActionLink('/team/new', 'Add people to project', true);?>
          <?php endif; ?>  
         </div>    
         <h2><?php echo $this->Translate('Project Team'); ?></h2>
@@ -25,11 +25,11 @@
 			<tr class="hidden-action-container <?php echo ($i % 2 == 0 ? '' : 'even') ?>">
 				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
 				<td><?php echo $user['email']; ?></td>
-				<td colspan="1" class="small-cell">
-				<?php if($this->acl($this->Param('projekt').'|people', 'edit')): ?>
+				<td colspan="1" width="245px">
+				<?php if($this->acl($this->Param('projekt').'|team', 'edit')): ?>
 					<div class="hidden-action">
-				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/edit/'.$user['idacl']); ?>" class="modal"><img src="<?php echo $this->baseUrl('/public/design/ico-key.png') ?>" title="<?php echo $this->translate('Change Permissions') ?>" /></a>
-				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/people/delete/'.$user['idacl']); ?>"><img src="<?php echo $this->baseUrl('/public/design/ico-cross.png') ?>" title="<?php echo $this->translate('Remove from Project') ?>" /></a>
+						<a href="<?php echo $this->baseUrl($this->Param('projekt').'/team/edit/'.$user['idacl']); ?>" class="modal actionlink"><?= $this->translate('Change Permissions'); ?></a>
+				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/team/delete/'.$user['idacl']); ?>"  class="actionlink delete"><?= $this->translate('Remove from Project'); ?></a>
 					</div>
 				<?php endif; ?>
 				</td>

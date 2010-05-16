@@ -48,15 +48,16 @@ $(document).ready(function(){
   // -------------------------------------------------------------------------
 	 
   // Ajaxova editace ACL -------------------------------------------------------------------------------------------------------------------
+  //$('.acl.modalwin label').live('mouseup', function(event){
   $('.acl.modalwin label').live('mouseup', function(event){
     var label = $(this).attr('for');
     var radio = $('#'+label);
     var prev = $("input[name='" + radio[0].name + "']:checked");
 		
-    if ($(radio).is(':checked') == false) {
+    if ($(radio).is(':checked') == false && $(radio).is(':disabled') == false) {
       $.ajax({
 	type: "POST",
-	url: "edit/" + $('span#idacl').html(),
+	url: "team/edit/" + $('span#idacl').html(),
 	data: ({
 	  perm: radio[0].id
 	  }),
@@ -168,5 +169,9 @@ $(document).ready(function(){
 
   $(".hidden-action", this).hide();
   // --------------------------------------------------------
+
+  $('.delete').click(function(){
+    return confirm('Are your sure? ***PRIDAT CUSTOMIZACI A PREKLADY***');
+  });
 
 });
