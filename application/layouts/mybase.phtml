@@ -8,7 +8,7 @@ $this->headScript()
 	->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
 	->appendFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')
 	->appendFile('http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js')
-	->appendFile($this->baseUrl('/public/js/jquery.multiSelect.js'))
+	->appendFile($this->baseUrl('/public/js/jquery.multiselect.js'))
 	->appendFile($this->baseUrl('/public/js/jquery.uploadify.js'))
 	->appendFile($this->baseUrl('/public/js/swfobject.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.modal.js'))
@@ -30,7 +30,8 @@ echo $this->doctype(); ?>
 
 <div id="header">
 	<div class="wrap940">
-		<h1>Název Firmy</h1>
+		<?php $session = new Zend_Session_Namespace('Unodor_Account'); ?>
+		<h1><?=$session->name;?></h1>
 		<div id="userinfo">
 			<?php $session = new Zend_Session_Namespace('Zend_Auth'); ?>
 			<?php echo $this->gravatar($session->storage->email); ?>
@@ -71,9 +72,9 @@ echo $this->doctype(); ?>
 			?>
 		</div>
 	</div>
-</div>
-<?php endif; ?>
 
+<?php endif; ?>
+</div>
 <div class="wrap940">	  
 
 	<?php echo $this->layout()->content ?>
