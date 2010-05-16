@@ -1,0 +1,26 @@
+<div id="main-fixed">
+    <div id="title">
+		<div id="title-links">
+         <?php if($this->acl('people', 'edit')): ?>
+				<?=$this->ActionLink('/people/edit/'.$this->Param('id'), 'Edit user');?>
+         <?php endif; ?>
+        </div>
+        <h2><?php echo $this->name; ?> <?php echo $this->surname; ?></h2>
+    </div>
+
+	<div id="obsah">
+
+		<p class="people-big"><em><?= $this->name; ?></em> pracuje pro firmu <em><?= $this->company; ?></em>, účet zde má už <em>*&nbsp;měsíců</em>, podílí se na <em>*&nbsp;projektech</em> a <em>*&nbsp;milnících</em>.</p>
+
+		<br class="clear" />
+	</div>
+</div>
+
+<div id="side">
+	<div class="block">
+	    <h3>E-mailová adresa</h3>
+	    <p>E-mailová adresa uživatele:</p>
+		 <?=$this->gravatar($this->mail, 35);?>
+		 <?=$this->mail;?>
+	</div>
+</div>

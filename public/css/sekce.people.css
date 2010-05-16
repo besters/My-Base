@@ -9,7 +9,7 @@
 	font-weight: bold;
 	color: #545254;
 	text-decoration: none;
-	font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 .people-table a.title:hover {
@@ -19,5 +19,32 @@
 .people-table .gravatar{
   border: 1px solid #cecece;
   padding: 1px;
+}
+
+.people-table .status{
+  padding: 1px 4px;
+  color: #fff;
+}
+
+.people-table .status.active{
+  background-color: #92c8f1;
+}
+
+.people-table .status.noactive{
+  background-color: #c24a4a;
+}
+
+#obsah p.people-big{
+  font-size: 20px;
+  line-height: 50px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#obsah p.people-big em{
+  font-style: normal;
+  font-weight: bold;
+  background-color: #fffee1;
+  padding: 3px 5px 3px 5px;
 }
 
