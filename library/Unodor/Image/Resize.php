@@ -130,7 +130,8 @@ class Unodor_Image_Resize
 	 * @return Unodor_Image_Resize
 	 */
 	public function adaptiveResize($width, $height)
-	{	
+	{
+		/*
 		if(!is_numeric($width) OR $width == 0){
 			throw new Zend_Exception('$width must be numeric bigger then 0');
 		}
@@ -166,6 +167,38 @@ class Unodor_Image_Resize
 									$this->oldSize['height']
 								);		
 
+		return $this;*/
+		if(!is_numeric($width)){
+			throw new Zend_Exception('$width must be numeric');
+		}
+
+		if(!is_numeric($height)){
+			throw new Zend_Exception('$height must be numeric');
+		}
+
+		$this->maxSize = array(
+			'width' => (intval($width) > $this->oldSize['width']) ? $this->oldSize['width'] : intval($width),
+			'height' => (intval($height) > $this->oldSize['height']) ? $this->oldSize['height'] : intval($height)
+		);
+
+		$this->_calcImageSize();
+
+		$this->newImg = imagecreatetruecolor($width, $height);
+
+		$trans_colour = imagecolorallocate($this->newImg, 250, 250, 250);
+		imagefill($this->newImg, 0, 0, $trans_colour);
+
+		$shiftWidth = ($width - $this->newSize['width']) / 2;
+		$shiftHeight = ($height - $this->newSize['height']) / 2;
+
+		imagecopyresampled(	$this->newImg,
+									$this->oldImg,
+									$shiftWidth, $shiftHeight, 0, 0,
+									$this->newSize['width'],
+									$this->newSize['height'],
+									$this->oldSize['width'],
+									$this->oldSize['height']
+								);
 		return $this;
 	}
 	
