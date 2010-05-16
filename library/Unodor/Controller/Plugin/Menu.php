@@ -37,27 +37,27 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
 
       switch($request->module){
          case 'mybase' :
-	    $env = isset($this->_project) ? 'sub' : 'main';
-            $config = new Zend_Config_Xml(APP_PATH.'/configs/navigation.xml', $env, true);
+            $env = isset($this->_project) ? 'sub' : 'main';
+            $config = new Zend_Config_Xml(APP_PATH . '/configs/navigation.xml', $env, true);
 
-	    foreach($config as $item){
-	       $item->params->account = $this->_account;
-	       if(isset($item->pages)){
-		  foreach($item->pages as $page){
-		     $page->params->account = $this->_account;
-		     if(isset($page->params->projekt)){
-			$page->params->projekt = $this->_project;
-			$page->resource = $this->_project.'|'.$page->controller;
-		     }
-		     if(isset($page->pages)){
-			foreach($page->pages as $sub){
-			   $sub->params->account = $this->_account;
-			   $sub->params->projekt = $this->_project;			   
-			   $sub->resource = $this->_project.'|'.$sub->controller;
-			}
-		     }
-		  }
-	       }
+            foreach($config as $item){
+               $item->params->account = $this->_account;
+               if(isset($item->pages)){
+                  foreach($item->pages as $page){
+                     $page->params->account = $this->_account;
+                     if(isset($page->params->projekt)){
+                        $page->params->projekt = $this->_project;
+                        $page->resource = $this->_project . '|' . $page->controller;
+                     }
+                     if(isset($page->pages)){
+                        foreach($page->pages as $sub){
+                           $sub->params->account = $this->_account;
+                           $sub->params->projekt = $this->_project;
+                           $sub->resource = $this->_project . '|' . $sub->controller;
+                        }
+                     }
+                  }
+               }
             }
 
             $navigation = new Zend_Navigation($config);
@@ -68,4 +68,5 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
             break;
       }
    }
+
 }

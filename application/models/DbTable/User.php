@@ -43,11 +43,11 @@ class Model_DbTable_User extends Unodor_Db_Table
    public function isOwner($idacl)
    {
       $query = $this->select()
-	      ->from('user', array('owner'))
-	      ->joinLeft('acl', 'user.iduser = acl.iduser')
-	      ->where('acl.idacl = ?', $idacl)
-	      ->limit(1)
-	      ->setIntegrityCheck(false);
+              ->from('user', array('owner'))
+              ->joinLeft('acl', 'user.iduser = acl.iduser')
+              ->where('acl.idacl = ?', $idacl)
+              ->limit(1)
+              ->setIntegrityCheck(false);
 
       $stmt = $query->query();
 

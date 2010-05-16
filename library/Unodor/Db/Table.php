@@ -125,11 +125,11 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
    public function getRow($id, array $columns = array('*'), $returnObject = false)
    {
       if(is_array($id)){
-	 $where = '';
-	 foreach($id as $key => $val){
-	    $where .= $key . ' = "' . $val . '" AND ';
-	 }
-	 $where .= '1=1';
+         $where = '';
+         foreach($id as $key => $val){
+            $where .= $key . ' = "' . $val . '" AND ';
+         }
+         $where .= '1=1';
       }else{
          if(is_array($this->_primary)){
             $where = $this->_primary[1] . ' = ' . $id;

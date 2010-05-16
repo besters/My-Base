@@ -91,7 +91,7 @@ class Model_DbTable_UserMeta extends Unodor_Db_Table
               ->from('user_meta', array('iduser', 'user_meta.name', 'user_meta.surname', 'user_meta.email'))
               ->joinLeft('company', 'user_meta.idcompany = company.idcompany', array('name AS company'))
               ->where('user_meta.iduser = ?', $iduser)
-	      ->limit(1)
+              ->limit(1)
               ->setIntegrityCheck(false);
 
       $stmt = $query->query();

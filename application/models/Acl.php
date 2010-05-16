@@ -52,6 +52,12 @@ class Model_Acl
       return $perms;
    }
 
+   /**
+    * Generuje data pro tabulku na editaci ACL
+    *
+    * @param int $idacl id
+    * @return array
+    */
    public function generatePermTable($idacl)
    {
       $acl = $this->getPerms($idacl);
@@ -76,7 +82,7 @@ class Model_Acl
       $userModel = new Model_UserMeta();
       $idUser = $userModel->getUserId($user);
 
-      $acl = $this->_dbTable->fetchAllEntry('iduser = ' . $idUser . '', array('permission', 'idproject'));      
+      $acl = $this->_dbTable->fetchAllEntry('iduser = ' . $idUser . '', array('permission', 'idproject'));
 
       $resources = $this->getResources();
 
@@ -84,14 +90,14 @@ class Model_Acl
       $data = array();
 
       foreach($acl as $aclData){
-	 $unser = unserialize($aclData->permission);
+         $unser = unserialize($aclData->permission);
          foreach($resources as $key => $name){
-           $return[$key] = is_null($unser[$key]) ? 0 : $unser[$key];
+            $return[$key] = is_null($unser[$key]) ? 0 : $unser[$key];
          }
-	 $data[] = array('permission' => serialize($return), 'idproject' => $aclData->idproject);
+         $data[] = array('permission' => serialize($return), 'idproject' => $aclData->idproject);
       }
 
-     return $data;
+      return $data;
    }
 
    /**
@@ -149,6 +155,12 @@ class Model_Acl
       }
    }
 
+   /**
+    * Uklada ACL pro autora projektu
+    *
+    * @param int $idproject id
+    * @return int id autora
+    */
    private function _createAuthor($idproject)
    {
       $userModel = new Model_UserMeta();
@@ -161,6 +173,14 @@ class Model_Acl
       return $iduser;
    }
 
+   /**
+    * Uklada ACL pro majitele uctu
+    *
+    * @param int $idproject id
+    * @return int id majitele
+    *
+    * @todo zjistit jestli je to vhodne, pripadne zakomponovat
+    */
    private function _createOwner($idproject)
    {
       $userModel = new Model_User();
@@ -173,6 +193,13 @@ class Model_Acl
       return $iduser;
    }
 
+   /**
+    * Uklada ACL pro vedouciho projektu
+    *
+    * @param int $idproject id projektu
+    * @param int $iduser id uzivatele
+    * @return int id vedouciho projektu
+    */
    private function _createLeader($idproject, $iduser)
    {
       $data = $this->_generatePerms($idproject, $iduser);
@@ -182,6 +209,13 @@ class Model_Acl
       return $iduser;
    }
 
+   /**
+    * Generuje ACL data
+    *
+    * @param int $idproject id projektu
+    * @param int $iduser id uzivatele
+    * @return array
+    */
    private function _generatePerms($idproject, $iduser)
    {
       $resources = $this->getResources();
@@ -233,6 +267,13 @@ class Model_Acl
       $this->_dbTable->deleteEntry($idacl);
    }
 
+   /**
+    * Aktualizuje ACL v db
+    *
+    * @param  int $idacl id acl zaznamu
+    * @param  array $perms ACL data
+    * @return bool
+    */
    public function updatePerms($idacl, $perms)
    {
       $perms = serialize($perms);

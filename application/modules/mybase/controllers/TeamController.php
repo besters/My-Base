@@ -32,7 +32,7 @@ class Mybase_TeamController extends Unodor_Controller_Action
             $this->_flash('User has been successfully added to project', 'done');
             return $this->_redirect('/' . $projekt . '/team/new');
          }else{
-	    Zend_Debug::dump($_POST);
+            Zend_Debug::dump($_POST);
             $this->_flash('Please select user from the left column', 'error', false);
          }
       }
@@ -69,5 +69,6 @@ class Mybase_TeamController extends Unodor_Controller_Action
       $this->_flash('User has been successfully removed from project', 'done');
       return $this->_redirect('/' . $projekt . '/team');
    }
+
 }
 

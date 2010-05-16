@@ -79,12 +79,12 @@ class Mybase_PeopleController extends Unodor_Controller_Action
 
       if($this->_request->isPost()){
          if($this->_form->isValid($formData)){
-	    $this->_modelUser->save($formData, $iduser);
-	    $this->_flash('User has been successfully edited ***TODO*** - ', 'done', true);
-	    return $this->_redirect('/people');
-	 }else{
-	    $this->_form->populate($formData);
-	 }
+            $this->_modelUser->save($formData, $iduser);
+            $this->_flash('User has been successfully edited ***TODO*** - ', 'done', true);
+            return $this->_redirect('/people');
+         }else{
+            $this->_form->populate($formData);
+         }
       }
    }
 

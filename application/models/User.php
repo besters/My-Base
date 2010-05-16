@@ -56,25 +56,49 @@ class Model_User
       return $lastInsertId;
    }
 
+   /**
+    * Maze uzivatele z db
+    *
+    * @param int $id iduser
+    */
    public function delete($id)
    {
       $this->_dbTable->deleteEntry($id);
    }
 
+   /**
+    * Zjistuje detaily o uzivateli
+    *
+    * @param int $id iduser
+    * @return stdClass data
+    */
    public function getUserInfo($id)
    {
       return $this->_dbTable->getUserInfo($id);
    }
 
+   /**
+    * Zjistuje jeslti je uzivatel vlastnik uctu
+    *
+    * @param int $idacl idacl
+    * @return int je nebo neni (0 / 1)
+    */
    public function isOwner($idacl)
    {
       $owner = $this->_dbTable->isOwner($idacl);
       return $owner->owner;
    }
 
+   /**
+    * Zjistuje ID vlastnika uctu
+    *
+    * @param int $idaccount id uctu
+    * @return array
+    */
    public function getOwnerId($idaccount)
    {
       $idowner = $this->_dbTable->getRow(array('idaccount' => $idaccount, 'owner' => 1), array('iduser'));
+      Zend_Debug::dump($idowner);
       return $idowner;
    }
 
