@@ -38,7 +38,7 @@ class Model_DbTable_Project extends Unodor_Db_Table {
 	{
 		$query = $this->select()
 					  ->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))					   
-					  ->joinLeft('user', 'project.iduser = user.iduser', array('CONCAT(user.name, " ", user.surname) as user'))       
+					  ->joinLeft('user_meta', 'project.iduser = user_meta.iduser', array('CONCAT(user_meta.name, " ", user_meta.surname) as user'))   
 					  ->joinLeft('company', 'project.idcompany = company.idcompany', array('company' => 'name'))  
 					  ->where('project.idaccount = ?', $idaccount)					  
 					  ->setIntegrityCheck(false);		
