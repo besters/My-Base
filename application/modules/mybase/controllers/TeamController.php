@@ -14,8 +14,10 @@ class Mybase_TeamController extends Unodor_Controller_Action
    public function indexAction()
    {
       $users = $this->_modelAcl->getUsers($this->_project);
-
       $this->view->userList = $users;
+      
+      $model = new Model_Project();
+      $this->view->leader = $model->getLeader($this->_project);
    }
 
    public function newAction()

@@ -63,5 +63,17 @@ class Model_Project
       return $lastInsertId;
    }
 
+   /**
+    * Zjisti ID vedouciho projektu
+    *
+    * @param in $idproject id projektu
+    * @return string
+    */
+   public function getLeader($idproject)
+   {
+      $leader = $this->_dbTable->getRow($idproject, array('iduser'));
+      return $leader['iduser'];
+   }
+
 }
 

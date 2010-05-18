@@ -250,7 +250,8 @@ class Model_Acl
              'iduser' => $user->iduser,
              'idacl' => $user->idacl,
              'user' => $user->user,
-             'email' => $user->email
+             'email' => $user->email,
+             'administrator' => $user->administrator
          );
       }
 

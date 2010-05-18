@@ -477,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `mybase`.`user_login` (`iduser` INT, `email` INT, `ow
 -- -----------------------------------------------------
 -- Placeholder table for view `mybase`.`user_meta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mybase`.`user_meta` (`name` INT, `surname` INT, `username` INT, `iduser` INT, `idaccount` INT, `idcompany` INT, `email` INT, `mobile` INT, `home` INT, `work` INT, `im` INT, `imservice` INT, `status` INT);
+CREATE TABLE IF NOT EXISTS `mybase`.`user_meta` (`name` INT, `surname` INT, `username` INT, `iduser` INT, `idaccount` INT, `idcompany` INT, `email` INT, `mobile` INT, `home` INT, `work` INT, `im` INT, `imservice` INT, `status` INT, `administrator` INT);
 
 -- -----------------------------------------------------
 -- View `mybase`.`user_login`
@@ -495,7 +495,7 @@ LEFT JOIN user ON login.idlogin = user.idlogin;
 DROP VIEW IF EXISTS `mybase`.`user_meta` ;
 DROP TABLE IF EXISTS `mybase`.`user_meta`;
 CREATE  OR REPLACE VIEW `mybase`.`user_meta` AS
-SELECT login.name, login.surname, login.username, user.iduser, user.idaccount, user.idcompany, user.email, user.mobile, user.home, user.work, user.im, user.imservice, user.status
+SELECT login.name, login.surname, login.username, user.iduser, user.idaccount, user.idcompany, user.email, user.mobile, user.home, user.work, user.im, user.imservice, user.status, user.administrator
 FROM login
 LEFT JOIN user ON login.idlogin = user.idlogin;
 

@@ -1,7 +1,9 @@
+<?php $project = $this->Param('projekt'); ?>
+
 <div id="main-fixed">
     <div id="title">
          <div id="title-links">
-         <?php if($this->acl($this->Param('projekt').'|team', 'new')): ?>
+         <?php if($this->acl($project.'|team', 'new')): ?>
 				<?=$this->ActionLink('/team/new', 'Add people to project', true);?>
          <?php endif; ?>  
         </div>    
@@ -26,10 +28,10 @@
 				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" width="245px">
-				<?php if($this->acl($this->Param('projekt').'|team', 'edit')): ?>
+				<?php if($this->acl($project.'|team', 'edit')): ?>
 					<div class="hidden-action">
-						<a href="<?php echo $this->baseUrl($this->Param('projekt').'/team/edit/'.$user['idacl']); ?>" class="modal actionlink"><?= $this->translate('Change Permissions'); ?></a>
-				<a href="<?php echo $this->baseUrl($this->Param('projekt').'/team/delete/'.$user['idacl']); ?>"  class="actionlink delete"><?= $this->translate('Remove from Project'); ?></a>
+				<?php if($this->isEditable(array($user, $this->leader), 'edit')): ?><a href="<?php echo $this->baseUrl($project.'/team/edit/'.$user['idacl']); ?>" class="modal actionlink"><?= $this->translate('Change Permissions'); ?></a><?php endif; ?>
+				<?php if($this->isEditable(array($user, $this->leader), 'delete')): ?><a href="<?php echo $this->baseUrl($project.'/team/delete/'.$user['idacl']); ?>"  class="actionlink delete"><?= $this->translate('Remove from Project'); ?></a><?php endif; ?>
 					</div>
 				<?php endif; ?>
 				</td>
