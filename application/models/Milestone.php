@@ -51,47 +51,74 @@ class Model_Milestone
       }
    }
 
-   public function getMilestones($iduser = null)
+   public function getMilestones($status, $iduser = null)
    {
-      $condition = $this->whereCondition($iduser);
+      /*
+       * condition = $this->whereCondition($iduser);
+       * this->_milestones = $this->_dbTable->getMilestones($condition, $idproject);
+       */
       $projectModel = new Model_Project();
       $idproject = $projectModel->getId();
-      $this->_milestones = $this->_dbTable->getMilestones($condition, $idproject);
-      return $this;
+
+      $milestones = $this->_dbTable->get(array('idproject = ' . $idproject, 'status = "' . $status . '"'), array('idmilestone', 'name', 'datetime', 'status'), 'datetime ASC', null, null, true);
+
+      $milestoneUserModel = new Model_MilestoneUser();
+
+      if(!empty($milestones)){
+         $ids = array();
+         foreach($milestones as $id){
+            $ids[] = $id['idmilestone'];
+         }
+         $mu = $milestoneUserModel->getUsersIds($ids);
+
+         $userMetaModel = new Model_UserMeta();
+
+         $ids = array();
+         foreach($mu as $id){
+            $ids[] = $id['iduser'];
+         }
+         $users = $userMetaModel->getUsers($ids);
+
+         foreach($milestones as $key => $val){
+            $return[$key] = (object)$val;
+            foreach($mu as $mukey => $muval){
+               if($muval['idmilestone'] == $val['idmilestone']){
+                  foreach($users as $user){
+                     if($user['iduser'] == $muval['iduser']){
+                        $return[$key]->users[$mukey] = (object)$user;
+                     }
+                  }
+               }
+            }
+         }
+         return $return;
+      }
    }
 
    public function getActive()
    {
-      return $this->statusCond('active');
+      return $this->getMilestones('active');
    }
 
    public function getComplete()
    {
-      return $this->statusCond('complete');
+      return $this->getMilestones('complete');
    }
 
    public function getPaused()
    {
-      return $this->statusCond('paused');
+      return $this->getMilestones('paused');
    }
 
    public function getCanceled()
    {
-      return $this->statusCond('canceled');
+      return $this->getMilestones('canceled');
    }
 
-   private function statusCond($cond)
+   public function getDetail($id)
    {
-      $return = array();
-
-      foreach($this->_milestones as $key => $val){
-         if($val->status == $cond){
-            $val->user = explode(',', $val->user);
-            $val->iduser = explode(',', $val->iduser);
-            $return[$key] = $val;
-         }
-      }
-      return $return;
+      $detail = $this->_dbTable->get($id, array('*'));
+      return $detail[0];
    }
 
    /**

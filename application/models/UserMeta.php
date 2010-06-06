@@ -36,6 +36,22 @@ class Model_UserMeta
       }
    }
 
+   public function getUsers($ids)
+   {
+      $ids = array_unique($ids);
+      $idecka = '';
+      $count = count($ids);
+      $i = 1;
+      foreach($ids as $id){
+         $idecka .= $id;
+         $count != $i ? $idecka .= ', ' : '';
+         $i++;
+      }
+      
+      $return = $this->_dbTable->get('iduser IN(' . $idecka . ')', array('iduser', 'name', 'surname'), null, null, null, true);
+      return $return;
+   }
+
    /**
     * Vraci pole ve tvaru "id => jmeno uzivatele"
     *

@@ -96,9 +96,14 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
     *
     * @param string $where WHERE podminka
     * @param array $columns Sloupce
+    * @param bool $returnObject Vraci data jako objekt, nebo pole
     * @return Zend_Db_Statement
+    *
+    * @todo smazat
+    *
+    * @deprecated
     */
-   public function fetchAllEntry($where = null, array $columns = null)
+   public function fetchAllEntry($where = null, array $columns = null, $returnObject = true)
    {
       if(is_array($columns)){
          if(is_null($where)){
@@ -109,7 +114,80 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
       }else{
          $fetch = $this->fetchAll($where);
       }
-      return $fetch;
+      if($returnObject == true){
+         return $fetch;
+      }else{
+         return $fetch->toArray();
+      }
+   }
+
+   /**
+    * Provadi dotazy do databaze
+    *
+    * @param int|string|array $where SQL WHERE podminka
+    * @param array $columns SQL sloupce
+    * @param string|array $order SQL ORDER BY klauzule
+    * @param int $limit SQL LIMIT
+    * @param bool $returnArray Vysledek je pole nebo objekt
+    * @return Zend_Db_Table_Rowset_Abstract|array Vysledna data
+    */
+   public function get($where = null, $columns = null, $order = null, $group = null, $limit = null, $returnArray = false)
+   {
+      if(is_int($where)){	 
+         $return = $this->find($where);
+      }else{
+         if($limit == 1){
+            if(is_array($columns)){
+               $select = $this->select();
+               $select->from($this, $columns);
+
+               if($where !== null){
+                  $this->_where($select, $where);
+               }
+
+               if($order !== null){
+                  $this->_order($select, $order);
+               }
+
+	       if($group !== null){
+                  $select->group($group);
+               }
+               $return = $this->fetchRow($select);
+            }else{
+               $return = $this->fetchRow($where, $order);
+            }
+         }else{
+            if(is_array($columns)){
+               $select = $this->select();
+               $select->from($this, $columns);
+
+               if($where !== null){
+                  $this->_where($select, $where);
+               }
+
+               if($order !== null){
+                  $this->_order($select, $order);
+               }
+
+               if($limit !== null){
+                  $select->limit($limit);
+               }
+
+               if($group !== null){
+                  $select->group($group);
+               }
+               $return = $this->fetchAll($select);
+            }else{
+               $return = $this->fetchAll($where, $order, $limit);
+            }
+         }
+      }
+
+      if($returnArray == false){
+         return $return;
+      }else{
+         return $return->toArray();
+      }
    }
 
    /**
@@ -120,7 +198,9 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
     * @param bool $returnObject Vraci data jako objekt, nebo pole
     * @return array|object|false
     *
-    * @todo zjistit jestli je kod ok, pripadne udelat nejake optimalizace
+    * @todo smazat
+    *
+    * @deprecated
     */
    public function getRow($id, array $columns = array('*'), $returnObject = false)
    {
@@ -150,3 +230,4 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
    }
 
 }
+

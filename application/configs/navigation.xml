@@ -66,6 +66,14 @@
 
                 <milestone label="Milestone" module="mybase" controller="milestone" action="index" route="mybase-projekt" resource="" privilege="index">
                     <params account="" projekt=""></params>
+                    <pages>
+                        <new label="New" module="mybase" controller="milestone" action="new" route="mybase-projekt" resource="" privilege="new">
+                            <params account="" projekt=""></params>
+                        </new>
+                        <detail label="Detail" module="mybase" controller="milestone" action="detail" route="mybase-projekt" resource="" privilege="detail">
+                            <params account="" projekt=""></params>
+                        </detail>
+                    </pages>
                 </milestone>
 
 

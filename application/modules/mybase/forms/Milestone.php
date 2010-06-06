@@ -64,7 +64,7 @@ class Mybase_Form_Milestone extends Unodor_Form
           'decorators' => $this->setInputDecorators('clear')
       ));
 
-      $user = new Model_User();
+      $user = new Model_UserMeta();
       $this->addElement('multiCheckbox', 'users', array(
           'label' => 'Assignments: ',
           'required' => true,

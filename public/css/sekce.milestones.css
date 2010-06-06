@@ -1,50 +1,110 @@
 table.milestone{
-	width: 98%;
-	margin: 0 auto;
+    width: 98%;
+    margin: 20px auto 0 auto;
+}
+
+table.milestone.active{
+    border: 1px solid #ccedc5;
+}
+
+table.milestone.paused{
+    border: 1px solid #dadbaa;
+}
+
+table.milestone.complete{
+    border: 1px solid #badfed;
+}
+
+table.milestone.canceled{
+    border: 1px solid #dcdcdc;
 }
 
 table.milestone th{
-	background-color: #e9eef4;
-	text-align: left;
-	font-size: 12px;
-	font-weight: normal;
-	padding: 5px;
+    text-align: left;
+    color: #fff;
+    font-size: 12px;
+    font-family: Verdana;
+    font-weight: normal;
+    padding: 5px;
+}
+
+table.milestone th.active{
+    background-color: #9dd392;
+    text-shadow: #8ebf84 -1px -1px 0px;
+}
+
+table.milestone th.paused{
+    background-color: #d5d69a;
+    text-shadow: #b2b380 -1px -1px 0px;
+}
+
+table.milestone th.complete{
+    background-color: #a8d4e5;
+    text-shadow: #9dc5d5 -1px -1px 0px;
+}
+
+table.milestone th.canceled{
+    background-color: #d0d0d0;
+    text-shadow: #c3c3c3 -1px -1px 0px;
 }
 
 table.milestone td{
-	border-bottom: 1px solid #e6e6e6;
+    /*border-bottom: 1px solid #eeeeee;*/
+}
+
+table.milestone tr.late{
+    /*background-color: #fef4f4 !important;*/
+}
+
+table.milestone tr.even{
+    background-color: #f6f6f6;
 }
 
 table.milestone td.name{
-	padding: 7px 10px;
+    padding: 7px 10px;
 }
 
 table.milestone td.name a{
-	
+    color: #014166;
+    text-decoration: none;
+}
+table.milestone td.name a:hover{
+    text-decoration: underline;
 }
 
 table.milestone td.name a.title{
-	color: #545254;
-	font-size: 18px;
-	text-decoration: none;
-	display: block;
+    color: #6b6b6b;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 table.milestone td.name a:hover{
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 table.milestone td.name p{
-	font-size: 11px;
-	color: #838383;
+    font-size: 11px;
+    color: #6b6b6b;
 }
 
-table.milestone td.date{
-	border-left: 1px solid #e6e6e6;
-	width: 15%;
+table.milestone td.name p strong{
+    font-weight: normal;
 }
 
-table.milestone td.priority{
-	background-color: #008ac3;
-	width: 7px;
+table.milestone td.name div.date{
+    font-size: 11px;
+    color: #19871b;
+}
+
+table.milestone td.name div.date.late{
+    color: #a71d1d;
+    font-weight: bold;
+}
+
+table.milestone td.name div.date.today{
+    color: #9a9c00;
+    font-weight: bold;
 }

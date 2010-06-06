@@ -17,6 +17,20 @@ class Model_MilestoneUser
       $this->_dbTable = new Model_DbTable_MilestoneUser();
    }
 
+   public function getUsersIds($ids)
+   {
+      $idecka = '';
+      $count = count($ids);
+      $i = 1;
+      foreach($ids as $id){
+	 $idecka .= $id;
+	 $count != $i ? $idecka .= ', ' : '';
+	 $i++;
+      }
+      $return = $this->_dbTable->get('idmilestone IN('.$idecka.')', array('iduser', 'idmilestone'), null, null, null, true);
+      return $return;
+   }
+
    /**
     * Uklada vsechny uzivatele prirazene k milniku
     *

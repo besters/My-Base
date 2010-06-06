@@ -11,17 +11,25 @@ class Mybase_MilestoneController extends Unodor_Controller_Action
 
    public function indexAction()
    {
-      $milestones = $this->_model->getMilestones();
+      //$milestones = $this->_model->getMilestones();
 
-      $acive = $milestones->getActive();
-      $complete = $milestones->getComplete();
-      $paused = $milestones->getPaused();
-      $canceled = $milestones->getCanceled();
-
-      $this->view->active = $acive;
+      $active = $this->_model->getActive();
+      $paused = $this->_model->getPaused();
+      $complete = $this->_model->getComplete();
+      $canceled = $this->_model->getCanceled();
+      
+      $this->view->active = $active;
       $this->view->complete = $complete;
       $this->view->paused = $paused;
       $this->view->canceled = $canceled;
+   }
+
+   public function detailAction()
+   {
+      $id = $this->_request->getParam('id');
+      $detail = $this->_model->getDetail((int)$id);
+
+      $this->view->name = $detail->name;
    }
 
    public function newAction()

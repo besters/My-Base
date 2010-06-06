@@ -18,6 +18,25 @@ class Model_User
    }
 
    /**
+    * Zjistuje ID uzivatele
+    *
+    * @param string $user Uzivatelske jmeno
+    * @return string ID uzivatele
+    */
+   public function getUserId($user = null)
+   {
+      $session = new Zend_Session_Namespace('Zend_Auth');
+
+      if(is_null($user) OR $session->storage->email == $user){
+         return $session->storage->iduser;
+      }else{
+         $where = array('email' => $user);
+         $id = $this->_dbTable->getRow($where, array('iduser'));
+         return $id['iduser'];
+      }
+   }
+
+   /**
     * Uklada noveho/editovaneho uzivatele do DB
     *
     * @param array $formData Data z formulare

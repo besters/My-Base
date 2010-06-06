@@ -1,0 +1,18 @@
+<div id="main-fixed">
+   <div id="title">
+      <div id="title-links">
+         <?php if($this->acl('people', 'edit')): ?>
+         				<?=$this->ActionLink('/people/edit/' . $this->Param('id'), 'Edit user'); ?>
+         <?php endif; ?>
+               </div>
+               <h2><?=$this->name; ?> </h2>
+   </div>
+
+   <div id="obsah">
+
+
+
+      <br class="clear" />
+   </div>
+</div>
+

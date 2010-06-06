@@ -237,6 +237,7 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`milestone` (
   INDEX `fk_project_milestone` (`idproject` ASC) ,
   INDEX `fk_user_milestone` (`iduser` ASC) ,
   INDEX `fk_priority_milestone` (`idpriority` ASC) ,
+  INDEX `idproject` (`idproject` ASC) ,
   CONSTRAINT `fk_project_milestone`
     FOREIGN KEY (`idproject` )
     REFERENCES `mybase`.`project` (`idproject` )

@@ -27,7 +27,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     *
     * @var array
     */
-   private $_read = array('index', 'overview');
+   private $_read = array('index', 'overview', 'detail');
    /**
     * Pole s povolenymy action pro vytvareni novych zaznamu
     *
