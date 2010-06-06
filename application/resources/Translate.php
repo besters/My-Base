@@ -81,11 +81,11 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
          $options = array(
              'log' => $log,
              'logUntranslated' => true,
-             'logMessage' => '$this->_("%message%");'
+             'logMessage' => 'gettext(%message%);'
          );
       }
 
-      $translate = new Zend_Translate('gettext', LANGUAGES_PATH . '/' . $this->_lang->name . '.mo', $this->_lang->code, $options);
+      $translate = new Zend_Translate('Unodor_Translate_Adapter_Gettext', LANGUAGES_PATH . '/' . $this->_lang->name . '.mo', $this->_lang->code, $options);
 
       Zend_Registry::set('Zend_Translate', $translate);
    }
