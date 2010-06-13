@@ -471,6 +471,43 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mybase`.`stream`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mybase`.`stream` ;
+
+CREATE  TABLE IF NOT EXISTS `mybase`.`stream` (
+  `idstream` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `idaccount` INT UNSIGNED NOT NULL ,
+  `idproject` INT UNSIGNED NOT NULL ,
+  `iduser` INT UNSIGNED NOT NULL ,
+  `typ` TINYINT UNSIGNED NOT NULL ,
+  `akce` TINYINT UNSIGNED NOT NULL ,
+  `title` VARCHAR(45) NULL ,
+  `link` INT UNSIGNED NULL ,
+  `datetime` DATETIME NULL ,
+  PRIMARY KEY (`idstream`, `idproject`, `iduser`, `idaccount`) ,
+  INDEX `fk_project_stream` (`idproject` ASC) ,
+  INDEX `fk_user_stream` (`iduser` ASC) ,
+  INDEX `fk_account_stream` (`idaccount` ASC) ,
+  CONSTRAINT `fk_project_stream`
+    FOREIGN KEY (`idproject` )
+    REFERENCES `mybase`.`project` (`idproject` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_stream`
+    FOREIGN KEY (`iduser` )
+    REFERENCES `mybase`.`user` (`iduser` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_stream`
+    FOREIGN KEY (`idaccount` )
+    REFERENCES `mybase`.`account` (`idaccount` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Placeholder table for view `mybase`.`user_login`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mybase`.`user_login` (`iduser` INT, `email` INT, `owner` INT, `administrator` INT, `name` INT, `surname` INT, `username` INT, `password` INT, `idaccount` INT);

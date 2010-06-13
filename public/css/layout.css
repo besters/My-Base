@@ -305,6 +305,65 @@ a.actionlink.delete:hover{
   float: right;
 }
 
+div.stream{
+    padding: 1px 5px 2px 5px;
+    width: 60px;
+    color: #fff;
+    font-size: 9px;
+    font-family: Verdana;
+    border-radius: 3px;
+    text-align: right;
+}
+
+.stream.t-1{
+    background-color: #8eb4d4;
+}
+
+.stream.t-2{
+    background-color: #e18d8d;
+}
+
+table.stream td{
+    padding: 0px 2px !important;
+}
+
+table.stream td.typ{
+    width: 75px;
+}
+
+table.stream td.title a{
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+table.stream td.title a:hover{
+    text-decoration: none;
+}
+
+table.stream td.action{
+    color: #8e8e8e;
+    font-size: 10px;
+    font-family: Verdana;
+}
+
+table.stream td.user{
+    font-size: 11px;
+    width: 100px;
+    white-space: nowrap;
+}
+
+table.stream td.user a{
+    color: #555555;
+}
+
+table.stream td.time{
+    font-size: 11px;
+    width: 30px;
+    padding-left: 10px !important;
+    color: #686868;
+    white-space: nowrap;
+}
+
 /*
  * ----------------------------------
  * Vychozi ostylovani tabulky

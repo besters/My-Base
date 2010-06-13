@@ -52,11 +52,7 @@ class Model_Milestone
    }
 
    public function getMilestones($status, $iduser = null)
-   {
-      /*
-       * condition = $this->whereCondition($iduser);
-       * this->_milestones = $this->_dbTable->getMilestones($condition, $idproject);
-       */
+   {       
       $projectModel = new Model_Project();
       $idproject = $projectModel->getId();
 
@@ -145,6 +141,9 @@ class Model_Milestone
       );
 
       $lastInsertId = $this->_dbTable->save($data, $id);
+
+      $this->_dbTable->stream(Model_Stream::TYP_MILESTONE, Model_Stream::AKCE_CREATED, $formData['name'], $lastInsertId);
+
       return $lastInsertId;
    }
 

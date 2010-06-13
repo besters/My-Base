@@ -21,6 +21,13 @@ class Unodor_Db_Table extends Zend_Db_Table_Abstract
       return $idaccount;
    }
 
+   public function stream($typ, $akce, $title, $link, $id = null)
+   {
+      $stream = new Model_Stream();
+
+      $stream->set($typ, $akce, $title, $link, $id);
+   }
+
    /**
     * Uklada data do databaze
     *

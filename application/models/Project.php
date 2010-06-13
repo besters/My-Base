@@ -60,6 +60,9 @@ class Model_Project
       );
 
       $lastInsertId = $this->_dbTable->save($data, $id);
+
+      $this->_dbTable->stream(Model_Stream::TYP_PROJECT, Model_Stream::AKCE_CREATED, $formData['name'], $lastInsertId);
+
       return $lastInsertId;
    }
 

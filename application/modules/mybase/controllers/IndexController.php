@@ -5,16 +5,22 @@ class Mybase_IndexController extends Unodor_Controller_Action
 
    public function indexAction()
    {
-      $acl = Zend_Registry::get('acl');
+      $stream = new Model_Stream();
 
+      $data = $stream->getMain();
 
-      //echo $acl->isAllowed('marchlik@unodor.cz', 'milestone', 'delete') ? 'allowed' : 'denied';
-      //echo 'Index Action of Index Controller of Mybase Module';
+      $this->view->stream = $data;
    }
 
    public function overviewAction()
    {
-      $this->disableMvc(false, true);
+      $stream = new Model_Stream();
+
+      $idproject = $this->_request->getParam('projekt');
+
+      $data = $stream->get($idproject);
+
+      $this->view->stream = $data;
    }
 
 }
