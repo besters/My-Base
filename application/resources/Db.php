@@ -117,15 +117,8 @@ class Resource_Db extends Zend_Application_Resource_ResourceAbstract
     */
    public function setCache()
    {
-      $frontendOptions = array(
-          'automatic_serialization' => true
-      );
-
-      $backendOptions = array(
-          'cache_dir' => './cache'
-      );
-
-      $this->_cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+      $manager = $this->getBootstrap()->getResource('CacheManager');
+      $this->_cache = $manager->getCache('database');
 
       Zend_Db_Table_Abstract::setDefaultMetadataCache($this->_cache);
       return $this->_cache;

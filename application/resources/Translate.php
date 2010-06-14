@@ -60,15 +60,8 @@ class Resource_Translate extends Zend_Application_Resource_ResourceAbstract
       $locale->setLocale($this->_lang->locale); // Nastaveni locale - nejspis se to nastavi nekde v pluginu podle preferenci uzivatele a ulozi do registru nebo session
       Zend_Registry::set('Zend_Locale', $locale);
 
-      $frontendOptions = array(
-          'automatic_serialization' => true
-      );
-
-      $backendOptions = array(
-          'cache_dir' => './cache'
-      );
-
-      $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+      $manager = $this->getBootstrap()->getResource('CacheManager');
+      $cache = $manager->getCache('translate');
 
       Zend_Translate::setCache($cache);
 
