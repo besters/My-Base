@@ -7,7 +7,7 @@
  * @subpackage Plugins
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
- * @version    $Id: Memory.php 107 2009-09-04 22:36:47Z gugakfugl $
+ * @version    $Id$
  */
 
 /**
@@ -17,7 +17,9 @@
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
  */
-class ZFDebug_Controller_Plugin_Debug_Plugin_Memory extends Zend_Controller_Plugin_Abstract implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface
+class ZFDebug_Controller_Plugin_Debug_Plugin_Memory
+    extends Zend_Controller_Plugin_Abstract
+    implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface
 {
     /**
      * Contains plugin identifier name
@@ -26,23 +28,31 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Memory extends Zend_Controller_Plug
      */
     protected $_identifier = 'memory';
 
-    /**
-     * @var array
-     */
-    protected $_memory = array(
-        'dispatchLoopShutdown' => 0, 
-        'dispatchLoopStartup' => 0
-    );
-
-    protected $_closingBracket = null;
+    protected $_logger;
 
     /**
-     * Creating time plugin
+     * Creating memory plugin
+     *
      * @return void
      */
     public function __construct()
     {
         Zend_Controller_Front::getInstance()->registerPlugin($this);
+    }
+
+    /**
+     * Get the ZFDebug logger
+     *
+     * @return Zend_Log
+     */
+    public function getLogger()
+    {
+        if (!$this->_logger) {
+            $this->_logger = Zend_Controller_Front::getInstance()
+                ->getPlugin('ZFDebug_Controller_Plugin_Debug')->getPlugin('Log');
+            $this->_logger->getLog()->addPriority('Memory', 8);
+        }
+        return $this->_logger;
     }
 
     /**
@@ -54,7 +64,7 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Memory extends Zend_Controller_Plug
     {
         return $this->_identifier;
     }
-    
+
     /**
      * Returns the base64 encoded icon
      *
@@ -72,10 +82,10 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Memory extends Zend_Controller_Plug
      */
     public function getTab()
     {
-        if (function_exists('memory_get_peak_usage')) {
-            return round(memory_get_peak_usage()/1024) . 'K of '.ini_get("memory_limit");
-        }
-        return 'MemUsage n.a.';
+        // if (function_exists('memory_get_peak_usage')) {
+        //     return round(memory_get_peak_usage()/1024) . 'K';//' of '.ini_get("memory_limit");
+        // }
+        // return 'MemUsage n.a.';
     }
 
     /**
@@ -85,81 +95,17 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Memory extends Zend_Controller_Plug
      */
     public function getPanel()
     {
-        $panel = '<h4>Memory Usage</h4>';
-        $panel .= 'Dispatch: ' . round(($this->_memory['dispatchLoopShutdown']-$this->_memory['dispatchLoopStartup'])/1024,2) .'K'.$this->getLinebreak();
-        if (isset($this->_memory['user']) && count($this->_memory['user'])) {
-            foreach ($this->_memory['user'] as $key => $value) {
-                $panel .= $key.': '.round($value/1024).'K'.$this->getLinebreak();
-            }
-        }
-        return $panel;
+        return '';
     }
-    
+
     /**
      * Sets a memory mark identified with $name
      *
      * @param string $name
+     * @deprecated Use ZFDebug_Controller_Plugin_Debug_Plugin_Log
      */
     public function mark($name) {
-        if (!function_exists('memory_get_peak_usage')) {
-            return;
-        }
-        if (isset($this->_memory['user'][$name]))
-            $this->_memory['user'][$name] = memory_get_peak_usage()-$this->_memory['user'][$name];
-        else
-            $this->_memory['user'][$name] = memory_get_peak_usage();
+        $this->getLogger()->mark("$name");
+        trigger_error("ZFDebug Memory plugin is deprecated, use the Log plugin");
     }
-    
-    
-    /**
-     * Defined by Zend_Controller_Plugin_Abstract
-     *
-     * @param Zend_Controller_Request_Abstract
-     * @return void
-     */
-    public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
-    {
-        if (function_exists('memory_get_peak_usage')) {
-            $this->_memory['dispatchLoopStartup'] = memory_get_peak_usage();
-        }
-    }
-
-    /**
-     * Defined by Zend_Controller_Plugin_Abstract
-     *
-     * @param Zend_Controller_Request_Abstract
-     * @return void
-     */
-    public function dispatchLoopShutdown()
-    {
-        if (function_exists('memory_get_peak_usage')) {
-            $this->_memory['dispatchLoopShutdown'] = memory_get_peak_usage();
-        }
-    }
-    
-    public function getLinebreak()
-    {
-        return '<br'.$this->getClosingBracket();
-    }
-
-    public function getClosingBracket()
-    {
-        if (!$this->_closingBracket) {
-            if ($this->_isXhtml()) {
-                $this->_closingBracket = ' />';
-            } else {
-                $this->_closingBracket = '>';
-            }
-        }
-
-        return $this->_closingBracket;
-    }  
-    
-    protected function _isXhtml()
-    {
-        $view = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->view;
-        $doctype = $view->doctype();
-        return $doctype->isXhtml();
-    }
-    
 }

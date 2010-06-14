@@ -7,7 +7,7 @@
  * @subpackage Plugins
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
- * @version    $Id: Text.php 109 2009-09-21 20:56:13Z gugakfugl $
+ * @version    $Id$
  */
 
 /**
@@ -35,7 +35,7 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Text implements ZFDebug_Controller_
      * @var string
      */
     protected $_identifier = 'text';
-    
+
     /**
      * Contains plugin icon data
      *
@@ -69,7 +69,7 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Text implements ZFDebug_Controller_
     {
         return $this->_identifier;
     }
-    
+
     /**
      * Sets identifier for this plugin
      *
@@ -81,7 +81,7 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Text implements ZFDebug_Controller_
         $this->_identifier = $name;
         return $this;
     }
-    
+
     /**
      * Returns the base64 encoded icon
      *
