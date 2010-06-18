@@ -1,16 +1,13 @@
 <?php
 
-class ErrorController extends Unodor_Controller_Action
+class Mybase_ErrorController extends Unodor_Controller_Action
 {
 
    public function errorAction()
    {
-
       $errors = $this->_getParam('error_handler');
 
-      if($errors->request->module == 'mybase'){
-         $this->_forward('error', 'error', 'mybase');
-      }
+
 
       switch($errors->type){
          case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
@@ -26,6 +23,15 @@ class ErrorController extends Unodor_Controller_Action
 
       $this->view->exception = $errors->exception;
       $this->view->request = $errors->request;
+   }
+
+   public function aclAction()
+   {
+      $this->view->errMsg = 'Přístup zamítnut - Nedostatečné oprávnění';
+      //Zend_Debug::dump($this->_request->getParam('error_handler'));
+      if(!is_null($this->_request->getParam('error_handler'))){
+         //$this->_forward('error');
+      }
    }
 
 }

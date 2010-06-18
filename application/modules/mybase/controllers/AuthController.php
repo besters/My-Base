@@ -92,11 +92,5 @@ class Mybase_AuthController extends Unodor_Controller_Action
       Zend_Auth::getInstance()->clearIdentity();
       return $this->_redirect('index');
    }
-
-   public function aclAction()
-   {
-      $this->view->errMsg = 'Přístup zamítnut - Nedostatečné oprávnění';
-   }
-
 }
 

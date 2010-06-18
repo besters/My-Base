@@ -15,13 +15,13 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     *
     * @var array
     */
-   private $_noacl = array('module' => 'mybase', 'controller' => 'auth', 'action' => 'acl');
+   private $_noacl = array('module' => 'mybase', 'controller' => 'error', 'action' => 'acl');
    /**
     * Resources - controllery
     *
     * @var array
     */
-   private $_resources = array('noResource' ,'index', 'project', 'assignment', 'calendar', 'people', 'account', 'auth', 'redir');
+   private $_resources = array('noResource', 'index', 'project', 'assignment', 'calendar', 'people', 'account', 'auth', 'redir');
    /**
     * Pole s povolenymy action pro cteni
     *
@@ -48,9 +48,9 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     */
    public function preDispatch(Zend_Controller_Request_Abstract $request)
    {
-      $controller = $request->controller;
-      $action = $request->action;
-      $module = $request->module;
+      $controller = $request->getControllerName();
+      $action = $request->getActionName();
+      $module = $request->getModuleName();
 
       $auth = Zend_Auth::getInstance();
 
@@ -106,11 +106,15 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             $isAllowed = false;
          }
 
-         if(!$isAllowed){
-            $module = $this->_noacl['module'];
-            $controller = $this->_noacl['controller'];
-            $action = $this->_noacl['action'];
-         }
+	 $error = $request->getParam('error_handler');
+
+	 if(is_null($error)){
+	    if(!$isAllowed){
+	       $module = $this->_noacl['module'];
+	       $controller = $this->_noacl['controller'];
+	       $action = $this->_noacl['action'];
+	    }
+	 }
 
          $request->setModuleName($module);
          $request->setControllerName($controller);
@@ -133,19 +137,22 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
       foreach($dbData as $aclData){
          $perms = unserialize($aclData['permission']);
          foreach($perms as $resource => $perm){
-            $acl->add(new Zend_Acl_Resource($aclData['idproject'] . '|' . $resource));
+            if(!$acl->has($aclData['idproject'] . '|' . $resource)){
 
-            if($perm & self::READ){
-               $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_read);
-            }
-            if($perm & self::CREATE){
-               $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_create);
-            }
-            if($perm & self::MANAGE){
-               $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_manage);
-            }
+               $acl->add(new Zend_Acl_Resource($aclData['idproject'] . '|' . $resource));
 
-            $this->_resources[] = $aclData['idproject'] . '|' . $resource;
+               if($perm & self::READ){
+                  $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_read);
+               }
+               if($perm & self::CREATE){
+                  $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_create);
+               }
+               if($perm & self::MANAGE){
+                  $acl->allow($identity->email, $aclData['idproject'] . '|' . $resource, $this->_manage);
+               }
+
+               $this->_resources[] = $aclData['idproject'] . '|' . $resource;
+            }
          }
       }
    }

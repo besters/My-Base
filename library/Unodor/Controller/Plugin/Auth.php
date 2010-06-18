@@ -22,9 +22,9 @@ class Unodor_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
    {
       $auth = Zend_Auth::getInstance();
 
-      $controller = $request->controller;
-      $action = $request->action;
-      $module = $request->module;
+      $controller = $request->getControllerName();
+      $action = $request->getActionName();
+      $module = $request->getModuleName();
 
       $account = new Model_Account();
 
