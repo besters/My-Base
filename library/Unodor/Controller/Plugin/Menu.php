@@ -40,6 +40,11 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
             $env = isset($this->_project) ? 'sub' : 'main';
             $config = new Zend_Config_Xml(APP_PATH . '/configs/navigation.xml', $env, true);
 
+            $registry = new Zend_Registry();
+            if($registry->isRegistered('acl')){
+               $acl = $registry->get('acl');
+            }
+
             foreach($config as $item){
                $item->params->account = $this->_account;
                if(isset($item->pages)){
@@ -47,13 +52,21 @@ class Unodor_Controller_Plugin_Menu extends Zend_Controller_Plugin_Abstract
                      $page->params->account = $this->_account;
                      if(isset($page->params->projekt)){
                         $page->params->projekt = $this->_project;
-                        $page->resource = $this->_project . '|' . $page->controller;
+                        if($acl->has($this->_project . '|' . $page->controller)){
+                           $page->resource = $this->_project . '|' . $page->controller;
+                        }else{
+                           $page->resource = 'noResource';
+                        }
                      }
                      if(isset($page->pages)){
                         foreach($page->pages as $sub){
                            $sub->params->account = $this->_account;
                            $sub->params->projekt = $this->_project;
-                           $sub->resource = $this->_project . '|' . $sub->controller;
+                           if($acl->has($this->_project . '|' . $page->controller)){
+                              $sub->resource = $this->_project . '|' . $page->controller;
+                           }else{
+                              $sub->resource = 'noResource';
+                           }
                         }
                      }
                   }

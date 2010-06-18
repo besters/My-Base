@@ -65,7 +65,7 @@ class Model_Acl
 
       $return = array();
       foreach($res as $key => $name){
-         $return[$key] = array('name' => $name, 'acl' => is_null($acl[$key]) ? 0 : $acl[$key]);
+         $return[$key] = array('name' => $name, 'acl' => !isset($acl[$key]) ? 0 : $acl[$key]);
       }
 
       return $return;
@@ -92,7 +92,7 @@ class Model_Acl
       foreach($acl as $aclData){
          $unser = unserialize($aclData->permission);
          foreach($resources as $key => $name){
-            $return[$key] = is_null($unser[$key]) ? 0 : $unser[$key];
+            $return[$key] = !isset($unser[$key]) ? 0 : $unser[$key];
          }
          $data[] = array('permission' => serialize($return), 'idproject' => $aclData->idproject);
       }
@@ -110,6 +110,7 @@ class Model_Acl
       $resources = array(
           'index' => 'Dashboard',
           'milestone' => 'Milestones',
+          'ticket' => 'Tickets',
           'team' => 'Team'
       );
 

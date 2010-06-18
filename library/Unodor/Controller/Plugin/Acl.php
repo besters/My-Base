@@ -21,7 +21,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     *
     * @var array
     */
-   private $_resources = array('index', 'project', 'assignment', 'calendar', 'people', 'account', 'auth', 'redir');
+   private $_resources = array('noResource' ,'index', 'project', 'assignment', 'calendar', 'people', 'account', 'auth', 'redir');
    /**
     * Pole s povolenymy action pro cteni
     *
