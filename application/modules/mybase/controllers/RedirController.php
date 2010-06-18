@@ -19,10 +19,10 @@ class Mybase_RedirController extends Unodor_Controller_Action
       $project = $this->_request->getParam('projekt');
 
       switch($typ){
-         case Model_Stream::PROJECT :
+         case Model_Stream::TYP_PROJECT :
             $url = $id.'/index/overview/';
             break;
-         case Model_Stream::MILESTONE :
+         case Model_Stream::TYP_MILESTONE :
             $url = $project.'/milestone/detail/'.$id;
       }
 
