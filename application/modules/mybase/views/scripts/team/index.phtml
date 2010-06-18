@@ -22,9 +22,8 @@
 			</thead>
 			
 			<?php 
-			$i = 0;
 			foreach($users as $user): ?>
-			<tr class="hidden-action-container <?php echo ($i % 2 == 0 ? '' : 'even') ?>">
+			<tr class="hidden-action-container <?php echo $this->cycle(array('', 'even'))->next()?>">
 				<td><a href="<?php echo $this->baseUrl('/people/detail/'.$user['iduser']); ?>"><?php echo $user['user']; ?></a></td>
 				<td><?php echo $user['email']; ?></td>
 				<td colspan="1" width="245px">
@@ -36,9 +35,7 @@
 				<?php endif; ?>
 				</td>
 			</tr>
-			<?php 
-			$i++;
-			endforeach; ?>
+			<?php endforeach; ?>
 			
 		</table>
 		<?php endforeach; ?>	

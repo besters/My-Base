@@ -8,7 +8,6 @@
    </thead>
    <tbody>
       <?php
-      $i = 0;
       if($this->owner == 1){
 	 $params =  array('class' => 'input-radio acl', 'disabled' => 'disabled');
       }else{
@@ -19,13 +18,13 @@
          if($name == 'index')
             continue;
       ?>
-               <tr <?php echo ($i % 2 == 0 ? '' : 'class="even"') ?>>
+               <tr <?php echo $this->cycle(array('', 'class="even"'))->next()?>>
          	 <td><?php echo $this->translate($perm['name']) ?></td>
 		 <td class="noaccess"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('0' => $this->translate('No access'))); ?></td>
          	 <td class="read"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('1' => $this->translate('Read only'))); ?></td>
          	 <td class="create"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('3' => $this->translate('Can create'))); ?></td>
          	 <td class="manage"><?php echo $this->formRadio('acl[' . $name . ']', $perm['acl'], $params, array('7' => $this->translate('Can manage'))); ?></td>
             </tr>
-<?php $i++; endforeach; ?>
+<?php endforeach; ?>
    </tbody>
 </table>

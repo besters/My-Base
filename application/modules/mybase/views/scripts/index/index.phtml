@@ -22,12 +22,11 @@
 	 </thead>
 	 <tbody>
             <?php
-            $i = 0;
             foreach($item['data'] as $stream):
 	       $datum = $zdatum->set($stream->datetime);
             ?>
 
-            	    <tr class="<?= ($i % 2 == 0 ? '' : 'even') ?>">
+            	    <tr class="<?php echo $this->cycle(array('', 'even'))->next()?>">
             	       <td class="typ"><div class="stream t-<?=$stream->typ;?>"><?= $this->streamTyp($stream->typ) ?></div></td>
             	       <td class="title"><a href="<?= $this->baseUrl('/redir/'.$stream->typ.'x'.$stream->link) ?>"><?= $stream->title ?></a></td>
             	       <td class="right action"><?= $this->streamAkce($stream->akce) ?>: </td>
@@ -35,7 +34,7 @@
 		       <td class="time"><?=$datum->get(Zend_Date::TIME_SHORT);?></td>
             	    </tr>
 
-	    <?php $i++; endforeach; ?>
+	    <?php endforeach; ?>
 
 
 	 </tbody>

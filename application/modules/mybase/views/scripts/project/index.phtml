@@ -10,7 +10,6 @@
 	<div id="obsah">
 		
 		<?php 
-		$i = 0;
 		foreach($this->project as $row):
 		if($this->acl($row->idproject.'|index', 'index')):
 		?>	
@@ -51,7 +50,6 @@
 			</div>
 		</div>
 		<?php 
-		$i++;
 		endif;
 		endforeach;		
 		?>
