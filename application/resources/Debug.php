@@ -87,11 +87,11 @@ class Resource_Debug extends Zend_Application_Resource_ResourceAbstract
 
          $plugins = array(
              'plugins' => array(
-		 'Variables',
+                 'Variables',
                  'File' => array('base_path' => realpath(APP_PATH . "/../"), 'library' => array('Unodor', 'Nette')),
                  'Html',
                  'Exception',
-		 'Time'));
+                 'Time'));
 
          if($this->getBootstrap()->hasPluginResource('CacheManager')){
             $manager = $this->getBootstrap()->getResource('CacheManager');
@@ -105,7 +105,9 @@ class Resource_Debug extends Zend_Application_Resource_ResourceAbstract
          if($this->getBootstrap()->hasPluginResource('db')){
             $plugins['plugins']['Database']['adapter'] = array();
             //$plugins['plugins']['Database']['explain'] = true;
-         }	 
+         }
+
+         $plugins['plugins']['Unodor_Controller_Plugin_Debug_Plugin_Auth'] = true;
 
          $autoloader = Zend_Loader_Autoloader::getInstance();
          $autoloader->registerNamespace('ZFDebug_');
