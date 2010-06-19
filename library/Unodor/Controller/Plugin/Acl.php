@@ -83,7 +83,7 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
          $acl->allow('owner');
          $acl->deny('admin', 'account');
 
-         $acl->allow('user', array('index', 'project', 'assignment', 'calendar', 'people', 'auth'));
+         $acl->allow('user', array('index', 'project', 'assignment', 'calendar', 'people', 'auth', 'redir'));
          $acl->deny('user', 'account');
          $acl->deny('user', 'project', $this->_create);
          $acl->deny('user', 'people', $this->_create);
@@ -98,7 +98,9 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 
          Zend_Registry::set('acl', $acl);
 
-         if(in_array($projekt . '|' . $request->getControllerName(), $this->_resources)){
+         if($identity->administrator == 1){
+            $isAllowed = true;
+         }elseif(in_array($projekt . '|' . $request->getControllerName(), $this->_resources)){
             $isAllowed = $acl->isAllowed($identity->email, $projekt . '|' . $request->getControllerName(), $request->getActionName());
          }elseif(in_array($request->getControllerName(), $this->_resources)){
             $isAllowed = $acl->isAllowed($identity->email, $request->getControllerName(), $request->getActionName());
@@ -106,15 +108,15 @@ class Unodor_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
             $isAllowed = false;
          }
 
-	 $error = $request->getParam('error_handler');
+         $error = $request->getParam('error_handler');
 
-	 if(is_null($error)){
-	    if(!$isAllowed){
-	       $module = $this->_noacl['module'];
-	       $controller = $this->_noacl['controller'];
-	       $action = $this->_noacl['action'];
-	    }
-	 }
+         if(is_null($error)){
+            if(!$isAllowed){
+               $module = $this->_noacl['module'];
+               $controller = $this->_noacl['controller'];
+               $action = $this->_noacl['action'];
+            }
+         }
 
          $request->setModuleName($module);
          $request->setControllerName($controller);
