@@ -18,10 +18,7 @@ class Mybase_MilestoneController extends Unodor_Controller_Action
       $complete = $this->_model->getComplete();
       $canceled = $this->_model->getCanceled();
       
-      $this->view->active = $active;
-      $this->view->complete = $complete;
-      $this->view->paused = $paused;
-      $this->view->canceled = $canceled;
+      $this->view->data = array('active' => $active,'complete' => $complete, 'paused' => $paused, 'canceled' => $canceled);
    }
 
    public function detailAction()
