@@ -12,6 +12,7 @@
             <?php
 	    $zdatum = new Zend_Date();
             foreach($this->stream as $date => $item):
+	       if($this->acl($date.'|index', 'index')):
             ?>
 
       <table class="skin stream">
@@ -40,7 +41,7 @@
 	 </tbody>
       </table>
 
-<?php endforeach; ?>
+<?php endif; endforeach; ?>
 
 
 
