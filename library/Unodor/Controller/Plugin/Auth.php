@@ -18,7 +18,8 @@ class Unodor_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
     *
     * @param Zend_Controller_Request_Abstract $request
     */
-   public function preDispatch(Zend_Controller_Request_Abstract $request)
+   //public function preDispatch(Zend_Controller_Request_Abstract $request)
+   public function routeShutdown(Zend_Controller_Request_Abstract $request)
    {
       $auth = Zend_Auth::getInstance();
 
