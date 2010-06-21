@@ -1,0 +1,41 @@
+<div class="paginator">
+
+   <!-- Page <?=$this->current;?> of <?=$this->pageCount;?> -->
+
+   <?php
+   if(isset($this->previous)){
+      echo '<a href="?page=' . $this->previous . '">&lt; '.$this->Translate('Previous').'</a>';
+   }
+
+   if($this->firstPageInRange != $this->first){
+      echo ' <a href="?page=' . $this->first . '">' . $this->first . '</a> ';
+      if($this->firstPageInRange != ( $this->first + 1)){
+         echo ' <a href="?page=' . ($this->first + 1) . '">' . ($this->first + 1) . '</a> ';
+      }
+      echo '...';
+   }
+
+   foreach($this->pagesInRange as $page){
+      if($page != $this->current){
+         echo ' <a href="?page=' . $page . '">' . $page . '</a> ';
+      }else{
+         echo '<span class="active">' . $page . '</span>';
+      }
+   }
+
+   if($this->lastPageInRange != $this->last){
+      echo '...';
+      if($this->lastPageInRange != ( $this->last - 1)){
+         echo ' <a href="?page=' . ($this->last - 1) . '">' . ($this->last - 1) . '</a> ';
+      }
+      echo ' <a href="?page=' . $this->last . '">' . $this->last . '</a> ';
+   }
+
+   if(isset($this->next)){
+      echo '<a href="?page=' . $this->next . '">'.$this->Translate('Next').' &gt;</a>';
+   }
+   ?>
+
+   <span class="right"> <?= $this->firstItemNumber .'-'. $this->lastItemNumber . ' ' . $this->Translate('of') . ' ' . $this->totalItemCount . ' ' . $this->Translate('items') ?></span>
+
+</div>

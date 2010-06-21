@@ -10,6 +10,9 @@ class Unodor_View_Helper_StreamAkce extends Zend_View_Helper_Abstract
 	    break;
 	 case Model_Stream::AKCE_CHANGED :
 	    $text = 'Edited by';
+	    break;
+	 case Model_Stream::AKCE_REPORTED :
+	    $text = 'Reported by';
       }
 
       return $text;

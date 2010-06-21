@@ -1,0 +1,66 @@
+table.tickets span.priority{
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 10px;
+    font-weight: bold;
+}
+table.tickets span.status{
+    border-radius: 5px;
+    padding: 1px 3px 3px 3px;
+    font-size: 11px;
+}
+
+table.tickets span.status.s-open{
+    background-color: #b91919;
+    color: #ffffff;
+}
+
+table.tickets span.status.s-in_progress{
+    background-color: #4884c1;
+    color: #ffffff;
+}
+
+table.tickets span.status.s-reopened{
+    background-color: #d6a23d;
+    color: #ffffff;
+}
+
+table.tickets span.status.s-resolved{
+    background-color: #62d13c;
+    color: #ffffff;
+}
+
+table.tickets span.status.s-closed{
+    background-color: #444444;
+    color: #ffffff;
+}
+
+table.tickets span.status.s-postponed{
+    background-color: #846943;
+    color: #ffffff;
+}
+
+table.tickets td.id{
+    font-style: italic;
+    width: 1%;
+}
+
+table.tickets td.priority{
+    width: 1%;
+}
+
+table.tickets td.type{
+    width: 1%;
+}
+
+table.tickets td.summary a{
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: bold;
+    color: #5d5d5d;
+}
+
+
+table.tickets td.summary a:hover{
+    text-decoration: none;
+}

@@ -208,6 +208,10 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`priority` (
   `idpriority` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `idaccount` INT UNSIGNED NOT NULL ,
   `name` VARCHAR(155) NOT NULL ,
+  `description` VARCHAR(150) NULL ,
+  `color` CHAR(6) NOT NULL ,
+  `text` CHAR(6) NOT NULL ,
+  `priority` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`idpriority`, `idaccount`) ,
   INDEX `fk_account_priority` (`idaccount` ASC) ,
   CONSTRAINT `fk_account_priority`
@@ -291,25 +295,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mybase`.`category`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybase`.`category` ;
-
-CREATE  TABLE IF NOT EXISTS `mybase`.`category` (
-  `idcategory` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `idaccount` INT UNSIGNED NOT NULL ,
-  `name` VARCHAR(155) NOT NULL ,
-  PRIMARY KEY (`idcategory`, `idaccount`) ,
-  INDEX `fk_account_category` (`idaccount` ASC) ,
-  CONSTRAINT `fk_account_category`
-    FOREIGN KEY (`idaccount` )
-    REFERENCES `mybase`.`account` (`idaccount` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mybase`.`milestoneuser`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mybase`.`milestoneuser` ;
@@ -364,9 +349,8 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`ticket` (
   `iduser` INT UNSIGNED NULL ,
   `idmilestone` INT UNSIGNED NOT NULL ,
   `idtyp` INT UNSIGNED NULL ,
-  `idcategory` INT UNSIGNED NULL ,
   `idpriority` INT UNSIGNED NULL ,
-  `status` SET('active','complete','canceled','paused') NOT NULL ,
+  `status` SET('open','in_progress','reopened','resolved','closed','postponed') NOT NULL ,
   `name` VARCHAR(150) NOT NULL ,
   `description` VARCHAR(255) NULL ,
   `datetime` DATETIME NOT NULL ,
@@ -375,7 +359,6 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`ticket` (
   INDEX `fk_user_ticket` (`iduser` ASC) ,
   INDEX `fk_milestone_ticket` (`idmilestone` ASC) ,
   INDEX `fk_typ_ticket` (`idtyp` ASC) ,
-  INDEX `fk_category_ticket` (`idcategory` ASC) ,
   INDEX `fk_priority_ticket` (`idpriority` ASC) ,
   CONSTRAINT `fk_project_ticket`
     FOREIGN KEY (`idproject` )
@@ -395,11 +378,6 @@ CREATE  TABLE IF NOT EXISTS `mybase`.`ticket` (
   CONSTRAINT `fk_typ_ticket`
     FOREIGN KEY (`idtyp` )
     REFERENCES `mybase`.`typ` (`idtyp` )
-    ON DELETE SET NULL
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_category_ticket`
-    FOREIGN KEY (`idcategory` )
-    REFERENCES `mybase`.`category` (`idcategory` )
     ON DELETE SET NULL
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_priority_ticket`

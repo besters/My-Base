@@ -1,0 +1,60 @@
+<div id="main">
+    <div id="title">
+         <div id="title-links">
+            <?php if($this->acl($this->Param('projekt') . '|ticket', 'new')): ?>
+            <?=$this->ActionLink('/ticket/new', 'Create New Ticket', true);?>
+            <?php endif; ?>
+        </div>
+        <h2><?php echo $this->Translate('Tickets'); ?></h2>
+    </div>
+	<div id="obsah">
+	   <?=$this->flashMessages(); ?>
+
+	   <?php if (count($this->data)){ ?>
+	   <table class="skin tickets">
+	      <thead>
+	       <th title="ID">#</th>
+	       <th title="Priority"><?=$this->Translate('Pr.');?></th>
+	       <th title="Type"><?=$this->Translate('T');?></th>
+	       <th><?=$this->Translate('Summary');?></th>
+	       <th><?=$this->Translate('Status');?></th>
+	       <th><?=$this->Translate('Assignee');?></th>
+	       <th><?=$this->Translate('Milestone');?></th>
+	       <th><?=$this->Translate('Reported');?></th>
+	       <th><?=$this->Translate('Reported');?></th>
+	      </thead>
+
+	      <tbody>
+		 <?php
+		  $date = new Zend_Date();
+		  foreach($this->data as $data):
+		     $datum = $date->set($data['datetime']);
+		  ?>
+		 <tr class="<?php echo $this->cycle(array('', 'even'))->next()?>">
+		    <td class="id">#<?=$data['idticket'];?></td>
+		    <td class="priority"><span class="priority" title="<?=$this->Translate($data['priority']);?> - <?=$this->Translate($data['priority_desc']);?>" style="background-color: #<?=$data['color'];?>; color: #<?=$data['text'];?>"><?=$data['priority_num'];?></span></td>
+		    <td class="type"><img src="<?=$this->baseUrl('public/design/type.png');?>" title="<?=$this->Translate($data['typ']);?>" /></td>
+		    <td class="summary"><a href="ticket/detail/<?=$data['idticket'];?>"><?=$data['name'];?></a></td>
+		    <td><span class="status s-<?=$data['status'];?>"><?=$this->Translate($data['status']);?></span></td>
+		    <td><a href="people/detail/<?=$data['assignee'];?>"><?=$this->User($data['assignee']);?></a></td>
+		    <td><a href="milestone/detail/<?=$data['idmilestone'];?>"><?=$data['milestone'];?></a></td>
+		    <td class="reporter"><a href="people/detail/<?=$data['iduser'];?>"><?=$this->User($data['iduser']);?></a></td>
+		    <td><?=$datum->get(Zend_Date::DATE_MEDIUM);?>, <?=$datum->get(Zend_Date::TIME_SHORT);?></td>
+		 </tr>
+		 <?php endforeach; ?>
+	      </tbody>
+ 
+
+	   </table>
+<?= $this->data; ?>
+	   <?php }else{ ?>
+	   ... Není tu žádný ticket ...
+	   <?php } ?>
+
+
+
+
+
+		<br class="clear" />
+	</div>
+</div>

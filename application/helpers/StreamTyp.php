@@ -13,6 +13,10 @@ class Unodor_View_Helper_StreamTyp extends Zend_View_Helper_Abstract
 	 case Model_Stream::TYP_MILESTONE :
 	    $class = 'milestone';
 	    $text = 'Milestone';
+	    break;
+	 case Model_Stream::TYP_TICKET :
+	    $class = 'ticket';
+	    $text = 'Ticket';
       }
 
       return $text;

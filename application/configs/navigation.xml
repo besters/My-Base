@@ -77,9 +77,14 @@
                 </milestone>
 
 
-                <!--<tickets label="Tickets" module="mybase" controller="ticket" action="index" route="mybase-projekt" resource="" privilege="index">
+                <tickets label="Tickets" module="mybase" controller="ticket" action="index" route="mybase-projekt" resource="" privilege="index">
                     <params account="" projekt=""></params>
-                </tickets>-->
+                    <pages>
+                        <new label="New" module="mybase" controller="ticket" action="new" route="mybase-projekt" resource="" privilege="new">
+                            <params account="" projekt=""></params>
+                        </new>
+                    </pages>
+                </tickets>
 
 
                 <!--<checklists label="Checklists" module="mybase" controller="checklist" action="index" route="mybase-projekt" resource="" privilege="index">

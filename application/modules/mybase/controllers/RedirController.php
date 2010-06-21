@@ -24,6 +24,9 @@ class Mybase_RedirController extends Unodor_Controller_Action
             break;
          case Model_Stream::TYP_MILESTONE :
             $url = $project.'/milestone/detail/'.$id;
+            break;
+         case Model_Stream::TYP_TICKET :
+            $url = $project.'/ticket/detail/'.$id;
       }
 
       $this->_redirect($url);

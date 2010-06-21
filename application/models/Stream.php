@@ -10,11 +10,13 @@ class Model_Stream
 
    const TYP_PROJECT     = 1;
    const TYP_MILESTONE   = 2;
+   const TYP_TICKET	 = 3;
 
    const AKCE_CREATED     = 1;
    const AKCE_CHANGED     = 2;
    const AKCE_DELETED     = 3;
    const AKCE_COMPLETED   = 4;
+   const AKCE_REPORTED    = 5;
 
    public function __construct()
    {
