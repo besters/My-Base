@@ -11,9 +11,7 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
 
    const ERROR = 'error';
    const DONE = 'done';
-
-   private $_noauth = array('module' => 'mybase', 'controller' => 'auth', 'action' => 'login');
-   
+  
    /**
     * Instance FlashMessenger action helperu
     *

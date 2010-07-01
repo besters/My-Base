@@ -44,6 +44,7 @@ class Model_DbTable_Ticket extends Unodor_Db_Table
               ->joinLeftUsing('typ', 'idtyp', array('name AS typ'))
               ->joinLeftUsing('priority', 'idpriority', array('name AS priority', 'color', 'text', 'priority AS priority_num', 'description AS priority_desc'))
               ->where('ticket.idproject = ' . $idproject)
+	      ->order('idticket DESC')
               ->setIntegrityCheck(false);
 
       $count = $this->select()

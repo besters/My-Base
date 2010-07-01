@@ -133,6 +133,20 @@ class Model_UserMeta
       return $return;
    }
 
+   public function getProjectUsersBeta($idproject)
+   {
+      $users = $this->_dbTable->getProjectUsersBeta($idproject);
+
+      $return = array();
+
+      foreach($users as $user){
+	 $return[$user->idcompany]['company'] = $user->company;
+         $return[$user->idcompany]['user'][] = $user;
+      }
+
+      return $return;
+   }
+
    /**
     * Ziskava vsechny uzivatele prislusne k aktualnimu uctu
     *

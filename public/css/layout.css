@@ -75,7 +75,6 @@ table{
     margin: 3px 0 0 0;
 }
 
-
 #userinfo a.link {
     color: #0b5c82;
     text-decoration: underline;
@@ -103,9 +102,6 @@ table{
     background: url('../design/submenu-bg.png') #e8e8e8 repeat-x;
     height: 34px;
 }
-
-
-
 
 #main,#main-fixed {
     background-color: #fff;
@@ -271,8 +267,15 @@ div.bar>div, .bar-project>div {
     display: none;
 }
 
-tr, td{
-    /*border: 1px solid black !important;*/
+img.gravatar{
+    border: 1px solid #cecece;
+}
+
+div.overview{
+    background-color: #cccccc;
+    height: 200px;
+    width: 90%;
+    margin: 15px auto 0 auto;
 }
 
 a.actionlink{
@@ -306,8 +309,32 @@ a.actionlink.delete:hover{
     float: right;
 }
 
-.paginator{
+.block{
+    padding: 0px 10px;
+}
 
+.block h4{
+
+}
+
+.block .user{
+    border-bottom: 1px solid #c9dbe0;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+}
+
+.block .user img{
+    float: left;
+}
+
+
+/*
+ * ----------------------------------
+ * Paginator
+ * ----------------------------------
+*/
+.paginator{
     background-color: #e7e7e7;
     width: 90%;
     margin: 15px auto 0 auto;
@@ -319,22 +346,10 @@ a.actionlink.delete:hover{
     padding-left: 5px;
     text-shadow: #ffffff 1px 1px 1px;
     border-radius: 3px;
-    /*
-
-                background: url('../design/table-header.png') repeat-x;
-            height: 23px;
-
-            vertical-align: middle;
-
-    */
 }
 
 .paginator .right{
     float: right;
-}
-
-.paginator span.disabled{
-
 }
 
 .paginator a{
@@ -349,72 +364,82 @@ a.actionlink.delete:hover{
     border-radius: 3px;
     text-shadow: none;
 }
+
 .paginator span.active{
     padding: 2px 5px;
 }
 
-div.stream{
-    padding: 1px 5px 2px 5px;
-    width: 60px;
-    color: #fff;
-    font-size: 9px;
-    font-family: Verdana;
-    border-radius: 3px;
-    text-align: right;
-}
 
-.stream.t-1{
-    background-color: #8eb4d4;
-}
-
-.stream.t-2{
-    background-color: #e18d8d;
-}
-
-.stream.t-3{
-    background-color: #8cc46b;
-}
-
+/*
+ * ----------------------------------
+ * Tabulka se streamem
+ * ----------------------------------
+*/
 table.stream td{
     padding: 0px 2px !important;
 }
 
-table.stream td.typ{
-    width: 75px;
+table.stream td.gravatar{
+    width: 33px;
+    padding: 3px 0 !important;
+    vertical-align: top;
 }
 
-table.stream td.title a{
-    font-size: 12px;
+table.stream td.content{
+    vertical-align: top;
+}
+
+table.stream td.content span.title{
+    padding-left: 4px;
+}
+
+table.stream td.content div.time{
+    font-size: 11px;
+    color: #8e8e8e;
+    padding-top: 3px !important;
+    float: right;
+}
+
+table.stream td.content div.title a{
+    font-size: 13px;
     text-decoration: underline;
 }
 
-table.stream td.title a:hover{
+table.stream td.content div.title a:hover{
     text-decoration: none;
 }
 
-table.stream td.action{
+table.stream td.content span.user{
     color: #8e8e8e;
     font-size: 10px;
     font-family: Verdana;
+
+    text-align: right;
 }
 
-table.stream td.user{
+table.stream td.content span.user a{
+    color: #555555;
     font-size: 11px;
     width: 100px;
     white-space: nowrap;
+    text-decoration: none;
 }
 
-table.stream td.user a{
-    color: #555555;
+table.stream td.content span.user a:hover{
+    text-decoration: underline;
 }
 
-table.stream td.time{
-    font-size: 11px;
-    width: 30px;
-    padding-left: 10px !important;
-    color: #686868;
-    white-space: nowrap;
+table.stream td.content ul.subinfo{
+    font-size: 10px;
+    color: #666666;
+    padding: 4px 0 4px 3px;
+    font-family: Verdana;
 }
+
+table.stream td.content div.stream{
+    padding-top: 5px;
+}
+
 
 /*
  * ----------------------------------
@@ -444,10 +469,6 @@ table.skin td{
     height: 25px;
 }
 
-table.skin td img{
-    padding-top: 3px;
-}
-
 table.skin td.small-cell{
     width: 15%;
     text-align: right;
@@ -468,15 +489,6 @@ table.skin tr:hover, table.skin tr:hover td{
 }
 
 table.skin th{
-    /*
-	background-color: #e9eef4;
-	color: #595959;
-	padding: 5px 10px;
-	font-size: 14px;
-	text-align: left;
-	font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;
-    */
-
     background: url('../design/table-header.png') repeat-x;
     height: 23px;
     font-family: "Century Gothic", "Segoe UI", Verdana, Geneva, Arial, Helvetica, sans-serif;

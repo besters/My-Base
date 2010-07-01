@@ -28,7 +28,7 @@ class Model_DbTable_Stream extends Unodor_Db_Table
    {
       $query = $this->select()
               ->from('stream', array('idstream', 'iduser', 'typ', 'akce', 'title', 'link', 'datetime', 'idproject'))
-              ->joinLeft('user_meta', 'stream.iduser = user_meta.iduser', array('name', 'surname'))
+              ->joinLeft('user_meta', 'stream.iduser = user_meta.iduser', array('name', 'surname', 'email'))
               ->where('stream.idaccount = ?', $idaccount);
 
       if(!is_null($idproject)){
@@ -49,7 +49,7 @@ class Model_DbTable_Stream extends Unodor_Db_Table
    {
       $query = $this->select()
               ->from('stream', array('idstream', 'iduser', 'typ', 'akce', 'title', 'link', 'datetime', 'idproject'))
-              ->joinLeft('user_meta', 'stream.iduser = user_meta.iduser', array('name', 'surname'))
+              ->joinLeft('user_meta', 'stream.iduser = user_meta.iduser', array('name', 'surname', 'email'))
               ->joinLeft('project', 'stream.idproject = project.idproject', array('name AS project'))
               ->where('stream.idaccount = ?', $idaccount)
 	      ->order('datetime DESC')

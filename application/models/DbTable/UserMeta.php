@@ -54,6 +54,24 @@ class Model_DbTable_UserMeta extends Unodor_Db_Table
       return $result;
    }
 
+   public function getProjectUsersBeta($idproject)
+   {
+      $idaccount = $this->getAccountId();
+
+      $query = $this->select()
+              ->from('user_meta', array('iduser', 'CONCAT(user_meta.name, " ", user_meta.surname) as name', 'email'))
+              ->joinLeft('company', 'user_meta.idcompany = company.idcompany', array('name AS company', 'idcompany'))
+              ->where('user_meta.iduser IN (?)', new Zend_Db_Expr('SELECT DISTINCT iduser FROM acl WHERE idproject = ' . $idproject . ''))
+              ->where('user_meta.idaccount = ?', $idaccount)
+              ->setIntegrityCheck(false);
+
+      $stmt = $query->query();
+
+      $result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+
+      return $result;
+   }
+
    /**
     * Ziskava z DB seznam uzivatelu podle accountu
     *

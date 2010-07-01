@@ -69,9 +69,20 @@ class Model_Mail
     */
    public function send($recipient)
    {
+
+      $smtpOptions = array(
+	  'auth'     => 'login',
+	  'username' => 'mybase.unodor@gmail.com',
+	  'password' => 'opticau51',
+	  'ssl'	     => 'ssl',
+	  'port'     => 465
+      );
+
+      $mailTransport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
+
       $this->_mail->setBodyHtml($this->_bodyText);
       $this->_mail->addTo($recipient);
-      $this->_mail->send();
+      $this->_mail->send($mailTransport);
    }
 
    /**

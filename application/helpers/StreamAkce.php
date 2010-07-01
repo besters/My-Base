@@ -2,20 +2,22 @@
 
 class Unodor_View_Helper_StreamAkce extends Zend_View_Helper_Abstract
 {
-   public function streamAkce($typ)
+   public function streamAkce($typ, $user)
    {
       switch($typ){
 	 case Model_Stream::AKCE_CREATED :
-	    $text = 'Created by';
+	    $text = 'created by';
 	    break;
 	 case Model_Stream::AKCE_CHANGED :
-	    $text = 'Edited by';
+	    $text = 'edited by';
 	    break;
 	 case Model_Stream::AKCE_REPORTED :
-	    $text = 'Reported by';
+	    $text = 'reported by';
       }
 
-      return $text;
+      $return = $text . ' <a href="/people/detail/'.$user->iduser.'">'.$user->name . ' ' . $user->surname.'</a>';
+
+      return $return;
    }
 }
 
