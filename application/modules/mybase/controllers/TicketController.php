@@ -12,8 +12,7 @@ class Mybase_TicketController extends Unodor_Controller_Action
 
    public function indexAction()
    {
-      $idproject = $this->_request->getParam('projekt');
-      $data = $this->_model->getAll($idproject);
+      $data = $this->_model->getAll($this->_project);
 
       $data->setItemCountPerPage(20);
       $data->setPageRange(5);
@@ -43,7 +42,7 @@ class Mybase_TicketController extends Unodor_Controller_Action
       $acl = Zend_Registry::get('acl');
       $auth = new Zend_Session_Namespace('Zend_Auth');
 
-      if($auth->storage->administrator == 1 || $acl->isAllowed($auth->storage->email, $this->_request->getParam('projekt') . '|ticket', 'edit') == 1){
+      if($auth->storage->administrator == 1 || $acl->isAllowed($auth->storage->email, $this->_project . '|ticket', 'edit') == 1){
          $this->_form = new Mybase_Form_TicketAdmin();
       }else{
          $this->_form = new Mybase_Form_TicketUser();
@@ -71,7 +70,7 @@ class Mybase_TicketController extends Unodor_Controller_Action
       $acl = Zend_Registry::get('acl');
       $auth = new Zend_Session_Namespace('Zend_Auth');
 
-      if($auth->storage->administrator == 1 || $acl->isAllowed($auth->storage->email, $this->_request->getParam('projekt') . '|ticket', 'edit') == 1){
+      if($auth->storage->administrator == 1 || $acl->isAllowed($auth->storage->email, $this->_project . '|ticket', 'edit') == 1){
          $form = new Mybase_Form_TicketAdmin();
       }else{
          $form = new Mybase_Form_TicketUser();

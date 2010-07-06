@@ -22,17 +22,16 @@ class Mybase_TeamController extends Unodor_Controller_Action
 
    public function newAction()
    {
-      $projekt = $this->_request->getParam('projekt');
-      $this->view->users = $this->_modelUserMeta->getFreeUsers($projekt);
+      $this->view->users = $this->_modelUserMeta->getFreeUsers($this->_project);
       $this->view->resources = $this->_modelAcl->getResources();
 
       if($this->_request->isPost()){
          if(isset($_POST['userSelect'])){
             foreach($_POST['userSelect'] as $iduser){
-               $this->_modelAcl->addUserToProject($_POST['acl'], $iduser, $projekt);
+               $this->_modelAcl->addUserToProject($_POST['acl'], $iduser, $this->_project);
             }
             $this->_flash('User has been successfully added to project', 'done');
-            return $this->_redirect('/' . $projekt . '/team/new');
+            return $this->_redirect('/' . $this->_project . '/team/new');
          }else{
             Zend_Debug::dump($_POST);
             $this->_flash('Please select user from the left column', 'error', false);
@@ -66,10 +65,9 @@ class Mybase_TeamController extends Unodor_Controller_Action
 
    public function deleteAction()
    {
-      $projekt = $this->_request->getParam('projekt');
       $this->_modelAcl->removeFromProject((int)$this->_request->getParam('id'));
       $this->_flash('User has been successfully removed from project', 'done');
-      return $this->_redirect('/' . $projekt . '/team');
+      return $this->_redirect('/' . $this->_project . '/team');
    }
 
 }
