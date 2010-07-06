@@ -8,6 +8,7 @@
 
 @import url('../css/mybase.modal.css');
 @import url('../css/mybase.tooltip.css');
+@import url('../css/mybase.tabs.css');
 
 @import url('../css/sekce.team.css');
 @import url('../css/sekce.projects.css');
@@ -37,6 +38,11 @@ h1 {
     color: #888888;
     float: left;
     font-family: "Century Gothic", Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+h1 span{
+    font-size: 15px;
+    color: #c8c8c8;
 }
 
 table{
@@ -271,13 +277,6 @@ img.gravatar{
     border: 1px solid #cecece;
 }
 
-div.overview{
-    background-color: #cccccc;
-    height: 200px;
-    width: 90%;
-    margin: 15px auto 0 auto;
-}
-
 a.actionlink{
     background-color: #a9a9a9;
     color: #fff !important;
@@ -319,13 +318,28 @@ a.actionlink.delete:hover{
 
 .block .user{
     border-bottom: 1px solid #c9dbe0;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     margin-bottom: 5px;
     padding-top: 5px;
 }
 
+.block .user a{
+    color: #aa0000;
+    text-decoration: none;
+}
+
+.block .user a:hover{
+    text-decoration: underline;
+}
+
 .block .user img{
     float: left;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.block .user .status{
+    font-size: 11px;
 }
 
 
@@ -375,6 +389,10 @@ a.actionlink.delete:hover{
  * Tabulka se streamem
  * ----------------------------------
 */
+table.stream{
+    width: 100% !important;
+}
+
 table.stream td{
     padding: 0px 2px !important;
 }
@@ -498,5 +516,6 @@ table.skin th{
     vertical-align: middle;
     padding-left: 5px;
     text-shadow: #ffffff 1px 1px 1px;
+    text-align: left;
 
 }
