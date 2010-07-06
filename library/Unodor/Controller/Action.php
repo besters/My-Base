@@ -21,8 +21,18 @@ abstract class Unodor_Controller_Action extends Zend_Controller_Action
    protected $_project;
 
    public function init()
-   {
+   {      
       $this->_project = $this->_request->getParam('projekt');
+
+      if(!is_null($this->_project) && $this->_project != '0'){
+	 $project = new Model_Project();
+	 $name = $project->getName($this->_project);
+	 $this->view->headTitle()->setSeparator(' | ')->append($name->name);
+	 $this->view->projectH1 = $name;
+      }else{
+	 $session = new Zend_Session_Namespace('Unodor_Account');
+	 $this->view->headTitle()->setSeparator(' | ')->append($session->name);
+      }
 
       $validate = $this->_request->getParam('validate');
       if(!is_null($validate))
