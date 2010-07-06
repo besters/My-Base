@@ -107,8 +107,6 @@ class Resource_Debug extends Zend_Application_Resource_ResourceAbstract
             //$plugins['plugins']['Database']['explain'] = true;
          }
 
-         $plugins['plugins']['Unodor_Controller_Plugin_Debug_Plugin_Auth'] = true;
-
          $autoloader = Zend_Loader_Autoloader::getInstance();
          $autoloader->registerNamespace('ZFDebug_');
 
