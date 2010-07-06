@@ -57,4 +57,9 @@ $application = new Zend_Application(
                 CONFIG_PATH . '/application.ini'
 );
 
+function d($data, $label = null)
+{
+   Zend_Debug::dump($data, $label);
+}
+
 $application->bootstrap()->run();
