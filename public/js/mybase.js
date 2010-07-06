@@ -18,6 +18,9 @@ $(document).ready(function(){
     
   // Inicializace tooltipu
   $('*[title]').tooltip();
+
+  // Inicializace Tabs
+  $('#tabs').tabs();
 	 
   // Hromadne oznacovani a odznacovani checkboxu
   $("input[name='company[]']").click(function(){

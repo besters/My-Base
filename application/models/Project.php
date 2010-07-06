@@ -78,5 +78,20 @@ class Model_Project
       return $leader['iduser'];
    }
 
+   public function getProjectInfo($idproject)
+   {
+      //$return = $this->_dbTable->get('idproject = '. $idproject, array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'), null, null, 1);
+
+      $return = $this->_dbTable->getProjectInfo($idproject);
+
+      return $return;
+   }
+
+   public function getName($idproject)
+   {
+      $return = $this->_dbTable->get('idproject = '. $idproject, array('name'), null, null, 1);
+      return $return;
+   }
+
 }
 

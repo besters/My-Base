@@ -51,6 +51,18 @@ class Model_Milestone
       }
    }
 
+   public function getLate($idproject)
+   {
+      $late = $this->_dbTable->get(array('idproject = ' . $idproject, 'datetime < ' . new Zend_Db_Expr('CURDATE()')), array('*'), null, null, null, true);
+      return $late;
+   }
+
+   public function getUpcoming($idproject)
+   {
+      $upcoming = $this->_dbTable->get(array('idproject = ' . $idproject, 'datetime >= ' . new Zend_Db_Expr('CURDATE()'), 'datetime <= ' . new Zend_Db_Expr('CURDATE()+14')), array('*'), null, null, null, true);
+      return $upcoming;
+   }
+
    public function getMilestones($status, $iduser = null)
    {       
       $projectModel = new Model_Project();

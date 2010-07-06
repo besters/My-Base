@@ -1,6 +1,7 @@
 <?php
-$project = $this->Param('projekt');
+$this->headTitle($this->Translate('Overview'));
 
+$project = $this->Param('projekt');
 ?>
 
 
@@ -16,61 +17,53 @@ $project = $this->Param('projekt');
    </div>
    <div id="obsah">
       <?=$this->flashMessages(); ?>
+      
+      <?php
+      if($this->info->img == null)
+         $img = 'design/placeholder.gif';
+      else
+         $img = 'files/' . $this->info->idaccount . '/' . $this->info->idproject . '/' . $this->info->img;
+      ?>
 
-      <div class="overview">
-	 <img src="/public/design/placeholder.gif" />
-	 <a href="#">Název Projektu</a>
-	 <p>Nějaký popis tohoto projektu</p>
+
+
+      <div id="overview">
+	 <div class="main">
+	    <img src="/public/<?=$img;?>" class="logo" />
+	    <h3><?=$this->info->name;?></h3>
+	    <p><?=$this->info->description;?></p>
+	    <dl>
+	      <dt><?=$this->Translate('Leader');?>:</dt>
+	       <dd><a href="/people/detail/<?=$this->info->iduser;?>"><?=$this->info->user;?></a></dd>
+	      <dt><?=$this->Translate('Client');?>:</dt>
+	       <dd><a href="/<?=$this->info->idcompany;?>"><?=$this->info->company;?></a></dd>
+	      <dt><?=$this->Translate('Status');?>:</dt>
+	       <dd><?=$this->Translate($this->info->status);?></dd>
+	      <dt><?=$this->Translate('Progress');?>:</dt>
+	       <dd><strong>1</strong> ze <strong>7</strong> úkolů dokončeno (<strong>15%</strong>)</dd>
+	    </dl>
+	 </div>
+	 <div class="graph">
+	    <!--<img src="/public/design/graph.png" />-->
+	    <img src="/index/img?data=15" title="Progress" />
+	 </div>
       </div>
 
 
 
-            <?php
-	    $zdatum = new Zend_Date();
-            foreach($this->stream as $date => $item):
-            ?>
 
-      <table class="skin stream">
-	 <thead>
-	    <tr>
-	       <th colspan="5"><?=$date;?></th>
-	    </tr>
-	 </thead>
-	 <tbody>
-            <?php
-	    $i=0;
-            foreach($item as $stream):
-	       $datum = $zdatum->set($stream->datetime);
-            ?>
-
-            	    <tr class="<?php echo $this->cycle(array('', 'even'))->next()?>">
-		       <td class="gravatar"><?=$this->Gravatar($stream->email, 30); ?></td>
-		       <td class="content">
-			  <div class="title">
-			     <div class="stream"><?= $this->streamTyp($stream->typ) ?></div>
-			     <span class="title"><a href="<?= $this->baseUrl($project.'/redir/'.$stream->typ.'x'.$stream->link) ?>"><?= $stream->title ?></a></span>
-			     <span class="user"><?= $this->streamAkce($stream->akce, $stream) ?></span>
-			     <div class="time"><?=$datum->get(Zend_Date::TIME_SHORT);?></div>
-			  </div>
-			     
-			  
-		       <?php if($i == 3){
-			 echo '<ul class="subinfo"><li>Ticket reassigned from Daniel Marchlík to Mikoláš Lebeda</li> <li>Další kecy</li></ul>';
-		       }
-		       ?>
-			  
-		       </td>
-		       
-		    </tr>
+      <div id="tabs">
+	<ul class="tabs">
+		<li><a href="#" rel="/ajax/stream/<?=$project?>"><?=$this->Translate('Latest Activity');?></a></li>
+		<li><a href="#" rel="/ajax/late/<?=$project?>"><?=$this->Translate('Late');?></a></li>
+		<li><a href="#" rel="/ajax/upcoming/<?=$project?>"><?=$this->Translate('Upcoming');?></a></li>
+	</ul>
+      </div>
 
 
-	    <?php $i++; endforeach; ?>
 
 
-	 </tbody>
-      </table>
 
-<?php endforeach; ?>
 
 
 
@@ -81,15 +74,6 @@ $project = $this->Param('projekt');
 </div>
 
 <div id="side">
-	 <h3><?=$this->Translate('Progress')?></h3>
-	<div class="block">	    
-	    <div class="bar center">
-	        <div style="width: 15%">
-	        </div>
-	    </div>
-		<div id="progress-info"><strong>1</strong> ze <strong>7</strong> úkolů dokončeno (<strong>15%</strong>)</div>
-	</div>
-
 	 <h3><?=$this->Translate('People on project')?></h3>
 	<div class="block">
 	   <?php foreach($this->users as $company): ?>
@@ -98,7 +82,7 @@ $project = $this->Param('projekt');
 		<div class="user">
 		   <?=$this->Gravatar($user->email, 30); ?>
 		   <a href="<?=$this->baseUrl('people/detail/'.$user->iduser)?>"><?=$user->name?></a>
-		   <div>Now online</div>
+		   <div class="status">Now online</div>
 		</div>
 		<?php endforeach; ?>
 	   <?php endforeach; ?>

@@ -70,8 +70,82 @@
 }
 
 .project-table .bar-container{
-	background: yellow;
 	margin-top: 20px;
 	margin-left: 20px;
 	float: left;
+}
+
+.project-table .bar-container img{
+	border: 0 !important;
+}
+
+
+
+
+#overview{
+    background-color: #f1f1f1;
+    height: 200px;
+    width: 90%;
+    margin: 15px auto 0 auto;
+    border-radius: 5px;
+}
+
+#overview img.logo{
+    border: 1px solid #dedede;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 7px
+}
+
+#overview .main{
+    width: 55%;
+    float: left;
+    padding: 15px 0 0 25px;
+}
+
+#overview .main h3{
+    color: #828181;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: #fff 0px 1px 1px;
+}
+
+#overview .main p{
+    color: #606060;
+    font-size: 12px;
+}
+
+#overview .main dl{
+    clear: both;
+    color: #5c5c5c;
+}
+
+#overview .main dt{    
+    width: 60px;
+    display: inline-block;
+}
+
+#overview .main dd{
+    width: 220px;
+    display: inline-block;
+}
+
+#overview .graph{
+    width: 220px;
+    float: right;
+    background: url('../design/delimeter.gif') repeat-y;
+    padding: 5px;
+    height: 170px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#overview a{
+    color: #aa0000;
+    text-decoration: none;
+}
+
+#overview a:hover{
+    text-decoration: underline;
 }

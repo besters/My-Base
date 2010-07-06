@@ -1,0 +1,48 @@
+<?php
+$project = $this->Param('id');
+
+	    $zdatum = new Zend_Date();
+            foreach($this->stream as $date => $item):
+            ?>
+
+      <table class="skin stream">
+	 <thead>
+	    <tr>
+	       <th colspan="5"><?=$date;?></th>
+	    </tr>
+	 </thead>
+	 <tbody>
+            <?php
+	    $i=0;
+            foreach($item as $stream):
+	       $datum = $zdatum->set($stream->datetime);
+            ?>
+
+            	    <tr class="<?php echo $this->cycle(array('', 'even'))->next()?>">
+		       <td class="gravatar"><?=$this->Gravatar($stream->email, 30); ?></td>
+		       <td class="content">
+			  <div class="title">
+			     <div class="stream"><?= $this->streamTyp($stream->typ) ?></div>
+			     <span class="title"><a href="<?= $this->baseUrl($project.'/redir/'.$stream->typ.'x'.$stream->link) ?>"><?= $stream->title ?></a></span>
+			     <span class="user"><?= $this->streamAkce($stream->akce, $stream) ?></span>
+			     <div class="time"><?=$datum->get(Zend_Date::TIME_SHORT);?></div>
+			  </div>
+			     
+			  
+		       <?php if($i == 3){
+			 echo '<ul class="subinfo"><li>Ticket reassigned from Daniel Marchlík to Mikoláš Lebeda</li> <li>Další kecy</li></ul>';
+		       }
+		       ?>
+			  
+		       </td>
+		       
+		    </tr>
+
+
+	    <?php $i++; endforeach; ?>
+
+
+	 </tbody>
+      </table>
+
+<?php endforeach; ?>

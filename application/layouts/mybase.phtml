@@ -13,6 +13,7 @@ $this->headScript()
 	->appendFile($this->baseUrl('/public/js/swfobject.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.modal.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.tooltip.js'))
+	->appendFile($this->baseUrl('/public/js/mybase.tabs.js'))
 	->appendFile($this->baseUrl('/public/js/mybase.js'));    
 
 echo $this->doctype(); ?>
@@ -31,7 +32,16 @@ echo $this->doctype(); ?>
 <div id="header">
 	<div class="wrap940">
 		<?php $session = new Zend_Session_Namespace('Unodor_Account'); ?>
-		<h1><?=$session->name;?></h1>
+		<h1>
+		   <?php
+		      if($this->param('projekt') > 0){
+			 echo $this->projectH1->name;
+			 echo '<span>  ('.$session->name.') </span>';
+		      }else{
+			echo $session->name;
+		      }
+		   ?>
+		</h1>
 		<div id="userinfo">
 			<?php $session = new Zend_Session_Namespace('Zend_Auth'); ?>
 			<?php echo $this->gravatar($session->storage->email); ?>

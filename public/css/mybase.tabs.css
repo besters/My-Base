@@ -1,0 +1,29 @@
+#tabs{
+    margin: 15px auto 0 auto;
+    width: 90%;
+}
+
+#tabs ul.tabs{
+    background: url('../design/tabs-header.png') #9e9d9d repeat-x;
+    padding: 5px 15px 0px 10px;
+    margin-bottom: 15px;
+}
+
+#tabs ul.tabs li{
+    display: inline;
+}
+
+#tabs ul.tabs li a, #tabs ul.tabs li a.selected{
+    padding: 4px 15px 4px 15px;
+    background: url('../design/tab-bg.png') #fff repeat-x;
+    color: #3b3c3c;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 23px;
+    margin: 0 2px;
+}
+
+#tabs ul.tabs li a.selected{
+    background: url('../design/tab-bg-active.png') #fff repeat-x;
+    font-weight: bold;
+}

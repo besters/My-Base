@@ -46,5 +46,22 @@ class Model_DbTable_Project extends Unodor_Db_Table
       return $result;
    }
 
+   public function getProjectInfo($idproject)
+   {
+      $query = $this->select()
+              ->from('project', array('idproject', 'idaccount', 'iduser', 'idcompany', 'name', 'description', 'img', 'status'))
+              ->joinLeft('user_meta', 'project.iduser = user_meta.iduser', array('CONCAT(user_meta.name, " ", user_meta.surname) as user'))
+              ->joinLeft('company', 'project.idcompany = company.idcompany', array('company' => 'name'))
+              ->where('project.idproject = ?', $idproject)
+              ->limit(1)
+              ->setIntegrityCheck(false);
+
+      $stmt = $query->query();
+
+      $result = $stmt->fetchAll(Zend_Db::FETCH_OBJ);
+
+      return $result[0];
+   }
+
 }
 
