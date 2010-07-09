@@ -63,5 +63,36 @@ class Model_DbTable_Project extends Unodor_Db_Table
       return $result[0];
    }
 
+      public function getFullProgressData($idproject){
+
+
+       $ticket = $this->select()
+             ->from('ticket',
+                    array('idticket', 'status'))
+             ->where('idproject = 1')
+              ->setIntegrityCheck(false);
+
+       $milestone =$this->select()
+             ->from('milestone',
+                    array('idmilestone', 'status'))
+             ->where('idproject = 1')
+              ->setIntegrityCheck(false);
+
+       $query = $this->select()->union(array("($ticket)", "($milestone)"));
+
+
+
+        $select = $this->select()
+            ->union(array($ticket, $milestone));
+
+       $stmt = $select->query();
+
+       $result = $stmt->fetchAll(Zend_DB::FETCH_ASSOC);
+
+       
+       return $result ;
+
+   }
+
 }
 

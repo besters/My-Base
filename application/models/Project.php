@@ -93,5 +93,37 @@ class Model_Project
       return $return;
    }
 
+   public function getProgressData($idproject) {
+
+        $result = $this->_dbTable->getFullProgressData($idproject);
+        $rowCount = count($result);
+
+        $complete = Array(
+               'resolved' , 'complete' , 'closed'
+        );
+
+        $narray = Array();
+
+        foreach($result as $data){
+            if(in_array($data['status'] , $complete)){
+                $narray[]=$data['status'];
+            }
+        }
+
+        $RowComplete = count($narray);
+
+
+        $percentage = round(100 / $rowCount * $RowComplete);
+
+        $progresslist = array(
+            'complete' => $RowComplete,
+            'tasks' => $rowCount,
+            'percentage' => $percentage
+        );
+
+        return $progresslist;
+    }
+
+
 }
 
